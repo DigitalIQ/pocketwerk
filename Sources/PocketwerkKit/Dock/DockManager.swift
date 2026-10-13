@@ -1,5 +1,6 @@
 import AppKit
 import Observation
+import os
 import PocketwerkShared
 
 /// A launcher-backed Dock tile: a slot (opens a popup) or a custom spacer (shows text or an image).
@@ -34,6 +35,7 @@ nonisolated struct LauncherFailure: Hashable, Sendable {
 @Observable
 final class DockManager {
     static let shared = DockManager()
+    nonisolated static let log = Logger(subsystem: PWShared.mainBundleID, category: "dock")
 
     @ObservationIgnored let store: LibraryStore
     @ObservationIgnored var domain: DockDomain
@@ -97,6 +99,7 @@ final class DockManager {
         if let t = info[PWShared.timeKey] as? Double, Date().timeIntervalSince1970 - t > 2 { return }
         var anchor: CGPoint?
         if let x = info[PWShared.xKey] as? Double, let y = info[PWShared.yKey] as? Double { anchor = CGPoint(x: x, y: y) }
+        Self.log.info("open request slot=\(id.uuidString, privacy: .public) anchor=\(anchor.map { "\($0.x),\($0.y)" } ?? "-", privacy: .public)")
         openSlot(id, anchor: anchor)
     }
 

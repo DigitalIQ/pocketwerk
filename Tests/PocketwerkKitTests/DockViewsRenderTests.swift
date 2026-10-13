@@ -6,7 +6,7 @@ import Testing
 /// Writes PNGs of the Dock views to `<worktree>/.tmp/shots`. Opt-in: needs POCKETWERK_SHOTS and a
 /// development data folder (POCKETWERK_DATA_DIR, POCKETWERK_DOCK_PLIST), so it never reads real data.
 @Suite struct DockViewsRenderTests {
-    static var enabled: Bool {
+    nonisolated static var enabled: Bool {
         let env = ProcessInfo.processInfo.environment
         return env["POCKETWERK_SHOTS"] != nil && env["POCKETWERK_DATA_DIR"] != nil && env["POCKETWERK_DOCK_PLIST"] != nil
     }
