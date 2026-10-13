@@ -104,7 +104,7 @@ private struct TexturePainter {
         case .ice: ice()
         case .cardboard: cardboard()
         case .linen: linen()
-        case .leopard: spots(base: tint, ring: tint.darker(0.82), center: tint.darker(0.18), count: 16, hollow: false)
+        case .leopard: spots(base: tint, ring: tint.darker(0.85), center: tint.darker(0.28), count: 14, hollow: false)
         case .snowLeopard: spots(base: tint, ring: RGBA(0.22, 0.22, 0.24), center: tint.darker(0.12), count: 11, hollow: true)
         case .tiger: tiger()
         case .terrazzo: terrazzo()
@@ -187,39 +187,38 @@ private struct TexturePainter {
     // MARK: Textures
 
     mutating func knit() {
-        // Rows of V stitches: two slanted loops per stitch, lit from the top.
-        let w = 20 * s, h = 16 * s
+        // Columns of V stitches. Each V is two narrow loops leaning outward, lit along their middle.
+        let w = 16 * s, h = 12.8 * s
         let cols = Int((size / w).rounded()), rows = Int((size / h).rounded())
-        let light = tint.lighter(0.22), dark = tint.darker(0.35)
-        ctx.setFillColor(tint.darker(0.45).cgColor)
+        let light = tint.lighter(0.25), dark = tint.darker(0.4)
+        ctx.setFillColor(tint.darker(0.6).cgColor)
         ctx.fill(CGRect(x: 0, y: 0, width: size, height: size))
-        for r in 0...rows {
+        for r in stride(from: rows, through: 0, by: -1) {
             for c in 0..<cols {
                 let cx = (CGFloat(c) + 0.5) * w, cy = CGFloat(r) * h
                 for side in [-1.0, 1.0] {
-                    let jitter = rng.range(-0.04, 0.04)
-                    let rect = CGRect(x: -w * 0.27, y: -h * 0.62, width: w * 0.54, height: h * 1.24)
-                    wrapped(CGRect(x: cx - w, y: cy - h, width: w * 2, height: h * 2)) { g in
+                    let jitter = CGFloat(rng.range(-0.05, 0.05))
+                    let rect = CGRect(x: -w * 0.2, y: -h * 0.86, width: w * 0.4, height: h * 1.72)
+                    wrapped(CGRect(x: cx - w, y: cy - h * 1.5, width: w * 2, height: h * 3)) { g in
                         g.saveGState()
-                        g.translateBy(x: cx + side * w * 0.22, y: cy)
-                        g.rotate(by: CGFloat(side * (0.5 + jitter)))
+                        g.translateBy(x: cx + CGFloat(side) * w * 0.2, y: cy + h * 0.1)
+                        g.rotate(by: CGFloat(-side) * (0.46 + jitter))
                         let path = CGPath(ellipseIn: rect, transform: nil)
                         g.addPath(path)
                         g.clip()
-                        let colors = [light.cgColor, tint.cgColor, dark.cgColor] as CFArray
-                        let grad = CGGradient(colorsSpace: nil, colors: colors, locations: [0, 0.45, 1])!
-                        g.drawLinearGradient(grad, start: CGPoint(x: 0, y: rect.maxY), end: CGPoint(x: 0, y: rect.minY), options: [])
-                        g.resetClip()
-                        g.addPath(path)
-                        g.setStrokeColor(RGBA.black.alpha(0.18).cgColor)
-                        g.setLineWidth(0.8 * s)
-                        g.strokePath()
+                        let colors = [dark.cgColor, light.cgColor, tint.cgColor, dark.cgColor] as CFArray
+                        let grad = CGGradient(colorsSpace: nil, colors: colors, locations: [0, 0.45, 0.75, 1])!
+                        g.drawLinearGradient(grad, start: CGPoint(x: rect.minX, y: 0), end: CGPoint(x: rect.maxX, y: 0), options: [])
+                        let along = CGGradient(colorsSpace: nil, colors: [RGBA.black.alpha(0.35).cgColor, RGBA.black.alpha(0).cgColor,
+                                                                          RGBA.black.alpha(0.15).cgColor] as CFArray, locations: [0, 0.5, 1])!
+                        g.drawLinearGradient(along, start: CGPoint(x: 0, y: rect.minY), end: CGPoint(x: 0, y: rect.maxY), options: [])
                         g.restoreGState()
                     }
                 }
             }
         }
-        grain(0.035)
+        fibers(count: 160, length: 2...6, alpha: 0.12, width: 0.5)
+        grain(0.03)
     }
 
     mutating func paper() {
@@ -344,7 +343,7 @@ private struct TexturePainter {
                     if k == lobes - 1 && rng.unit() > 0.4 { continue }
                     let a = start + Double(k) / Double(lobes) * .pi * 2
                     let p = CGPoint(x: c.x + cos(a) * r, y: c.y + sin(a) * r * 0.85)
-                    marks.append(blob(center: p, radius: r * CGFloat(rng.range(0.3, 0.42)), lobes: 3, irregular: 0.35))
+                    marks.append(blob(center: p, radius: r * CGFloat(rng.range(0.34, 0.48)), lobes: 3, irregular: 0.35))
                 }
                 wrapped(CGRect(x: c.x - r * 1.6, y: c.y - r * 1.6, width: r * 3.2, height: r * 3.2)) { g in
                     if !hollow { g.addPath(inner); g.setFillColor(center.cgColor); g.fillPath() }

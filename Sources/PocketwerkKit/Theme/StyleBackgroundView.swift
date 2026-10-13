@@ -19,7 +19,8 @@ struct StyleBackgroundView: View {
     /// Used for the glass shape and its rim light.
     var cornerRadius: Double = 24
 
-    @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
+    @Environment(\.accessibilityReduceTransparency) private var systemReduceTransparency
+    @Environment(\.forceOpaqueBackgrounds) private var forceOpaque
     @Environment(\.colorSchemeContrast) private var contrast
     @Environment(\.colorScheme) private var scheme
 
@@ -39,6 +40,7 @@ struct StyleBackgroundView: View {
                   matte: style.matte, opacity: style.opacity, cornerRadius: style.cornerRadius)
     }
 
+    private var reduceTransparency: Bool { systemReduceTransparency || forceOpaque }
     private var shape: RoundedRectangle { RoundedRectangle(cornerRadius: cornerRadius, style: .continuous) }
     private var isGlass: Bool { if case .glass = background { true } else { false } }
     private var clampedOpacity: Double { min(1, max(0, opacity)) }
@@ -102,6 +104,11 @@ struct StyleBackgroundView: View {
             fill
         }
     }
+}
+
+extension EnvironmentValues {
+    /// Renders backgrounds as if Reduce Transparency were on (previews and tests).
+    @Entry var forceOpaqueBackgrounds = false
 }
 
 extension UnitPoint {

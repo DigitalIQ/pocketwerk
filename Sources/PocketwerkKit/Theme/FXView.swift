@@ -115,6 +115,8 @@ final class FXState {
     private var lastSeen: Double = -100
     private var lastRing: CGPoint?
     private var offsets: [CGVector] = []
+    /// Per-effect cache for parts that do not move (built once per size).
+    var cache: [String: Any] = [:]
 
     /// Advances the pointer model. Returns the frame delta in seconds.
     func advance(real: Double, pointer: CGPoint?, model: FXPointer) -> Double {

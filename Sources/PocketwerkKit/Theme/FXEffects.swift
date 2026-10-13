@@ -197,7 +197,7 @@ enum FXRenderer {
             let weight = 0.5 + hash01(i, 9)
             gc.stroke(path, with: .color(vein.alpha(0.07 * f.k).color), style: StrokeStyle(lineWidth: 9 * weight, lineCap: .round, lineJoin: .round))
             gc.stroke(path, with: .color(vein.alpha(0.2 * f.k).color), style: StrokeStyle(lineWidth: 2.6 * weight, lineCap: .round, lineJoin: .round))
-            gc.stroke(path, with: .color(vein.alpha(0.55 * f.k).color), style: StrokeStyle(lineWidth: 0.7 * weight, lineCap: .round, lineJoin: .round))
+            gc.stroke(path, with: .color(vein.alpha(0.42 * f.k).color), style: StrokeStyle(lineWidth: 0.7 * weight, lineCap: .round, lineJoin: .round))
         }
     }
 
@@ -303,7 +303,7 @@ enum FXRenderer {
         let b = base(f, f.color(0).darker(0.6))
         fillVertical(gc, f, [b.lighter(0.05), b.darker(0.2)])
         var g = gc
-        g.blendMode = .screen
+        g.blendMode = b.luminance > 0.45 ? .normal : .screen
         let n = 6
         for i in 0..<n {
             let sx = 0.17 * (1 + hash01(i, 1)), sy = 0.13 * (1 + hash01(i, 2))
@@ -319,48 +319,84 @@ enum FXRenderer {
 
     static func fur(_ f: FXFrame, _ gc: inout GraphicsContext) {
         let coat = f.color(0), belly = f.color(1), stripe = f.color(2)
-        gc.fill(Path(f.rect), with: .color(coat.darker(0.3).color))
-        let length = 9 + 13 * f.p3
-        let spacing = max(6, min(12, length * 0.55))
+        let length = 7 + 9 * f.p3
+        let spacing = max(5.5, min(10, length * 0.6))
         let cols = Int(f.w / spacing) + 2, rows = Int(f.h / spacing) + 2
+        let period = max(60, f.w / 4.5)
+        // Stripe field: 0 coat, 1 belly, 2 stripe.
+        func region(_ x: Double, _ y: Double) -> Int {
+            let s = sin(x * 2 * .pi / period + 2.4 * sin(y * 0.016 + x * 0.003) + Double(f.p.style))
+            if s > 0.5 { return 2 }
+            if y > f.h * 0.84 || s < -0.82 { return 1 }
+            return 0
+        }
+        // Under-layer in the region colors so gaps between strands never look empty.
+        // It does not move, so it is built once per size as run-length scanlines.
+        let colors = [coat, belly, stripe]
+        let key = "fur|\(Int(f.w))|\(Int(f.h))|\(f.p.style)|\(Int(period))"
+        let under: [Path]
+        if let cached = f.state.cache[key] as? [Path] {
+            under = cached
+        } else {
+            var built = Array(repeating: Path(), count: 3)
+            let step = 2.0
+            var y = 0.0
+            while y < f.h {
+                var x = 0.0, runStart = 0.0
+                var current = region(0, y)
+                while x <= f.w {
+                    let r = x >= f.w ? -1 : region(x, y)
+                    if r != current {
+                        built[current].addRect(CGRect(x: runStart, y: y, width: x - runStart + 0.5, height: step + 0.5))
+                        runStart = x
+                        if r >= 0 { current = r }
+                    }
+                    x += step
+                }
+                y += step
+            }
+            f.state.cache[key] = built
+            under = built
+        }
+        for i in 0..<3 { gc.fill(under[i], with: .color(colors[i].darker(0.28).color)) }
         // Nine buckets: three colors times three shades.
         var paths = Array(repeating: Path(), count: 9)
-        let period = f.w / 5.5
+        let rr = f.minSide * 0.2
         for r in 0..<rows {
             for c in 0..<cols {
                 let idx = r * cols + c
-                let bx = (Double(c) - 0.5 + hash01(idx, 1) * 0.8) * spacing
-                let by = (Double(r) - 0.5 + hash01(idx, 2) * 0.8) * spacing
-                let s = sin(bx * 2 * .pi / period + 2.2 * sin(by * 0.018 + bx * 0.004) + Double(f.p.style))
-                let colorIndex = s > 0.55 ? 2 : (s < -0.78 || by > f.h * 0.86 ? 1 : 0)
+                let bx = (Double(c) - 0.5 + hash01(idx, 1) * 0.9) * spacing
+                let by = (Double(r) - 1 + hash01(idx, 2) * 0.9) * spacing
+                let colorIndex = region(bx, by)
                 let shade = Int(hash01(idx, 3) * 3)
-                var angle = Double.pi / 2 + 0.35 + 0.25 * sin(bx * 0.01 + by * 0.013)
-                angle += 0.07 * sin(f.t * 1.4 + bx * 0.03 + by * 0.02)
+                var angle = Double.pi / 2 + 0.22 + 0.3 * sin(bx * 0.008 + by * 0.011) + 0.25 * (hash01(idx, 5) - 0.5)
+                angle += 0.06 * sin(f.t * 1.3 + bx * 0.03 + by * 0.02)
                 var dx = cos(angle), dy = sin(angle)
                 if let ptr = f.state.pointerPoint, f.state.influence > 0 {
                     // Comb: strands bend away from the pointer.
                     let vx = bx - Double(ptr.x), vy = by - Double(ptr.y)
                     let d = max(0.001, (vx * vx + vy * vy).squareRoot())
-                    let rr = f.minSide * 0.18
                     let infl = exp(-(d / rr) * (d / rr)) * f.state.influence * 2.4
                     dx += vx / d * infl; dy += vy / d * infl
                     let len = max(0.001, (dx * dx + dy * dy).squareRoot())
                     dx /= len; dy /= len
                 }
-                let l = length * (0.8 + 0.4 * hash01(idx, 4))
+                let l = length * (0.75 + 0.5 * hash01(idx, 4))
+                // A slight curl: the tip bends a little more than the root.
+                let mid = CGPoint(x: bx + dx * l * 0.5, y: by + dy * l * 0.5)
+                let tip = CGPoint(x: bx + dx * l + dy * l * 0.12, y: by + dy * l - dx * l * 0.12)
                 paths[colorIndex * 3 + shade].move(to: CGPoint(x: bx, y: by))
-                paths[colorIndex * 3 + shade].addLine(to: CGPoint(x: bx + dx * l, y: by + dy * l))
+                paths[colorIndex * 3 + shade].addQuadCurve(to: tip, control: mid)
             }
         }
-        let colors = [coat, belly, stripe]
         for ci in 0..<3 {
             for sh in 0..<3 {
-                let col = sh == 0 ? colors[ci].darker(0.12) : (sh == 1 ? colors[ci] : colors[ci].lighter(0.12))
-                gc.stroke(paths[ci * 3 + sh], with: .color(col.color), style: StrokeStyle(lineWidth: 1.9, lineCap: .round))
+                let col = sh == 0 ? colors[ci].darker(0.14) : (sh == 1 ? colors[ci] : colors[ci].lighter(0.14))
+                gc.stroke(paths[ci * 3 + sh], with: .color(col.color), style: StrokeStyle(lineWidth: 1.5, lineCap: .round))
             }
         }
         // Soft top light gives the coat some volume.
-        gc.fill(Path(f.rect), with: .linearGradient(Gradient(colors: [RGBA.white.alpha(0.1 * f.k).color, .clear, RGBA.black.alpha(0.18).color]),
+        gc.fill(Path(f.rect), with: .linearGradient(Gradient(colors: [RGBA.white.alpha(0.1 * f.k).color, .clear, RGBA.black.alpha(0.2).color]),
                                                     startPoint: .zero, endPoint: CGPoint(x: 0, y: f.h)))
     }
 
@@ -482,9 +518,9 @@ enum FXRenderer {
         let n = 8
         var centers: [(CGPoint, Double)] = []
         for i in 0..<n {
-            let y = f.h * (0.5 + 0.5 * sin(f.t * 0.22 * (0.5 + hash01(i, 1)) + Double(i) * 1.3))
-            let x = f.w * (0.12 + 0.76 * hash01(i, 2)) + sin(f.t * 0.3 + Double(i)) * f.w * 0.05
-            let r = f.minSide * (0.07 + 0.07 * hash01(i, 3)) * (0.7 + 0.6 * f.p3)
+            let y = f.h * (0.5 + 0.38 * sin(f.t * 0.2 * (0.5 + hash01(i, 1)) + Double(i) * 1.3))
+            let x = f.w * (0.18 + 0.64 * hash01(i, 2)) + sin(f.t * 0.3 + Double(i)) * f.w * 0.05
+            let r = f.minSide * (0.09 + 0.08 * hash01(i, 3)) * (0.7 + 0.6 * f.p3)
             centers.append((f.displaced(i, x, y), r))
         }
         // Metaballs: blurred discs cut at an alpha threshold. Three thresholds give shading.
@@ -497,8 +533,7 @@ enum FXRenderer {
                     for (c, r) in centers {
                         inner.fill(Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: r * 2, height: r * 2)), with: .color(.black))
                     }
-                    inner.fill(Path(ellipseIn: CGRect(x: -f.w * 0.1, y: f.h * 0.93, width: f.w * 1.2, height: f.h * 0.3)), with: .color(.black))
-                    inner.fill(Path(ellipseIn: CGRect(x: f.w * 0.1, y: -f.h * 0.2, width: f.w * 0.8, height: f.h * 0.25)), with: .color(.black))
+                    inner.fill(Path(ellipseIn: CGRect(x: -f.w * 0.1, y: f.h * 0.95, width: f.w * 1.2, height: f.h * 0.2)), with: .color(.black))
                 }
             }
         }
