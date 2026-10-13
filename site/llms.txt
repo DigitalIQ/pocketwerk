@@ -1,6 +1,6 @@
 # Pocketwerk
 
-> Pocketwerk is a free, open-source macOS app released under the MIT license by DigitalIQ. It groups apps, files, folders and links into "pockets" that can each get their own icon in the macOS Dock.
+> Pocketwerk (current version 1.1.0) is a free, open-source macOS app released under the MIT license by DigitalIQ. It groups apps, files, folders and links into "pockets" that can each get their own icon in the macOS Dock.
 
 Clicking a pocket's Dock icon opens a themed popup directly above that icon; a second click closes it. Pocketwerk runs on macOS 26 Tahoe and later, on Apple Silicon and Intel Macs. Its interface is available in English and German.
 
@@ -17,7 +17,12 @@ Pocketwerk has no account, no tracking and no analytics. Its data stays in a JSO
 - Dock profiles: save the whole macOS Dock as a profile and switch with a hotkey, the menu bar, the command line or a URL; optionally quit or launch apps when switching; custom spacers.
 - Global hotkeys per pocket and per profile without the macOS Accessibility permission. Menu bar mode. Launch at login.
 - Smart pockets: Most Used, Recently Opened, Running Apps.
-- Coming in version 1.1: an on-device assistant (Apple Intelligence, on supported Macs with macOS 26) that edits a pocket from plain language, with undo.
+- Assistant (version 1.1): an on-device assistant on Apple Intelligence (supported Macs with macOS 26 or later) edits a pocket from plain language; every change is listed and can be undone.
+- App suggestions (version 1.1): apps that fit a pocket, computed on the Mac from its name and the apps already in it.
+- Popup sidebar (version 1.1): with several pockets in one popup, a sidebar switches between them.
+- Dock profiles can follow the current Space or display and switch automatically (version 1.1).
+- Shortcuts and Siri actions: show, open all, hide or quit a pocket; apply a profile or the next profile.
+- Leader key: one hotkey, then a letter, opens a pocket or applies a profile. A hot corner opens the pockets when the pointer rests in a screen corner. App icon variants for Pocketwerk itself.
 
 ## Install
 

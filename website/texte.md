@@ -76,7 +76,9 @@ Logo "Pocketwerk" (home). Links: Features, Design, Profiles, Install, FAQ. Butto
   - Menu bar mode, if you'd rather keep Pocketwerk out of the Dock.
   - Launch at login.
   - English and German.
-- Coming in 1.1: An on-device assistant edits a pocket from a plain sentence, with undo. It uses Apple Intelligence on supported Macs with macOS 26.
+- Box heading: New in 1.1: the assistant. Text: Describe a change in a plain sentence and the on-device assistant edits the pocket. Every change is listed and can be undone. It runs on Apple Intelligence on supported Macs with macOS 26 or later. / App suggestions offer apps that fit a pocket, worked out on your Mac from its name and the apps already in it.
+- Toolbox list additions (1.1): leader key; hot corner; Shortcuts and Siri actions; app icon variants (with Launch at login).
+- Also added for 1.1: popup sidebar sentence in "Opens where you click"; profiles follow Space or display (profiles intro and switch-ways tiles "Shortcuts and Siri", "Space or display").
 
 ### Privacy
 

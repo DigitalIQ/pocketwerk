@@ -39,6 +39,7 @@
       "name": "Pocketwerk",
       "description": "Free, open-source macOS app that groups apps, files, folders and links into pockets. Each pocket can get its own Dock icon and opens a themed popup right above it.",
       "applicationCategory": "UtilitiesApplication",
+      "softwareVersion": "1.1.0",
       "operatingSystem": "macOS 26 Tahoe or later",
       "processorRequirements": "Apple Silicon or Intel",
       "inLanguage": ["en", "de"],
@@ -59,6 +60,12 @@
         "Dock profiles switched by hotkey, menu bar, command line or URL",
         "Global hotkeys without the Accessibility permission",
         "Smart pockets: Most Used, Recently Opened, Running Apps",
+        "On-device assistant (Apple Intelligence, macOS 26 or later on supported Macs) that edits a pocket from plain language; every change can be undone",
+        "App suggestions for a pocket, computed on the Mac",
+        "Popup sidebar to switch between several pockets",
+        "Dock profiles that follow the current Space or display",
+        "Shortcuts and Siri actions for pockets and profiles",
+        "Leader key, hot corner and app icon variants",
         "No account, no tracking, no analytics"
       ]
     },
@@ -167,7 +174,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <h2 id="features-h">One Dock icon, a whole group</h2>
       <p class="intro">Put the apps, files, folders and links you use together into a pocket. Give it a Dock icon. Click once to open it, click again to close it.</p>
       <dl class="ideas">
-        <div><dt>Opens where you click</dt><dd>The popup appears right above the pocket's Dock icon. Show it as a grid, a list or tiles; it adapts to what's inside and pages through the rest.</dd></div>
+        <div><dt>Opens where you click</dt><dd>The popup appears right above the pocket's Dock icon. Show it as a grid, a list or tiles; it adapts to what's inside and pages through the rest. With several pockets in one popup, a sidebar switches between them.</dd></div>
         <div><dt>Apps, files, folders, links</dt><dd>Folders open inside the popup. Press Space for Quick Look. Drag items in, drag them out to wherever you need them.</dd></div>
         <div><dt>The whole group at once</dt><dd>Open All, Hide All or Quit All for a pocket. <kbd>⌥</kbd>-click quits a single app, <kbd>⌘</kbd>-click picks several to open together.</dd></div>
         <div><dt>Pockets that fill themselves</dt><dd>Smart pockets show your Most Used, Recently Opened and Running Apps.</dd></div>
@@ -283,7 +290,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   <div class="wrap profiles-grid">
     <div>
       <h2 id="profiles-h">A different Dock for every kind of work</h2>
-      <p class="intro">Save the whole macOS Dock as a profile. Switch with a hotkey, from the menu bar, the command line or a URL. Pocketwerk can quit and launch apps as it switches, and custom spacers keep long Docks readable.</p>
+      <p class="intro">Save the whole macOS Dock as a profile. Switch with a hotkey, from the menu bar, the command line or a URL. A profile can also follow your Space or display and switch by itself. Pocketwerk can quit and launch apps as it switches, and custom spacers keep long Docks readable.</p>
     </div>
     <div class="profile-switch">
       <div class="profile-tabs" role="tablist" aria-label="Example profiles">
@@ -300,6 +307,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <li><svg aria-hidden="true" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M4 8.5h24"/><rect x="15" y="11.5" width="12" height="13" rx="2.5"/><path d="M18 16h6m-6 4h4" stroke-linecap="round"/></g></svg>Menu bar</li>
         <li><svg aria-hidden="true"><use href="#g-term"/></svg>Command line</li>
         <li><svg aria-hidden="true"><use href="#g-link"/></svg>URL</li>
+        <li><svg aria-hidden="true" viewBox="0 0 32 32"><path d="M18 5 8 18h7l-2 9 11-14h-7Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>Shortcuts and Siri</li>
+        <li><svg aria-hidden="true" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="4" y="7" width="15" height="11" rx="2"/><rect x="13" y="13" width="15" height="11" rx="2"/></g></svg>Space or display</li>
       </ul>
     </div>
   </div>
@@ -328,13 +337,17 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <ul class="ticks">
           <li>Global hotkeys for every pocket and every profile. No Accessibility permission needed.</li>
           <li>Menu bar mode, if you'd rather keep Pocketwerk out of the Dock.</li>
-          <li>Launch at login.</li>
+          <li>A leader key: press one hotkey, then a letter to open a pocket or apply a profile.</li>
+          <li>A hot corner that opens your pockets when the pointer rests in it.</li>
+          <li>Shortcuts and Siri actions to show, open, hide or quit a pocket and to apply a profile.</li>
+          <li>Launch at login, and app icon variants for Pocketwerk itself.</li>
           <li>English and German.</li>
         </ul>
       </div>
-      <div class="slot" aria-labelledby="soon-h">
-        <h3 id="soon-h">Coming in 1.1</h3>
-        <p>An on-device assistant edits a pocket from a plain sentence, with undo. It uses Apple Intelligence on supported Macs with macOS&nbsp;26.</p>
+      <div class="slot slot-filled" aria-labelledby="assist-h">
+        <h3 id="assist-h">New in 1.1: the assistant</h3>
+        <p>Describe a change in a plain sentence and the on-device assistant edits the pocket. Every change is listed and can be undone. It runs on Apple Intelligence on supported Macs with macOS&nbsp;26 or later.</p>
+        <p>App suggestions offer apps that fit a pocket, worked out on your Mac from its name and the apps already in it.</p>
       </div>
     </div>
   </div>
