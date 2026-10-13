@@ -9,6 +9,7 @@ final class PopupIconCache {
     static let shared = PopupIconCache()
 
     @ObservationIgnored private var images: [Key: NSImage] = [:]
+    @ObservationIgnored private var names: [URL: String] = [:]
     @ObservationIgnored private var thumbnailsRequested: Set<Key> = []
     @ObservationIgnored private var warmTask: Task<Void, Never>?
     @ObservationIgnored private var observer: NSObjectProtocol?
@@ -34,6 +35,15 @@ final class PopupIconCache {
         return img
     }
 
+    /// Display name without asking the file system again. Custom names are never cached.
+    func name(for item: DockItem) -> String {
+        if let custom = item.customName, !custom.isEmpty { return custom }
+        if let n = names[item.url] { return n }
+        let n = item.displayName
+        names[item.url] = n
+        return n
+    }
+
     /// True when the icon is already rendered.
     func hasIcon(for item: DockItem, size: CGFloat) -> Bool {
         images[Key(url: item.url, size: Self.bucket(size))] != nil
@@ -53,6 +63,7 @@ final class PopupIconCache {
 
     func purge() {
         images.removeAll()
+        names.removeAll()
         thumbnailsRequested.removeAll()
         scheduleWarm(after: 0.3)
     }
@@ -73,9 +84,11 @@ final class PopupIconCache {
             // Drop entries of items that are gone.
             let live = Set(work.map(\.0.url))
             images = images.filter { live.contains($0.key.url) }
+            names = names.filter { live.contains($0.key) }
             for (n, (item, size)) in work.enumerated() {
                 if Task.isCancelled { return }
                 _ = icon(for: item, size: size)
+                _ = name(for: item)
                 if n % 6 == 5 { await Task.yield() }
             }
         }

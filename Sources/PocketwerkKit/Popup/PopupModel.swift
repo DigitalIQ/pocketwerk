@@ -72,7 +72,8 @@ final class PopupModel {
 
     /// Items as shown: after search.
     func shownItems(of group: ItemGroup) -> [DockItem] {
-        PopupSearch.filter(baseItems(of: group), query: query) { $0.displayName }
+        let cache = PopupIconCache.shared
+        return PopupSearch.filter(baseItems(of: group), query: query) { cache.name(for: $0) }
     }
 
     /// Number of cells, including the "Open in Finder" cell inside folders.
@@ -82,7 +83,9 @@ final class PopupModel {
 
     func metrics(for group: ItemGroup) -> PopupMetrics {
         let style = store.popupStyle(of: group)
-        let input = PopupLayoutInput(style: style, itemCount: cellCount(of: group), groupCount: groupIDs.count, maxSize: maxSize)
+        var input = PopupLayoutInput(style: style, itemCount: cellCount(of: group), groupCount: groupIDs.count, maxSize: maxSize)
+        // Folders need the back button, search shows its text, pinned windows their close button.
+        if isInFolder || !query.isEmpty || pinned { input.showHeader = true }
         return PopupMetrics.compute(input)
     }
 

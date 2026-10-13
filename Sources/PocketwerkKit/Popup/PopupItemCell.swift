@@ -25,6 +25,8 @@ struct PopupItemCell: View {
     let preview: Bool
     let lightText: Bool
 
+    static let finder = DockItem(kind: .app, url: URL(fileURLWithPath: "/System/Library/CoreServices/Finder.app"))
+
     @Environment(\.colorSchemeContrast) private var contrast
     @State private var localHover = false
 
@@ -42,7 +44,7 @@ struct PopupItemCell: View {
 
     private var name: String {
         switch content {
-        case .item(let i): return i.displayName
+        case .item(let i): return PopupIconCache.shared.name(for: i)
         case .openInFinder: return String(localized: "Open in Finder")
         }
     }
@@ -172,7 +174,7 @@ struct PopupItemCell: View {
         _ = PopupIconCache.shared.generation
         switch content {
         case .item(let i): return PopupIconCache.shared.icon(for: i, size: size)
-        case .openInFinder: return PopupIconCache.shared.icon(for: DockItem(kind: .app, url: URL(fileURLWithPath: "/System/Library/CoreServices/Finder.app")), size: size)
+        case .openInFinder: return PopupIconCache.shared.icon(for: Self.finder, size: size)
         }
     }
 
@@ -198,7 +200,7 @@ struct PopupItemCell: View {
                 .lineLimit(lines)
                 .multilineTextAlignment(style.layout == .grid ? .center : .leading)
                 .truncationMode(item?.kind == .file ? .middle : .tail)
-                .shadow(color: l.shadow ? .black.opacity(lightText ? 0.45 : 0.15) : .clear, radius: 1.5, y: 0.5)
+                .shadow(color: l.shadow ? (lightText ? .black.opacity(0.45) : .white.opacity(0.35)) : .clear, radius: 1.5, y: 0.5)
                 .padding(.horizontal, l.backdrop ? 5 : 0)
                 .background {
                     if l.backdrop {

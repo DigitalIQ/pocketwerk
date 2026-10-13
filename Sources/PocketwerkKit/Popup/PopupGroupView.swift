@@ -98,7 +98,8 @@ struct PopupCard: View {
         .frame(width: cardSize.width, height: cardSize.height, alignment: .top)
         .background {
             ZStack {
-                StyleBackgroundView(background: background, pointer: model.pointer, isActive: preview || model.isVisible)
+                StyleBackgroundView(background: background, pointer: model.pointer,
+                                    isActive: (preview || model.isVisible) && !ProcessInfo.processInfo.isLowPowerModeEnabled)
                     .opacity(style.opacity)
                 if style.glassAmount > 0, !reduceTransparency {
                     Rectangle().fill(.ultraThinMaterial).opacity(style.glassAmount * 0.7)
@@ -180,6 +181,8 @@ struct PopupHeader: View {
     let metrics: PopupMetrics
 
     private var color: Color { PopupLook.labelColor(style.labels, lightText: lightText) }
+    /// A hidden header that is shown anyway (folder, search, pinned) puts the title on the left.
+    private var alignment: HeaderAlignment { style.header == .hidden ? .leading : style.header }
     private var scale: CGFloat { CGFloat(style.popupScale) }
 
     var body: some View {
@@ -189,12 +192,12 @@ struct PopupHeader: View {
                 if model.isInFolder {
                     iconButton("chevron.left", help: String(localized: "Back")) { withPopupAnimation { model.leaveFolder() } }
                 }
-                if style.header == .leading { title }
+                if alignment == .leading { title }
                 if !model.query.isEmpty { searchPill }
                 Spacer(minLength: 4)
                 actions
             }
-            if style.header == .center {
+            if alignment == .center {
                 title.frame(maxWidth: metrics.size.width * 0.5)
             }
         }
@@ -349,9 +352,9 @@ struct PopupItemsArea: View {
         }
         .frame(width: metrics.gridSize.width, height: metrics.gridSize.height, alignment: .top)
         .clipped()
-        .onDrop(of: [.fileURL, .url], delegate: PopupDropDelegate(
+        .modifier(DropTarget(enabled: !preview, delegate: PopupDropDelegate(
             group: group, model: model, metrics: metrics, items: items,
-            pageStart: metrics.scrolls ? 0 : range.lowerBound, scrollOffset: scrollOffset, enabled: !preview))
+            pageStart: metrics.scrolls ? 0 : range.lowerBound, scrollOffset: scrollOffset, enabled: !preview)))
     }
 
     @State private var scrollOffset: CGFloat = 0
@@ -393,6 +396,20 @@ struct PopupItemsArea: View {
             .foregroundStyle(PopupLook.labelColor(style.labels, lightText: lightText).opacity(0.7))
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+/// Drop support only for real popups; previews stay plain SwiftUI so they render offscreen.
+private struct DropTarget: ViewModifier {
+    let enabled: Bool
+    let delegate: PopupDropDelegate
+
+    func body(content: Content) -> some View {
+        if enabled {
+            content.onDrop(of: [.fileURL, .url], delegate: delegate)
+        } else {
+            content
+        }
     }
 }
 

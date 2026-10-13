@@ -201,7 +201,15 @@ nonisolated enum DockGeometry {
         }
 
         var bounds = v
-        if let attached { bounds = areaBeside(screen: screen, edge: attached, prefs: prefs, offset: offset) }
+        if let attached {
+            // The offset is the gap on the Dock side, so the margin does not apply there.
+            bounds = areaBeside(screen: screen, edge: attached, prefs: prefs, offset: offset)
+            switch attached {
+            case .bottom: bounds.origin.y -= margin; bounds.size.height += margin
+            case .left: bounds.origin.x -= margin; bounds.size.width += margin
+            case .right: bounds.size.width += margin
+            }
+        }
         let frame = clamp(CGRect(origin: origin, size: size), into: bounds, margin: margin)
         return PopupPlacementResult(frame: frame, screenIndex: index, edge: attached, rise: rise)
     }
