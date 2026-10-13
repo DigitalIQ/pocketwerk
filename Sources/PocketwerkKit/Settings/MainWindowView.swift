@@ -61,10 +61,13 @@ struct MainWindowView: View {
             }
         case .dockIcons:
             DockSlotsView()
+                .navigationTitle(Text("Dock Icons"))
         case .profiles:
             DockProfilesView()
+                .navigationTitle(Text("Dock Profiles"))
         case .settings(let page):
             SettingsPageView(page: page)
+                .navigationTitle(Text("Settings"))
         case nil:
             ContentUnavailableView("Pocketwerk", systemImage: "square.grid.2x2",
                                    description: Text("Choose a group in the sidebar or press ⌘N."))

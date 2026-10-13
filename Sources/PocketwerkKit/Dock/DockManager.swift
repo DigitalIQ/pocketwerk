@@ -456,7 +456,9 @@ final class DockManager {
         case .slot(let id):
             guard let slot = lib.slot(id) else { return (Art(image: NSImage(), clip: false), "") }
             // IconRenderer already draws on the 1024 grid (art 0.832, rounded mask), so no second inset.
-            let art = IconRenderer.slotIcon(slot, library: lib, size: 1024)
+            // A plain 1024 px bitmap: icon services reject drawing-handler images with odd scales.
+            let art = IconRenderer.pngData(for: slot, library: lib, size: 1024).flatMap(NSImage.init(data:))
+                ?? IconRenderer.slotIcon(slot, library: lib, size: 1024)
             return (Art(image: art, clip: false, onGrid: true),
                     LauncherIcon.hash(LauncherIcon.inputs(for: slot, library: lib)))
         case .spacer(let id):

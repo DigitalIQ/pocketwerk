@@ -92,11 +92,14 @@ struct StudioCanvas: View {
             .help(Text("Back to the default look"))
             Button(action: onSaveTheme) {
                 Label("Save as Theme", systemImage: "plus.square.on.square")
+                    .labelStyle(.titleAndIcon)
             }
             .help(Text("Save this look as a theme"))
+            .fixedSize()
         }
         .buttonStyle(.glass)
-        .labelStyle(.titleAndIcon)
+        // Icon-only for the small actions so nothing truncates in narrow windows; tooltips name them.
+        .labelStyle(.iconOnly)
         .padding(.horizontal, 16)
         .padding(.top, 14)
     }

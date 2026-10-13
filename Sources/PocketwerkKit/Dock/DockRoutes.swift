@@ -76,7 +76,7 @@ enum DockRoutes {
                 ?? store.library.groups.first?.id
             if let target { store.addItems(urls, to: target) }
         case .settings:
-            MainWindowController.shared.show()
+            MainWindowController.shared.show(page: .general)
         case .applyProfile(let query, let skip):
             if let p = DockProfiles.shared.profile(matching: query) { DockProfiles.shared.apply(p.id, skipIfActive: skip) }
         case .captureProfile(let name):

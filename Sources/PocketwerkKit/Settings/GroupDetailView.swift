@@ -62,6 +62,7 @@ struct GroupDetailView: View {
                     Label("Sort", systemImage: "arrow.up.arrow.down")
                 }
                 .help("Sort order")
+                .accessibilityLabel(Text("Sort order"))
             }
             Button { PopupController.shared.toggle(groupIDs: [group.id], slotID: nil) } label: {
                 Label("Show Group", systemImage: "rectangle.portrait.on.rectangle.portrait")
