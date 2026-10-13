@@ -4,3 +4,7 @@ build/
 *.xcodeproj/
 .DS_Store
 .swiftpm/
+site/video/assets/
+site/video/renders/
+site/video/.hyperframes/
+.claude/skills/impeccable/

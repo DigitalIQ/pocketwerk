@@ -11,9 +11,9 @@ Status: ✅ done · 🔄 running · ⬜ open · ⏭ skipped
 | 2 | Research | ✅ (manual, no DataForSEO) | 2026-10-13 |
 | 3 | Texts | ✅ | 2026-10-13 |
 | 4 | Design direction | ✅ | 2026-10-13 |
-| 5 | Build | 🔄 | |
-| 6 | Review and polish | ⬜ | |
-| 7 | Launch (technical SEO and GEO only) | ⬜ | |
+| 5 | Build | ✅ | 2026-10-13 |
+| 6 | Review and polish | ✅ (in-thread review, no tweak panel) | 2026-10-13 |
+| 7 | Launch (technical SEO and GEO only, no deploy) | ✅ | 2026-10-13 |
 | 8 | Afterwards | ⏭ skipped by brief | |
 
 ## Where things are
@@ -62,6 +62,22 @@ Logo: mark (pegboard plate, orange pocket, three tiles: paper, yellow, mint) plu
 8. Phase 3, language: English only for now (global audience on GitHub). German page is a later option.
 9. Phase 3, no invented claims: no version number, no URL-scheme syntax, no "contributions welcome", no counts or ratings. Example themes and profiles on the page are labelled as examples.
 10. Phase 4: concept seed rolled direction 3 of 7, the workshop pegboard. Two declined challengers raised it (one even line weight; one saturated field owning whole regions, monumental numerals only for ⌘1-9). No image generation, so code-led. Contract in `website/design/richtung.md` and as an HTML comment at the top of `site/index.html`.
+
+11. Phase 5, stack: static HTML, CSS, JS. three.js 0.186.1 via import map from jsDelivr, loaded only on the first pointer, touch, scroll, wheel or key event, never under reduced motion or Save-Data; render-on-demand loop that sleeps when the pockets settle, pauses off screen, pixel ratio capped at 2. Poster images are renders of the same scene, so the switch to live 3D is seamless.
+12. Phase 5, live demos instead of fake screenshots: the example pocket (grid, list, tiles, keyboard, ⌘-click, ⌥-click, type to search, Dock icon toggles it), the Design Studio preview with six example looks, the Dock profile switcher. All labelled as examples.
+13. Phase 5, video: HyperFrames composition with three placeholder screenshots; until real screenshots arrive the page shows the title-card frame as poster. `site/video/render.sh` renders MP4, WebM and a new poster (frame at 5 s).
+14. Phase 6, review: the impeccable finish reviewer and documenter ran in-thread (subagents were not allowed in this run). Verdict after one fix round: ship. Fixed on the way: horizontal overflow on mobile (grid minmax), keycap offset shadows replaced by inset edges, a CSS blur filter that cost 490 ms TBT replaced by a 2 KB pre-blurred image, dock row semantics (list without list items). The detector ran in degraded regex mode (parser modules missing); its one finding (a "grid-line background") is the FAQ plus icon, a false positive.
+15. Phase 6, tweak panel skipped: it exists for a person to drag values; no person in this run.
+16. Phase 7: meta, canonical, Open Graph image (1200 x 630), `robots.txt` (all crawlers incl. AI crawlers), `sitemap.xml`, `llms.txt`, JSON-LD `SoftwareApplication` plus `FAQPage`. No legal texts, no cookie banner: the site sets no cookies, loads no trackers and has no forms; the only third-party request is three.js from jsDelivr after the first interaction. Note: on a GitHub Pages project site, crawlers read robots.txt at the domain root, so `site/robots.txt` mainly documents intent.
+
+## Measurements (local, `python3 -m http.server`, Lighthouse 12.8.2)
+
+| Run | Performance | Accessibility | Best practices | SEO | LCP | TBT | CLS |
+|---|---|---|---|---|---|---|---|
+| Mobile | 99 | 100 | 100 | 100 | 2.2 s | 0 ms | 0 |
+| Desktop | 100 | 100 | 100 | 100 | 0.5 s | 0 ms | 0 |
+
+GitHub Pages serves with compression and a CDN, so live numbers should be equal or better. Not re-measured live (no deploy).
 
 ## Open questions for the maker
 

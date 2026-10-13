@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, height=800">
+<title>Pocketwerk product video</title>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+  @font-face { font-family: "Archivo"; src: url("assets/fonts/archivo-var.woff2") format("woff2"); font-weight: 100 900; font-stretch: 62% 125%; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1280px; height: 800px; overflow: hidden; background: #1b5546; }
+  #root {
+    position: relative; width: 1280px; height: 800px; overflow: hidden; color: #f4f6f3;
+    font-family: "Archivo", system-ui, sans-serif;
+    background-color: #1b5546;
+    background-image: radial-gradient(circle at 50% 56%, rgba(255,255,255,.07) 0 3.2px, transparent 3.6px), radial-gradient(circle at 50% 50%, #0c3a30 0 3px, transparent 3.5px);
+    background-size: 22px 22px;
+  }
+  .clip { position: absolute; inset: 0; }
+  .title { position: absolute; left: 96px; top: 210px; font-size: 104px; font-weight: 800; font-stretch: 122%; letter-spacing: -0.035em; line-height: .98; }
+  .sub { position: absolute; left: 100px; top: 460px; font-size: 30px; color: #c9ddd4; font-weight: 450; }
+  .mark { position: absolute; left: 100px; top: 96px; width: 72px; height: 72px; border-radius: 16px; }
+  .caption { position: absolute; left: 0; right: 0; top: 52px; text-align: center; font-size: 44px; font-weight: 800; font-stretch: 118%; letter-spacing: -0.02em; }
+  .shot { position: absolute; left: 50%; top: 140px; width: 960px; height: 600px; margin-left: -480px; border-radius: 22px; object-fit: contain; background: #164a3e; box-shadow: 0 30px 60px -24px rgba(0,0,0,.6); }
+  .clip.dock { inset: auto; position: absolute; left: 0; right: 0; margin: 0 auto; width: fit-content; bottom: 40px; display: flex; gap: 14px; padding: 14px 18px; border-radius: 28px; background: rgba(244,246,243,.2); border: 1px solid rgba(255,255,255,.3); }
+  .ic { width: 72px; height: 72px; border-radius: 17px; }
+  .pk { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 12px; background: #24735f; }
+  .pk i { border-radius: 6px; }
+  .key { position: absolute; left: 0; right: 0; margin: 0 auto; width: fit-content; bottom: 26px; padding: 10px 18px; border-radius: 14px; background: #f4f6f3; color: #0f1b17; font-size: 30px; font-weight: 800; box-shadow: 0 4px 0 rgba(15,27,23,.3); }
+  .end-logo { position: absolute; left: 0; right: 0; margin: 0 auto; top: 170px; width: 168px; height: 168px; }
+  .end-name { position: absolute; left: 0; right: 0; top: 368px; text-align: center; font-size: 76px; font-weight: 800; font-stretch: 122%; letter-spacing: -0.03em; }
+  .end-line { position: absolute; left: 0; right: 0; top: 470px; text-align: center; font-size: 30px; color: #c9ddd4; }
+  .end-cmd { position: absolute; left: 0; right: 0; margin: 0 auto; width: fit-content; top: 548px; padding: 16px 26px; border-radius: 16px; background: rgba(6,30,24,.5); font: 26px ui-monospace, Menlo, monospace; font-variant-ligatures: none; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="16.5" data-width="1280" data-height="800">
+
+  <!-- 1: title over the Dock (also the page's poster frame at 2.5 s) -->
+  <div id="s1" class="clip" data-start="0" data-duration="3.6" data-track-index="0">
+    <img class="mark" src="assets/brand/mark.svg" alt="">
+    <div class="title" id="t1">Pockets for<br>your Dock.</div>
+    <div class="sub" id="t1s">Free, open-source app folders for the Mac Dock.</div>
+  </div>
+
+  <!-- the Dock stays for scenes 1 and 2 -->
+  <div id="dock" class="dock clip" data-start="0" data-duration="7.6" data-track-index="1">
+    <span class="ic" style="background:#f4f6f3"></span>
+    <span class="ic pk"><i style="background:#9fdcc4"></i><i style="background:#f4f6f3"></i><i style="background:#0f1b17"></i><i style="background:#ffd15c"></i></span>
+    <span class="ic" style="background:#0f1b17"></span>
+    <span class="ic pk" id="pk2"><i style="background:#ffd15c"></i><i style="background:#ff6b2c"></i><i style="background:#9fdcc4"></i><i style="background:#f4f6f3"></i></span>
+    <span class="ic" style="background:#ffd15c"></span>
+    <span class="ic" style="background:#9fdcc4"></span>
+  </div>
+
+  <!-- 2: a pocket opens -->
+  <div id="s2" class="clip" data-start="3.6" data-duration="4" data-track-index="2">
+    <div class="caption" id="c2">One click opens a pocket</div>
+    <img class="shot" id="shot2" src="assets/shots/popup.png" alt="" style="top:120px;height:520px;width:832px;margin-left:-416px">
+  </div>
+
+  <!-- 3: design studio -->
+  <div id="s3" class="clip" data-start="7.6" data-duration="3.6" data-track-index="2">
+    <div class="caption" id="c3">Style it in the Design Studio</div>
+    <img class="shot" id="shot3" src="assets/shots/design-studio.png" alt="">
+  </div>
+
+  <!-- 4: dock profiles -->
+  <div id="s4" class="clip" data-start="11.2" data-duration="3.2" data-track-index="2">
+    <div class="caption" id="c4">Switch the whole Dock with a hotkey</div>
+    <div class="key" id="k4">⌃⌥2</div>
+    <img class="shot" id="shot4" src="assets/shots/profiles.png" alt="" style="top:120px;height:540px;width:864px;margin-left:-432px">
+  </div>
+
+  <!-- 5: end card -->
+  <div id="s5" class="clip" data-start="14.4" data-duration="2.1" data-track-index="2">
+    <img class="end-logo" id="e1" src="assets/brand/mark.svg" alt="">
+    <div class="end-name" id="e2">Pocketwerk</div>
+    <div class="end-line" id="e3">Free and open source. macOS 26 Tahoe.</div>
+    <div class="end-cmd" id="e4">brew install --cask digitaliq/tap/pocketwerk</div>
+  </div>
+</div>
+<script>
+  // Motion grammar: the product's own open animation, fade with an 8 px rise.
+  const tl = gsap.timeline({ paused: true });
+  const rise = (sel, at, d = 0.45) => tl.fromTo(sel, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: d, ease: "power3.out" }, at);
+  rise("#t1", 0.2, 0.6); rise("#t1s", 0.55); rise(".mark", 0.1);
+  tl.fromTo("#dock", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.3);
+  tl.to(["#t1", "#t1s", ".mark"], { opacity: 0, y: -8, duration: 0.35, ease: "power2.in" }, 3.2);
+  rise("#c2", 3.7);
+  tl.to("#pk2", { y: -10, duration: 0.15, ease: "power2.out" }, 3.9).to("#pk2", { y: 0, duration: 0.2, ease: "power2.in" }, 4.05);
+  tl.fromTo("#shot2", { opacity: 0, y: 8, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.25, ease: "power3.out" }, 4.1);
+  tl.to(["#c2", "#shot2"], { opacity: 0, duration: 0.3 }, 7.3);
+  tl.to("#dock", { opacity: 0, y: 30, duration: 0.3 }, 7.3);
+  rise("#c3", 7.7); rise("#shot3", 7.85, 0.5);
+  tl.to(["#c3", "#shot3"], { opacity: 0, duration: 0.3 }, 10.9);
+  rise("#c4", 11.3); rise("#shot4", 11.45, 0.5);
+  tl.fromTo("#k4", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, 11.9);
+  tl.to("#k4", { y: 4, duration: 0.08 }, 12.4).to("#k4", { y: 0, duration: 0.12 }, 12.48);
+  tl.to(["#c4", "#shot4", "#k4"], { opacity: 0, duration: 0.3 }, 14.1);
+  rise("#e1", 14.45, 0.5); rise("#e2", 14.6); rise("#e3", 14.75); rise("#e4", 14.9);
+  window.__timelines = window.__timelines || {};
+  window.__timelines["main"] = tl;
+  tl.seek(0);
+</script>
+</body>
+</html>
