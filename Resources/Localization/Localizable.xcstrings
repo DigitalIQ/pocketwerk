@@ -32,6 +32,7 @@
       }
     },
     "%@ (current)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -52,6 +53,7 @@
       }
     },
     "%@ Gradient" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -62,6 +64,7 @@
       }
     },
     "%@ Look" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -72,6 +75,7 @@
       }
     },
     "%@ did not answer: %@ Allow Pocketwerk under System Settings > Privacy & Security > Automation." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -88,6 +92,7 @@
       }
     },
     "%@ failed: %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -104,6 +109,7 @@
       }
     },
     "%@ has no open tab." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -114,6 +120,7 @@
       }
     },
     "%@ is already active." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -140,6 +147,7 @@
       }
     },
     "%@, group %lld of %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -176,6 +184,7 @@
       }
     },
     "%lld Categories" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -186,6 +195,7 @@
       }
     },
     "%lld apps" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -206,6 +216,7 @@
       }
     },
     "%lld items" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -216,6 +227,7 @@
       }
     },
     "%lld items can no longer be found" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -226,6 +238,7 @@
       }
     },
     "%lld items in “%@”" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -252,6 +265,7 @@
       }
     },
     "%lld points" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -283,6 +297,7 @@
       }
     },
     "%lld×" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -293,6 +308,7 @@
       }
     },
     "(default)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -303,6 +319,7 @@
       }
     },
     "2" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -313,6 +330,7 @@
       }
     },
     "2×2" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -323,6 +341,7 @@
       }
     },
     "3" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -333,6 +352,7 @@
       }
     },
     "3×3" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -343,6 +363,7 @@
       }
     },
     "4" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -353,6 +374,7 @@
       }
     },
     "4×4" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -363,6 +385,7 @@
       }
     },
     "A Dock icon can show one group or several. With several, swipe or use the arrow keys in the popup to switch." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -373,6 +396,7 @@
       }
     },
     "A Space" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -383,6 +407,7 @@
       }
     },
     "A display" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -413,6 +438,7 @@
       }
     },
     "A note for when you come back. It shows when you switch to this profile again." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -423,6 +449,7 @@
       }
     },
     "A profile is a saved copy of the whole Dock. Apply it from the menu bar, with a shortcut, or with the leader key." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -453,6 +480,7 @@
       }
     },
     "About" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -463,6 +491,7 @@
       }
     },
     "About Pocketwerk" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -483,6 +512,7 @@
       }
     },
     "Actions for %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -523,6 +553,7 @@
       }
     },
     "Add %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -533,6 +564,7 @@
       }
     },
     "Add %lld Items to" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -543,6 +575,7 @@
       }
     },
     "Add %lld items to which group?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -553,6 +586,7 @@
       }
     },
     "Add Apps" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -563,6 +597,7 @@
       }
     },
     "Add Apps…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -573,6 +608,7 @@
       }
     },
     "Add Color" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -583,6 +619,7 @@
       }
     },
     "Add Current Browser Tab" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -603,6 +640,7 @@
       }
     },
     "Add Files" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -613,6 +651,7 @@
       }
     },
     "Add Files…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -623,6 +662,7 @@
       }
     },
     "Add Follow-up Key…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -633,6 +673,7 @@
       }
     },
     "Add Groups" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -653,6 +694,7 @@
       }
     },
     "Add Link…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -723,6 +765,7 @@
       }
     },
     "Add a web link" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -733,6 +776,7 @@
       }
     },
     "Add apps from the App Drawer" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -743,6 +787,7 @@
       }
     },
     "Add files or folders (⇧⌘F)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -753,6 +798,7 @@
       }
     },
     "Add my music apps" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -783,6 +829,7 @@
       }
     },
     "Add to Group" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -793,6 +840,7 @@
       }
     },
     "Add to which group?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -803,6 +851,7 @@
       }
     },
     "Add “%@” to" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -813,6 +862,7 @@
       }
     },
     "Add ⌘, ⌥ or ⌃ to the key." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -833,6 +883,7 @@
       }
     },
     "Address" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -843,6 +894,7 @@
       }
     },
     "Airy" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -853,6 +905,7 @@
       }
     },
     "All Apps" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -863,6 +916,7 @@
       }
     },
     "All Categories" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -883,6 +937,7 @@
       }
     },
     "Alpine Spots" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -893,6 +948,7 @@
       }
     },
     "Already used by %@." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -903,6 +959,7 @@
       }
     },
     "Always" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -913,6 +970,7 @@
       }
     },
     "An extra copy of the library can go to any folder, for example iCloud Drive, after every change." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -923,6 +981,7 @@
       }
     },
     "Angle" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -943,6 +1002,7 @@
       }
     },
     "Another app already uses this shortcut. Choose a different one." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -953,6 +1013,7 @@
       }
     },
     "Another app uses this shortcut" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -963,6 +1024,7 @@
       }
     },
     "Another profile is being applied." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1013,6 +1075,7 @@
       }
     },
     "App, running" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1023,6 +1086,7 @@
       }
     },
     "Appearance" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1103,6 +1167,7 @@
       }
     },
     "Applied %@." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1113,6 +1178,7 @@
       }
     },
     "Applied %@. Missing: %@." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1169,6 +1235,7 @@
       }
     },
     "Applies this look" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1209,6 +1276,7 @@
       }
     },
     "Apply a Dock profile" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1219,6 +1287,7 @@
       }
     },
     "Apply a profile" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1239,6 +1308,7 @@
       }
     },
     "Apply automatically on" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1249,6 +1319,7 @@
       }
     },
     "Apply the next profile" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1279,6 +1350,7 @@
       }
     },
     "Apps that are running right now." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1289,6 +1361,7 @@
       }
     },
     "Apps you launch most, counted on this Mac only." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1299,6 +1372,7 @@
       }
     },
     "Apps you often open within a few minutes of each other. Counted on this Mac only." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1339,6 +1413,7 @@
       }
     },
     "Assistant" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1349,6 +1424,7 @@
       }
     },
     "Assistant Is Off" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1359,6 +1435,7 @@
       }
     },
     "Assistant and Suggestions" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1400,6 +1477,7 @@
       }
     },
     "Aurora" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1410,6 +1488,7 @@
       }
     },
     "Auto" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1420,6 +1499,7 @@
       }
     },
     "Auto Layout" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1430,6 +1510,7 @@
       }
     },
     "Automatic" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1440,6 +1521,7 @@
       }
     },
     "Automatic shortcut" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1460,6 +1542,7 @@
       }
     },
     "Back" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1470,6 +1553,7 @@
       }
     },
     "Back to the default look" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1480,6 +1564,7 @@
       }
     },
     "Backdrop" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1490,6 +1575,7 @@
       }
     },
     "Backup" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1500,6 +1586,7 @@
       }
     },
     "Base" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1510,6 +1597,7 @@
       }
     },
     "Base Color" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1520,6 +1608,7 @@
       }
     },
     "Based on app categories and apps you use together" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1530,6 +1619,7 @@
       }
     },
     "Black" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1540,6 +1630,7 @@
       }
     },
     "Blobs" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1550,6 +1641,7 @@
       }
     },
     "Blur" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1560,6 +1652,7 @@
       }
     },
     "Border" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1580,6 +1673,7 @@
       }
     },
     "Border and Corners" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1590,6 +1684,7 @@
       }
     },
     "Bottom left" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1600,6 +1695,7 @@
       }
     },
     "Bottom right" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1610,6 +1706,7 @@
       }
     },
     "Bubbles" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1640,6 +1737,7 @@
       }
     },
     "Can’t be found. Click to locate or remove it." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1650,6 +1748,7 @@
       }
     },
     "Cardboard" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1670,6 +1769,7 @@
       }
     },
     "Categories" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1680,6 +1780,7 @@
       }
     },
     "Category" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1710,6 +1811,7 @@
       }
     },
     "Center" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1740,6 +1842,7 @@
       }
     },
     "Change this group in your own words" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1770,6 +1873,7 @@
       }
     },
     "Check Again" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1790,6 +1894,7 @@
       }
     },
     "Check failed: %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1810,6 +1915,7 @@
       }
     },
     "Choose" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1830,6 +1936,7 @@
       }
     },
     "Choose Image…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1840,6 +1947,7 @@
       }
     },
     "Choose Photo…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1850,6 +1958,7 @@
       }
     },
     "Choose a group in the sidebar or press ⌘N." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1860,6 +1969,7 @@
       }
     },
     "Choose a group to design its look." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1870,6 +1980,7 @@
       }
     },
     "Choose an emoji" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1880,6 +1991,7 @@
       }
     },
     "Choose apps, files or folders to add." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1890,6 +2002,7 @@
       }
     },
     "Choose the new location of “%@”." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1900,6 +2013,7 @@
       }
     },
     "Circle" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1910,6 +2024,7 @@
       }
     },
     "Clear Conversation" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1920,6 +2035,7 @@
       }
     },
     "Clear search" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1930,6 +2046,7 @@
       }
     },
     "Clear shortcut" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1940,6 +2057,7 @@
       }
     },
     "Click again to open all items" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1960,6 +2078,7 @@
       }
     },
     "Close" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1970,6 +2089,7 @@
       }
     },
     "Close Window" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2000,6 +2120,7 @@
       }
     },
     "Color %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2010,6 +2131,7 @@
       }
     },
     "Color 1" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2020,6 +2142,7 @@
       }
     },
     "Color 2" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2030,6 +2153,7 @@
       }
     },
     "Color 3" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2040,6 +2164,7 @@
       }
     },
     "Columns" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2050,6 +2175,7 @@
       }
     },
     "Columns and rows fit the items automatically." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2090,6 +2216,7 @@
       }
     },
     "Comb" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2100,6 +2227,7 @@
       }
     },
     "Command %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2110,6 +2238,7 @@
       }
     },
     "Command Line" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2120,6 +2249,7 @@
       }
     },
     "Commands" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2140,6 +2270,7 @@
       }
     },
     "Copy" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2150,6 +2281,7 @@
       }
     },
     "Copy %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2180,6 +2312,7 @@
       }
     },
     "Corner Radius" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2199,7 +2332,18 @@
         }
       }
     },
+    "Corner radius 30 pt" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eckenradius 30 pt"
+          }
+        }
+      }
+    },
     "Create" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2210,6 +2354,7 @@
       }
     },
     "Create a group with ⌘N, then add apps from the App Drawer, files with ⇧⌘F, or drop anything from the Finder onto the list." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2220,6 +2365,7 @@
       }
     },
     "Created" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2230,6 +2376,7 @@
       }
     },
     "Curtains" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2240,6 +2387,7 @@
       }
     },
     "Custom" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2250,6 +2398,7 @@
       }
     },
     "Custom Color" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2280,6 +2429,7 @@
       }
     },
     "Cut" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2290,6 +2440,7 @@
       }
     },
     "Dark" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2310,6 +2461,7 @@
       }
     },
     "Date Added" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2320,6 +2472,7 @@
       }
     },
     "Date Created" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2330,6 +2483,7 @@
       }
     },
     "Date Modified" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2350,6 +2504,7 @@
       }
     },
     "Delete Group" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2360,6 +2515,7 @@
       }
     },
     "Delete Group…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2390,6 +2546,7 @@
       }
     },
     "Delete this theme?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2400,6 +2557,7 @@
       }
     },
     "Delete “%@”" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2410,6 +2568,7 @@
       }
     },
     "Delete “%@”?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2430,6 +2589,7 @@
       }
     },
     "Delete…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2440,6 +2600,7 @@
       }
     },
     "Denim" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2450,6 +2611,7 @@
       }
     },
     "Dense" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2460,6 +2622,7 @@
       }
     },
     "Density" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2470,6 +2633,7 @@
       }
     },
     "Depth" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2480,6 +2644,7 @@
       }
     },
     "Depth Blur" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2490,6 +2655,7 @@
       }
     },
     "Depth Fade" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2500,6 +2666,7 @@
       }
     },
     "Describe a change" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2510,6 +2677,7 @@
       }
     },
     "Desktop %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2520,6 +2688,7 @@
       }
     },
     "Desktop Picture" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2530,6 +2699,7 @@
       }
     },
     "Development build, version unknown." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2540,6 +2710,7 @@
       }
     },
     "Diagnostics" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2550,6 +2721,7 @@
       }
     },
     "Diagnostics are written to a local text file only when you export them." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2560,6 +2732,7 @@
       }
     },
     "Dim" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2570,6 +2743,7 @@
       }
     },
     "Direction" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2590,6 +2764,7 @@
       }
     },
     "Dismiss %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2600,6 +2775,7 @@
       }
     },
     "Display" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2610,6 +2786,7 @@
       }
     },
     "Display as" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2630,6 +2807,7 @@
       }
     },
     "Distance to Dock" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2640,6 +2818,7 @@
       }
     },
     "Dock" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2660,6 +2839,7 @@
       }
     },
     "Dock Icon Preview" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2680,6 +2860,7 @@
       }
     },
     "Dock Icons and Profiles" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2730,6 +2911,7 @@
       }
     },
     "Dock icon “%@”" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2780,6 +2962,7 @@
       }
     },
     "Done" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2790,6 +2973,7 @@
       }
     },
     "Don’t ask again" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2800,6 +2984,7 @@
       }
     },
     "Dots" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2810,6 +2995,7 @@
       }
     },
     "Double press or key sequence" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2820,6 +3006,7 @@
       }
     },
     "Down" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2830,6 +3017,7 @@
       }
     },
     "Down Left" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2840,6 +3028,7 @@
       }
     },
     "Down Right" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2850,6 +3039,7 @@
       }
     },
     "Download" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2860,6 +3050,7 @@
       }
     },
     "Drag an item onto a group in the sidebar to move it there. If that group already has it, the item only leaves the old group." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2870,6 +3061,7 @@
       }
     },
     "Drag items to change their order, or pick a sort order in the toolbar. Right-click an item to rename it, move it to another group or remove it. An empty name brings back the original one." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2880,6 +3072,7 @@
       }
     },
     "Drifting Light" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2890,6 +3083,7 @@
       }
     },
     "Drop apps, files or folders here" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2910,6 +3104,7 @@
       }
     },
     "Drop apps, files or links here" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2930,6 +3125,7 @@
       }
     },
     "Drops" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2950,6 +3146,7 @@
       }
     },
     "Dusk" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2960,6 +3157,7 @@
       }
     },
     "Edit" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2970,6 +3168,7 @@
       }
     },
     "Edit Group…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2980,6 +3179,7 @@
       }
     },
     "Effect" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2990,6 +3190,7 @@
       }
     },
     "Embers" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3000,6 +3201,7 @@
       }
     },
     "Emoji" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3020,6 +3222,7 @@
       }
     },
     "Emoji & Symbols" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3030,6 +3233,7 @@
       }
     },
     "Empty" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3050,6 +3254,7 @@
       }
     },
     "Empty folder" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3060,6 +3265,7 @@
       }
     },
     "End" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3070,6 +3276,7 @@
       }
     },
     "Every change is listed and can be undone. Items are only removed after you confirm." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3140,6 +3347,7 @@
       }
     },
     "Falling Snow" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3150,6 +3358,7 @@
       }
     },
     "Fan" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3170,6 +3379,7 @@
       }
     },
     "Felt" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3180,6 +3390,7 @@
       }
     },
     "File" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3200,6 +3411,7 @@
       }
     },
     "Fill" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3220,6 +3432,7 @@
       }
     },
     "Filled" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3230,6 +3443,7 @@
       }
     },
     "Filter" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3240,6 +3454,7 @@
       }
     },
     "Find %@ Profiles" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3250,6 +3465,7 @@
       }
     },
     "Finish" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3270,6 +3486,7 @@
       }
     },
     "Fog" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3280,6 +3497,7 @@
       }
     },
     "Folder" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3300,6 +3518,7 @@
       }
     },
     "Font" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3310,6 +3529,7 @@
       }
     },
     "For example Office, Design, Games" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3320,6 +3540,7 @@
       }
     },
     "Force Quit" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3330,6 +3551,7 @@
       }
     },
     "Force Quit All" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3360,6 +3582,7 @@
       }
     },
     "Full-Screen Space" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3370,6 +3593,7 @@
       }
     },
     "Fur" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3380,6 +3604,7 @@
       }
     },
     "General" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3390,6 +3615,7 @@
       }
     },
     "Getting Started" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3400,6 +3626,7 @@
       }
     },
     "Give each group its own Dock icon. A click opens it as a popup." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3410,6 +3637,7 @@
       }
     },
     "Glass" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3420,6 +3648,7 @@
       }
     },
     "Glass Effect" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3430,6 +3659,7 @@
       }
     },
     "Glass and Finish" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3450,6 +3680,7 @@
       }
     },
     "Glossy" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3460,6 +3691,7 @@
       }
     },
     "Glow" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3470,6 +3702,7 @@
       }
     },
     "Glyph Rain" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3480,6 +3713,7 @@
       }
     },
     "Glyph Size" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3490,6 +3724,7 @@
       }
     },
     "Gradient" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3510,6 +3745,7 @@
       }
     },
     "Gradient %@ to %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3526,6 +3762,7 @@
       }
     },
     "Grain" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3536,6 +3773,7 @@
       }
     },
     "Graphite" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3546,6 +3784,7 @@
       }
     },
     "Grid" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3566,6 +3805,7 @@
       }
     },
     "Group %@. Switch group" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3576,6 +3816,7 @@
       }
     },
     "Group %lld of %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3592,6 +3833,7 @@
       }
     },
     "Group colors" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3602,6 +3844,7 @@
       }
     },
     "Group name" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3612,6 +3855,7 @@
       }
     },
     "Group “%@”" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3632,6 +3876,7 @@
       }
     },
     "Groups and Items" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3652,6 +3897,7 @@
       }
     },
     "Groups using it keep their look." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3662,6 +3908,7 @@
       }
     },
     "Hair Length" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3672,6 +3919,7 @@
       }
     },
     "Header" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3682,6 +3930,7 @@
       }
     },
     "Header and Hover" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3692,6 +3941,7 @@
       }
     },
     "Help" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3702,6 +3952,7 @@
       }
     },
     "Hidden from All Groups" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3712,6 +3963,7 @@
       }
     },
     "Hidden groups stay reachable by their own Dock icon and shortcut." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3722,6 +3974,7 @@
       }
     },
     "Hide" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3732,6 +3985,7 @@
       }
     },
     "Hide All" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3742,6 +3996,7 @@
       }
     },
     "Hide All (⌥ Quit, ⌘ Force Quit)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3762,6 +4017,7 @@
       }
     },
     "Hide Pocketwerk" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3772,6 +4028,7 @@
       }
     },
     "Hide a group's apps" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3782,6 +4039,7 @@
       }
     },
     "Hide from All Groups" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3812,6 +4070,7 @@
       }
     },
     "Highlight" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3822,6 +4081,7 @@
       }
     },
     "Home" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3832,6 +4092,7 @@
       }
     },
     "Honey" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3852,6 +4113,7 @@
       }
     },
     "Hot Corner and Menu Bar" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3882,6 +4144,7 @@
       }
     },
     "Hotkeys" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3892,6 +4155,7 @@
       }
     },
     "Hover" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3901,7 +4165,18 @@
         }
       }
     },
+    "I can only change this group: its look, items, name and Dock icon." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ich kann nur diese Gruppe ändern: Aussehen, Einträge, Name und Dock-Symbol."
+          }
+        }
+      }
+    },
     "Ice" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3922,6 +4197,7 @@
       }
     },
     "Icon Pack" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3932,6 +4208,7 @@
       }
     },
     "Icon Plate" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3942,6 +4219,7 @@
       }
     },
     "Icon Scale" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3952,6 +4230,7 @@
       }
     },
     "Icon Size" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3972,6 +4251,7 @@
       }
     },
     "Image" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4032,6 +4312,7 @@
       }
     },
     "In This Group" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4042,6 +4323,7 @@
       }
     },
     "In group" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4062,6 +4344,7 @@
       }
     },
     "Inbox" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4072,6 +4355,7 @@
       }
     },
     "Inspector" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4102,6 +4386,7 @@
       }
     },
     "Intensity" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4112,6 +4397,7 @@
       }
     },
     "Iris" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4132,6 +4418,7 @@
       }
     },
     "Items and apps you opened most recently." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4142,6 +4429,7 @@
       }
     },
     "Keep" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4152,6 +4440,7 @@
       }
     },
     "Keep Open as Window" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4182,6 +4471,7 @@
       }
     },
     "Keep this profile's apps open when switching away" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4192,6 +4482,7 @@
       }
     },
     "Kind" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4202,6 +4493,7 @@
       }
     },
     "Knit" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4212,6 +4504,7 @@
       }
     },
     "L" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4232,6 +4525,7 @@
       }
     },
     "Label Color" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4241,7 +4535,18 @@
         }
       }
     },
+    "Label color %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schriftfarbe %@"
+          }
+        }
+      }
+    },
     "Labels" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4272,6 +4577,7 @@
       }
     },
     "Last Opened" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4292,6 +4598,7 @@
       }
     },
     "Last context note" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4302,6 +4609,7 @@
       }
     },
     "Last time in %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4332,6 +4640,7 @@
       }
     },
     "Lava" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4342,6 +4651,7 @@
       }
     },
     "Layout" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4402,6 +4712,7 @@
       }
     },
     "Leave empty to use the original name" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4412,6 +4723,7 @@
       }
     },
     "Leaving %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4422,6 +4734,7 @@
       }
     },
     "Left" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4442,6 +4755,7 @@
       }
     },
     "Letters" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4472,6 +4786,7 @@
       }
     },
     "Lift" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4482,6 +4797,7 @@
       }
     },
     "Light" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4492,6 +4808,7 @@
       }
     },
     "Linen" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4502,6 +4819,7 @@
       }
     },
     "Link" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4512,6 +4830,7 @@
       }
     },
     "Link This Display" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4522,6 +4841,7 @@
       }
     },
     "Link This Space" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4562,6 +4882,7 @@
       }
     },
     "List" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4572,6 +4893,7 @@
       }
     },
     "List profiles" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4582,6 +4904,7 @@
       }
     },
     "List the current Dock tiles" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4602,6 +4925,7 @@
       }
     },
     "Living Effect" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4612,6 +4936,7 @@
       }
     },
     "Loading…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4622,6 +4947,7 @@
       }
     },
     "Locate or remove the missing item" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4632,6 +4958,7 @@
       }
     },
     "Locate…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4652,6 +4979,7 @@
       }
     },
     "Looking for apps…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4662,6 +4990,7 @@
       }
     },
     "M" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4672,6 +5001,7 @@
       }
     },
     "Make it dark blue with a list view" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4682,6 +5012,7 @@
       }
     },
     "Manual" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4692,6 +5023,7 @@
       }
     },
     "Marble" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4702,6 +5034,7 @@
       }
     },
     "Margin" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4712,6 +5045,7 @@
       }
     },
     "Match Theme" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4722,6 +5056,7 @@
       }
     },
     "Matte" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4732,6 +5067,7 @@
       }
     },
     "Meadow" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4832,6 +5168,7 @@
       }
     },
     "Mesh" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4842,6 +5179,7 @@
       }
     },
     "Middle" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4852,6 +5190,7 @@
       }
     },
     "Minimize" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4862,6 +5201,7 @@
       }
     },
     "Missing" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4902,6 +5242,7 @@
       }
     },
     "Mono" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4912,6 +5253,7 @@
       }
     },
     "Monogram" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4922,6 +5264,7 @@
       }
     },
     "More" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4942,6 +5285,7 @@
       }
     },
     "More items than fit go to the next page." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4952,6 +5296,7 @@
       }
     },
     "Most Opened" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4962,6 +5307,7 @@
       }
     },
     "Most Used" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4972,6 +5318,7 @@
       }
     },
     "Most Used, fills itself as you work" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4982,6 +5329,7 @@
       }
     },
     "Move Down" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4992,6 +5340,7 @@
       }
     },
     "Move To" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5002,6 +5351,7 @@
       }
     },
     "Move Up" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5022,6 +5372,7 @@
       }
     },
     "Move to Group" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5042,6 +5393,7 @@
       }
     },
     "Moved to %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5102,6 +5454,7 @@
       }
     },
     "New Group" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5112,6 +5465,7 @@
       }
     },
     "New Group…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5132,6 +5486,7 @@
       }
     },
     "New Smart Group" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5142,6 +5497,7 @@
       }
     },
     "New group" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5152,6 +5508,7 @@
       }
     },
     "New group (⌘N)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5162,6 +5519,7 @@
       }
     },
     "New suggestions" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5172,6 +5530,7 @@
       }
     },
     "Next" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5202,6 +5561,7 @@
       }
     },
     "Next profile" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5212,6 +5572,7 @@
       }
     },
     "No Group" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5222,6 +5583,7 @@
       }
     },
     "No Group Selected" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5232,6 +5594,7 @@
       }
     },
     "No Groups" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5242,6 +5605,7 @@
       }
     },
     "No Limit" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5252,6 +5616,7 @@
       }
     },
     "No Matching Looks" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5272,6 +5637,7 @@
       }
     },
     "No Shape" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5282,6 +5648,7 @@
       }
     },
     "No Suggestions Yet" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5332,6 +5699,7 @@
       }
     },
     "No link, file or folder found." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5352,6 +5720,7 @@
       }
     },
     "No matches" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5372,6 +5741,7 @@
       }
     },
     "No profiles found" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5382,6 +5752,7 @@
       }
     },
     "No release found." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5392,6 +5763,7 @@
       }
     },
     "No suggestions. Add a few apps or set a category." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5402,6 +5774,7 @@
       }
     },
     "None" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5412,6 +5785,7 @@
       }
     },
     "Normal" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5422,6 +5796,7 @@
       }
     },
     "Not in Any Group" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5432,6 +5807,7 @@
       }
     },
     "Not in group" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5452,6 +5828,7 @@
       }
     },
     "Note" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5462,6 +5839,7 @@
       }
     },
     "Note for %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5472,6 +5850,7 @@
       }
     },
     "Nothing Yet" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5482,6 +5861,7 @@
       }
     },
     "Nothing here yet" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5512,6 +5892,7 @@
       }
     },
     "Ocean" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5532,6 +5913,7 @@
       }
     },
     "On Hover" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5542,6 +5924,7 @@
       }
     },
     "Once" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5562,6 +5945,7 @@
       }
     },
     "Opacity" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5572,6 +5956,7 @@
       }
     },
     "Open" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5582,6 +5967,7 @@
       }
     },
     "Open %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5592,6 +5978,7 @@
       }
     },
     "Open %lld?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5642,6 +6029,7 @@
       }
     },
     "Open Pocketwerk" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5652,6 +6040,7 @@
       }
     },
     "Open Profile “%@”" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5662,6 +6051,7 @@
       }
     },
     "Open Project or Folder…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5672,6 +6062,7 @@
       }
     },
     "Open Safari, Chrome, Arc or Brave first" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5682,6 +6073,7 @@
       }
     },
     "Open Settings" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5692,6 +6084,7 @@
       }
     },
     "Open When Applied" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5702,6 +6095,7 @@
       }
     },
     "Open With" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5722,6 +6116,7 @@
       }
     },
     "Open all %lld items of “%@”?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5738,6 +6133,7 @@
       }
     },
     "Open every item of a group" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5748,6 +6144,7 @@
       }
     },
     "Open groups from anywhere with ⌥⇧1 to ⌥⇧9." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5758,6 +6155,7 @@
       }
     },
     "Open in Finder" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5768,6 +6166,7 @@
       }
     },
     "Open the main window" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5788,6 +6187,7 @@
       }
     },
     "Open the selected items" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5818,6 +6218,7 @@
       }
     },
     "Opens %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5838,6 +6239,7 @@
       }
     },
     "Opens profile %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5848,6 +6250,7 @@
       }
     },
     "Opens when applied" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5858,6 +6261,7 @@
       }
     },
     "Optional" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5868,6 +6272,7 @@
       }
     },
     "Options" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5878,6 +6283,7 @@
       }
     },
     "Other" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5888,6 +6294,7 @@
       }
     },
     "Other…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5898,6 +6305,7 @@
       }
     },
     "Outline" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5908,6 +6316,7 @@
       }
     },
     "Pack" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5918,6 +6327,7 @@
       }
     },
     "Page %lld of %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5934,6 +6344,7 @@
       }
     },
     "Page Dots" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5944,6 +6355,7 @@
       }
     },
     "Pages" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5954,6 +6366,7 @@
       }
     },
     "Paper" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5964,6 +6377,7 @@
       }
     },
     "Paste" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5994,6 +6408,7 @@
       }
     },
     "Photo" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6004,6 +6419,7 @@
       }
     },
     "Pick a category" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6014,6 +6430,7 @@
       }
     },
     "Picked on this Mac by Apple Intelligence" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6024,6 +6441,7 @@
       }
     },
     "Pin a group to keep it at the top. Hidden groups stay out of All Groups but keep their own Dock icon and shortcut." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6034,6 +6452,7 @@
       }
     },
     "Pin to Top" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6044,6 +6463,7 @@
       }
     },
     "Pin to top of the sidebar" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6054,6 +6474,7 @@
       }
     },
     "Pinned" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6074,6 +6495,7 @@
       }
     },
     "Plasma" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6084,6 +6506,7 @@
       }
     },
     "Plate Color" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6104,6 +6527,7 @@
       }
     },
     "Pocketwerk Help" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6114,6 +6538,7 @@
       }
     },
     "Pocketwerk has no account, no analytics and no server. Your groups and usage counts stay on this Mac." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6124,6 +6549,7 @@
       }
     },
     "Pocketwerk is up to date." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6134,6 +6560,7 @@
       }
     },
     "Pocketwerk keeps apps, files, folders and links in groups. Each group can have its own icon in the Dock. Click the icon and the group opens as a popup above it." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6144,6 +6571,7 @@
       }
     },
     "Pocketwerk learns which apps you use together. Check again in a few days." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6184,6 +6612,7 @@
       }
     },
     "Pointer" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6194,6 +6623,7 @@
       }
     },
     "Popup" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6204,6 +6634,7 @@
       }
     },
     "Popup Follows Dock Icon" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6214,6 +6645,7 @@
       }
     },
     "Popup Preview" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6224,6 +6656,7 @@
       }
     },
     "Popup Scale" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6234,6 +6667,7 @@
       }
     },
     "Press" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6254,6 +6688,7 @@
       }
     },
     "Press to record a new shortcut" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6264,6 +6699,7 @@
       }
     },
     "Preview Appearance" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6274,6 +6710,7 @@
       }
     },
     "Preview Backdrop" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6284,6 +6721,7 @@
       }
     },
     "Previous" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6294,6 +6732,7 @@
       }
     },
     "Privacy" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6314,6 +6753,7 @@
       }
     },
     "Private (left out of Export All and sharing)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6364,6 +6804,7 @@
       }
     },
     "Profile “%@”" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6384,6 +6825,7 @@
       }
     },
     "Push" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6394,6 +6836,7 @@
       }
     },
     "Put apps, files, folders and links into groups." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6404,6 +6847,7 @@
       }
     },
     "Quick Look" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6414,6 +6858,7 @@
       }
     },
     "Quit" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6424,6 +6869,7 @@
       }
     },
     "Quit All" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6454,6 +6900,7 @@
       }
     },
     "Quit Pocketwerk" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6464,6 +6911,7 @@
       }
     },
     "Quit a group's apps" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6494,6 +6942,7 @@
       }
     },
     "Rain" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6504,6 +6953,7 @@
       }
     },
     "Randomize" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6514,6 +6964,7 @@
       }
     },
     "Recently Installed" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6524,6 +6975,7 @@
       }
     },
     "Recently Opened" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6534,6 +6986,7 @@
       }
     },
     "Record Shortcut" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6544,6 +6997,7 @@
       }
     },
     "Redo" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6584,6 +7038,7 @@
       }
     },
     "Remove %@?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6594,6 +7049,7 @@
       }
     },
     "Remove %lld Items" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6604,6 +7060,7 @@
       }
     },
     "Remove Color" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6614,6 +7071,7 @@
       }
     },
     "Remove Follow-up Keys" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6634,6 +7092,7 @@
       }
     },
     "Remove Missing" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6654,6 +7113,7 @@
       }
     },
     "Remove from Group" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6684,6 +7144,7 @@
       }
     },
     "Remove: %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6714,6 +7175,7 @@
       }
     },
     "Removed. Undo with Command Z." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6724,6 +7186,7 @@
       }
     },
     "Rename" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6734,6 +7197,7 @@
       }
     },
     "Rename Theme" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6744,6 +7208,7 @@
       }
     },
     "Rename it to Studio and pick a fitting emoji" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6764,6 +7229,7 @@
       }
     },
     "Rename…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6794,6 +7260,7 @@
       }
     },
     "Report a Problem…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6804,6 +7271,7 @@
       }
     },
     "Request for the assistant" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6844,6 +7312,7 @@
       }
     },
     "Restore the group as it was before" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6864,6 +7333,7 @@
       }
     },
     "Ribbons" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6884,6 +7354,7 @@
       }
     },
     "Ripple" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6894,6 +7365,7 @@
       }
     },
     "Ripples" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6904,6 +7376,7 @@
       }
     },
     "Round Items" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6914,6 +7387,7 @@
       }
     },
     "Rounded" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6924,6 +7398,7 @@
       }
     },
     "Rows" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6934,6 +7409,7 @@
       }
     },
     "Rows per page: %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6944,6 +7420,7 @@
       }
     },
     "Rows per page: all" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6954,6 +7431,7 @@
       }
     },
     "Run scripts/pocketwerk, or Pocketwerk.app/Contents/MacOS/Pocketwerk --cli." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6964,6 +7442,7 @@
       }
     },
     "Running Apps" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6974,6 +7453,7 @@
       }
     },
     "Running Indicator" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6984,6 +7464,7 @@
       }
     },
     "S" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6994,6 +7475,7 @@
       }
     },
     "Save" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7024,6 +7506,7 @@
       }
     },
     "Save Current Dock to Active Profile" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7054,6 +7537,7 @@
       }
     },
     "Save Note" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7064,6 +7548,7 @@
       }
     },
     "Save as Theme" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7074,6 +7559,7 @@
       }
     },
     "Save the Dock as a new profile" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7084,6 +7570,7 @@
       }
     },
     "Save the Dock into the active profile" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7094,6 +7581,7 @@
       }
     },
     "Save this look as a theme" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7124,6 +7612,7 @@
       }
     },
     "Search Looks" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7134,6 +7623,7 @@
       }
     },
     "Search apps" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7144,6 +7634,7 @@
       }
     },
     "Search: %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7164,6 +7655,7 @@
       }
     },
     "Section" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7174,6 +7666,7 @@
       }
     },
     "Select All" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7184,6 +7677,7 @@
       }
     },
     "Send" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7194,6 +7688,7 @@
       }
     },
     "Send (⌘↩)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7204,6 +7699,7 @@
       }
     },
     "Serif" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7224,6 +7720,7 @@
       }
     },
     "Settings" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7234,6 +7731,7 @@
       }
     },
     "Settings > Backup exports everything into one JSON file. Import offers Merge, which only adds, and Replace. Both can be undone with ⌘Z." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7244,6 +7742,7 @@
       }
     },
     "Settings…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7264,6 +7763,7 @@
       }
     },
     "Shadow" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7294,6 +7794,7 @@
       }
     },
     "Shape" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7314,6 +7815,7 @@
       }
     },
     "Shortcut" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7324,6 +7826,7 @@
       }
     },
     "Shortcut options" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7334,6 +7837,7 @@
       }
     },
     "Shortcut: %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7344,6 +7848,7 @@
       }
     },
     "Shortcuts" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7354,6 +7859,7 @@
       }
     },
     "Shortcuts lists these actions under Pocketwerk when the app was built with App Intents metadata. The URLs below always work with the “Open URL” action." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7364,6 +7870,7 @@
       }
     },
     "Shortcuts need no extra permission and work in full screen apps." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7395,6 +7902,7 @@
       }
     },
     "Show" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7405,6 +7913,7 @@
       }
     },
     "Show %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7415,6 +7924,7 @@
       }
     },
     "Show All Groups" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7455,6 +7965,7 @@
       }
     },
     "Show Names" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7475,6 +7986,7 @@
       }
     },
     "Show a group" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7485,6 +7997,7 @@
       }
     },
     "Show a group's popup" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7505,6 +8018,7 @@
       }
     },
     "Show group names" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7515,6 +8029,7 @@
       }
     },
     "Show icons only" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7525,6 +8040,7 @@
       }
     },
     "Show in All Groups" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7545,6 +8061,7 @@
       }
     },
     "Show labels only on hover" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7555,6 +8072,7 @@
       }
     },
     "Show page dots" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7575,6 +8093,7 @@
       }
     },
     "Show the current Space and display ids" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7585,6 +8104,7 @@
       }
     },
     "Show this group as a popup" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7605,6 +8125,7 @@
       }
     },
     "Shows the folder contents" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7615,6 +8136,7 @@
       }
     },
     "Shows your desktop picture behind the popup, blurred." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7625,6 +8147,7 @@
       }
     },
     "Shuffle Apps" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7645,6 +8168,7 @@
       }
     },
     "Siri and Shortcuts" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7665,6 +8189,7 @@
       }
     },
     "Size" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7675,6 +8200,7 @@
       }
     },
     "Size and Spacing" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7685,6 +8211,7 @@
       }
     },
     "Skip" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7715,6 +8242,7 @@
       }
     },
     "Skip in “Next Profile”" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7775,6 +8303,7 @@
       }
     },
     "Smart groups fill themselves: Most Used, Recently Opened and Running Apps. They are counted on this Mac only." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7785,6 +8314,7 @@
       }
     },
     "Snow" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7795,6 +8325,7 @@
       }
     },
     "Something not working?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7815,6 +8346,7 @@
       }
     },
     "Sort" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7825,6 +8357,7 @@
       }
     },
     "Sort By" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7835,6 +8368,7 @@
       }
     },
     "Sort by" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7845,6 +8379,7 @@
       }
     },
     "Sort items by" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7855,6 +8390,7 @@
       }
     },
     "Sort order" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7870,6 +8406,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sortiert nach %@"
+          }
+        }
+      }
+    },
+    "Sound effects" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toneffekte"
           }
         }
       }
@@ -7905,6 +8451,7 @@
       }
     },
     "Spacing" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7935,6 +8482,7 @@
       }
     },
     "Speed" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7945,6 +8493,7 @@
       }
     },
     "Spots" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7955,6 +8504,7 @@
       }
     },
     "Square" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7965,6 +8515,7 @@
       }
     },
     "Squircle" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7975,6 +8526,7 @@
       }
     },
     "Stack" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7985,6 +8537,7 @@
       }
     },
     "Standard" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7995,6 +8548,7 @@
       }
     },
     "Starfield" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8005,6 +8559,7 @@
       }
     },
     "Start" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8015,6 +8570,7 @@
       }
     },
     "Start with a few groups?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8045,6 +8601,7 @@
       }
     },
     "Stripes" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8055,6 +8612,7 @@
       }
     },
     "Strong" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8065,6 +8623,7 @@
       }
     },
     "Style" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8075,6 +8634,7 @@
       }
     },
     "Subtle" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8085,6 +8645,7 @@
       }
     },
     "Suggested" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8095,6 +8656,7 @@
       }
     },
     "Suggested Groups" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8105,6 +8667,7 @@
       }
     },
     "Suggested Groups…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8115,6 +8678,7 @@
       }
     },
     "Suggested from categories" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8125,6 +8689,7 @@
       }
     },
     "Swipe between pages (otherwise scroll)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8145,6 +8710,7 @@
       }
     },
     "Switching" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8155,6 +8721,7 @@
       }
     },
     "Symbol" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8165,6 +8732,7 @@
       }
     },
     "Symbol Color" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8175,6 +8743,7 @@
       }
     },
     "System" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8185,6 +8754,7 @@
       }
     },
     "Tags" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8195,6 +8765,7 @@
       }
     },
     "Terrazzo" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8215,6 +8786,7 @@
       }
     },
     "Text Backdrop" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8225,6 +8797,7 @@
       }
     },
     "Text Shadow" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8245,6 +8818,7 @@
       }
     },
     "Texture" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8265,6 +8839,7 @@
       }
     },
     "The App Drawer suggests apps that fit the group. Without Apple Intelligence the suggestions come from app categories and the apps you use together." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8275,6 +8850,7 @@
       }
     },
     "The Assistant tab changes the selected group from plain language, for example “make it dark blue with list view” or “add Pages and Numbers”. It runs on this Mac with Apple Intelligence." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8315,6 +8891,7 @@
       }
     },
     "The assistant can change the look, labels, layout, Dock icon and name, and add or remove apps. It runs on this Mac; the conversation is forgotten when Pocketwerk quits." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8325,6 +8902,7 @@
       }
     },
     "The browser did not answer." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8335,6 +8913,7 @@
       }
     },
     "The category helps app suggestions. The leader letter opens the group after the leader key (Settings > Hotkeys)." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8381,6 +8960,7 @@
       }
     },
     "The group and its Dock icon are removed. You can undo this with ⌘Z." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8391,6 +8971,7 @@
       }
     },
     "The group changed since then. Use Edit > Undo instead." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8401,6 +8982,7 @@
       }
     },
     "The launcher template is missing from the app." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8411,6 +8993,7 @@
       }
     },
     "The leader key works like a prefix: press it, then the letter of a group or profile. A small list shows the letters while Pocketwerk waits." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8421,6 +9004,7 @@
       }
     },
     "The menu bar icon opens all groups or a menu with every group and its items. Right-click it to always get the menu." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8431,6 +9015,7 @@
       }
     },
     "The menu command “%@” uses this shortcut." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8441,6 +9026,7 @@
       }
     },
     "The new launcher is not valid: %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8451,6 +9037,7 @@
       }
     },
     "The only network requests are the daily update check against GitHub (can be turned off) and website icons for links." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8461,6 +9048,7 @@
       }
     },
     "The theme keeps the popup and Dock icon look. Use it for any group." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8471,6 +9059,7 @@
       }
     },
     "The … button next to a shortcut makes it a double or triple press, or adds a follow-up key, for example ⌃⌥G then W." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8491,6 +9080,7 @@
       }
     },
     "Thickness" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8511,6 +9101,7 @@
       }
     },
     "Thinking…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8541,6 +9132,7 @@
       }
     },
     "This group fills itself as you use your Mac." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8551,6 +9143,7 @@
       }
     },
     "This item can no longer be found" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8571,6 +9164,7 @@
       }
     },
     "Three Times" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8581,6 +9175,7 @@
       }
     },
     "Tight" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8591,6 +9186,7 @@
       }
     },
     "Tiles" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8601,6 +9197,7 @@
       }
     },
     "Times opened" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8611,6 +9208,7 @@
       }
     },
     "Tint" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8621,6 +9219,7 @@
       }
     },
     "Tint Strength" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8631,6 +9230,7 @@
       }
     },
     "Toggle Sidebar" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8641,6 +9241,7 @@
       }
     },
     "Top left" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8651,6 +9252,7 @@
       }
     },
     "Top right" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8661,6 +9263,7 @@
       }
     },
     "Trail" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8671,6 +9274,7 @@
       }
     },
     "Try a random look" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8691,6 +9295,7 @@
       }
     },
     "Turn it on under Settings > General." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8711,6 +9316,7 @@
       }
     },
     "Turn on “Switch with Spaces and displays” to use these." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8721,6 +9327,7 @@
       }
     },
     "Twice" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8731,6 +9338,7 @@
       }
     },
     "Type" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8741,6 +9349,7 @@
       }
     },
     "Type shortcut…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8751,6 +9360,7 @@
       }
     },
     "URLs" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8761,6 +9371,7 @@
       }
     },
     "Under Settings > Popup you can pick a screen corner. Rest the pointer there for a moment to show all groups." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8771,6 +9382,7 @@
       }
     },
     "Undo" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8781,6 +9393,7 @@
       }
     },
     "Undone" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8791,6 +9404,7 @@
       }
     },
     "Unhide" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8871,6 +9485,7 @@
       }
     },
     "Unpin" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8881,6 +9496,7 @@
       }
     },
     "Update Available: %@…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8901,6 +9517,7 @@
       }
     },
     "Update with Current Look" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8911,6 +9528,7 @@
       }
     },
     "Updates" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8941,6 +9559,7 @@
       }
     },
     "Use Original Name" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8951,6 +9570,7 @@
       }
     },
     "Use a warm gradient and round corners" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8961,6 +9581,7 @@
       }
     },
     "Use default look" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8971,6 +9592,7 @@
       }
     },
     "Use the front tab of a browser" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -8981,6 +9603,7 @@
       }
     },
     "Used Together" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9001,6 +9624,7 @@
       }
     },
     "Uses the automatic shortcut for its position in the sidebar." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9011,6 +9635,7 @@
       }
     },
     "Variant" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9041,6 +9666,7 @@
       }
     },
     "Version %@ is available" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9051,6 +9677,7 @@
       }
     },
     "Version %@ is available." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9061,6 +9688,7 @@
       }
     },
     "View" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9081,6 +9709,7 @@
       }
     },
     "Wallpaper" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9091,6 +9720,7 @@
       }
     },
     "Wave Height" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9101,6 +9731,7 @@
       }
     },
     "Waves" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9111,6 +9742,7 @@
       }
     },
     "Welcome to Pocketwerk" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9151,6 +9783,7 @@
       }
     },
     "Where you left off" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9161,6 +9794,7 @@
       }
     },
     "White" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9171,6 +9805,7 @@
       }
     },
     "Width" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9181,6 +9816,7 @@
       }
     },
     "Wind" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9191,6 +9827,7 @@
       }
     },
     "Window" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9211,6 +9848,7 @@
       }
     },
     "Work" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9221,6 +9859,7 @@
       }
     },
     "Your apps, files and links in groups, one click from the Dock." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9251,6 +9890,7 @@
       }
     },
     "https://example.com" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9261,6 +9901,7 @@
       }
     },
     "macOS already uses this shortcut." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9281,6 +9922,7 @@
       }
     },
     "missing" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9291,6 +9933,7 @@
       }
     },
     "selected" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9301,6 +9944,7 @@
       }
     },
     "work, travel" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9321,6 +9965,7 @@
       }
     },
     "“%@” can’t be found" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9351,6 +9996,7 @@
       }
     },
     "⌘%lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9371,6 +10017,7 @@
       }
     },
     "⌥⇧1 to ⌥⇧9 open the first nine groups. Give any group, Dock icon or profile its own shortcut under Settings > Hotkeys." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
