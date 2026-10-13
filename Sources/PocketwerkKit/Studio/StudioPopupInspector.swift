@@ -131,6 +131,8 @@ struct StudioPopupInspector: View {
                 StudioSlider(title: "Glass Effect", value: editor.binding(\.style.glassAmount), range: 0...1, editor: editor)
                 StudioSlider(title: "Opacity", value: editor.binding(\.style.opacity), range: 0.1...1, editor: editor)
                 StudioSlider(title: "Matte", value: editor.binding(\.style.matte), range: 0...1, editor: editor)
+                StudioSlider(title: "Glow", value: editor.binding(\.style.glow), range: 0...1, editor: editor)
+                StudioSlider(title: "Depth", value: editor.binding(\.style.depth), range: 0...1, editor: editor)
                 Toggle("Popup Follows Dock Icon", isOn: editor.binding(\.style.mirrorIcon))
             }
             Section("Border and Corners") {
@@ -196,7 +198,10 @@ private struct FillSection: View {
             } label: { Text("Type") }
             switch bg {
             case .glass: GlassFillEditor(editor: editor)
-            case .solid: SwatchPicker(title: "Color", color: solid)
+            case .solid:
+                SwatchPicker(title: "Color", color: solid) { c in
+                    editor.edit { $0.style.background = .gradient(colors: StudioPalette.gradientPair(c), angle: 45) }
+                }
             case .gradient: GradientFillEditor(editor: editor)
             case .mesh: MeshFillEditor(editor: editor)
             case .texture: TextureFillEditor(editor: editor)
@@ -358,24 +363,35 @@ private struct MeshFillEditor: View {
 private struct TextureFillEditor: View {
     let editor: StudioEditor
 
-    private var current: (TextureKind, RGBA) {
-        if case .texture(let n, let t) = editor.style.background { (TextureKind(name: n), t) } else { (.noise, .white) }
+    private var current: (name: String, tint: RGBA) {
+        if case .texture(let n, let t) = editor.style.background { (n, t) } else { (TextureKind.noise.rawValue, .white) }
     }
 
     private var tint: Binding<RGBA> {
-        Binding(get: { current.1 }, set: { t in
+        Binding(get: { current.tint }, set: { t in
             editor.edit { g in
                 if case .texture(let n, _) = g.style.background { g.style.background = .texture(name: n, tint: t) }
             }
         })
     }
 
+    private var snow: Binding<Bool> {
+        Binding(get: { TextureKind.hasSnow(current.name) }, set: { on in
+            editor.edit { g in
+                if case .texture(let n, let t) = g.style.background {
+                    g.style.background = .texture(name: TextureKind.name(TextureKind(name: n), snow: on), tint: t)
+                }
+            }
+        })
+    }
+
     var body: some View {
-        let (kind, _) = current
+        let kind = TextureKind(name: current.name)
+        let snowing = TextureKind.hasSnow(current.name)
         LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 4), spacing: 8) {
             ForEach(TextureKind.allCases, id: \.self) { k in
                 PickTile(title: k.title, selected: k == kind, action: {
-                    editor.edit { $0.style.background = .texture(name: k.rawValue, tint: k.suggestedTint) }
+                    editor.edit { $0.style.background = .texture(name: TextureKind.name(k, snow: snowing), tint: k.suggestedTint) }
                 }) {
                     TextureFill(kind: k, tint: k.suggestedTint)
                         .frame(height: 36)
@@ -383,6 +399,7 @@ private struct TextureFillEditor: View {
                 }
             }
         }
+        Toggle("Falling Snow", isOn: snow)
         SwatchPicker(title: "Tint", color: tint)
     }
 }

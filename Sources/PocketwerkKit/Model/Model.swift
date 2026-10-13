@@ -608,6 +608,8 @@ nonisolated struct AppSettings: Codable, Hashable, Sendable {
     var liveMainDockIcon = true
     /// Small seasonal decorations in the app windows (December snow). Opt in; off with Reduce Motion anyway.
     var seasonalTouches = false
+    /// Color variant of the app's own Dock icon ("standard", "honey", "ocean", "graphite", "iris").
+    var appIconVariant = "standard"
 }
 
 // MARK: - Library (root of everything persisted)
