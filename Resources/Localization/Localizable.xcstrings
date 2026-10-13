@@ -1,0 +1,1941 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@ (Imported)" : {
+
+    },
+    "%@ Copy" : {
+
+    },
+    "%@ Look" : {
+
+    },
+    "%@ did not answer: %@ Allow Pocketwerk under System Settings > Privacy & Security > Automation." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ did not answer: %2$@ Allow Pocketwerk under System Settings > Privacy & Security > Automation."
+          }
+        }
+      }
+    },
+    "%@ failed: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ failed: %2$@"
+          }
+        }
+      }
+    },
+    "%@ has no open tab." : {
+
+    },
+    "%@ is used by %@. Only the first one works." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ is used by %2$@. Only the first one works."
+          }
+        }
+      }
+    },
+    "%@: another app already uses this shortcut." : {
+
+    },
+    "%lld" : {
+
+    },
+    "%lld Categories" : {
+
+    },
+    "%lld apps" : {
+
+    },
+    "%lld items" : {
+
+    },
+    "%lld items can no longer be found" : {
+
+    },
+    "%lld items in “%@”" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld items in “%2$@”"
+          }
+        }
+      }
+    },
+    "%lld new looks." : {
+
+    },
+    "%lld pt" : {
+
+    },
+    "%lld tiles" : {
+
+    },
+    "%lld×" : {
+
+    },
+    "(default)" : {
+
+    },
+    "2" : {
+
+    },
+    "2×2" : {
+
+    },
+    "3" : {
+
+    },
+    "3×3" : {
+
+    },
+    "4" : {
+
+    },
+    "4×4" : {
+
+    },
+    "A menu" : {
+
+    },
+    "A profile is a saved copy of your whole Dock. Switch between them with one click, a hotkey, a URL or the command line." : {
+
+    },
+    "A spacer is a Dock tile that shows only text or an image, to label a part of your Dock." : {
+
+    },
+    "About" : {
+
+    },
+    "About Pocketwerk" : {
+
+    },
+    "Above the Dock icon" : {
+
+    },
+    "Active" : {
+
+    },
+    "Add" : {
+
+    },
+    "Add %lld items to which group?" : {
+
+    },
+    "Add Apps" : {
+
+    },
+    "Add Apps…" : {
+
+    },
+    "Add Color" : {
+
+    },
+    "Add Current Browser Tab" : {
+
+    },
+    "Add File or Folder…" : {
+
+    },
+    "Add Files" : {
+
+    },
+    "Add Files…" : {
+
+    },
+    "Add Groups" : {
+
+    },
+    "Add Link" : {
+
+    },
+    "Add Link…" : {
+
+    },
+    "Add Running App" : {
+
+    },
+    "Add Slot" : {
+
+    },
+    "Add Spacer" : {
+
+    },
+    "Add a Dock slot for a group" : {
+
+    },
+    "Add a slot to give a group its own icon in the Dock." : {
+
+    },
+    "Add a tile" : {
+
+    },
+    "Add a web link" : {
+
+    },
+    "Add apps from the App Drawer" : {
+
+    },
+    "Add files or folders (⇧⌘F)" : {
+
+    },
+    "Add profile" : {
+
+    },
+    "Add to Dock" : {
+
+    },
+    "Add to Group" : {
+
+    },
+    "Add to which group?" : {
+
+    },
+    "Add ⌘, ⌥ or ⌃ to the key." : {
+
+    },
+    "Address" : {
+
+    },
+    "Airy" : {
+
+    },
+    "All Apps" : {
+
+    },
+    "All Categories" : {
+
+    },
+    "All groups" : {
+
+    },
+    "Alpine Spots" : {
+
+    },
+    "Already used by %@." : {
+
+    },
+    "Always" : {
+
+    },
+    "Angle" : {
+
+    },
+    "Animation speed" : {
+
+    },
+    "Another app already uses this shortcut. Choose a different one." : {
+
+    },
+    "Another app uses this shortcut" : {
+
+    },
+    "App" : {
+
+    },
+    "App Drawer" : {
+
+    },
+    "App, running" : {
+
+    },
+    "Appearance" : {
+
+    },
+    "Applied. Left out because they are missing: %@" : {
+
+    },
+    "Applies this look" : {
+
+    },
+    "Apply" : {
+
+    },
+    "Apply at startup" : {
+
+    },
+    "Apps" : {
+
+    },
+    "Apps not installed on this Mac" : {
+
+    },
+    "Apps that are running right now." : {
+
+    },
+    "Apps you launch most, counted on this Mac only." : {
+
+    },
+    "App…" : {
+
+    },
+    "Ask before Open All" : {
+
+    },
+    "Assistent" : {
+
+    },
+    "At the pointer" : {
+
+    },
+    "Aurora" : {
+
+    },
+    "Auto" : {
+
+    },
+    "Auto Layout" : {
+
+    },
+    "Automatic shortcut" : {
+
+    },
+    "Available" : {
+
+    },
+    "Back" : {
+
+    },
+    "Back to the default look" : {
+
+    },
+    "Backdrop" : {
+
+    },
+    "Backup" : {
+
+    },
+    "Base" : {
+
+    },
+    "Base Color" : {
+
+    },
+    "Black" : {
+
+    },
+    "Blobs" : {
+
+    },
+    "Blur" : {
+
+    },
+    "Border" : {
+
+    },
+    "Border and Corners" : {
+
+    },
+    "Bubbles" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Cardboard" : {
+
+    },
+    "Carousel (swipe between groups)" : {
+
+    },
+    "Categories" : {
+
+    },
+    "Category" : {
+
+    },
+    "Center" : {
+
+    },
+    "Center of the Dock" : {
+
+    },
+    "Center of the screen" : {
+
+    },
+    "Change…" : {
+
+    },
+    "Check Now" : {
+
+    },
+    "Check failed: %@" : {
+
+    },
+    "Check for updates once a day" : {
+
+    },
+    "Choose" : {
+
+    },
+    "Choose Folder…" : {
+
+    },
+    "Choose Image…" : {
+
+    },
+    "Choose Photo…" : {
+
+    },
+    "Choose a group in the sidebar or press ⌘N." : {
+
+    },
+    "Choose a group to design its look." : {
+
+    },
+    "Choose an emoji" : {
+
+    },
+    "Choose apps, files or folders to add." : {
+
+    },
+    "Circle" : {
+
+    },
+    "Clear search" : {
+
+    },
+    "Clear shortcut" : {
+
+    },
+    "Click again to open all items" : {
+
+    },
+    "Clicking the menu bar icon shows" : {
+
+    },
+    "Close" : {
+
+    },
+    "Close Window" : {
+
+    },
+    "Close the popup after opening an item" : {
+
+    },
+    "Color" : {
+
+    },
+    "Color %lld" : {
+
+    },
+    "Color 1" : {
+
+    },
+    "Color 2" : {
+
+    },
+    "Color 3" : {
+
+    },
+    "Columns" : {
+
+    },
+    "Columns and rows fit the items automatically." : {
+
+    },
+    "Comb" : {
+
+    },
+    "Copy" : {
+
+    },
+    "Copy Details" : {
+
+    },
+    "Copy to Another Folder" : {
+
+    },
+    "Corner Radius" : {
+
+    },
+    "Curtains" : {
+
+    },
+    "Custom" : {
+
+    },
+    "Custom Color" : {
+
+    },
+    "Custom Spacer" : {
+
+    },
+    "Customize Icon…" : {
+
+    },
+    "Cut" : {
+
+    },
+    "Dark" : {
+
+    },
+    "Data" : {
+
+    },
+    "Date Added" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Delete Group" : {
+
+    },
+    "Delete Group…" : {
+
+    },
+    "Delete Slot" : {
+
+    },
+    "Delete spacer" : {
+
+    },
+    "Delete this theme?" : {
+
+    },
+    "Delete “%@”" : {
+
+    },
+    "Delete “%@”?" : {
+
+    },
+    "Deleted group" : {
+
+    },
+    "Delete…" : {
+
+    },
+    "Denim" : {
+
+    },
+    "Dense" : {
+
+    },
+    "Density" : {
+
+    },
+    "Depth" : {
+
+    },
+    "Depth Blur" : {
+
+    },
+    "Depth Fade" : {
+
+    },
+    "Desktop Picture" : {
+
+    },
+    "Development build, version unknown." : {
+
+    },
+    "Dim" : {
+
+    },
+    "Direction" : {
+
+    },
+    "Dismiss" : {
+
+    },
+    "Distance from the Dock" : {
+
+    },
+    "Dock" : {
+
+    },
+    "Dock %@" : {
+
+    },
+    "Dock Icon Preview" : {
+
+    },
+    "Dock Icons" : {
+
+    },
+    "Dock Profiles" : {
+
+    },
+    "Dock Slots" : {
+
+    },
+    "Dock icon “%@”" : {
+
+    },
+    "Dock only" : {
+
+    },
+    "Dock profiles you already have" : {
+
+    },
+    "Done" : {
+
+    },
+    "Don’t ask again" : {
+
+    },
+    "Down" : {
+
+    },
+    "Down Left" : {
+
+    },
+    "Down Right" : {
+
+    },
+    "Download" : {
+
+    },
+    "Drifting Light" : {
+
+    },
+    "Drop apps, files or folders here" : {
+
+    },
+    "Drop apps, files or folders here." : {
+
+    },
+    "Drop apps, files or links here" : {
+
+    },
+    "Drops" : {
+
+    },
+    "Duplicate" : {
+
+    },
+    "Dusk" : {
+
+    },
+    "Edit" : {
+
+    },
+    "Edit Group…" : {
+
+    },
+    "Effect" : {
+
+    },
+    "Embers" : {
+
+    },
+    "Emoji" : {
+
+    },
+    "Emoji & Symbols" : {
+
+    },
+    "Empty" : {
+
+    },
+    "Empty Profile" : {
+
+    },
+    "Empty folder" : {
+
+    },
+    "End" : {
+
+    },
+    "Export" : {
+
+    },
+    "Export Backup…" : {
+
+    },
+    "Export…" : {
+
+    },
+    "Extra copy in" : {
+
+    },
+    "Fast" : {
+
+    },
+    "Felt" : {
+
+    },
+    "File" : {
+
+    },
+    "File or Folder…" : {
+
+    },
+    "Fill" : {
+
+    },
+    "Filter" : {
+
+    },
+    "Finish" : {
+
+    },
+    "Flexible Spacer" : {
+
+    },
+    "Fog" : {
+
+    },
+    "Folder" : {
+
+    },
+    "Folders, Files and Links" : {
+
+    },
+    "Font" : {
+
+    },
+    "Force Quit" : {
+
+    },
+    "Force Quit All" : {
+
+    },
+    "Free and open source under the MIT license." : {
+
+    },
+    "From Current Dock" : {
+
+    },
+    "Fur" : {
+
+    },
+    "General" : {
+
+    },
+    "Give each group its own Dock icon. A click opens it as a popup." : {
+
+    },
+    "Glass" : {
+
+    },
+    "Glass Effect" : {
+
+    },
+    "Glass and Finish" : {
+
+    },
+    "Glossy" : {
+
+    },
+    "Glyph Rain" : {
+
+    },
+    "Glyph Size" : {
+
+    },
+    "Gradient" : {
+
+    },
+    "Gradient %@ to %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Gradient %1$@ to %2$@"
+          }
+        }
+      }
+    },
+    "Grain" : {
+
+    },
+    "Graphite" : {
+
+    },
+    "Grid" : {
+
+    },
+    "Group" : {
+
+    },
+    "Group %@. Switch group" : {
+
+    },
+    "Group %lld of %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Group %1$lld of %2$lld"
+          }
+        }
+      }
+    },
+    "Group name" : {
+
+    },
+    "Group “%@”" : {
+
+    },
+    "Groups" : {
+
+    },
+    "Groups of apps, files and links behind your Dock icons." : {
+
+    },
+    "Groups using it keep their look." : {
+
+    },
+    "Hair Length" : {
+
+    },
+    "Header" : {
+
+    },
+    "Header and Hover" : {
+
+    },
+    "Hidden from All Groups" : {
+
+    },
+    "Hidden groups stay reachable by their own Dock icon and shortcut." : {
+
+    },
+    "Hide" : {
+
+    },
+    "Hide All" : {
+
+    },
+    "Hide All (⌥ Quit, ⌘ Force Quit)" : {
+
+    },
+    "Hide Pocketwerk" : {
+
+    },
+    "Hide from All Groups" : {
+
+    },
+    "Hide menu bar apps" : {
+
+    },
+    "Highlight" : {
+
+    },
+    "Hotkey" : {
+
+    },
+    "Hotkeys" : {
+
+    },
+    "Hover" : {
+
+    },
+    "Ice" : {
+
+    },
+    "Icon" : {
+
+    },
+    "Icon Pack" : {
+
+    },
+    "Icon Plate" : {
+
+    },
+    "Icon Scale" : {
+
+    },
+    "Icon Size" : {
+
+    },
+    "Image" : {
+
+    },
+    "Image…" : {
+
+    },
+    "Import" : {
+
+    },
+    "Import Backup" : {
+
+    },
+    "Import Backup…" : {
+
+    },
+    "Import…" : {
+
+    },
+    "In This Group" : {
+
+    },
+    "In group" : {
+
+    },
+    "In the Dock" : {
+
+    },
+    "Inbox" : {
+
+    },
+    "Inspector" : {
+
+    },
+    "Install Launcher" : {
+
+    },
+    "Installed version" : {
+
+    },
+    "Intensity" : {
+
+    },
+    "Items" : {
+
+    },
+    "Items and apps you opened most recently." : {
+
+    },
+    "Keep Open as Window" : {
+
+    },
+    "Keep running" : {
+
+    },
+    "Keep the size while swiping" : {
+
+    },
+    "Kind" : {
+
+    },
+    "Knit" : {
+
+    },
+    "L" : {
+
+    },
+    "Label" : {
+
+    },
+    "Label Color" : {
+
+    },
+    "Labels" : {
+
+    },
+    "Last Opened" : {
+
+    },
+    "Last check" : {
+
+    },
+    "Launch at login" : {
+
+    },
+    "Launcher installed, not in the Dock" : {
+
+    },
+    "Lava" : {
+
+    },
+    "Layout" : {
+
+    },
+    "Leave empty to use the original name" : {
+
+    },
+    "Left" : {
+
+    },
+    "Letters" : {
+
+    },
+    "Library" : {
+
+    },
+    "Library replaced. Undo with ⌘Z." : {
+
+    },
+    "Lift" : {
+
+    },
+    "Light" : {
+
+    },
+    "Linen" : {
+
+    },
+    "Link" : {
+
+    },
+    "Link address" : {
+
+    },
+    "Link to open" : {
+
+    },
+    "List" : {
+
+    },
+    "Living Effect" : {
+
+    },
+    "Loading…" : {
+
+    },
+    "Looking for apps…" : {
+
+    },
+    "M" : {
+
+    },
+    "Manual" : {
+
+    },
+    "Marble" : {
+
+    },
+    "Margin" : {
+
+    },
+    "Match Theme" : {
+
+    },
+    "Matte" : {
+
+    },
+    "Meadow" : {
+
+    },
+    "Medium" : {
+
+    },
+    "Menu Bar" : {
+
+    },
+    "Menu bar and Dock" : {
+
+    },
+    "Menu bar only" : {
+
+    },
+    "Merge" : {
+
+    },
+    "Merge adds these groups" : {
+
+    },
+    "Merge only adds and never deletes. Replace swaps your groups, Dock icons and settings for the backup. Both can be undone with ⌘Z." : {
+
+    },
+    "Merge skips these groups, you already have them" : {
+
+    },
+    "Merged. Undo with ⌘Z." : {
+
+    },
+    "Mesh" : {
+
+    },
+    "Middle" : {
+
+    },
+    "Minimize" : {
+
+    },
+    "Missing" : {
+
+    },
+    "Missing Items" : {
+
+    },
+    "Missing now" : {
+
+    },
+    "Mono" : {
+
+    },
+    "Monogram" : {
+
+    },
+    "More actions for %@" : {
+
+    },
+    "More items than fit go to the next page." : {
+
+    },
+    "Most Opened" : {
+
+    },
+    "Most Used" : {
+
+    },
+    "Most Used, fills itself as you work" : {
+
+    },
+    "Move Down" : {
+
+    },
+    "Move To" : {
+
+    },
+    "Move Up" : {
+
+    },
+    "Move down" : {
+
+    },
+    "Move to Group" : {
+
+    },
+    "Move up" : {
+
+    },
+    "Name" : {
+
+    },
+    "Navigation" : {
+
+    },
+    "Never" : {
+
+    },
+    "Never quit apps for this profile" : {
+
+    },
+    "New Dock profiles" : {
+
+    },
+    "New Group" : {
+
+    },
+    "New Group…" : {
+
+    },
+    "New Profile" : {
+
+    },
+    "New Smart Group" : {
+
+    },
+    "New group" : {
+
+    },
+    "New group (⌘N)" : {
+
+    },
+    "Next" : {
+
+    },
+    "Next Dock profile" : {
+
+    },
+    "Next profile" : {
+
+    },
+    "No Group" : {
+
+    },
+    "No Group Selected" : {
+
+    },
+    "No Groups" : {
+
+    },
+    "No Limit" : {
+
+    },
+    "No Matching Looks" : {
+
+    },
+    "No Profile Selected" : {
+
+    },
+    "No Shape" : {
+
+    },
+    "No analytics, no account, no server. Your data stays on this Mac." : {
+
+    },
+    "No groups" : {
+
+    },
+    "No link, file or folder found." : {
+
+    },
+    "No matches" : {
+
+    },
+    "No release found." : {
+
+    },
+    "None" : {
+
+    },
+    "Normal" : {
+
+    },
+    "Not in Any Group" : {
+
+    },
+    "Not in group" : {
+
+    },
+    "Not installed" : {
+
+    },
+    "Nothing Yet" : {
+
+    },
+    "Nothing here yet" : {
+
+    },
+    "OK" : {
+
+    },
+    "Ocean" : {
+
+    },
+    "Off" : {
+
+    },
+    "On Hover" : {
+
+    },
+    "One readable JSON file with groups, Dock icons, profiles, shortcuts and settings." : {
+
+    },
+    "Opacity" : {
+
+    },
+    "Open" : {
+
+    },
+    "Open %lld" : {
+
+    },
+    "Open %lld?" : {
+
+    },
+    "Open All" : {
+
+    },
+    "Open Download Page" : {
+
+    },
+    "Open Login Items" : {
+
+    },
+    "Open Safari, Chrome, Arc or Brave first" : {
+
+    },
+    "Open With" : {
+
+    },
+    "Open after applying" : {
+
+    },
+    "Open all %lld items of “%@”?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Open all %1$lld items of “%2$@”?"
+          }
+        }
+      }
+    },
+    "Open groups from anywhere with ⌥⇧1 to ⌥⇧9." : {
+
+    },
+    "Open in Finder" : {
+
+    },
+    "Open the profile's apps in the background" : {
+
+    },
+    "Open the selected items" : {
+
+    },
+    "Opening" : {
+
+    },
+    "Optional" : {
+
+    },
+    "Options" : {
+
+    },
+    "Other" : {
+
+    },
+    "Other…" : {
+
+    },
+    "Pack" : {
+
+    },
+    "Page %lld of %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Page %1$lld of %2$lld"
+          }
+        }
+      }
+    },
+    "Page Dots" : {
+
+    },
+    "Pages" : {
+
+    },
+    "Paper" : {
+
+    },
+    "Paste" : {
+
+    },
+    "Pause between apps" : {
+
+    },
+    "Pause between apps in Open All" : {
+
+    },
+    "Photo" : {
+
+    },
+    "Pin to Top" : {
+
+    },
+    "Pin to top of the sidebar" : {
+
+    },
+    "Pinned" : {
+
+    },
+    "Placement" : {
+
+    },
+    "Plasma" : {
+
+    },
+    "Plate Color" : {
+
+    },
+    "Pocketwerk" : {
+
+    },
+    "Pocketwerk is up to date." : {
+
+    },
+    "Pocketwerk on GitHub" : {
+
+    },
+    "Pocketwerk writes a copy of the library there after every change, for example to iCloud Drive. It never reads it back on its own." : {
+
+    },
+    "Pointer" : {
+
+    },
+    "Popup" : {
+
+    },
+    "Popup Follows Dock Icon" : {
+
+    },
+    "Popup Preview" : {
+
+    },
+    "Popup Scale" : {
+
+    },
+    "Press to record a new shortcut" : {
+
+    },
+    "Preview Appearance" : {
+
+    },
+    "Preview Backdrop" : {
+
+    },
+    "Previous" : {
+
+    },
+    "Profile Name" : {
+
+    },
+    "Profile name" : {
+
+    },
+    "Profile not found." : {
+
+    },
+    "Profile “%@”" : {
+
+    },
+    "Profiles" : {
+
+    },
+    "Push" : {
+
+    },
+    "Put apps, files, folders and links into groups." : {
+
+    },
+    "Quick Look" : {
+
+    },
+    "Quit" : {
+
+    },
+    "Quit All" : {
+
+    },
+    "Quit Pocketwerk" : {
+
+    },
+    "Quit apps that are not in this profile" : {
+
+    },
+    "Rain" : {
+
+    },
+    "Randomize" : {
+
+    },
+    "Recently Installed" : {
+
+    },
+    "Recently Opened" : {
+
+    },
+    "Record Shortcut" : {
+
+    },
+    "Redo" : {
+
+    },
+    "Reload Dock" : {
+
+    },
+    "Remove" : {
+
+    },
+    "Remove %@" : {
+
+    },
+    "Remove %lld Items" : {
+
+    },
+    "Remove Color" : {
+
+    },
+    "Remove Image" : {
+
+    },
+    "Remove Missing" : {
+
+    },
+    "Remove from Dock" : {
+
+    },
+    "Remove from Group" : {
+
+    },
+    "Remove group from slot" : {
+
+    },
+    "Remove items whose app or file is gone" : {
+
+    },
+    "Rename" : {
+
+    },
+    "Rename Theme" : {
+
+    },
+    "Rename…" : {
+
+    },
+    "Replace All" : {
+
+    },
+    "Replace this profile's tiles with what the Dock shows now." : {
+
+    },
+    "Reset" : {
+
+    },
+    "Restart the Dock once so pinned tiles show their new icons." : {
+
+    },
+    "Ribbons" : {
+
+    },
+    "Right-click the icon to always get the menu." : {
+
+    },
+    "Ripple" : {
+
+    },
+    "Ripples" : {
+
+    },
+    "Round Items" : {
+
+    },
+    "Rounded" : {
+
+    },
+    "Rows" : {
+
+    },
+    "Running Apps" : {
+
+    },
+    "Running Indicator" : {
+
+    },
+    "S" : {
+
+    },
+    "Save" : {
+
+    },
+    "Save Current Dock" : {
+
+    },
+    "Save Current Dock Here" : {
+
+    },
+    "Save Current Dock to Active Profile" : {
+
+    },
+    "Save Dock into active profile" : {
+
+    },
+    "Save Dock into active profile before switching" : {
+
+    },
+    "Save as Theme" : {
+
+    },
+    "Save this look as a theme" : {
+
+    },
+    "Saved Dock" : {
+
+    },
+    "Search Looks" : {
+
+    },
+    "Search apps" : {
+
+    },
+    "Search: %@" : {
+
+    },
+    "Section" : {
+
+    },
+    "Select All" : {
+
+    },
+    "Serif" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Settings…" : {
+
+    },
+    "Several Groups" : {
+
+    },
+    "Shadow" : {
+
+    },
+    "Shape" : {
+
+    },
+    "Shortcut" : {
+
+    },
+    "Shortcuts work everywhere, also in full screen apps. No extra permission is needed." : {
+
+    },
+    "Show" : {
+
+    },
+    "Show %lld" : {
+
+    },
+    "Show All Groups" : {
+
+    },
+    "Show Another Group" : {
+
+    },
+    "Show Group" : {
+
+    },
+    "Show Names" : {
+
+    },
+    "Show Pocketwerk in" : {
+
+    },
+    "Show all groups" : {
+
+    },
+    "Show in All Groups" : {
+
+    },
+    "Show in Finder" : {
+
+    },
+    "Show the Most Used group" : {
+
+    },
+    "Show this group as a popup" : {
+
+    },
+    "Shows your desktop picture behind the popup, blurred." : {
+
+    },
+    "Shuffle Apps" : {
+
+    },
+    "Sidebar (list of groups)" : {
+
+    },
+    "Size" : {
+
+    },
+    "Size and Spacing" : {
+
+    },
+    "Skip" : {
+
+    },
+    "Skip This Version" : {
+
+    },
+    "Skip if already active" : {
+
+    },
+    "Skipped version" : {
+
+    },
+    "Slot name" : {
+
+    },
+    "Slow" : {
+
+    },
+    "Small Spacer" : {
+
+    },
+    "Snow" : {
+
+    },
+    "Sort" : {
+
+    },
+    "Sort By" : {
+
+    },
+    "Sort items by" : {
+
+    },
+    "Sort order" : {
+
+    },
+    "Spacer" : {
+
+    },
+    "Spacer text" : {
+
+    },
+    "Spacers" : {
+
+    },
+    "Spacing" : {
+
+    },
+    "Speed" : {
+
+    },
+    "Spots" : {
+
+    },
+    "Square" : {
+
+    },
+    "Squircle" : {
+
+    },
+    "Stack" : {
+
+    },
+    "Starfield" : {
+
+    },
+    "Start" : {
+
+    },
+    "Start with a few groups?" : {
+
+    },
+    "Startup profile" : {
+
+    },
+    "Stripes" : {
+
+    },
+    "Strong" : {
+
+    },
+    "Style" : {
+
+    },
+    "Subtle" : {
+
+    },
+    "Symbol" : {
+
+    },
+    "Symbol Color" : {
+
+    },
+    "System" : {
+
+    },
+    "Terrazzo" : {
+
+    },
+    "Text" : {
+
+    },
+    "Text Backdrop" : {
+
+    },
+    "Text Shadow" : {
+
+    },
+    "Text color" : {
+
+    },
+    "Texture" : {
+
+    },
+    "The Dock is empty or could not be read." : {
+
+    },
+    "The Dock tile for \"%@\" could not be built." : {
+
+    },
+    "The browser did not answer." : {
+
+    },
+    "The check asks GitHub for the latest release. Nothing else is sent." : {
+
+    },
+    "The file has %lld groups with %lld items." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The file has %1$lld groups with %2$lld items."
+          }
+        }
+      }
+    },
+    "The file is not a Pocketwerk profile." : {
+
+    },
+    "The group and its Dock icon are removed. You can undo this with ⌘Z." : {
+
+    },
+    "The launcher template is missing from the app." : {
+
+    },
+    "The menu command “%@” uses this shortcut." : {
+
+    },
+    "The new launcher is not valid: %@" : {
+
+    },
+    "The theme keeps the popup and Dock icon look. Use it for any group." : {
+
+    },
+    "Thickness" : {
+
+    },
+    "This file is not a Pocketwerk backup." : {
+
+    },
+    "This group fills itself as you use your Mac." : {
+
+    },
+    "This item can no longer be found" : {
+
+    },
+    "This profile is already active." : {
+
+    },
+    "Tight" : {
+
+    },
+    "Tiles" : {
+
+    },
+    "Times opened" : {
+
+    },
+    "Tint" : {
+
+    },
+    "Tint Strength" : {
+
+    },
+    "Toggle Sidebar" : {
+
+    },
+    "Trail" : {
+
+    },
+    "Try a random look" : {
+
+    },
+    "Turn Off" : {
+
+    },
+    "Type" : {
+
+    },
+    "Type shortcut…" : {
+
+    },
+    "Undo" : {
+
+    },
+    "Unhide" : {
+
+    },
+    "Uninstall Launcher" : {
+
+    },
+    "Unpin" : {
+
+    },
+    "Update Available: %@…" : {
+
+    },
+    "Update Launcher" : {
+
+    },
+    "Update with Current Look" : {
+
+    },
+    "Updates" : {
+
+    },
+    "Use Folder" : {
+
+    },
+    "Use Group Icon" : {
+
+    },
+    "Use Original Name" : {
+
+    },
+    "Use default look" : {
+
+    },
+    "Use the front tab of a browser" : {
+
+    },
+    "Uses the automatic shortcut for its position in the sidebar." : {
+
+    },
+    "Variant" : {
+
+    },
+    "Version" : {
+
+    },
+    "Version %@" : {
+
+    },
+    "Version %@ is available" : {
+
+    },
+    "Version %@ is available." : {
+
+    },
+    "View" : {
+
+    },
+    "Wallpaper" : {
+
+    },
+    "Wave Height" : {
+
+    },
+    "Waves" : {
+
+    },
+    "Welcome to Pocketwerk" : {
+
+    },
+    "When Applied" : {
+
+    },
+    "When clicking a Dock icon" : {
+
+    },
+    "When using a shortcut" : {
+
+    },
+    "White" : {
+
+    },
+    "Width" : {
+
+    },
+    "Wind" : {
+
+    },
+    "Window" : {
+
+    },
+    "Your apps, files and links in groups, one click from the Dock." : {
+
+    },
+    "and %lld more" : {
+
+    },
+    "https://" : {
+
+    },
+    "https://example.com" : {
+
+    },
+    "macOS already uses this shortcut." : {
+
+    },
+    "macOS asks you to allow Pocketwerk in Login Items." : {
+
+    },
+    "⌥⇧1 to ⌥⇧9 open the first nine groups" : {
+
+    }
+  },
+  "version" : "1.0"
+}
