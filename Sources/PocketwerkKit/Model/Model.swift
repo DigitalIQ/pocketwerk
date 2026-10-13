@@ -455,6 +455,10 @@ nonisolated struct DockProfile: Codable, Identifiable, Hashable, Sendable {
     var leaderKey: String?
     /// Space identifiers (or display UUIDs) that apply this profile automatically.
     var spaces: [String] = []
+    /// Apps of this profile stay open when another profile with "quit others" is applied.
+    var appsStayOpen = false
+    /// Left out of "Export All" and sharing.
+    var isPrivate = false
 }
 
 nonisolated enum TileKind: String, Codable, CaseIterable, Sendable {
@@ -598,6 +602,8 @@ nonisolated struct AppSettings: Codable, Hashable, Sendable {
     var checkForUpdates = true
     var lastUpdateCheck: Date?
     var skippedVersion: String?
+    /// The main app's Dock icon shows a live mini grid of the first group.
+    var liveMainDockIcon = true
 }
 
 // MARK: - Library (root of everything persisted)

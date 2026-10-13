@@ -12,10 +12,14 @@ public enum PocketwerkCLI {
       profiles apply <name|id> [--skip-if-active]
       profiles capture <name>             Save the current Dock as a new profile
       profiles save                       Save the current Dock into the active profile
+      profiles next                       Apply the next profile in the cycle
+      profiles export <file>              Write every non-private profile to a JSON file
+      profiles import <file>              Add the profiles from a JSON file
       open <group name|id>                Show a group's popup
       dock                                List the tiles in the current Dock
       slots list                          List Dock slots and their launchers
       slots install <name|id>             Build or update a slot's launcher
+      spaces                              Show the ids of the current Space and display
       help
     """
 
@@ -53,6 +57,9 @@ public enum PocketwerkCLI {
             return 0
         case "slots":
             return slots(rest, out: &out, err: &err)
+        case "spaces":
+            for place in SpaceWatcher.currentPlaces() { print("\(place.id)\t\(place.label)", to: &out) }
+            return 0
         default:
             print("Unknown command \"\(command)\"\n\n\(usage)", to: &err)
             return 64
@@ -103,6 +110,31 @@ public enum PocketwerkCLI {
             }
             guard profiles.saveCurrentToActive() else { print("No active profile, or the Dock could not be read", to: &err); return 1 }
             store.saveNow()
+            return 0
+        case "next":
+            if appIsRunning {
+                return send(PWShared.url(host: "profile", [URLQueryItem(name: "action", value: "next")]), err: &err)
+            }
+            let result = profiles.applyNext()
+            store.saveNow()
+            guard result.status == .applied else { print("No profile to switch to", to: &err); return 1 }
+            print("Applied \(result.profileName)", to: &out)
+            return 0
+        case "export":
+            guard !arg.isEmpty else { print("export needs a file path", to: &err); return 64 }
+            do { try profiles.exportAll(to: URL(fileURLWithPath: arg)) } catch { print(error.localizedDescription, to: &err); return 1 }
+            return 0
+        case "import":
+            guard !arg.isEmpty else { print("import needs a file path", to: &err); return 64 }
+            if appIsRunning { print("Quit Pocketwerk first, or import in the app", to: &err); return 1 }
+            do {
+                let added = try profiles.importProfiles(from: URL(fileURLWithPath: arg))
+                store.saveNow()
+                for p in added { print("\(p.id.uuidString)\t\(p.name)", to: &out) }
+            } catch {
+                print(error.localizedDescription, to: &err)
+                return 1
+            }
             return 0
         default:
             print("Unknown profiles command \"\(sub)\"", to: &err)

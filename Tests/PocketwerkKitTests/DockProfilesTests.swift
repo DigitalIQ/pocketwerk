@@ -23,11 +23,15 @@ final class FakeSystem: ProfileSystem {
     var quits: [String] = []
     var launches: [URL] = []
     var opened: [URL] = []
+    var openedWith: [(urls: [URL], app: URL)] = []
+    var launchedWithArgs: [(app: URL, args: [String])] = []
 
     func runningApps() -> [(bundleID: String, path: String?)] { running }
     func quit(bundleID: String) { quits.append(bundleID) }
     func launch(appAt url: URL) { launches.append(url) }
     func open(_ url: URL) { opened.append(url) }
+    func open(_ urls: [URL], withAppAt app: URL) { openedWith.append((urls, app)) }
+    func launch(appAt url: URL, arguments: [String]) { launchedWithArgs.append((url, arguments)) }
     func fileExists(_ path: String) -> Bool { existing.contains(path) }
     func locate(bundleID: String) -> String? { moved[bundleID] }
 }

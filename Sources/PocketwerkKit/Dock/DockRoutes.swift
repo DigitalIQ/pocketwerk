@@ -12,6 +12,8 @@ import PocketwerkShared
 ///     pocketwerk://profile?id=<uuid> | ?name=<name>  apply a Dock profile (&skip=1 skips an active one)
 ///     pocketwerk://profile?action=capture&name=<n>   save the current Dock as a new profile
 ///     pocketwerk://profile?action=save               save the current Dock into the active profile
+///     pocketwerk://profile?action=next               apply the next profile in the cycle
+///     pocketwerk://group?action=openAll|hideAll|quitAll&id=<uuid or name>
 nonisolated enum PocketwerkRoute: Equatable {
     case open(slot: UUID?, group: String?, anchor: CGPoint?)
     case add(urls: [URL], slot: UUID?, group: UUID?)
@@ -19,6 +21,8 @@ nonisolated enum PocketwerkRoute: Equatable {
     case applyProfile(query: String, skipIfActive: Bool?)
     case captureProfile(name: String)
     case saveProfile
+    case nextProfile
+    case groupAction(action: String, group: String)
 
     static func parse(_ url: URL) -> PocketwerkRoute? {
         guard url.scheme?.lowercased() == PWShared.urlScheme,
@@ -41,10 +45,15 @@ nonisolated enum PocketwerkRoute: Equatable {
                         group: value("group").flatMap(UUID.init(uuidString:)))
         case "settings":
             return .settings
+        case "group":
+            guard let action = value("action"), ["openall", "hideall", "quitall"].contains(action.lowercased()),
+                  let group = value("id") ?? value("name") else { return nil }
+            return .groupAction(action: action.lowercased(), group: group)
         case "profile":
             switch value("action")?.lowercased() {
             case "capture": return .captureProfile(name: value("name") ?? String(localized: "Saved Dock"))
             case "save": return .saveProfile
+            case "next": return .nextProfile
             default:
                 guard let q = value("id") ?? value("name") else { return nil }
                 let skip = value("skip").map { $0 == "1" || $0.lowercased() == "true" }
@@ -83,6 +92,15 @@ enum DockRoutes {
             DockProfiles.shared.captureCurrent(name: name)
         case .saveProfile:
             DockProfiles.shared.saveCurrentToActive()
+        case .nextProfile:
+            DockProfiles.shared.applyNext()
+        case .groupAction(let action, let query):
+            guard let g = store.group(matching: query) else { return true }
+            switch action {
+            case "openall": ItemOpener.openAll(g)
+            case "hideall": ItemOpener.hideAll(store.visibleItems(of: g))
+            default: ItemOpener.quitAll(store.visibleItems(of: g), force: false)
+            }
         }
         return true
     }

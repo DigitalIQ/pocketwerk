@@ -32,6 +32,7 @@ struct DockProfilesView: View {
                         Button("Empty Profile") { selection = profiles.createEmpty(name: String(localized: "New Profile")).id }
                         Divider()
                         Button("Import…") { importProfile() }
+                        Button("Export All…") { exportAll() }
                     } label: {
                         Image(systemName: "plus")
                     }
@@ -74,6 +75,7 @@ struct DockProfilesView: View {
         Button("Apply") { profiles.apply(p.id) }
         Button("Duplicate") { selection = profiles.duplicate(p.id)?.id }
         Button("Export…") { export(p) }
+        Button("Share…") { share(p) }.disabled(p.isPrivate)
         Divider()
         Button("Delete", role: .destructive) {
             if selection == p.id { selection = nil }
@@ -102,7 +104,27 @@ struct DockProfilesView: View {
         let panel = NSOpenPanel()
         panel.allowedContentTypes = [.json]
         guard panel.runModal() == .OK, let url = panel.url else { return }
-        do { selection = try profiles.importProfile(from: url).id } catch { self.error = error.localizedDescription }
+        do { selection = try profiles.importProfiles(from: url).first?.id } catch { self.error = error.localizedDescription }
+    }
+
+    private func exportAll() {
+        let panel = NSSavePanel()
+        panel.allowedContentTypes = [.json]
+        panel.nameFieldStringValue = String(localized: "Dock Profiles.json")
+        guard panel.runModal() == .OK, let url = panel.url else { return }
+        do { try profiles.exportAll(to: url) } catch { self.error = error.localizedDescription }
+    }
+
+    /// The system share sheet (AirDrop, Mail, Messages) with the profile as a JSON file.
+    private func share(_ p: DockProfile) {
+        do {
+            let file = try profiles.shareFile(p.id)
+            guard let view = NSApp.keyWindow?.contentView else { return }
+            let mouse = view.convert(view.window?.mouseLocationOutsideOfEventStream ?? .zero, from: nil)
+            NSSharingServicePicker(items: [file]).show(relativeTo: NSRect(origin: mouse, size: .zero), of: view, preferredEdge: .minY)
+        } catch {
+            self.error = error.localizedDescription
+        }
     }
 }
 
@@ -117,6 +139,14 @@ private struct ProfileListRow: View {
                 Text("\(profile.tiles.count) tiles").font(.caption).foregroundStyle(.secondary)
             }
             Spacer()
+            if profile.isPrivate {
+                Image(systemName: "lock.fill").foregroundStyle(.secondary).help(Text("Private"))
+                    .accessibilityLabel(Text("Private"))
+            }
+            if !profile.spaces.isEmpty {
+                Image(systemName: "rectangle.on.rectangle").foregroundStyle(.secondary).help(Text("Linked to a Space or display"))
+                    .accessibilityLabel(Text("Linked to a Space or display"))
+            }
             if store.settings.startupProfileID == profile.id {
                 Image(systemName: "power").foregroundStyle(.secondary).help(Text("Startup profile"))
                     .accessibilityLabel(Text("Startup profile"))
@@ -131,15 +161,23 @@ private struct ProfileListRow: View {
 
 /// Settings that apply to every profile switch.
 private struct GlobalProfileOptions: View {
+    @State private var showCommands = false
     private var store: LibraryStore { LibraryStore.shared }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Toggle("Skip if already active", isOn: setting(\.skipIfActive))
             Toggle("Save Dock into active profile before switching", isOn: setting(\.autoSaveOnSwitch))
+            Toggle("Ask for a note when switching away", isOn: setting(\.askLastContext))
+            Toggle("Switch with Spaces and displays", isOn: setting(\.profilePerSpace))
+                .help(Text("Applies the profile linked to the Space or display you move to."))
+            Button("Commands…") { showCommands = true }
+                .padding(.top, 4)
+                .help(Text("Siri, Shortcuts, URL and command line commands"))
         }
         .toggleStyle(.checkbox)
         .font(.caption)
+        .sheet(isPresented: $showCommands) { AutomationCommandsView() }
     }
 
     private func setting(_ key: WritableKeyPath<AppSettings, Bool>) -> Binding<Bool> {
@@ -311,12 +349,12 @@ private struct TileSection: View {
             } else {
                 List {
                     ForEach(tiles) { tile in
-                        TileRow(tile: tile, profileID: profileID)
+                        ProfileTileRow(tile: tile, profileID: profileID)
                     }
                     .onMove { move($0, $1) }
                     .onDelete { remove($0) }
                 }
-                .frame(height: min(CGFloat(tiles.count) * 30 + 12, 330))
+                .frame(height: min(tiles.map(ProfileTileRow.height(for:)).reduce(12, +), 420))
                 .scrollContentBackground(.hidden)
             }
         }
@@ -347,34 +385,6 @@ private struct TileSection: View {
         guard let p = profiles.profile(profileID) else { return }
         let ids = Set(offsets.map { p.tiles.filter { $0.isOther == isOther }[$0].id })
         profiles.setTiles(p.tiles.filter { !ids.contains($0.id) }, of: profileID)
-    }
-}
-
-private struct TileRow: View {
-    let tile: DockTile
-    let profileID: UUID
-    private var profiles: DockProfiles { DockProfiles.shared }
-
-    var body: some View {
-        HStack(spacing: 8) {
-            Image(nsImage: ProfileTiles.icon(for: tile))
-                .resizable()
-                .frame(width: 20, height: 20)
-                .accessibilityHidden(true)
-            Text(ProfileTiles.title(for: tile)).lineLimit(1)
-            if let path = tile.url?.path, tile.url?.isFileURL == true, !FileManager.default.fileExists(atPath: path) {
-                Text("Missing").font(.caption).foregroundStyle(.orange)
-            }
-            Spacer()
-            Button {
-                guard let p = profiles.profile(profileID) else { return }
-                profiles.setTiles(p.tiles.filter { $0.id != tile.id }, of: profileID)
-            } label: {
-                Image(systemName: "minus.circle")
-            }
-            .buttonStyle(.borderless)
-            .accessibilityLabel(Text("Remove \(ProfileTiles.title(for: tile))"))
-        }
     }
 }
 
@@ -426,6 +436,8 @@ private struct ProfileOptions: View {
                     set: { h in profiles.updateProfile(profile.id) { $0.hotkey = h } }),
                     target: .profile(profile.id))
             }
+            Divider()
+            ProfileMoreOptions(profile: profile)
         }
         .toggleStyle(.checkbox)
     }
