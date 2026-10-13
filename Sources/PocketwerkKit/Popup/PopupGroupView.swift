@@ -423,7 +423,7 @@ struct PopupDots: View {
 
     var body: some View {
         let color: Color = lightText ? .white : .black
-        let groups = model.groupIDs.count
+        let groups = model.isInFolder || !model.query.isEmpty ? 1 : model.groupIDs.count
         HStack(spacing: 8) {
             if groups > 1 || metrics.pageCount > 1 {
                 arrow("chevron.left", delta: -1, color: color)

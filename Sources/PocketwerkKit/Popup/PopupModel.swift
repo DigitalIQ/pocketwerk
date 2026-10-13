@@ -86,6 +86,8 @@ final class PopupModel {
         var input = PopupLayoutInput(style: style, itemCount: cellCount(of: group), groupCount: groupIDs.count, maxSize: maxSize)
         // Folders need the back button, search shows its text, pinned windows their close button.
         if isInFolder || !query.isEmpty || pinned { input.showHeader = true }
+        // Inside a folder or a search the carousel pauses, so its dots go away.
+        if isInFolder || !query.isEmpty { input.groupCount = 1 }
         return PopupMetrics.compute(input)
     }
 
