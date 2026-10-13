@@ -110,6 +110,8 @@ enum ThemeCatalog {
             .make("theme.cozyknit", "Cozy Knit", "Crafted"),
         Look(bg: .texture(name: "linen", tint: c("#E7E0D2")), border: line("#CFC5B3"), label: c("#3E3931"), labelShadow: false, glossy: false)
             .make("theme.linenroom", "Linen Room", "Crafted"),
+        Look(bg: .texture(name: "knit+snow", tint: c("#A8323F")), label: .white, design: .rounded, weight: 0.3, radius: 28, glossy: false)
+            .make("theme.winterknit", "Winter Knit", "Crafted"),
 
         // Statement
         Look(bg: .gradient(colors: ["#E63946", "#F77F00", "#FCBF49", "#2A9D8F", "#3A86FF", "#8338EC"].map(c), angle: 45),

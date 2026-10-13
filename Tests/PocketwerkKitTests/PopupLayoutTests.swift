@@ -291,3 +291,59 @@ import Testing
         _ = store
     }
 }
+
+@Suite struct PopupPhaseBTests {
+    @Test func twoLineLabelsMakeTallerCells() {
+        var input = PopupLayoutInput(itemCount: 6)
+        let one = PopupMetrics.compute(input)
+        input.labelLines = 2
+        let two = PopupMetrics.compute(input)
+        #expect(two.labelLines == 2)
+        #expect(two.cell.height > one.cell.height)
+        #expect(two.cell.width == one.cell.width)
+        // Lists stay on one line, tiles always allow two.
+        input.layout = .list
+        #expect(PopupMetrics.compute(input).labelLines == 1)
+        input.layout = .tiles
+        #expect(PopupMetrics.compute(input).labelLines == 2)
+    }
+
+    @Test func labelFitMeasuresNames() {
+        var style = GroupStyle()
+        style.iconSize = 56
+        let short = [DockItem(kind: .link, url: URL(string: "https://a.example")!, customName: "Mail")]
+        let long = [DockItem(kind: .link, url: URL(string: "https://b.example")!, customName: "Microsoft Remote Desktop Beta")]
+        #expect(!LabelFit.needsTwoLines(short, style: style))
+        #expect(LabelFit.needsTwoLines(long, style: style))
+        #expect(!LabelFit.needsTwoLines([], style: style))
+    }
+
+    @Test func sidebarHeightGrowsWithGroups() {
+        #expect(PopupSidebar.minHeight(groupCount: 10) > PopupSidebar.minHeight(groupCount: 2))
+        #expect(PopupSidebar.compactWidth < PopupSidebar.fullWidth)
+    }
+
+    @Test func mirroredIconLook() {
+        let store = LibraryStore(fileURL: FileManager.default.temporaryDirectory.appendingPathComponent("pw-mirror-\(UUID().uuidString).json"))
+        let g = store.addGroup(name: "M")
+        store.updateGroup(g.id) { g in
+            g.icon.background = .solid(RGBA(1, 0, 0))
+            g.icon.opacity = 0.5
+        }
+        #expect(store.popupStyle(of: store.group(g.id)!).background != .solid(RGBA(1, 0, 0)))
+        store.updateGroup(g.id) { $0.style.mirrorIcon = true }
+        let style = store.popupStyle(of: store.group(g.id)!)
+        #expect(style.background == .solid(RGBA(1, 0, 0)))
+        #expect(style.opacity == 0.5)
+    }
+
+    @Test func relinkMovesItem() {
+        let store = LibraryStore(fileURL: FileManager.default.temporaryDirectory.appendingPathComponent("pw-relink-\(UUID().uuidString).json"))
+        let g = store.addGroup(name: "R")
+        store.addItems([URL(fileURLWithPath: "/nowhere/Old.txt")], to: g.id)
+        let id = store.group(g.id)!.items[0].id
+        store.relinkItem(id, in: g.id, to: URL(fileURLWithPath: "/tmp/New.txt"))
+        #expect(store.group(g.id)!.items[0].url.lastPathComponent == "New.txt")
+        #expect(store.group(g.id)!.items[0].id == id)
+    }
+}

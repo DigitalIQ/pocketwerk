@@ -22,6 +22,8 @@ public enum PWShared {
     public static let xKey = "x"
     public static let yKey = "y"
     public static let timeKey = "t"
+    /// true when the request comes from a drag resting on the tile (spring-loading), not a click.
+    public static let springKey = "spring"
 
     /// Info.plist key inside a launcher bundle that holds the slot UUID.
     public static let slotInfoKey = "PWSlotID"
@@ -38,7 +40,7 @@ public enum PWShared {
     public static let quietLaunchArgument = "--quiet"
 
     /// Bump when the launcher binary or its Info.plist layout changes in a way that needs a rebuild.
-    public static let launcherFormat = 2
+    public static let launcherFormat = 3
 
     /// ~/Library/Application Support/Pocketwerk, or $POCKETWERK_DATA_DIR (or the launcher's PWDataDir).
     public static func dataFolder(bundle: Bundle = .main) -> URL {

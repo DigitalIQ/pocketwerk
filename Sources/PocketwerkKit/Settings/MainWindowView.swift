@@ -20,6 +20,7 @@ struct MainWindowView: View {
             if store.settings.sidebarCollapsed != collapsed { store.settings.sidebarCollapsed = collapsed }
         }
         .frame(minWidth: 720, minHeight: 460)
+        .sheet(isPresented: $model.showGroupSuggestions) { GroupSuggestionsView(model: model) }
         .confirmationDialog(deleteTitle, isPresented: deleteBinding, titleVisibility: .visible) {
             Button("Delete Group", role: .destructive) {
                 if let id = model.deleteCandidate { delete(id) }
@@ -103,6 +104,7 @@ struct SidebarView: View {
                     Spacer()
                     Menu {
                         Button("New Group") { MainWindowController.shared.newGroup() }
+                        Button("Suggested Groups…") { model.showGroupSuggestions = true }
                         Divider()
                         ForEach(SmartGroupKind.allCases, id: \.self) { kind in
                             Button {
@@ -345,5 +347,74 @@ enum ItemDrag {
     private static func storageIndex(forShown index: Int, in groupID: UUID) -> Int {
         guard let g = LibraryStore.shared.group(groupID), g.sortOrder == .manual else { return Int.max }
         return min(index, g.items.count)
+    }
+}
+
+/// Groups made from apps you often open together.
+struct GroupSuggestionsView: View {
+    @Bindable var model: MainWindowModel
+    @Environment(\.dismiss) private var dismiss
+    @State private var created = Set<String>()
+    private var store: LibraryStore { LibraryStore.shared }
+
+    var body: some View {
+        let lib = store.library
+        let byBundle = Dictionary(AppCatalog.shared.apps.compactMap { a in a.bundleID.map { ($0, a) } },
+                                  uniquingKeysWith: { a, _ in a })
+        let suggestions = CoUsage.suggestions(usage: lib.usage, groups: lib.groups) { byBundle[$0]?.category }
+        VStack(alignment: .leading, spacing: 14) {
+            Text("Suggested Groups").font(.headline)
+            Text("Apps you often open within a few minutes of each other. Counted on this Mac only.")
+                .foregroundStyle(.secondary)
+            if suggestions.isEmpty {
+                ContentUnavailableView("No Suggestions Yet", systemImage: "sparkles",
+                                       description: Text("Pocketwerk learns which apps you use together. Check again in a few days."))
+                    .frame(height: 180)
+            } else {
+                ScrollView {
+                    VStack(spacing: 10) {
+                        ForEach(suggestions, id: \.self) { s in
+                            let apps = s.bundleIDs.compactMap { id in byBundle[id] ?? AppLocator.url(forBundleID: id).map {
+                                AppInfo(url: $0, name: FileManager.default.displayName(atPath: $0.path)
+                                    .replacingOccurrences(of: ".app", with: ""), bundleID: id) } }
+                            HStack(spacing: 10) {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(s.name).font(.body.weight(.semibold))
+                                    Text(apps.map(\.name).joined(separator: ", ")).font(.caption).foregroundStyle(.secondary)
+                                        .lineLimit(2)
+                                }
+                                Spacer()
+                                HStack(spacing: -6) {
+                                    ForEach(apps.prefix(6), id: \.id) { a in
+                                        Image(nsImage: AppIconCache.icon(for: a.url)).resizable().frame(width: 26, height: 26)
+                                    }
+                                }
+                                .accessibilityHidden(true)
+                                Button(created.contains(s.name + s.bundleIDs.joined()) ? "Created" : "Create") {
+                                    let g = store.addGroup(name: store.uniqueGroupName(s.name), emoji: nil)
+                                    store.updateGroup(g.id) { $0.items = apps.map { a in
+                                        var item = DockItem(kind: .app, url: a.url)
+                                        if item.bundleID == nil { item.bundleID = a.bundleID }
+                                        return item
+                                    } }
+                                    created.insert(s.name + s.bundleIDs.joined())
+                                }
+                                .disabled(created.contains(s.name + s.bundleIDs.joined()) || apps.isEmpty)
+                            }
+                            .padding(10)
+                            .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 8))
+                        }
+                    }
+                }
+                .frame(maxHeight: 340)
+            }
+            HStack {
+                Spacer()
+                Button("Done") { dismiss() }.keyboardShortcut(.defaultAction)
+            }
+        }
+        .padding(20)
+        .frame(width: 520)
+        .task { await AppCatalog.shared.loadIfNeeded() }
     }
 }

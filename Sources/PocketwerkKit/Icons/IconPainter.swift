@@ -387,6 +387,16 @@ enum BackgroundPainter {
                 ctx.saveGState()
                 ctx.clip(to: r)
                 ctx.draw(tile, in: CGRect(x: r.minX, y: r.minY, width: edge, height: edge), byTiling: true)
+                if TextureKind.hasSnow(name) {
+                    // A few flakes and a soft drift at the bottom, like a still of the falling snow.
+                    ctx.setFillColor(RGBA.white.alpha(0.9).cgColor)
+                    for i in 0..<18 {
+                        let d = r.width * CGFloat(0.012 + 0.02 * hash01(i, 3))
+                        ctx.fillEllipse(in: CGRect(x: r.minX + CGFloat(hash01(i, 1)) * r.width, y: r.minY + CGFloat(hash01(i, 2)) * r.height,
+                                                   width: d, height: d))
+                    }
+                    ctx.fill(CGRect(x: r.minX, y: r.minY, width: r.width, height: r.height * 0.07))
+                }
                 ctx.restoreGState()
             } else {
                 ctx.setFillColor(tint.cgColor)

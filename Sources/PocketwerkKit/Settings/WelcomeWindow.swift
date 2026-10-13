@@ -5,6 +5,10 @@ import SwiftUI
 final class WelcomeWindowController: NSObject, NSWindowDelegate {
     static let shared = WelcomeWindowController()
     private var window: NSWindow?
+    /// The main window was requested while the welcome was open; it opens after the welcome.
+    var mainWindowPending = false
+
+    var isShowing: Bool { window?.isVisible == true }
 
     func showIfNeeded() {
         guard !LibraryStore.shared.settings.onboardingDone else { return }
@@ -31,16 +35,19 @@ final class WelcomeWindowController: NSObject, NSWindowDelegate {
     }
 
     private func finish() {
-        LibraryStore.shared.settings.onboardingDone = true
+        mainWindowPending = true
         window?.close()
-        window = nil
-        MainWindowController.shared.show()
     }
 
-    /// Closing the window counts as "skip".
+    /// Closing the window counts as "skip". The main window follows only after the welcome is gone,
+    /// so the two never show at the same time.
     func windowWillClose(_ notification: Notification) {
         if !LibraryStore.shared.settings.onboardingDone { LibraryStore.shared.settings.onboardingDone = true }
         window = nil
+        if mainWindowPending {
+            mainWindowPending = false
+            DispatchQueue.main.async { MainWindowController.shared.show() }
+        }
     }
 }
 

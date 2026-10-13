@@ -48,6 +48,8 @@ final class PopupSession {
     /// Pointer position the popup was opened at, kept for resizes.
     var anchor: CGPoint?
     var placement: PopupPlacement = .aboveTile
+    /// Distance to the Dock while the setting is being previewed.
+    var offsetOverride: Double?
     var placed: PopupPlacementResult?
 
     init() {

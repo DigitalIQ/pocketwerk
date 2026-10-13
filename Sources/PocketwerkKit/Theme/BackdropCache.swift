@@ -167,7 +167,7 @@ struct WallpaperFill: View {
             }
         }
         .clipped()
-        .background(WindowFrameReader { placement = $0 })
+        .background(WindowFrameReader { placement = $0 }.opacity(0))
         .task(id: "\(placement.screenID)|\(Int(blur))|\(epoch)") {
             guard let request = BackdropCache.wallpaperRequest(for: placement.screen, blur: blur) else { return }
             if let hit = BackdropCache.shared.cached(request.key) { image = hit; return }

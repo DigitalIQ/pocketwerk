@@ -84,3 +84,41 @@ enum PopupLook {
         }
     }
 }
+
+/// Decides whether grid labels get a second line: only when a name does not fit on one.
+enum LabelFit {
+    private static var cache: [String: Bool] = [:]
+
+    static func needsTwoLines(_ items: [DockItem], style: GroupStyle) -> Bool {
+        guard !items.isEmpty else { return false }
+        let names = PopupIconCache.shared
+        let width = PopupMetrics.gridLabelWidth(iconSize: style.iconSize)
+        let font = nsFont(style.labels)
+        let key = "\(width)|\(style.labels.size)|\(style.labels.weight)|\(style.labels.design)|\(style.labels.family ?? "")|"
+            + items.map { names.name(for: $0) }.joined(separator: "\u{1}")
+        if let known = cache[key] { return known }
+        let attrs: [NSAttributedString.Key: Any] = [.font: font]
+        let result = items.contains { (names.name(for: $0) as NSString).size(withAttributes: attrs).width > width }
+        if cache.count > 400 { cache.removeAll() }
+        cache[key] = result
+        return result
+    }
+
+    /// AppKit font matching `PopupLook.font` closely enough for measuring.
+    static func nsFont(_ label: LabelStyle) -> NSFont {
+        let size = CGFloat(label.size)
+        if let family = label.family, !family.isEmpty, PopupLook.isInstalled(family: family),
+           let f = NSFont(name: family, size: size) {
+            return f
+        }
+        let base = NSFont.systemFont(ofSize: size, weight: NSFont.Weight(rawValue: CGFloat(label.weight)))
+        let design: NSFontDescriptor.SystemDesign
+        switch label.design {
+        case .system: return base
+        case .rounded: design = .rounded
+        case .serif: design = .serif
+        case .monospaced: design = .monospaced
+        }
+        return base.fontDescriptor.withDesign(design).flatMap { NSFont(descriptor: $0, size: size) } ?? base
+    }
+}

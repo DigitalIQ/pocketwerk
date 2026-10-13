@@ -11,6 +11,14 @@ enum FXRenderer {
         }
     }
 
+    /// Frame rate while the pointer is away (and on battery). Slow effects need fewer frames.
+    static func idleFramesPerSecond(_ kind: FXKind) -> Double {
+        switch kind {
+        case .marble, .fog, .aurora, .driftingLight, .plasma, .blobs, .lava, .curtains: 20
+        default: 30
+        }
+    }
+
     static func draw(_ f: FXFrame, into gc: inout GraphicsContext) {
         guard f.w > 1, f.h > 1 else { return }
         switch f.p.kind {
@@ -207,7 +215,7 @@ enum FXRenderer {
         let sky = base(f, f.color(0))
         fillVertical(gc, f, [sky.darker(0.4), sky])
         let flake = f.color(1)
-        let count = Int(60 + 110 * f.p3)
+        let count = Int((60 + 110 * f.p3) * f.density)
         var near = Path(), mid = Path(), far = Path()
         for i in 0..<count {
             let depth = hash01(i, 2)
@@ -248,7 +256,7 @@ enum FXRenderer {
         var g = gc
         g.blendMode = .plusLighter
         glow(g, CGPoint(x: f.w / 2, y: f.h * 1.15), max(f.w, f.h) * 0.75, f.color(1), 0.4 * f.k)
-        let count = Int(40 + 60 * f.p3)
+        let count = Int((40 + 60 * f.p3) * f.density)
         for i in 0..<count {
             let life = 4 + 4 * hash01(i, 1)
             let phase = wrap(f.t / life + hash01(i, 2), 1)
@@ -266,7 +274,7 @@ enum FXRenderer {
 
     // MARK: Glyph rain
 
-    private static let glyphs: [Character] = Array("ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾙﾚﾛﾜ0123456789=+*<>:")
+    private static let glyphs: [Character] = Array("ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾙﾚﾛﾜ0123456789ACEKRXZ=+*<>:")
 
     static func glyphRain(_ f: FXFrame, _ gc: inout GraphicsContext) {
         gc.fill(Path(f.rect), with: .color(base(f, RGBA(0.01, 0.03, 0.02)).color))
@@ -277,7 +285,7 @@ enum FXRenderer {
         let font = Font.system(size: size * 0.92, weight: .medium, design: .monospaced)
         var resolved: [Character: GraphicsContext.ResolvedText] = [:]
         let tail = f.color(0), head = f.color(1)
-        for col in 0..<cols where hash01(col, 7) < 0.8 {
+        for col in 0..<cols where hash01(col, 7) < 0.8 * f.density {
             let speed = 5 + 9 * hash01(col, 1)
             let headRow = wrap(hash01(col, 2) * Double(rows * 2) + f.t * speed, Double(rows + trail))
             let x = (Double(col) + 0.5) * f.w / Double(cols)
@@ -320,7 +328,7 @@ enum FXRenderer {
     static func fur(_ f: FXFrame, _ gc: inout GraphicsContext) {
         let coat = f.color(0), belly = f.color(1), stripe = f.color(2)
         let length = 7 + 9 * f.p3
-        let spacing = max(5.5, min(10, length * 0.6))
+        let spacing = max(5.5, min(10, length * 0.6)) / f.density.squareRoot()
         let cols = Int(f.w / spacing) + 2, rows = Int(f.h / spacing) + 2
         let period = max(60, f.w / 4.5)
         // Stripe field: 0 coat, 1 belly, 2 stripe.
@@ -407,7 +415,7 @@ enum FXRenderer {
         fillVertical(gc, f, [b.darker(0.45), b.darker(0.15)])
         let drop = f.color(1)
         let slant = 0.12 + f.p.drift * 0.3
-        let count = Int(70 + 110 * f.p3)
+        let count = Int((70 + 110 * f.p3) * f.density)
         var far = Path(), near = Path()
         for i in 0..<count {
             let v = 420 + 380 * hash01(i, 1)
@@ -596,7 +604,7 @@ enum FXRenderer {
             cy += (Double(ptr.y) - cy) * 0.2 * f.state.influence
         }
         let scale = max(f.w, f.h) * 0.5
-        let count = Int(90 + 90 * f.p3)
+        let count = Int((90 + 90 * f.p3) * f.density)
         var buckets = Array(repeating: Path(), count: 4)
         for i in 0..<count {
             let sx = hash01(i, 1) * 2 - 1, sy = hash01(i, 2) * 2 - 1
@@ -625,7 +633,7 @@ enum FXRenderer {
         glow(g, CGPoint(x: f.w * 0.5, y: -f.h * 0.1), f.w * 0.7, RGBA.white, 0.18 * f.k)
         let rim = f.color(1)
         var rims = Path(), fills = Path(), shines = Path()
-        let count = Int(22 + 30 * f.p3)
+        let count = Int((22 + 30 * f.p3) * f.density)
         for i in 0..<count {
             let size = hash01(i, 1)
             let r = 2.5 + 15 * size * size

@@ -16,10 +16,13 @@ struct GroupDetailView: View {
                     Text("Items").tag(GroupTab.items)
                     Text("Appearance").tag(GroupTab.appearance)
                     Text("Options").tag(GroupTab.options)
+                    if store.settings.assistantEnabled {
+                        Text("Assistant").tag(GroupTab.assistant)
+                    }
                 }
                 .pickerStyle(.segmented)
                 .labelsHidden()
-                .frame(maxWidth: 360)
+                .frame(maxWidth: store.settings.assistantEnabled ? 460 : 360)
                 .padding(.bottom, 10)
                 Divider()
                 switch model.groupTab {
@@ -33,6 +36,13 @@ struct GroupDetailView: View {
                     DesignStudioView(groupID: groupID)
                 case .options:
                     GroupOptionsView(group: group, model: model)
+                case .assistant:
+                    if store.settings.assistantEnabled {
+                        AssistantView(groupID: groupID).id(groupID)
+                    } else {
+                        ContentUnavailableView("Assistant Is Off", systemImage: "wand.and.stars",
+                                               description: Text("Turn it on under Settings > General."))
+                    }
                 }
             }
             .toolbar { toolbar(group) }
@@ -241,6 +251,7 @@ struct ItemListView: View {
             ForEach(store.library.regularGroups.filter { $0.id != group.id }) { other in
                 Button([other.emoji, other.name].compactMap { $0 }.joined(separator: " ")) {
                     for id in targets { store.moveItem(id, from: group.id, to: other.id) }
+                    Announce.say(String(localized: "Moved to \(other.name)"))
                 }
             }
         }
@@ -250,6 +261,7 @@ struct ItemListView: View {
         Button(targets.count > 1 ? "Remove \(targets.count) Items" : "Remove from Group", role: .destructive) {
             store.removeItems(targets, from: group.id)
             selection.subtract(targets)
+            Announce.say(String(localized: "Removed. Undo with Command Z."))
         }
     }
 }
@@ -413,6 +425,42 @@ struct GroupOptionsView: View {
                 }
             }
             Section {
+                LabeledContent("Category") {
+                    HStack {
+                        TextField("", text: Binding(get: { group.category ?? "" },
+                                                    set: { v in store.updateGroup(group.id) { $0.category = v.isEmpty ? nil : v } }),
+                                  prompt: Text("For example Office, Design, Games"))
+                            .frame(maxWidth: 220)
+                            .accessibilityLabel(Text("Category"))
+                        Menu {
+                            ForEach(AppQuery.categories(AppCatalog.shared.apps).filter { $0 != AppQuery.otherCategory }, id: \.self) { c in
+                                Button(c) { store.updateGroup(group.id) { $0.category = c } }
+                            }
+                        } label: { Image(systemName: "chevron.down") }
+                            .menuStyle(.borderlessButton).menuIndicator(.hidden).fixedSize()
+                            .accessibilityLabel(Text("Pick a category"))
+                    }
+                }
+                LabeledContent("Leader letter") {
+                    LeaderLetterField(letter: bind(\.leaderKey))
+                }
+            } footer: {
+                Text("The category helps app suggestions. The leader letter opens the group after the leader key (Settings > Hotkeys).")
+                    .font(.caption).foregroundStyle(.secondary)
+            }
+            if !group.usesDefaultStyle {
+                Section("Pages") {
+                    Stepper(value: styleBind(\.maxRows), in: 0...12) {
+                        Text(group.style.maxRows == 0 ? String(localized: "Rows per page: all")
+                             : String(localized: "Rows per page: \(group.style.maxRows)"))
+                    }
+                    Toggle("Swipe between pages (otherwise scroll)", isOn: styleBind(\.paged))
+                        .disabled(group.style.maxRows == 0)
+                    Toggle("Show page dots", isOn: styleBind(\.showPageIndicator))
+                        .disabled(group.style.maxRows == 0 || !group.style.paged)
+                }
+            }
+            Section {
                 Toggle("Pin to top of the sidebar", isOn: bind(\.pinned))
                 Toggle("Hide from All Groups", isOn: bind(\.hiddenFromAll))
                 Text("Hidden groups stay reachable by their own Dock icon and shortcut.")
@@ -429,5 +477,9 @@ struct GroupOptionsView: View {
     private func bind<T>(_ path: WritableKeyPath<ItemGroup, T>) -> Binding<T> {
         Binding(get: { store.group(group.id)?[keyPath: path] ?? group[keyPath: path] },
                 set: { v in store.updateGroup(group.id) { $0[keyPath: path] = v } })
+    }
+
+    private func styleBind<T>(_ path: WritableKeyPath<GroupStyle, T>) -> Binding<T> {
+        bind((\ItemGroup.style).appending(path: path))
     }
 }

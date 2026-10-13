@@ -42,7 +42,25 @@ enum TextureKind: String, CaseIterable, Sendable {
     }
 
     /// Unknown names fall back to grain, so old or hand-edited files still render.
-    init(name: String) { self = TextureKind(rawValue: name) ?? .noise }
+    /// A name may carry an overlay suffix, for example "knit+snow".
+    init(name: String) {
+        let base = name.split(separator: "+").first.map(String.init) ?? name
+        self = TextureKind(rawValue: base) ?? .noise
+    }
+
+    /// Texture names with "+snow" get softly falling snow on top.
+    nonisolated static func hasSnow(_ name: String) -> Bool { name.split(separator: "+").dropFirst().contains("snow") }
+
+    /// The texture name with or without the snow overlay.
+    static func name(_ kind: TextureKind, snow: Bool) -> String { snow ? kind.rawValue + "+snow" : kind.rawValue }
+
+    /// Snow over a texture: clear base, white flakes, a pile that settles.
+    static var snowOverlay: FXParams {
+        var p = FXParams(kind: .snow, palette: [.clear, .white, RGBA(0.9, 0.94, 1)], speed: 0.8, pointer: .shove)
+        p.base = .clear
+        p.p3 = 0.35
+        return p
+    }
 }
 
 enum TextureFactory {

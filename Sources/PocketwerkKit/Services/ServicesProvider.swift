@@ -2,7 +2,8 @@ import AppKit
 
 /// macOS Services menu entry "Add to Pocketwerk" for URLs, file URLs and text containing links.
 /// `register()` also starts the app module's background services (usage tracking, missing item
-/// checks, the daily update check, the login item sync) and shows the welcome window once.
+/// checks, the daily update check, the login item sync, the hot corner) and shows the welcome
+/// window once, or the main window when "Open this window when Pocketwerk starts" is on.
 final class ServicesProvider: NSObject {
     static let shared = ServicesProvider()
 
@@ -13,7 +14,16 @@ final class ServicesProvider: NSObject {
         UsageTracker.shared.start()
         LibraryHealth.shared.start()
         UpdateChecker.shared.startDaily()
+        HotCornerWatcher.shared.start()
+        LibraryStore.shared.removeSmartOnlySlots()
         WelcomeWindowController.shared.showIfNeeded()
+        if LibraryStore.shared.settings.onboardingDone && LibraryStore.shared.settings.showWindowOnLaunch {
+            // Wait a moment: a start from a link, shortcut or Dock icon opens a popup and stays windowless.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                guard !PopupController.shared.isVisible, !MainWindowController.shared.isVisible else { return }
+                MainWindowController.shared.show()
+            }
+        }
     }
 
     /// NSMessage "addToPocketwerk" in Info.plist.

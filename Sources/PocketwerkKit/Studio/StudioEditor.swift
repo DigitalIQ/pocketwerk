@@ -132,6 +132,11 @@ enum StudioPalette {
         ("Forest", "#1E5E3A"), ("Ochre", "#8C6A10"), ("Rust", "#8A3F12"), ("Wine", "#7A1F2B"), ("Plum", "#4A2A7A"),
     ].map { ($0.0, RGBA(hex: $0.1)) }
 
+    /// A gradient made from one swatch: lighter at the top left, deeper at the bottom right.
+    static func gradientPair(_ c: RGBA) -> [RGBA] {
+        c.luminance > 0.8 ? [c, c.darker(0.18)] : [c.lighter(0.28), c.darker(0.32)]
+    }
+
     static let gradients: [[RGBA]] = [
         ["#FFB49C", "#FF7194"], ["#1C2EC4", "#52A6FF"], ["#9DE8C6", "#2F9F90"], ["#5D257C", "#1ECFE0"],
         ["#FAD625", "#FF5052"], ["#160D2B", "#6C3295"], ["#40251A", "#BA6B41"], ["#112229", "#2E5566"],

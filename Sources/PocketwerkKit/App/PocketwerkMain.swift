@@ -16,6 +16,7 @@ final class AppCoordinator: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         MainMenu.install()
+        AppIconVariants.applyCurrent()
         applyActivationPolicy()
         MenuBarController.shared.install()
         HotkeyCenter.shared.start()

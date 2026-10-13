@@ -58,6 +58,15 @@ struct SwatchPicker: View {
     let title: LocalizedStringKey
     @Binding var color: RGBA
     var supportsOpacity = false
+    /// When set, a third row offers gradient variants of the first-row colors.
+    var onGradient: ((RGBA) -> Void)? = nil
+
+    init(title: LocalizedStringKey, color: Binding<RGBA>, supportsOpacity: Bool = false, onGradient: ((RGBA) -> Void)? = nil) {
+        self.title = title
+        self._color = color
+        self.supportsOpacity = supportsOpacity
+        self.onGradient = onGradient
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -87,6 +96,23 @@ struct SwatchPicker: View {
                 }
             }
             .padding(.horizontal, 3)
+            if let onGradient {
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 16, maximum: 26), spacing: 5), count: 10), spacing: 6) {
+                    ForEach(StudioPalette.swatches.prefix(10), id: \.name) { swatch in
+                        Button { onGradient(swatch.color) } label: {
+                            Circle()
+                                .fill(LinearGradient(colors: StudioPalette.gradientPair(swatch.color).map(\.color),
+                                                     startPoint: .topLeading, endPoint: .bottomTrailing))
+                                .overlay(Circle().strokeBorder(.primary.opacity(0.18), lineWidth: 0.5))
+                                .aspectRatio(1, contentMode: .fit)
+                        }
+                        .buttonStyle(.plain)
+                        .help(Text("\(swatch.name) Gradient"))
+                        .accessibilityLabel(Text("\(swatch.name) Gradient"))
+                    }
+                }
+                .padding(.horizontal, 3)
+            }
         }
     }
 }

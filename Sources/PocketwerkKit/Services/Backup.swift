@@ -147,7 +147,9 @@ enum BackupService {
             }
         }
         store.replace(with: result.library)
-        for id in result.rebuild { _ = try? DockManager.shared.installLauncher(for: id) }
+        store.removeSmartOnlySlots()
+        for id in result.rebuild where store.slot(id) != nil { _ = try? DockManager.shared.installLauncher(for: id) }
+        Log.app.info("Imported backup (\(mode == .merge ? "merge" : "replace")), \(result.rebuild.count) launchers to rebuild")
         DockManager.shared.refreshIcons()
     }
 
