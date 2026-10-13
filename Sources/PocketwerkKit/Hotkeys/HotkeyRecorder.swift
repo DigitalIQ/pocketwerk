@@ -15,6 +15,8 @@ struct HotkeyRecorder: View {
     @State private var liveModifiers = ""
     @State private var message: String?
     @State private var monitor: Any?
+    /// A click that ends recording must not start it again when it lands on the button.
+    @State private var stoppedByClickAt = Date.distantPast
 
     var body: some View {
         VStack(alignment: .trailing, spacing: 3) {
@@ -57,7 +59,9 @@ struct HotkeyRecorder: View {
     }
 
     private func toggleRecording() {
-        recording ? stop() : start()
+        if recording { stop(); return }
+        if Date().timeIntervalSince(stoppedByClickAt) < 0.5 { return }
+        start()
     }
 
     private func start() {
@@ -90,6 +94,7 @@ struct HotkeyRecorder: View {
         case .leftMouseDown, .rightMouseDown:
             // A click anywhere ends recording; the click itself still goes through.
             stop()
+            stoppedByClickAt = Date()
             return false
         case .keyDown:
             let code = UInt32(event.keyCode)
