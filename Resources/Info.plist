@@ -3,7 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>de</string>
+	<string>en</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>de</string>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>Pocketwerk</string>
 	<key>CFBundleIconFile</key>
@@ -29,7 +34,7 @@
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>NSAppleEventsUsageDescription</key>
-	<string>Pocketwerk liest den aktuellen Browser-Tab, um ihn als Link zu speichern.</string>
+	<string>Pocketwerk reads the current browser tab to save it as a link.</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -47,7 +52,7 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>Zu Pocketwerk hinzufügen</string>
+				<string>Add to Pocketwerk</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>addToPocketwerk</string>

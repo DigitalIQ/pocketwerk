@@ -30,7 +30,7 @@ import Testing
     @Test func lenientDecodingFillsMissingKeys() throws {
         var lib = Library()
         var g = ItemGroup(name: "X")
-        g.style.background = .fx(kind: .snow, palette: [.white], speed: 1, intensity: 1)
+        g.style.background = .fx(FXParams(kind: .snow, palette: [.white]))
         lib.groups = [g]
         var json = try JSONSerialization.jsonObject(with: LibraryStore.encoder.encode(lib)) as! [String: Any]
         // Simulate an older file: drop keys.
@@ -45,7 +45,7 @@ import Testing
         let decoded = try #require(LibraryStore.decodeLeniently(data))
         #expect(decoded.groups[0].name == "X")
         #expect(decoded.groups[0].sortOrder == .manual)
-        #expect(decoded.groups[0].style.background == .fx(kind: .snow, palette: [.white], speed: 1, intensity: 1))
+        #expect(decoded.groups[0].style.background == .fx(FXParams(kind: .snow, palette: [.white])))
     }
 
     @Test func itemKindDetection() {

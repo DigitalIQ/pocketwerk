@@ -26,8 +26,8 @@ struct StyleBackgroundView: View {
             }
         case .glass(let tint, _):
             Rectangle().fill(.ultraThinMaterial).overlay(tint.color)
-        case .fx(_, let palette, _, _):
-            LinearGradient(colors: palette.map(\.color), startPoint: .top, endPoint: .bottom)
+        case .fx(let params):
+            LinearGradient(colors: params.palette.map(\.color), startPoint: .top, endPoint: .bottom)
         case .wallpaper(let blur, let dim):
             if let url = NSScreen.main.flatMap({ NSWorkspace.shared.desktopImageURL(for: $0) }), let img = NSImage(contentsOf: url) {
                 Image(nsImage: img).resizable().scaledToFill().blur(radius: blur).overlay(Color.black.opacity(dim))

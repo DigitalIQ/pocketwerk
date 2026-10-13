@@ -8,9 +8,12 @@ import PocketwerkShared
 final class DockManager {
     static let shared = DockManager()
 
-    /// Folder for generated launchers, e.g. ~/Applications/Pocketwerk.
+    /// Folder for generated launchers: ~/Applications/Pocketwerk, or $POCKETWERK_LAUNCHER_DIR for development runs.
     var launcherFolder: URL {
-        FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Applications/Pocketwerk", isDirectory: true)
+        if let env = ProcessInfo.processInfo.environment["POCKETWERK_LAUNCHER_DIR"] {
+            return URL(fileURLWithPath: env, isDirectory: true)
+        }
+        return FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Applications/Pocketwerk", isDirectory: true)
     }
 
     /// Start listening for launcher clicks and library changes.

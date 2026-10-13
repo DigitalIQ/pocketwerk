@@ -21,8 +21,11 @@ final class LibraryStore {
     var canUndo: Bool { !undoStack.isEmpty }
     var canRedo: Bool { !redoStack.isEmpty }
 
+    /// ~/Library/Application Support/Pocketwerk, or $POCKETWERK_DATA_DIR for development runs.
     static var directory: URL {
-        let dir = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+        let env = ProcessInfo.processInfo.environment["POCKETWERK_DATA_DIR"]
+        let dir = env.map { URL(fileURLWithPath: $0, isDirectory: true) }
+            ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
             .appendingPathComponent("Pocketwerk", isDirectory: true)
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         return dir
@@ -284,6 +287,7 @@ nonisolated enum LenientMerge {
         case "customThemes": Theme(id: "", name: "", style: GroupStyle())
         case "profiles": DockProfile(name: "", plistData: Data())
         case "spacers": CustomSpacer()
+        case "tiles": DockTile(kind: .app)
         default: nil
         }
         guard let value, let data = try? LibraryStore.encoder.encode(value) else { return nil }

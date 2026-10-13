@@ -24,6 +24,8 @@ mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp "$BIN/Pocketwerk" "$APP/Contents/MacOS/Pocketwerk"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 [[ -f Resources/AppIcon.icns ]] && cp Resources/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"
+# Localizations: SwiftUI Text("...") and String(localized:) look these up in Bundle.main.
+for lproj in Resources/Localization/*.lproj(N); do cp -R "$lproj" "$APP/Contents/Resources/"; done
 
 # Launcher template: the main app copies this bundle once per Dock slot.
 LAUNCHER="$APP/Contents/Resources/LauncherTemplate.app"

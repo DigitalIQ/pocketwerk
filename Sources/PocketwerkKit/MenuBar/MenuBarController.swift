@@ -12,10 +12,10 @@ final class MenuBarController {
         let i = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         i.button?.image = NSImage(systemSymbolName: "square.grid.2x2", accessibilityDescription: "Pocketwerk")
         let menu = NSMenu()
-        menu.addItem(MenuAction.item("Alle Gruppen") { PopupController.shared.toggleAll() })
-        menu.addItem(MenuAction.item("Einstellungen …") { MainWindowController.shared.show() })
+        menu.addItem(MenuAction.item(String(localized: "All Groups")) { PopupController.shared.toggleAll() })
+        menu.addItem(MenuAction.item(String(localized: "Settings…")) { MainWindowController.shared.show() })
         menu.addItem(.separator())
-        menu.addItem(withTitle: "Beenden", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        menu.addItem(withTitle: String(localized: "Quit"), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         i.menu = menu
         item = i
     }

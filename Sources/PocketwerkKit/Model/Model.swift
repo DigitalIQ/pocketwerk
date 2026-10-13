@@ -61,11 +61,14 @@ nonisolated struct DockItem: Codable, Identifiable, Hashable, Sendable {
     var addedAt = Date()
     var lastOpenedAt: Date?
     var openCount = 0
+    /// Apps are found by bundle ID first, so an item survives when the app moves. Path is the fallback.
+    var bundleID: String?
 
     init(kind: ItemKind, url: URL, customName: String? = nil) {
         self.kind = kind
         self.url = url
         self.customName = customName
+        if kind == .app { self.bundleID = Bundle(url: url)?.bundleIdentifier }
     }
 
     /// Builds an item from any URL and detects its kind.
@@ -149,12 +152,45 @@ nonisolated enum Background: Codable, Hashable, Sendable {
     case image(path: String, dim: Double, blur: Double)
     /// System material / Liquid Glass. tint is laid over the glass.
     case glass(tint: RGBA, intensity: Double)
-    /// Animated background reacting to the pointer. palette: 1-3 colors, base: optional fill under the effect.
-    case fx(kind: FXKind, palette: [RGBA], speed: Double, intensity: Double)
+    /// Animated background reacting to the pointer.
+    case fx(FXParams)
     /// The real desktop wallpaper behind the popup, blurred (folder app wallpaper glass).
     case wallpaper(blur: Double, dim: Double)
     /// Procedural texture by name, e.g. "knit", "ice", "leopard", "tiger", "cardboard", "paper", "noise".
     case texture(name: String, tint: RGBA)
+}
+
+/// How an animated background reacts to the pointer.
+nonisolated enum FXPointer: String, Codable, CaseIterable, Sendable {
+    /// Soft ripple around the pointer that springs back.
+    case ripple
+    /// Strands bend away from the pointer (fur, grass).
+    case comb
+    /// Particles are pushed away and settle slowly (snow).
+    case shove
+    /// No reaction.
+    case still
+}
+
+/// Parameters of an animated background. p3...p5 are effect-specific (blur, size, density, glyph size, trail).
+nonisolated struct FXParams: Codable, Hashable, Sendable {
+    var kind: FXKind
+    /// 1-3 colors.
+    var palette: [RGBA]
+    var speed: Double = 1
+    var intensity: Double = 1
+    var style: Int = 0
+    var p3: Double = 0.5
+    var p4: Double = 0.5
+    var p5: Double = 0.5
+    var drift: Double = 0
+    /// Optional solid fill under overlay effects (snow, glyph rain).
+    var base: RGBA?
+    var pointer: FXPointer = .ripple
+
+    init(kind: FXKind, palette: [RGBA], speed: Double = 1, intensity: Double = 1, pointer: FXPointer = .ripple) {
+        self.kind = kind; self.palette = palette; self.speed = speed; self.intensity = intensity; self.pointer = pointer
+    }
 }
 
 nonisolated struct BorderStyle: Codable, Hashable, Sendable {
@@ -209,6 +245,18 @@ nonisolated struct GroupStyle: Codable, Hashable, Sendable {
     var header: HeaderAlignment = .leading
     /// Show a dot under running apps.
     var runningIndicator = true
+    /// 0 = clear glass, 1 = fully frosted.
+    var matte: Double = 0
+    /// Effect tuning for glass and FX, 0...1.
+    var glow: Double = 0
+    var depth: Double = 0
+    /// Optional plate behind each item icon.
+    var iconPlate: RGBA?
+    var showPageIndicator = true
+    /// Overall popup scale, 0.7...1.5.
+    var popupScale: Double = 1
+    /// Popup takes the color and opacity of the Dock icon.
+    var mirrorIcon = false
 
     static let `default` = GroupStyle()
 }
@@ -276,6 +324,14 @@ nonisolated struct IconSpec: Codable, Hashable, Sendable {
 nonisolated struct Hotkey: Codable, Hashable, Sendable {
     var keyCode: UInt32
     var modifiers: UInt32
+    /// 1 = normal press, 2 = double press, 3 = triple press.
+    var tapCount = 1
+    /// Optional follow-up keys pressed after this one (key sequence).
+    var sequence: [Hotkey]?
+
+    init(keyCode: UInt32, modifiers: UInt32, tapCount: Int = 1, sequence: [Hotkey]? = nil) {
+        self.keyCode = keyCode; self.modifiers = modifiers; self.tapCount = tapCount; self.sequence = sequence
+    }
 }
 
 // MARK: - Groups and Dock slots
@@ -295,6 +351,14 @@ nonisolated struct ItemGroup: Codable, Identifiable, Hashable, Sendable {
     var hiddenFromAll = false
     /// Automatic group whose items are computed, not stored.
     var smart: SmartGroupKind?
+    /// Pinned groups come first in lists and the carousel.
+    var pinned = false
+    /// Free category text, used to ground app suggestions ("Office", "Design", "Games").
+    var category: String?
+    /// Number of items a smart group shows.
+    var smartLimit = 12
+    /// When true the popup uses `AppSettings.defaultStyle` instead of `style` (global defaults with per-group override).
+    var usesDefaultStyle = false
 
     init(name: String) { self.name = name }
 
@@ -329,6 +393,12 @@ nonisolated struct DockSlot: Codable, Identifiable, Hashable, Sendable {
     var hotkey: Hotkey?
     /// Path of the generated launcher bundle, nil when not installed.
     var launcherPath: String?
+    /// Hash of the inputs of the last rendered icon. A change triggers a re-render.
+    var iconHash: String?
+    /// Launcher template build the bundle was made from. A newer app rebuilds it in place.
+    var launcherBuild = 0
+    /// The launcher tile is pinned in the macOS Dock.
+    var pinnedInDock = false
 
     init(name: String, groupIDs: [UUID]) {
         self.name = name
@@ -372,6 +442,57 @@ nonisolated struct DockProfile: Codable, Identifiable, Hashable, Sendable {
     var note: String = ""
     /// Skipped by "next profile" cycling.
     var excludedFromCycle = false
+    /// Structured copy of the Dock tiles for the profile editor. `plistData` stays the source of truth for restore.
+    var tiles: [DockTile] = []
+    /// Never quit apps when applying this profile, even if `quitOthers` is on globally.
+    var keepAppsOpen = false
+    /// Focus mode identifier that applies this profile.
+    var focusFilterID: String?
+    var tags: [String] = []
+    /// Letter after the leader hotkey that applies this profile.
+    var leaderKey: String?
+    /// Space identifiers (or display UUIDs) that apply this profile automatically.
+    var spaces: [String] = []
+}
+
+nonisolated enum TileKind: String, Codable, CaseIterable, Sendable {
+    case app, file, folder, url, spacer, smallSpacer, flexSpacer, customSpacer
+}
+
+/// Native Dock stack options for a folder tile.
+nonisolated struct StackSettings: Codable, Hashable, Sendable {
+    /// 0 auto, 1 fan, 2 grid, 3 list
+    var view = 0
+    /// 0 stack, 1 folder
+    var displayAs = 0
+    /// 1 name, 2 date added, 3 date modified, 4 date created, 5 kind
+    var sort = 1
+}
+
+nonisolated enum TileAction: Codable, Hashable, Sendable {
+    case openApp
+    /// Open a project/file with the tile's app (IDE projects).
+    case openProject(URL)
+    /// Open a browser with a named profile.
+    case browserProfile(bundleID: String, profile: String)
+}
+
+/// One tile of a saved Dock.
+nonisolated struct DockTile: Codable, Identifiable, Hashable, Sendable {
+    var id = UUID()
+    var kind: TileKind
+    var url: URL?
+    var bundleID: String?
+    var label: String?
+    var note = ""
+    var folder: StackSettings?
+    var actions: [TileAction] = []
+    /// true = persistent-others section (right of the divider).
+    var isOther = false
+
+    init(kind: TileKind, url: URL? = nil, bundleID: String? = nil, label: String? = nil, isOther: Bool = false) {
+        self.kind = kind; self.url = url; self.bundleID = bundleID; self.label = label; self.isOther = isOther
+    }
 }
 
 /// profile app-style custom spacer: a tiny Dock tile that shows only text or an image.
@@ -386,7 +507,21 @@ nonisolated struct CustomSpacer: Codable, Identifiable, Hashable, Sendable {
 // MARK: - Settings
 
 nonisolated enum PopupPlacement: String, Codable, CaseIterable, Sendable {
-    case nearDock, mouse, center
+    /// Above (or beside) the clicked Dock tile.
+    case aboveTile
+    /// Centered over the Dock.
+    case dockCenter
+    /// At the mouse pointer.
+    case mouse
+    /// Center of the active screen.
+    case center
+}
+
+nonisolated enum PopupNavigation: String, Codable, CaseIterable, Sendable {
+    /// Swipe between groups, page dots, quick switcher.
+    case carousel
+    /// Group list on the left, items on the right.
+    case sidebar
 }
 
 nonisolated enum AnimationSpeed: String, Codable, CaseIterable, Sendable {
@@ -402,7 +537,10 @@ nonisolated struct AppSettings: Codable, Hashable, Sendable {
     var showMainDockIcon = true
     var launchAtLogin = false
     var closeAfterOpen = true
-    var placement: PopupPlacement = .nearDock
+    var placement: PopupPlacement = .aboveTile
+    /// Where a popup opened by hotkey appears.
+    var hotkeyPlacement: PopupPlacement = .mouse
+    var popupNavigation: PopupNavigation = .carousel
     /// Launchers stay running: faster reopen and live icon, but a running dot in the Dock.
     var keepLaunchersRunning = false
     var mainHotkey: Hotkey?
@@ -425,9 +563,50 @@ nonisolated struct AppSettings: Codable, Hashable, Sendable {
     var soundEffects = false
     /// Hotkey that applies the next profile in order.
     var nextProfileHotkey: Hotkey?
+    var onboardingDone = false
+    var sidebarCollapsed = false
+    /// Look used by new groups and by groups with `usesDefaultStyle`.
+    var defaultStyle = GroupStyle()
+    /// Drop items whose file no longer exists.
+    var removeMissingItems = false
+    var appSearchPaths = ["/Applications", "/System/Applications", "~/Applications"]
+    /// Hide menu-bar-only apps in the app browser.
+    var hideAgentApps = true
+    var showMostUsed = true
+    /// "monochrome" or "color".
+    var menuBarIconStyle = "monochrome"
+    var showWindowOnLaunch = false
+    /// Ask for a short note ("last context") when switching profiles.
+    var askLastContext = false
+    /// Applying the already active profile does nothing.
+    var skipIfActive = true
+    /// Save the current Dock into the active profile before switching away.
+    var autoSaveOnSwitch = false
+    var saveToLastHotkey: Hotkey?
+    var lastAppliedProfileID: UUID?
+    /// Keep the Dock on this display (CGDirectDisplayID), nil = off.
+    var lockDockDisplayID: UInt32?
+    var leaderHotkey: Hotkey?
+    var leaderTimeout: Double = 1.5
+    /// Apply profiles automatically when the Space changes (uses DockProfile.spaces).
+    var profilePerSpace = false
+    /// Open all groups when the pointer rests in this screen corner, nil = off. 0 top-left, 1 top-right, 2 bottom-left, 3 bottom-right.
+    var hotCorner: Int?
+    /// Check GitHub once a day for a newer release.
+    var checkForUpdates = true
+    var lastUpdateCheck: Date?
+    var skippedVersion: String?
 }
 
 // MARK: - Library (root of everything persisted)
+
+/// Launch statistics across the system, keyed by bundle ID.
+nonisolated struct UsageStats: Codable, Hashable, Sendable {
+    var launches: [String: Int] = [:]
+    var lastLaunch: [String: Date] = [:]
+    /// How often two apps were launched within a few minutes of each other.
+    var coOccurrence: [String: [String: Int]] = [:]
+}
 
 nonisolated struct Library: Codable, Hashable, Sendable {
     var version = 1
@@ -436,6 +615,7 @@ nonisolated struct Library: Codable, Hashable, Sendable {
     var customThemes: [Theme] = []
     var profiles: [DockProfile] = []
     var spacers: [CustomSpacer] = []
+    var usage = UsageStats()
     var settings = AppSettings()
 
     func group(_ id: UUID) -> ItemGroup? { groups.first { $0.id == id } }
