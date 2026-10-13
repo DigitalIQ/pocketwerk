@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Pocketwerk mark, round 2 (concept 1 variants)</title>
+<style>
+  body{margin:0;font:14px/1.4 -apple-system,system-ui,sans-serif;background:#fff;color:#111}
+  .row{display:grid;grid-template-columns:200px 1fr 1fr;border-bottom:1px solid #ddd}
+  .lab{padding:16px}
+  .cell{display:flex;align-items:end;gap:18px;padding:16px;background:#e9ece9}
+  .cell.dark{background:#141716;color:#eee}
+  svg{display:block;filter:drop-shadow(0 2px 3px rgba(10,30,25,.25))}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <pattern id="holes" width="11" height="11" patternUnits="userSpaceOnUse" x="5.5" y="5.5">
+      <circle cx="5.5" cy="5.5" r="1.45" fill="#0c3a30"/>
+    </pattern>
+    <linearGradient id="board" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#23705d"/><stop offset="1" stop-color="#174d40"/></linearGradient>
+    <linearGradient id="pocket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff7a3a"/><stop offset="1" stop-color="#f05a1c"/></linearGradient>
+    <clipPath id="plate"><rect width="100" height="100" rx="22.37"/></clipPath>
+  </defs>
+  <symbol id="boardbg" viewBox="0 0 100 100">
+    <rect width="100" height="100" rx="22.37" fill="url(#board)"/>
+    <rect width="100" height="100" rx="22.37" fill="url(#holes)" opacity=".9"/>
+  </symbol>
+  <!-- a: bin with three fanned tiles -->
+  <symbol id="va" viewBox="0 0 100 100">
+    <use href="#boardbg"/>
+    <g stroke="#174d40" stroke-width="2.5">
+      <rect x="23" y="27" width="21" height="21" rx="5.5" fill="#f4f6f3" transform="rotate(-12 33.5 37.5)"/>
+      <rect x="39.5" y="19" width="21" height="21" rx="5.5" fill="#ffd15c"/>
+      <rect x="56" y="27" width="21" height="21" rx="5.5" fill="#9fdcc4" transform="rotate(12 66.5 37.5)"/>
+    </g>
+    <path d="M18 46h64l-5 31q-1 6.5-7.5 6.5h-39Q24 83.5 23 77Z" fill="url(#pocket)"/>
+    <path d="M18 46h64l-.7 4.5H18.7Z" fill="#c8430f" opacity=".55"/>
+  </symbol>
+  <!-- b: pocket hung from two peg hooks -->
+  <symbol id="vb" viewBox="0 0 100 100">
+    <use href="#boardbg"/>
+    <g fill="none" stroke="#e7ede9" stroke-width="3.2" stroke-linecap="round"><path d="M27.5 34v8.5"/><path d="M72.5 34v8.5"/></g>
+    <circle cx="27.5" cy="33" r="3.2" fill="#e7ede9"/><circle cx="72.5" cy="33" r="3.2" fill="#e7ede9"/>
+    <g stroke="#174d40" stroke-width="2.5">
+      <rect x="31" y="24" width="20" height="20" rx="5.2" fill="#f4f6f3" transform="rotate(-7 41 34)"/>
+      <rect x="49" y="24" width="20" height="20" rx="5.2" fill="#ffd15c" transform="rotate(7 59 34)"/>
+    </g>
+    <path d="M20 44h60q2 0 1.7 2l-4.6 30.5q-1 7-8 7H31q-7 0-8-7L18.3 46q-.3-2 1.7-2Z" fill="url(#pocket)"/>
+    <path d="M26 51.5h48" stroke="#ffd2bd" stroke-width="1.8" stroke-dasharray="3 2.4" stroke-linecap="round"/>
+  </symbol>
+  <!-- c: soft pouch with curved mouth -->
+  <symbol id="vc" viewBox="0 0 100 100">
+    <use href="#boardbg"/>
+    <g stroke="#174d40" stroke-width="2.5">
+      <rect x="26" y="22" width="21" height="21" rx="5.5" fill="#f4f6f3" transform="rotate(-10 36.5 32.5)"/>
+      <rect x="53" y="22" width="21" height="21" rx="5.5" fill="#9fdcc4" transform="rotate(10 63.5 32.5)"/>
+    </g>
+    <path d="M17 42q33 11 66 0v24q0 18-18 18H35q-18 0-18-18Z" fill="url(#pocket)"/>
+    <path d="M23 50q27 8 54 0" fill="none" stroke="#ffd2bd" stroke-width="1.8" stroke-dasharray="3 2.4" stroke-linecap="round"/>
+  </symbol>
+  <!-- d: pocket holding a 2x2 mini grid -->
+  <symbol id="vd" viewBox="0 0 100 100">
+    <use href="#boardbg"/>
+    <g stroke="#174d40" stroke-width="2.2">
+      <rect x="29" y="19" width="19" height="19" rx="5" fill="#f4f6f3"/>
+      <rect x="52" y="19" width="19" height="19" rx="5" fill="#ffd15c"/>
+      <rect x="29" y="35" width="19" height="19" rx="5" fill="#9fdcc4"/>
+      <rect x="52" y="35" width="19" height="19" rx="5" fill="#f4f6f3"/>
+    </g>
+    <path d="M18 47h64l-5 30q-1 6.5-7.5 6.5h-39Q24 83.5 23 77Z" fill="url(#pocket)"/>
+  </symbol>
+  <!-- e: swinging pocket, tilted on one peg -->
+  <symbol id="ve" viewBox="0 0 100 100">
+    <use href="#boardbg"/>
+    <circle cx="50" cy="20" r="3.4" fill="#e7ede9"/>
+    <g transform="rotate(-8 50 20)">
+      <path d="M50 20 31 44M50 20l19 24" stroke="#e7ede9" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+      <g stroke="#174d40" stroke-width="2.5">
+        <rect x="27" y="31" width="20" height="20" rx="5.2" fill="#f4f6f3" transform="rotate(-10 37 41)"/>
+        <rect x="53" y="31" width="20" height="20" rx="5.2" fill="#9fdcc4" transform="rotate(10 63 41)"/>
+        <rect x="40" y="28" width="20" height="20" rx="5.2" fill="#ffd15c"/>
+      </g>
+      <path d="M20 46h60l-4.6 29q-1 7-8 7H32.6q-7 0-8-7Z" fill="url(#pocket)"/>
+    </g>
+  </symbol>
+</svg>
+<div id="rows"></div>
+<script>
+const names={va:"a Bin, three fanned tiles",vb:"b Hung on two pegs",vc:"c Soft pouch",vd:"d Pocket with mini grid",ve:"e Swinging on one peg"};
+const sizes=[192,64,32,16];
+let h="";
+for(const id in names){
+  h+=`<div class="row"><div class="lab"><b>${names[id]}</b></div>`;
+  for(const d of [0,1]) h+=`<div class="cell ${d?"dark":""}">`+sizes.map(s=>`<svg width="${s}" height="${s}"><use href="#${id}"/></svg>`).join("")+`</div>`;
+  h+="</div>";
+}
+document.getElementById("rows").innerHTML=h;
+</script>
+</body></html>
