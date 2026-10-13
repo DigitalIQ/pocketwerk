@@ -126,6 +126,8 @@ final class HotkeyCenter {
             PopupController.shared.toggle(slotID: id)
         case .profile(let id):
             DockProfiles.shared.apply(id)
+        case .saveToActiveProfile:
+            DockProfiles.shared.saveCurrentToActive()
         }
     }
 }

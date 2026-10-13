@@ -116,7 +116,7 @@ nonisolated enum SortOrder: String, Codable, CaseIterable, Sendable {
     case manual, name, kind, dateAdded, lastOpened, mostOpened
 }
 
-/// Animated background kinds ("Animated" + folder app "living effects"). The Theme module renders them.
+/// Animated background kinds. The Theme module renders them.
 nonisolated enum FXKind: String, Codable, CaseIterable, Sendable {
     case arcs, curtains, waves, marble, snow, embers, glyphRain, blobs, fur
     case rain, fog, driftingLight, lava, aurora, starfield, plasma, bubbles, ripples
@@ -154,7 +154,7 @@ nonisolated enum Background: Codable, Hashable, Sendable {
     case glass(tint: RGBA, intensity: Double)
     /// Animated background reacting to the pointer.
     case fx(FXParams)
-    /// The real desktop wallpaper behind the popup, blurred (folder app wallpaper glass).
+    /// The real desktop wallpaper behind the popup, blurred.
     case wallpaper(blur: Double, dim: Double)
     /// Procedural texture by name, e.g. "knit", "ice", "leopard", "tiger", "cardboard", "paper", "noise".
     case texture(name: String, tint: RGBA)
@@ -221,9 +221,9 @@ nonisolated struct LabelStyle: Codable, Hashable, Sendable {
 
 nonisolated struct GroupStyle: Codable, Hashable, Sendable {
     var background: Background = .glass(tint: RGBA(0.1, 0.1, 0.12, 0.35), intensity: 1)
-    /// Extra Liquid Glass amount over any fill, 0 = off, 1 = full (popup app "Glass Effect" slider).
+    /// Extra Liquid Glass amount over any fill, 0 = off, 1 = full.
     var glassAmount: Double = 0
-    /// Opacity of the whole fill, 0...1 (folder app "Opacity").
+    /// Opacity of the whole fill, 0...1.
     var opacity: Double = 1
     var border: BorderStyle? = BorderStyle()
     var cornerRadius: Double = 24
@@ -271,7 +271,7 @@ nonisolated enum StackDirection: String, Codable, CaseIterable, Sendable {
     case downRight, down, downLeft
 }
 
-/// folder app "Stack" style: item icons fanned like cards.
+/// Stack style: item icons fanned like cards.
 nonisolated struct StackOptions: Codable, Hashable, Sendable {
     var direction: StackDirection = .downRight
     var depth: Int = 3 // 2...4
@@ -283,9 +283,9 @@ nonisolated struct StackOptions: Codable, Hashable, Sendable {
 }
 
 nonisolated enum IconContent: Codable, Hashable, Sendable {
-    /// Mini grid of the first item icons (iOS folder / popup app live icon). count: 0 = auto, 4, 9, 16.
+    /// Mini grid of the first item icons, like a folder. count: 0 = auto, 4, 9, 16.
     case itemGrid(count: Int)
-    /// Fanned stack of the first item icons (folder app "Stack").
+    /// Fanned stack of the first item icons.
     case itemStack
     case symbol(name: String)
     case emoji(String)
@@ -336,7 +336,7 @@ nonisolated struct Hotkey: Codable, Hashable, Sendable {
 
 // MARK: - Groups and Dock slots
 
-/// A group ("Pop" / "folder app"): an ordered set of items with its own look.
+/// A group ("pocket"): an ordered set of items with its own look.
 nonisolated struct ItemGroup: Codable, Identifiable, Hashable, Sendable {
     var id = UUID()
     var name: String
@@ -377,7 +377,7 @@ nonisolated struct ItemGroup: Codable, Identifiable, Hashable, Sendable {
 }
 
 nonisolated enum SmartGroupKind: String, Codable, CaseIterable, Sendable {
-    /// Top items by open count across all groups (group app "Most Used").
+    /// Top items by open count across all groups.
     case mostUsed
     /// Items opened most recently across all groups.
     case recentlyOpened
@@ -497,7 +497,7 @@ nonisolated struct DockTile: Codable, Identifiable, Hashable, Sendable {
     }
 }
 
-/// profile app-style custom spacer: a tiny Dock tile that shows only text or an image.
+/// Custom spacer: a tiny Dock tile that shows only text or an image.
 nonisolated struct CustomSpacer: Codable, Identifiable, Hashable, Sendable {
     var id = UUID()
     var text: String = ""

@@ -191,6 +191,7 @@ struct HotkeySettings: View {
                 row(Text("Show all groups"), hotkey: settingBinding(\.mainHotkey), target: .main)
                 if !lib.profiles.isEmpty {
                     row(Text("Next Dock profile"), hotkey: settingBinding(\.nextProfileHotkey), target: .nextProfile)
+                    row(Text("Save Dock into active profile"), hotkey: settingBinding(\.saveToLastHotkey), target: .saveToActiveProfile)
                 }
                 Toggle("⌥⇧1 to ⌥⇧9 open the first nine groups", isOn: settingBinding(\.numberHotkeys))
             } footer: {

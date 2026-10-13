@@ -8,6 +8,8 @@ nonisolated enum HotkeyTarget: Hashable, Sendable {
     case group(UUID)
     case slot(UUID)
     case profile(UUID)
+    /// Saves the current Dock into the active profile.
+    case saveToActiveProfile
 }
 
 /// One hotkey that should be registered.
@@ -32,6 +34,7 @@ nonisolated enum HotkeyPlan {
         var out: [HotkeyBinding] = []
         if let h = lib.settings.mainHotkey { out.append(.init(target: .main, hotkey: h)) }
         if let h = lib.settings.nextProfileHotkey { out.append(.init(target: .nextProfile, hotkey: h)) }
+        if let h = lib.settings.saveToLastHotkey { out.append(.init(target: .saveToActiveProfile, hotkey: h)) }
         for g in lib.orderedGroups { if let h = g.hotkey { out.append(.init(target: .group(g.id), hotkey: h)) } }
         for s in lib.slots { if let h = s.hotkey { out.append(.init(target: .slot(s.id), hotkey: h)) } }
         for p in lib.profiles { if let h = p.hotkey { out.append(.init(target: .profile(p.id), hotkey: h)) } }
@@ -93,6 +96,7 @@ nonisolated enum HotkeyPlan {
         case .slot(let id): return String(localized: "Dock icon “\(lib.slot(id)?.name ?? "?")”")
         case .profile(let id):
             return String(localized: "Profile “\(lib.profiles.first { $0.id == id }?.name ?? "?")”")
+        case .saveToActiveProfile: return String(localized: "Save Dock into active profile")
         }
     }
 

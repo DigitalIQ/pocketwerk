@@ -421,9 +421,10 @@ private struct ProfileOptions: View {
                 set: { on in store.settings.startupProfileID = on ? profile.id : nil }))
             HStack {
                 Text("Hotkey")
-                ProfileHotkeyField(hotkey: Binding(
+                HotkeyRecorder(hotkey: Binding(
                     get: { profile.hotkey },
-                    set: { h in profiles.updateProfile(profile.id) { $0.hotkey = h } }))
+                    set: { h in profiles.updateProfile(profile.id) { $0.hotkey = h } }),
+                    target: .profile(profile.id))
             }
         }
         .toggleStyle(.checkbox)
@@ -498,66 +499,5 @@ private struct ProfileOptions: View {
 
     private func appName(_ bundleID: String) -> String {
         NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundleID).map(DockPlist.defaultLabel(for:)) ?? bundleID
-    }
-}
-
-/// Records one global shortcut. HotkeyCenter registers profile hotkeys from the library.
-struct ProfileHotkeyField: View {
-    @Binding var hotkey: Hotkey?
-    @State private var recording = false
-    @State private var monitor: Any?
-
-    var body: some View {
-        HStack(spacing: 6) {
-            Button(recording ? String(localized: "Type a shortcut…") : (hotkey.map(Self.describe) ?? String(localized: "Record Shortcut"))) {
-                recording ? stop() : start()
-            }
-            .accessibilityLabel(Text("Profile hotkey"))
-            if hotkey != nil {
-                Button { hotkey = nil } label: { Image(systemName: "xmark.circle.fill") }
-                    .buttonStyle(.borderless)
-                    .accessibilityLabel(Text("Clear hotkey"))
-            }
-        }
-        .onDisappear { stop() }
-    }
-
-    private func start() {
-        recording = true
-        monitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
-            if event.keyCode == 53 { stop(); return nil } // Escape cancels
-            let mods = Self.carbonModifiers(event.modifierFlags)
-            guard mods != 0 else { return nil }
-            hotkey = Hotkey(keyCode: UInt32(event.keyCode), modifiers: mods)
-            stop()
-            return nil
-        }
-    }
-
-    private func stop() {
-        recording = false
-        if let monitor { NSEvent.removeMonitor(monitor) }
-        monitor = nil
-    }
-
-    /// Carbon modifier bits: cmdKey 256, shiftKey 512, optionKey 2048, controlKey 4096.
-    nonisolated static func carbonModifiers(_ flags: NSEvent.ModifierFlags) -> UInt32 {
-        var m: UInt32 = 0
-        if flags.contains(.command) { m |= 256 }
-        if flags.contains(.shift) { m |= 512 }
-        if flags.contains(.option) { m |= 2048 }
-        if flags.contains(.control) { m |= 4096 }
-        return m
-    }
-
-    static func describe(_ h: Hotkey) -> String {
-        let shared = HotkeyCenter.describe(h)
-        if !shared.isEmpty { return shared }
-        var s = ""
-        if h.modifiers & 4096 != 0 { s += "⌃" }
-        if h.modifiers & 2048 != 0 { s += "⌥" }
-        if h.modifiers & 512 != 0 { s += "⇧" }
-        if h.modifiers & 256 != 0 { s += "⌘" }
-        return s + "#\(h.keyCode)"
     }
 }

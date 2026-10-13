@@ -45,6 +45,9 @@ final class AppCoordinator: NSObject, NSApplicationDelegate {
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { false }
 
+    /// Right-click on the main app's Dock icon: groups as submenus, profiles.
+    func applicationDockMenu(_ sender: NSApplication) -> NSMenu? { DockMenus.mainMenu() }
+
     func applicationWillTerminate(_ notification: Notification) {
         store.saveNow()
     }
