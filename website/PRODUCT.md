@@ -2,7 +2,7 @@
 
 <!-- impeccable:product-schema 1 -->
 
-Scope: the public product website for Pocketwerk (`site/`), deployed to GitHub Pages at `https://digitaliq.github.io/pocketwerk/`. Written autonomously from the website brief; nothing here came from an interview (see `../WEBSITE-STATUS.md`).
+Scope: the public product website for Pocketwerk (`site/`), deployed to GitHub Pages at `https://digitaliq.github.io/pocketwerk/`. Written autonomously from the website brief; nothing here came from an interview (see `WEBSITE-STATUS.md`).
 
 ## Platform
 

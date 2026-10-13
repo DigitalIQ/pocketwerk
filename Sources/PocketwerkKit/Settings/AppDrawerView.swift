@@ -130,7 +130,7 @@ enum AppIconCache {
 
     static func icon(for url: URL) -> NSImage {
         if let hit = cache[url.path] { return hit }
-        let img = NSWorkspace.shared.icon(forFile: url.path)
+        let img = NSWorkspace.shared.icon(forFile: url.resolvingSymlinksInPath().path)
         img.size = NSSize(width: 64, height: 64)
         cache[url.path] = img
         return img

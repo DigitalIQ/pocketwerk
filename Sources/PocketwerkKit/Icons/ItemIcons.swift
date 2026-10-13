@@ -62,7 +62,7 @@ final class ItemIconCache {
         let ws = NSWorkspace.shared
         switch item.kind {
         case .app:
-            if FileManager.default.fileExists(atPath: item.url.path) { return ws.icon(forFile: item.url.path) }
+            if FileManager.default.fileExists(atPath: item.url.path) { return ws.icon(forFile: item.url.resolvingSymlinksInPath().path) } // Safari in /Applications is a link since macOS 26
             if let id = item.bundleID, let url = ws.urlForApplication(withBundleIdentifier: id) { return ws.icon(forFile: url.path) }
             return ws.icon(for: .application)
         case .file:
