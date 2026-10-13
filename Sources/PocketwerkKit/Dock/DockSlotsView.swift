@@ -207,7 +207,7 @@ private struct SpacerRow: View {
             Image(nsImage: LauncherIcon.spacerArt(spacer, size: 64))
                 .resizable()
                 .frame(width: 32, height: 32)
-                .background(RoundedRectangle(cornerRadius: 6).fill(.quaternary))
+                .background(RoundedRectangle(cornerRadius: 6).fill(Color(white: 0.3)))
                 .accessibilityHidden(true)
             TextField("Text", text: Binding(
                 get: { spacer.text },

@@ -7,6 +7,10 @@ struct DockProfilesView: View {
     @State private var selection: UUID?
     @State private var error: String?
 
+    init(selection: UUID? = nil) {
+        _selection = State(initialValue: selection)
+    }
+
     private var store: LibraryStore { LibraryStore.shared }
     private var profiles: DockProfiles { DockProfiles.shared }
 
@@ -191,23 +195,31 @@ private struct ProfileEditor: View {
 
     private var addBar: some View {
         HStack {
-            Button("Add App…") { addFiles(apps: true) }
-            Button("Add File or Folder…") { addFiles(apps: false) }
-            Button("Add Spacer") { append(DockTile(kind: .spacer)) }
-            Button("Add Small Spacer") { append(DockTile(kind: .smallSpacer)) }
-            Menu("Add Custom Spacer") {
-                ForEach(store.library.spacers.filter { $0.launcherPath != nil }) { s in
-                    Button(s.text.isEmpty ? String(localized: "Spacer") : s.text) {
-                        append(DockTile(kind: .customSpacer, url: URL(fileURLWithPath: s.launcherPath!, isDirectory: true),
-                                        bundleID: LauncherTarget.spacer(s.id).bundleID, label: s.text))
+            Menu {
+                Button("App…") { addFiles(apps: true) }
+                Button("File or Folder…") { addFiles(apps: false) }
+                Divider()
+                Button("Spacer") { append(DockTile(kind: .spacer)) }
+                Button("Small Spacer") { append(DockTile(kind: .smallSpacer)) }
+                let spacers = store.library.spacers.filter { $0.launcherPath != nil }
+                if !spacers.isEmpty {
+                    Menu("Custom Spacer") {
+                        ForEach(spacers) { s in
+                            Button(s.text.isEmpty ? String(localized: "Spacer") : s.text) {
+                                append(DockTile(kind: .customSpacer, url: URL(fileURLWithPath: s.launcherPath!, isDirectory: true),
+                                                bundleID: LauncherTarget.spacer(s.id).bundleID, label: s.text))
+                            }
+                        }
                     }
                 }
+            } label: {
+                Label("Add", systemImage: "plus")
             }
             .fixedSize()
-            .disabled(!store.library.spacers.contains { $0.launcherPath != nil })
+            .accessibilityLabel(Text("Add a tile"))
             Spacer()
             TextField("https://", text: $newLink)
-                .frame(width: 160)
+                .frame(width: 220)
                 .onSubmit(addLink)
                 .accessibilityLabel(Text("Link address"))
             Button("Add Link", action: addLink).disabled(URL(string: newLink)?.scheme == nil)
