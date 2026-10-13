@@ -26,7 +26,7 @@ final class AppCoordinator: NSObject, NSApplicationDelegate {
         NotificationCenter.default.addObserver(forName: .libraryDidChange, object: nil, queue: .main) { _ in
             MainActor.assumeIsolated { AppCoordinator.current?.applyActivationPolicy() }
         }
-        if CommandLine.arguments.contains("--show-window") || store.library.groups.isEmpty {
+        if CommandLine.arguments.contains("--show-window") || (store.library.groups.isEmpty && store.settings.onboardingDone) {
             MainWindowController.shared.show()
         }
     }

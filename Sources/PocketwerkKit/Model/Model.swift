@@ -554,8 +554,8 @@ nonisolated struct AppSettings: Codable, Hashable, Sendable {
     /// Seconds between launches for "Open All".
     var openAllDelay: Double = 0.25
     var animationSpeed: AnimationSpeed = .medium
-    /// Gap between Dock and popup in points.
-    var popoverOffset: Double = 10
+    /// Gap between Dock and popup in points. Large enough to clear the Dock's name label.
+    var popoverOffset: Double = 26
     var lockSizeWhileSwiping = false
     var menuBarClick: MenuBarClick = .carousel
     /// ⌥⇧1...9 open groups 1...9 when they have no own hotkey.

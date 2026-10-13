@@ -248,17 +248,9 @@ final class LibraryStore {
         return try? decoder.decode(Library.self, from: mergedData)
     }
 
+    /// A new library is empty; the welcome window offers starter groups.
     static func starterLibrary() -> Library {
-        var lib = Library()
-        var g = ItemGroup(name: "Favorites")
-        let apps = ["/System/Applications/Mail.app", "/System/Applications/Calendar.app",
-                    "/System/Applications/Notes.app", "/Applications/Safari.app",
-                    "/System/Applications/Music.app", "/System/Applications/System Settings.app"]
-        g.items = apps.filter { FileManager.default.fileExists(atPath: $0) }
-            .map { DockItem(kind: .app, url: URL(fileURLWithPath: $0)) }
-        lib.groups = [g]
-        lib.slots = [DockSlot(name: g.name, groupIDs: [g.id])]
-        return lib
+        Library()
     }
 }
 
