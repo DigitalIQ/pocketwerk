@@ -359,6 +359,8 @@ nonisolated struct ItemGroup: Codable, Identifiable, Hashable, Sendable {
     var smartLimit = 12
     /// When true the popup uses `AppSettings.defaultStyle` instead of `style` (global defaults with per-group override).
     var usesDefaultStyle = false
+    /// Emoji shown in the sidebar, menus and (optionally) on the Dock icon. nil = none.
+    var emoji: String?
 
     init(name: String) { self.name = name }
 
