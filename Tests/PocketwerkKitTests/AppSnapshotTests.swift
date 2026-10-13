@@ -6,7 +6,7 @@ import Testing
 /// Renders app module views to PNG for a visual check. Runs only with
 /// POCKETWERK_SHOTS=<folder> and POCKETWERK_DATA_DIR=<scratch folder>, so it never touches real data.
 @Suite struct AppSnapshotTests {
-    static var enabled: Bool {
+    nonisolated static var enabled: Bool {
         let env = ProcessInfo.processInfo.environment
         return env["POCKETWERK_SHOTS"] != nil && env["POCKETWERK_DATA_DIR"] != nil
     }
