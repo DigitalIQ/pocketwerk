@@ -14,7 +14,7 @@ BUILD_NUMBER="$(git rev-list --count HEAD)"
 
 export DEVELOPER_DIR="${DEVELOPER_DIR:-/Applications/Xcode.app/Contents/Developer}"
 swift test
-./scripts/build-app.sh
+./scripts/build-app.sh --intents
 SHA="$(./scripts/make-dmg.sh | awk '{print $1}')"
 DMG="build/Pocketwerk-$VERSION.dmg"
 echo "DMG $DMG sha256 $SHA"

@@ -6,7 +6,8 @@ Security fixes go into the latest release. Please update before you report.
 
 | Version | Supported |
 |---|---|
-| 1.0.x | Yes |
+| 1.1.x | Yes |
+| 1.0.x | No |
 
 ## Reporting a vulnerability
 
@@ -32,7 +33,9 @@ Pocketwerk is a local app. It has no account, no server and no telemetry.
 - `~/Library/Application Support/Pocketwerk/`: the library (`library.json`), images you chose and cached link favicons.
 - `~/Applications/Pocketwerk/`: one small launcher app per Dock icon, built from a template inside Pocketwerk and signed ad hoc.
 - A folder you choose under Settings > Backup > Copy to Another Folder, if you turn that on. Pocketwerk writes a copy of the library there and never reads it back on its own.
-- Backup files you export or import, and files you add to groups (only their paths are stored).
+- Backup files you export or import, profile files you export, import or share, and a diagnostics file you export (the last five hours of Pocketwerk's own log).
+- Files you add to groups (only their paths are stored).
+- Only when you click **Find … Profiles** in the profile editor: the profile list of Chrome, Edge, Brave, Vivaldi, Arc or Firefox from its folder in `~/Library/Application Support`.
 
 **The Dock**
 
@@ -45,8 +48,16 @@ Pocketwerk reads and writes the Dock preferences (`com.apple.dock`) when you add
 
 **Permissions**
 
-- No Accessibility permission. Global hotkeys use the system hotkey API.
+- No Accessibility permission. Global hotkeys and the leader key use the system hotkey API. The hot corner reads the pointer position only.
 - Optional Automation permission, only when you use **Add Current Browser Tab**. Pocketwerk then asks Safari, Chrome, Arc or Brave for the URL and title of the front tab.
+
+**Spaces**
+
+With "Switch with Spaces and displays" on, Pocketwerk reads the current Space and display through an undocumented window server interface, and applies the linked profile.
+
+**Assistant**
+
+The assistant and model-based suggestions use Apple's on-device model. Requests do not leave the Mac, and the conversation is not stored.
 
 **Other apps**
 

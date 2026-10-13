@@ -154,6 +154,7 @@ struct PopupSettings: View {
                     }
                 }
                 Toggle("Keep the size while swiping", isOn: settingBinding(\.lockSizeWhileSwiping))
+                Toggle("Sound effects", isOn: settingBinding(\.soundEffects))
                 Toggle("Show the Most Used group", isOn: settingBinding(\.showMostUsed))
             }
             Section("Menu Bar") {

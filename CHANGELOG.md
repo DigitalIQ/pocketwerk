@@ -4,16 +4,44 @@ All notable changes to Pocketwerk are listed here. The format follows [Keep a Ch
 
 ## [Unreleased]
 
-Planned for 1.1.0.
+## [1.1.0] - 2026-10-13
 
 ### Added
 
-- On-device assistant that edits a group from a plain sentence, with undo. Uses Apple Intelligence on supported Macs with macOS 26.
-- App suggestions for a group.
-- Dock profiles per Space.
-- App Intents, so groups and profiles show up in the Shortcuts app.
-- Sidebar navigation in the popup as an alternative to swiping between groups.
-- Spring-loading on Dock tiles: hover a drag over a Pocketwerk Dock icon and its popup opens, then drop inside.
+- Assistant tab: change a group from a plain sentence (look, labels, layout, Dock icon, name, apps), on device with Apple Intelligence. Every change can be undone; removals wait for confirmation.
+- App suggestions in the App Drawer, from Apple Intelligence or, without it, from app categories and apps used together. A group category helps them.
+- Suggested Groups: apps you often open together, offered as new groups.
+- Sidebar navigation in the popup as an alternative to the carousel, with group names or a compact icon rail, ⌘ number badges and drop targets per group.
+- Keys 1 to 9 open the items of the current popup page; hold ⌃ to see the numbers.
+- Locate… for missing items, in the popup and the main window.
+- Group picker for drops that do not name a group (smart groups, folder views, Pocketwerk's own Dock icon).
+- Live preview of the popup distance while you drag the slider.
+- Dock profiles that switch with the Space or display (`pocketwerk spaces` shows the ids).
+- Tile actions in profiles: open an app, open a project or folder with it, or open a browser profile (Chrome, Edge, Brave, Vivaldi, Arc, Firefox). Tile notes and folder stack options.
+- Last context notes: a short note when you leave a profile, shown when you return.
+- Next-profile cycling with per-profile opt out, a hotkey, `pocketwerk://profile?action=next` and `pocketwerk profiles next`.
+- Private profiles, Export All, Share…, and `pocketwerk profiles export` / `import`.
+- Tags and "keep apps open when switching away" per profile.
+- App Intents: Shortcuts actions for groups and profiles, Siri phrases, and a "Set Dock Profile" Focus filter.
+- `pocketwerk://group?action=openAll|hideAll|quitAll&name=…` URLs.
+- Commands window listing every phrase, URL and command with a Copy button.
+- Live main Dock icon showing a mini grid of the first group.
+- Spring-loading on Dock tiles: hold a drag over a Pocketwerk Dock icon to open its popup and drop inside.
+- Hot corner that shows all groups.
+- Leader key with a letter per group and profile, and hotkeys with double or triple press or a follow-up key.
+- Menu bar icon styles: Outline, Filled, Dots, Group colors.
+- Built-in help window (⌘?) and Report a Problem.
+- Diagnostics page with Export Diagnostics (local text file only).
+- App icon variants: Standard, Honey, Ocean, Graphite, Iris.
+- Glow and depth for popups, falling snow over textures, gradient swatches.
+- Seasonal touches in the app windows, off by default.
+- Option to open the main window at launch.
+
+### Changed
+
+- Animated backgrounds use less CPU: they stop when hidden or covered, slow down while the pointer is elsewhere and run at most 30 frames per second on battery.
+- Digits typed in the popup open items instead of starting a search.
+- Dock launchers use a new format and are rebuilt once automatically after the update.
 
 ## [1.0.0] - 2026-10-13
 
@@ -43,5 +71,6 @@ First public release.
 - English and German interface.
 - Support for Reduce Motion, Reduce Transparency and Low Power Mode.
 
-[Unreleased]: https://github.com/DigitalIQ/pocketwerk/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/DigitalIQ/pocketwerk/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/DigitalIQ/pocketwerk/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/DigitalIQ/pocketwerk/releases/tag/v1.0.0

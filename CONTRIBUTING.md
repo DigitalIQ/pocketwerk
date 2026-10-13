@@ -16,6 +16,7 @@ swift build                                  # debug build
 swift test                                   # tests
 UNIVERSAL=0 ./scripts/build-app.sh           # app bundle for this Mac only, in build/
 ./scripts/build-app.sh --install             # universal app, copied to ~/Applications
+./scripts/build-app.sh --intents             # adds App Intents metadata (Shortcuts, Siri, Focus)
 ```
 
 `build-app.sh` assembles `build/Pocketwerk.app`: it copies `Resources/Info.plist` and the app icon, compiles the string catalog into `en.lproj` and `de.lproj`, embeds the launcher template and signs everything ad hoc.
