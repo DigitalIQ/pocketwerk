@@ -361,6 +361,8 @@ nonisolated struct ItemGroup: Codable, Identifiable, Hashable, Sendable {
     var usesDefaultStyle = false
     /// Emoji shown in the sidebar, menus and (optionally) on the Dock icon. nil = none.
     var emoji: String?
+    /// Letter that opens this group after the leader hotkey.
+    var leaderKey: String?
 
     init(name: String) { self.name = name }
 
@@ -598,6 +600,8 @@ nonisolated struct AppSettings: Codable, Hashable, Sendable {
     var checkForUpdates = true
     var lastUpdateCheck: Date?
     var skippedVersion: String?
+    /// Small seasonal decorations in the app windows (December snow). Off with Reduce Motion anyway.
+    var seasonalTouches = true
 }
 
 // MARK: - Library (root of everything persisted)

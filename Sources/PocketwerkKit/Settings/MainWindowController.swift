@@ -4,7 +4,7 @@ import SwiftUI
 
 /// Pages in the Settings part of the sidebar.
 enum SettingsPage: String, CaseIterable, Hashable, Identifiable {
-    case general, popup, hotkeys, backup, updates, about
+    case general, popup, hotkeys, backup, diagnostics, updates, about
     var id: String { rawValue }
 
     var title: LocalizedStringKey {
@@ -13,6 +13,7 @@ enum SettingsPage: String, CaseIterable, Hashable, Identifiable {
         case .popup: "Popup"
         case .hotkeys: "Hotkeys"
         case .backup: "Backup"
+        case .diagnostics: "Diagnostics"
         case .updates: "Updates"
         case .about: "About"
         }
@@ -24,6 +25,7 @@ enum SettingsPage: String, CaseIterable, Hashable, Identifiable {
         case .popup: "rectangle.on.rectangle"
         case .hotkeys: "keyboard"
         case .backup: "externaldrive"
+        case .diagnostics: "stethoscope"
         case .updates: "arrow.down.circle"
         case .about: "info.circle"
         }
@@ -38,7 +40,7 @@ enum SidebarItem: Hashable {
 }
 
 enum GroupTab: String, CaseIterable, Hashable {
-    case items, appearance, options
+    case items, appearance, options, assistant
 }
 
 /// UI state of the main window, shared by the menu commands.
@@ -50,6 +52,7 @@ final class MainWindowModel {
     var showAppDrawer = false
     var showAddLink = false
     var deleteCandidate: UUID?
+    var showGroupSuggestions = false
     var columnVisibility: NavigationSplitViewVisibility = .all
 
     var selectedGroupID: UUID? {
@@ -79,6 +82,12 @@ final class MainWindowController: NSObject, NSWindowDelegate {
     }
 
     private func open() {
+        // First launch: the welcome comes first, the main window follows when it closes.
+        if WelcomeWindowController.shared.isShowing {
+            WelcomeWindowController.shared.mainWindowPending = true
+            WelcomeWindowController.shared.show()
+            return
+        }
         if window == nil {
             model.columnVisibility = LibraryStore.shared.settings.sidebarCollapsed ? .detailOnly : .all
             // The Design Studio needs about 1000 x 640 next to the sidebar.
