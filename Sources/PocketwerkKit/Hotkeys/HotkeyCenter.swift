@@ -117,7 +117,7 @@ final class HotkeyCenter {
     func perform(_ target: HotkeyTarget) {
         switch target {
         case .main:
-            PopupController.shared.toggleAll()
+            PopupController.shared.toggle(groupIDs: store.library.carouselGroups.map(\.id), slotID: nil)
         case .nextProfile:
             if let id = HotkeyPlan.nextProfile(store.library) { DockProfiles.shared.apply(id) }
         case .group(let id):
