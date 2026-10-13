@@ -21,7 +21,7 @@ import Testing
             let suffix = appearance == .aqua ? "light" : "dark"
             try render(DockSlotsView(onEditIcon: { _ in }), size: NSSize(width: 760, height: 520), appearance: appearance,
                        to: folder.appendingPathComponent("dock-slots-\(suffix).png"))
-            try render(DockProfilesView(selection: store.library.profiles.first?.id), size: NSSize(width: 980, height: 760),
+            try render(DockProfilesView(selection: store.library.profiles.first?.id), size: NSSize(width: 980, height: 1500),
                        appearance: appearance, to: folder.appendingPathComponent("dock-profiles-\(suffix).png"))
         }
     }
