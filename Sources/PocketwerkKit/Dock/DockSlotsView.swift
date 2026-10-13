@@ -25,6 +25,9 @@ struct DockSlotsView: View {
                 } footer: {
                     if store.library.slots.isEmpty {
                         Text("Add a slot to give a group its own icon in the Dock.").foregroundStyle(.secondary)
+                    } else {
+                        Text("Drop files on a Dock icon to add them. Hold a drag over the icon to open its popup and drop inside.")
+                            .foregroundStyle(.secondary)
                     }
                 }
                 Section {
@@ -56,6 +59,11 @@ struct DockSlotsView: View {
                     Label("Add Spacer", systemImage: "rectangle.dashed")
                 }
                 Spacer()
+                Toggle("Live main Dock icon", isOn: Binding(
+                    get: { store.settings.liveMainDockIcon },
+                    set: { store.settings.liveMainDockIcon = $0 }))
+                    .toggleStyle(.checkbox)
+                    .help(Text("Pocketwerk's own Dock icon shows the first group as a mini grid."))
                 Button("Reload Dock") { dock.reloadDock() }
                     .help(Text("Restart the Dock once so pinned tiles show their new icons."))
             }
