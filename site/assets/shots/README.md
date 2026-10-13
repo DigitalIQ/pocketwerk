@@ -1,9 +1,9 @@
-# Screenshots for the product video
+# App screenshots
 
-Replace these placeholders with real app screenshots, same file names, PNG, ideally 1600 x 1000 or larger at 16:10 (they are shown with `object-fit: contain`, so other ratios work too):
+Real Pocketwerk screenshots with demo data, web-optimised from the Retina originals.
 
-- `popup.png`: a pocket's popup open above its Dock icon
-- `design-studio.png`: the Design Studio with a theme applied
-- `profiles.png`: switching Dock profiles (menu bar or main window)
+- `design-studio-{800,1280,1680}.{avif,webp}`, `design-studio.png` (1600 px fallback, also used by the video): the Design Studio with the Candy Clouds look.
+- `profiles-{800,1280,1680}.{avif,webp}`, `profiles.png`: the Dock profiles editor.
+- `popup-{evening,code,studio}-{436,872}.{avif,webp}`, `popup-*.png` (872 x 600, transparent): single popups. The video uses `popup-evening.png`.
 
-Then render the video (see `site/video/README.md`).
+After replacing a screenshot, regenerate the sizes and run `sh site/video/render.sh`.
