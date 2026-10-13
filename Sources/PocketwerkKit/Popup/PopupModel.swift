@@ -21,6 +21,8 @@ final class PopupModel {
     var folderStack: [FolderLevel] = []
     /// Keyboard selection, index into `shownItems`.
     var selection: Int?
+    /// The focus ring shows only while the keyboard drives the selection, not after a click.
+    var focusVisible = false
     /// ⌘-click multi-selection for "Open Selected".
     var picked: Set<URL> = []
     var query = ""
@@ -82,13 +84,25 @@ final class PopupModel {
     }
 
     func metrics(for group: ItemGroup) -> PopupMetrics {
-        let style = store.popupStyle(of: group)
-        var input = PopupLayoutInput(style: style, itemCount: cellCount(of: group), groupCount: groupIDs.count, maxSize: maxSize)
+        var input = layoutInput(for: group, items: shownItems(of: group), extraCells: isInFolder ? 1 : 0)
         // Folders need the back button, search shows its text, pinned windows their close button.
         if isInFolder || !query.isEmpty || pinned || !picked.isEmpty { input.showHeader = true }
         // Inside a folder or a search the carousel pauses, so its dots go away.
         if isInFolder || !query.isEmpty { input.groupCount = 1 }
         return PopupMetrics.compute(input)
+    }
+
+    /// Layout input for a group in this popup: screen room minus the sidebar, two-line labels when needed.
+    func layoutInput(for group: ItemGroup, items: [DockItem], extraCells: Int = 0) -> PopupLayoutInput {
+        let style = store.popupStyle(of: group)
+        var room = maxSize
+        room.width -= sidebarWidth
+        var input = PopupLayoutInput(style: style, itemCount: items.count + extraCells,
+                                     groupCount: usesSidebar ? 1 : groupIDs.count, maxSize: room)
+        if style.layout == .grid, style.labels.mode != .off, LabelFit.needsTwoLines(items, style: style) {
+            input.labelLines = 2
+        }
+        return input
     }
 
     /// Size the window should have now. With "lock size while swiping" every group gets the largest size.
@@ -97,13 +111,36 @@ final class PopupModel {
         var size = metrics(for: group).size
         if store.settings.lockSizeWhileSwiping, groupIDs.count > 1, !isInFolder, query.isEmpty {
             for g in groups {
-                let style = store.popupStyle(of: g)
-                let m = PopupMetrics.compute(PopupLayoutInput(style: style, itemCount: store.visibleItems(of: g).count, groupCount: groupIDs.count, maxSize: maxSize))
+                let m = PopupMetrics.compute(layoutInput(for: g, items: store.visibleItems(of: g)))
                 size.width = max(size.width, m.size.width)
                 size.height = max(size.height, m.size.height)
             }
         }
+        if usesSidebar {
+            size.width += sidebarWidth
+            size.height = min(max(size.height, sidebarMinHeight), maxSize.height)
+        }
         return size
+    }
+
+    // MARK: Sidebar
+
+    /// Group list on the left instead of swiping (settings), only when there is more than one group.
+    var usesSidebar: Bool { store.settings.popupNavigation == .sidebar && groupIDs.count > 1 }
+
+    var sidebarWidth: CGFloat {
+        guard usesSidebar else { return 0 }
+        return store.settings.sidebarCollapsed ? PopupSidebar.compactWidth : PopupSidebar.fullWidth
+    }
+
+    var sidebarMinHeight: CGFloat {
+        PopupSidebar.minHeight(groupCount: groupIDs.count)
+    }
+
+    /// Collapse is instant, without animation.
+    func toggleSidebar() {
+        store.settings.sidebarCollapsed.toggle()
+        actions.resizeInstantly()
     }
 
     // MARK: Navigation
@@ -111,7 +148,7 @@ final class PopupModel {
     func pageCounts() -> [Int] {
         groups.enumerated().map { i, g in
             i == position.group ? metrics(for: g).pageCount
-                : PopupMetrics.compute(PopupLayoutInput(style: store.popupStyle(of: g), itemCount: store.visibleItems(of: g).count, groupCount: groupIDs.count, maxSize: maxSize)).pageCount
+                : PopupMetrics.compute(layoutInput(for: g, items: store.visibleItems(of: g))).pageCount
         }
     }
 
@@ -149,7 +186,18 @@ final class PopupModel {
         selection = nil
     }
 
+    /// VoiceOver hears the new group's name after a switch.
+    func announceGroup() {
+        guard NSWorkspace.shared.isVoiceOverEnabled, let name = currentGroup?.name else { return }
+        let text = groupIDs.count > 1
+            ? String(localized: "\(name), group \(position.group + 1) of \(groupIDs.count)")
+            : name
+        NSAccessibility.post(element: NSApp as Any, notification: .announcementRequested,
+                             userInfo: [.announcement: text, .priority: NSAccessibilityPriorityLevel.high.rawValue])
+    }
+
     private func resetForGroupChange() {
+        defer { announceGroup() }
         selection = nil
         picked = []
         query = ""
@@ -268,6 +316,7 @@ final class PopupModel {
 struct PopupActions {
     var close: () -> Void = {}
     var resize: () -> Void = {}
+    var resizeInstantly: () -> Void = {}
     var quickLook: (DockItem) -> Void = { _ in }
     var togglePin: () -> Void = {}
     /// Called around a launch so focus loss from the launched app does not close a popup that should stay.

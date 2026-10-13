@@ -44,9 +44,11 @@ struct PopupRootView: View {
     var body: some View {
         ZStack {
             if let group = model.currentGroup {
+                // With the sidebar the group list stays put, so groups switch in place.
                 PopupGroupView(group: group, model: model, size: model.panelSize)
                     .id(group.id)
-                    .transition(reduceMotion ? .opacity : .push(from: model.slideDirection > 0 ? .trailing : .leading))
+                    .transition(model.usesSidebar ? .identity
+                                : reduceMotion ? .opacity : .push(from: model.slideDirection > 0 ? .trailing : .leading))
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -79,6 +81,14 @@ struct PopupCard: View {
         let lightText = PopupLook.prefersLightText(background, dark: scheme == .dark)
         let surfaceStyle = { var s = style; s.background = background; return s }()
 
+        let sidebar = !preview && model.usesSidebar
+        HStack(spacing: 0) {
+            if sidebar {
+                PopupSidebar(model: model, style: style, lightText: lightText)
+                    .frame(width: model.sidebarWidth)
+                Rectangle().fill(PopupLook.labelColor(style.labels, lightText: lightText).opacity(0.12)).frame(width: 1)
+                    .accessibilityHidden(true)
+            }
         VStack(spacing: 0) {
             if metrics.headerHeight > 0 {
                 PopupHeader(group: group, style: style, model: model, preview: preview, lightText: lightText, metrics: metrics)
@@ -95,6 +105,8 @@ struct PopupCard: View {
                     .padding(.bottom, metrics.padding * 0.6)
             }
             Spacer(minLength: 0)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
         .frame(width: cardSize.width, height: cardSize.height, alignment: .top)
         .background {
@@ -349,7 +361,10 @@ struct PopupItemsArea: View {
             }
         }
         .frame(width: metrics.gridSize.width, height: metrics.gridSize.height, alignment: .top)
+        // A little room around the cells so the focus ring is not cut off.
+        .padding(5)
         .clipped()
+        .padding(-5)
         .modifier(DropTarget(enabled: !preview, delegate: PopupDropDelegate(
             group: group, model: model, metrics: metrics, items: items,
             pageStart: metrics.scrolls ? 0 : range.lowerBound, scrollOffset: scrollOffset, enabled: !preview)))
@@ -357,12 +372,20 @@ struct PopupItemsArea: View {
 
     @State private var scrollOffset: CGFloat = 0
 
+    /// Digit key for the first nine items of a page.
+    private func shortcut(for i: Int, in range: Range<Int>, cells: [PopupCellContent]) -> Int? {
+        guard case .item = cells[i] else { return nil }
+        let n = i - range.lowerBound + 1
+        return n <= 9 ? n : nil
+    }
+
     private func grid(_ cells: [PopupCellContent], range: Range<Int>) -> some View {
         let columns = Array(repeating: GridItem(.fixed(metrics.cell.width), spacing: metrics.gap, alignment: .top), count: metrics.columns)
         return LazyVGrid(columns: columns, alignment: .leading, spacing: metrics.gap) {
             ForEach(range, id: \.self) { i in
                 PopupItemCell(content: cells[i], index: i, group: group, style: style, metrics: metrics,
-                              model: model, preview: preview, lightText: lightText)
+                              model: model, preview: preview, lightText: lightText,
+                              shortcut: shortcut(for: i, in: range, cells: cells))
                     .overlay(alignment: .leading) { insertionMark(at: i, offset: -(metrics.gap + 3) / 2) }
                     .overlay(alignment: .trailing) {
                         if i == range.upperBound - 1 { insertionMark(at: i + 1, offset: (metrics.gap + 3) / 2) }
@@ -496,15 +519,17 @@ struct PopupDropDelegate: DropDelegate {
 
     private var isInternal: Bool { model.dragging != nil }
 
-    func validateDrop(info: DropInfo) -> Bool {
-        enabled && (model.isEditable(in: group) || target(info).onItem != nil)
-    }
+    func validateDrop(info: DropInfo) -> Bool { enabled }
 
     func dropEntered(info: DropInfo) { update(info) }
 
     func dropUpdated(info: DropInfo) -> DropProposal? {
         update(info)
-        if !model.isEditable(in: group) { return DropProposal(operation: model.dropOnItem != nil ? .copy : .forbidden) }
+        if !model.isEditable(in: group) {
+            // Smart groups and folder views cannot take items: the drop asks which group to add to.
+            if isInternal { return DropProposal(operation: .forbidden) }
+            return DropProposal(operation: .copy)
+        }
         return DropProposal(operation: isInternal ? .move : .copy)
     }
 
@@ -535,15 +560,10 @@ struct PopupDropDelegate: DropDelegate {
         guard !providers.isEmpty else { return false }
         let group = group, model = model, items = items
         let draggedURL = model.dragging
-        Task { @MainActor in
-            var urls: [URL] = []
-            for p in providers {
-                if let url = await Self.loadURL(p) { urls.append(url) }
-            }
-            guard !urls.isEmpty else { return }
+        PopupDrops.load(providers) { urls in
             let store = LibraryStore.shared
             // Reorder inside the popup.
-            if let dragged = draggedURL, let item = items.first(where: { $0.url == dragged || ($0.kind == .app && ItemOpener.appURL(for: $0) == urls.first) }) {
+            if let dragged = draggedURL, model.isEditable(in: group), let item = items.first(where: { $0.url == dragged || ($0.kind == .app && ItemOpener.appURL(for: $0) == urls.first) }) {
                 store.reorderItem(item.id, in: group.id, toShownIndex: t.insert, shown: items)
                 return
             }
@@ -554,22 +574,12 @@ struct PopupDropDelegate: DropDelegate {
                 model.actions.didLaunch()
                 return
             }
-            guard model.isEditable(in: group) else { return }
+            guard model.isEditable(in: group) else {
+                if draggedURL == nil { PopupGroupPicker.present(for: urls, model: model) }
+                return
+            }
             store.insertItems(urls, into: group.id, atShownIndex: t.insert, shown: items)
         }
         return true
-    }
-
-    /// File URL first, then any URL (links from browsers).
-    private static func loadURL(_ provider: NSItemProvider) async -> URL? {
-        await withCheckedContinuation { cont in
-            if provider.hasItemConformingToTypeIdentifier(UTType.fileURL.identifier) {
-                _ = provider.loadObject(ofClass: URL.self) { url, _ in cont.resume(returning: url) }
-            } else if provider.canLoadObject(ofClass: URL.self) {
-                _ = provider.loadObject(ofClass: URL.self) { url, _ in cont.resume(returning: url) }
-            } else {
-                cont.resume(returning: nil)
-            }
-        }
     }
 }

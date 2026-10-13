@@ -4,7 +4,25 @@ import Foundation
 extension LibraryStore {
     /// The look a popup uses for a group: global defaults or the group's own style.
     func popupStyle(of group: ItemGroup) -> GroupStyle {
-        group.usesDefaultStyle ? library.settings.defaultStyle : group.style
+        var style = group.usesDefaultStyle ? library.settings.defaultStyle : group.style
+        // "Popup follows Dock icon": fill, opacity and finish come from the group's icon.
+        if style.mirrorIcon, let fill = group.icon.background {
+            style.background = fill
+            style.opacity = group.icon.opacity
+            style.matte = group.icon.matte
+            if let border = group.icon.border { style.border = border }
+        }
+        return style
+    }
+
+    /// Points a missing item at its new location. Apps also take the new bundle ID.
+    func relinkItem(_ itemID: UUID, in groupID: UUID, to url: URL) {
+        updateGroup(owningGroupID(of: itemID, fallback: groupID)) { g in
+            guard let i = g.items.firstIndex(where: { $0.id == itemID }) else { return }
+            g.items[i].url = url
+            if g.items[i].kind == .app, let id = Bundle(url: url)?.bundleIdentifier { g.items[i].bundleID = id }
+        }
+        LibraryHealth.shared.scheduleScan()
     }
 
     /// Adds URLs at a position of the shown (possibly sorted) order. Existing URLs are skipped.
