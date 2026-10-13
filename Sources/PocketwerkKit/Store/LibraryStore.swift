@@ -141,20 +141,7 @@ final class LibraryStore {
     /// Items a popup shows for a group: sorted, and computed for smart groups.
     func visibleItems(of group: ItemGroup) -> [DockItem] {
         guard let smart = group.smart else { return group.sortedItems }
-        let all = library.groups.filter { $0.smart == nil }.flatMap(\.items)
-        var seen = Set<URL>()
-        let unique = all.filter { seen.insert($0.url).inserted }
-        switch smart {
-        case .mostUsed:
-            return Array(unique.filter { $0.openCount > 0 }.sorted { $0.openCount > $1.openCount }.prefix(12))
-        case .recentlyOpened:
-            return Array(unique.filter { $0.lastOpenedAt != nil }
-                .sorted { $0.lastOpenedAt! > $1.lastOpenedAt! }.prefix(12))
-        case .runningApps:
-            return NSWorkspace.shared.runningApplications
-                .filter { $0.activationPolicy == .regular }
-                .compactMap { $0.bundleURL.map { DockItem(kind: .app, url: $0) } }
-        }
+        return smartItems(smart, limit: group.smartLimit)
     }
 
     /// The group that really holds an item (smart groups only borrow items).
