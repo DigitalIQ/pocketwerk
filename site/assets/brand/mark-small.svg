@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="pwB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#24735f"/><stop offset="1" stop-color="#164a3e"/></linearGradient>
+<linearGradient id="pwP" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff7d3d"/><stop offset="1" stop-color="#ee5719"/></linearGradient>
+<pattern id="pwH" width="11" height="11" patternUnits="userSpaceOnUse" x="5.5" y="5.5"><circle cx="5.5" cy="5.5" r="1.45" fill="#0b382e"/></pattern></defs><rect width="100" height="100" rx="22.37" fill="url(#pwB)"/>
+<g stroke="#164a3e" stroke-width="3"><rect x="19" y="22" width="25" height="25" rx="6" fill="#f4f6f3" transform="rotate(-12 31.5 34.5)"/>
+<rect x="56" y="22" width="25" height="25" rx="6" fill="#ffd15c" transform="rotate(12 68.5 34.5)"/></g>
+<path d="M13 44h74l-6 33q-1.2 8-9 8H28q-7.8 0-9-8Z" fill="url(#pwP)"/></svg>
