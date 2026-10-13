@@ -598,6 +598,8 @@ nonisolated struct AppSettings: Codable, Hashable, Sendable {
     var checkForUpdates = true
     var lastUpdateCheck: Date?
     var skippedVersion: String?
+    /// Color variant of the app's own Dock icon ("standard", "honey", "ocean", "graphite", "iris").
+    var appIconVariant = "standard"
 }
 
 // MARK: - Library (root of everything persisted)

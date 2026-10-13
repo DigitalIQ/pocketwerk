@@ -86,8 +86,17 @@ nonisolated extension Background {
     }
 
     var isAnimated: Bool {
-        if case .fx = self { return true }
-        return false
+        switch self {
+        case .fx: return true
+        case .texture(let name, _): return TextureKind.hasSnow(name)
+        default: return false
+        }
+    }
+
+    /// The brightest color of the fill, lifted a little. Used for the glow tuning.
+    var glowColor: RGBA {
+        let best = paletteColors.max { $0.luminance < $1.luminance } ?? .white
+        return best.opaque.lighter(0.35)
     }
 
     /// Short name of the fill type, for the inspector and VoiceOver.

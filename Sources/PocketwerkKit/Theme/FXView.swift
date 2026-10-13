@@ -1,10 +1,15 @@
 import AppKit
 import Combine
+import IOKit.ps
 import SwiftUI
 
 /// Animated background for `Background.fx`. Drawn with Canvas + TimelineView (and MeshGradient
 /// for plasma), so no shader build step is needed.
-/// Pauses when `isActive` is false and shows a still frame under Reduce Motion and Low Power Mode.
+///
+/// CPU budget: the timeline is paused (no frames at all) when `isActive` is false or the window is
+/// hidden or fully covered, and a still frame is shown under Reduce Motion and Low Power Mode.
+/// While the pointer rests outside, slow effects drop to 20-30 fps; on battery every effect is capped
+/// at 30 fps and draws fewer particles.
 struct FXView: View {
     var params: FXParams
     /// Pointer in view coordinates from the caller. nil = read the real pointer position.
@@ -14,17 +19,28 @@ struct FXView: View {
     @State private var state = FXState()
     @State private var tracker = PointerTracker()
     @State private var lowPower = ProcessInfo.processInfo.isLowPowerModeEnabled
+    @State private var windowVisible = true
+    @State private var lively = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     /// Effect time used for still frames: late enough that every effect has filled the view.
     static let stillTime: Double = 24
 
-    private var animating: Bool { isActive && !reduceMotion && !lowPower }
+    /// Motion is allowed at all (otherwise a fixed still frame is shown).
+    private var motionAllowed: Bool { !reduceMotion && !lowPower }
+    private var animating: Bool { isActive && windowVisible && motionAllowed }
+
+    private var frameInterval: Double {
+        let battery = PowerState.onBattery
+        let fps = lively && !battery ? FXRenderer.framesPerSecond(params.kind) : FXRenderer.idleFramesPerSecond(params.kind)
+        return 1 / fps
+    }
 
     var body: some View {
         let animating = self.animating
-        TimelineView(.animation(minimumInterval: 1 / FXRenderer.framesPerSecond(params.kind), paused: !animating)) { timeline in
-            let real: Double? = animating ? timeline.date.timeIntervalSince(state.start) : nil
+        TimelineView(.animation(minimumInterval: frameInterval, paused: !animating)) { timeline in
+            // nil = still frame; inactive views freeze on the current moment of their clock instead.
+            let real: Double? = motionAllowed ? timeline.date.timeIntervalSince(state.start) : nil
             if params.kind == .plasma {
                 GeometryReader { geo in
                     PlasmaMesh(frame: makeFrame(size: geo.size, real: real))
@@ -36,7 +52,13 @@ struct FXView: View {
             }
         }
         .drawingGroup()
-        .background(PointerTrackingView(tracker: tracker))
+        .background(
+            // Zero opacity: the view only tracks; offscreen renderers would otherwise draw a placeholder for it.
+            PointerTrackingView(tracker: tracker) { visible in
+                if windowVisible != visible { windowVisible = visible }
+            }
+            .opacity(0)
+        )
         .onReceive(NotificationCenter.default.publisher(for: .NSProcessInfoPowerStateDidChange).receive(on: DispatchQueue.main)) { _ in
             lowPower = ProcessInfo.processInfo.isLowPowerModeEnabled
         }
@@ -45,12 +67,50 @@ struct FXView: View {
 
     private func makeFrame(size: CGSize, real: Double?) -> FXFrame {
         let still = real == nil
-        let now = real ?? 0
-        let ptr = still ? nil : (pointer ?? tracker.location())
-        let dt = still ? 0 : state.advance(real: now, pointer: ptr, model: params.pointer)
-        let t = (still ? Self.stillTime : now + 6) * max(0.05, params.speed)
-        return FXFrame(w: Double(size.width), h: Double(size.height), t: t, age: still ? 1000 : now, dt: dt,
-                       still: still, p: params, state: state)
+        let live = !still && animating
+        let ptr = live ? (pointer ?? tracker.location()) : nil
+        let dt = live ? state.advance(real: real ?? 0, pointer: ptr, model: params.pointer) : 0
+        // Effects run on one clock per look for the whole session, so reopening the popup
+        // continues the scene (and a settled snow pile stays settled). Paused views freeze on it.
+        let age = still ? 1000 : FXClock.age(of: params)
+        let t = ((still ? 0 : age) + Self.stillTime) * max(0.05, params.speed)
+        if live {
+            let wantLively = ptr != nil || state.influence > 0.01
+            if wantLively != lively { DispatchQueue.main.async { lively = wantLively } }
+        }
+        return FXFrame(w: Double(size.width), h: Double(size.height), t: t, age: age, dt: dt,
+                       still: !live, p: params, state: state, density: PowerState.onBattery ? 0.6 : 1)
+    }
+}
+
+/// One clock per look for the app session.
+enum FXClock {
+    private static var starts: [Int: Date] = [:]
+
+    static func age(of params: FXParams) -> Double {
+        var h = Hasher()
+        h.combine(params.kind)
+        h.combine(params.palette)
+        let key = h.finalize()
+        if let start = starts[key] { return Date().timeIntervalSince(start) }
+        starts[key] = Date()
+        return 0
+    }
+}
+
+/// Whether the Mac runs on battery. Read at most every 30 seconds.
+enum PowerState {
+    private static var cached = false
+    private static var checked = Date.distantPast
+
+    static var onBattery: Bool {
+        if Date().timeIntervalSince(checked) > 30 {
+            checked = Date()
+            let info = IOPSCopyPowerSourcesInfo()?.takeRetainedValue()
+            let type = info.flatMap { IOPSGetProvidingPowerSourceType($0)?.takeUnretainedValue() as String? }
+            cached = type == kIOPMBatteryPowerKey
+        }
+        return cached
     }
 }
 
@@ -68,6 +128,8 @@ struct FXFrame {
     var still: Bool
     var p: FXParams
     var state: FXState
+    /// Particle count factor: 1, or less on battery.
+    var density: Double = 1
 
     var size: CGSize { CGSize(width: w, height: h) }
     var rect: CGRect { CGRect(origin: .zero, size: size) }
@@ -82,7 +144,7 @@ struct FXFrame {
     /// Displacement away from the pointer for a point (ripple and comb models).
     func push(_ x: Double, _ y: Double, radius: Double? = nil, strength: Double = 1) -> (dx: Double, dy: Double) {
         guard let ptr = state.pointerPoint, state.influence > 0.001 else { return (0, 0) }
-        let r = radius ?? minSide * 0.22
+        let r = radius ?? minSide * PointerModel.radius
         let vx = x - Double(ptr.x), vy = y - Double(ptr.y)
         let d = max(0.001, (vx * vx + vy * vy).squareRoot())
         let f = exp(-(d / r) * (d / r))
@@ -103,6 +165,19 @@ struct FXFrame {
 }
 
 // MARK: - State
+
+/// Timings of the pointer models.
+enum PointerModel {
+    /// Ripple: how long the bump stays after the pointer leaves, then how long it takes to spring back.
+    static let rippleLinger = 0.6
+    static let rippleSpringBack = 0.68
+    /// Comb: strands return over this many seconds.
+    static let combSpringBack = 0.9
+    /// Shove: pushed particles keep their offset with this time constant.
+    static let shoveLinger = 10.0
+    /// Radius of the reaction relative to the shorter view side.
+    static let radius = 0.22
+}
 
 /// Per-view mutable state: smoothed pointer, its influence, shoved particle offsets and ripple rings.
 final class FXState {
@@ -142,15 +217,15 @@ final class FXState {
             switch model {
             case .ripple:
                 // Lingers briefly, then springs back.
-                if real - lastSeen > 0.6 { influence = max(0, influence - dt / 0.68) }
-            case .comb: influence = max(0, influence - dt / 0.9)
+                if real - lastSeen > PointerModel.rippleLinger { influence = max(0, influence - dt / PointerModel.rippleSpringBack) }
+            case .comb: influence = max(0, influence - dt / PointerModel.combSpringBack)
             case .shove, .still: influence = 0
             }
         }
         rings.removeAll { real - $0.born > 2.6 }
         if rings.count > 16 { rings.removeFirst(rings.count - 16) }
         // Shoved particles settle back slowly.
-        let decay = exp(-dt / 10)
+        let decay = exp(-dt / PointerModel.shoveLinger)
         for i in offsets.indices { offsets[i].dx *= decay; offsets[i].dy *= decay }
         return dt
     }
@@ -193,14 +268,46 @@ final class PointerTracker {
 
 struct PointerTrackingView: NSViewRepresentable {
     let tracker: PointerTracker
+    /// Called with false when the window is hidden, minimized or fully covered.
+    var onVisibility: ((Bool) -> Void)? = nil
 
-    func makeNSView(context: Context) -> NSView {
-        let v = PassthroughView()
+    func makeNSView(context: Context) -> TrackingView {
+        let v = TrackingView()
+        v.onVisibility = onVisibility
         tracker.view = v
         return v
     }
 
-    func updateNSView(_ nsView: NSView, context: Context) { tracker.view = nsView }
+    func updateNSView(_ nsView: TrackingView, context: Context) {
+        nsView.onVisibility = onVisibility
+        tracker.view = nsView
+    }
+}
+
+/// An empty view that never takes clicks and reports whether its window can be seen.
+final class TrackingView: NSView {
+    var onVisibility: ((Bool) -> Void)?
+    private var observer: NSObjectProtocol?
+
+    override func hitTest(_ point: NSPoint) -> NSView? { nil }
+
+    override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        if let observer { NotificationCenter.default.removeObserver(observer) }
+        observer = nil
+        guard let window else { return }
+        observer = NotificationCenter.default.addObserver(forName: NSWindow.didChangeOcclusionStateNotification, object: window,
+                                                          queue: .main) { [weak self] _ in
+            MainActor.assumeIsolated { self?.report() }
+        }
+        report()
+    }
+
+    private func report() {
+        guard let window else { return }
+        let visible = window.occlusionState.contains(.visible)
+        DispatchQueue.main.async { [onVisibility] in onVisibility?(visible) }
+    }
 }
 
 /// An empty view that never takes clicks.

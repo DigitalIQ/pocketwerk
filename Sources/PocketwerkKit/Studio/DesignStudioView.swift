@@ -62,6 +62,8 @@ struct StudioInspector: View {
             .pickerStyle(.segmented)
             .labelsHidden()
             .padding(12)
+            .frame(maxWidth: .infinity)
+            .background(Color(nsColor: .windowBackgroundColor))
             Divider()
             switch editor.tab {
             case .icon: StudioIconInspector(editor: editor)

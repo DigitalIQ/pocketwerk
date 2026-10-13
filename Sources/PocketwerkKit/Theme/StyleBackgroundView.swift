@@ -18,6 +18,10 @@ struct StyleBackgroundView: View {
     var opacity: Double = 1
     /// Used for the glass shape and its rim light.
     var cornerRadius: Double = 24
+    /// Soft light along the edges, 0...1.
+    var glow: Double = 0
+    /// Bevel: light from the top, shade at the bottom, 0...1.
+    var depth: Double = 0
 
     @Environment(\.accessibilityReduceTransparency) private var systemReduceTransparency
     @Environment(\.forceOpaqueBackgrounds) private var forceOpaque
@@ -25,8 +29,11 @@ struct StyleBackgroundView: View {
     @Environment(\.colorScheme) private var scheme
 
     init(background: Background, pointer: CGPoint? = nil, isActive: Bool = true,
-         glassAmount: Double = 0, matte: Double = 0, opacity: Double = 1, cornerRadius: Double = 24) {
+         glassAmount: Double = 0, matte: Double = 0, opacity: Double = 1, cornerRadius: Double = 24,
+         glow: Double = 0, depth: Double = 0) {
         self.background = background
+        self.glow = glow
+        self.depth = depth
         self.pointer = pointer
         self.isActive = isActive
         self.glassAmount = glassAmount
@@ -37,7 +44,8 @@ struct StyleBackgroundView: View {
 
     init(style: GroupStyle, pointer: CGPoint? = nil, isActive: Bool = true) {
         self.init(background: style.background, pointer: pointer, isActive: isActive, glassAmount: style.glassAmount,
-                  matte: style.matte, opacity: style.opacity, cornerRadius: style.cornerRadius)
+                  matte: style.matte, opacity: style.opacity, cornerRadius: style.cornerRadius,
+                  glow: style.glow, depth: style.depth)
     }
 
     private var reduceTransparency: Bool { systemReduceTransparency || forceOpaque }
@@ -63,6 +71,9 @@ struct StyleBackgroundView: View {
                 if rim > 0.01 {
                     GlassRim(shape: shape, strength: rim)
                 }
+                if glow > 0.01 || depth > 0.01 {
+                    SurfaceTuning(shape: shape, glow: glow, depth: depth, color: background.glowColor)
+                }
             }
         }
     }
@@ -86,7 +97,12 @@ struct StyleBackgroundView: View {
         case .wallpaper(let blur, let dim):
             WallpaperFill(blur: blur, dim: dim)
         case .texture(let name, let tint):
-            TextureFill(kind: TextureKind(name: name), tint: tint)
+            ZStack {
+                TextureFill(kind: TextureKind(name: name), tint: tint)
+                if TextureKind.hasSnow(name) {
+                    FXView(params: TextureKind.snowOverlay, pointer: pointer, isActive: isActive)
+                }
+            }
         }
     }
 
@@ -174,6 +190,38 @@ struct GlassRim: View {
             lineWidth: 1
         )
         .blendMode(.plusLighter)
+        .allowsHitTesting(false)
+    }
+}
+
+/// Glow and depth tuning on top of any fill.
+struct SurfaceTuning: View {
+    var shape: RoundedRectangle
+    var glow: Double
+    var depth: Double
+    var color: RGBA
+
+    var body: some View {
+        ZStack {
+            if depth > 0.01 {
+                // Bevel: a lit top edge and a shaded bottom, like a pressed card.
+                shape.fill(LinearGradient(stops: [
+                    .init(color: .white.opacity(0.16 * depth), location: 0),
+                    .init(color: .clear, location: 0.3),
+                    .init(color: .clear, location: 0.65),
+                    .init(color: .black.opacity(0.34 * depth), location: 1),
+                ], startPoint: .top, endPoint: .bottom))
+                shape.strokeBorder(.black.opacity(0.45 * depth), lineWidth: 6)
+                    .blur(radius: 5)
+                    .clipShape(shape)
+            }
+            if glow > 0.01 {
+                shape.strokeBorder(color.color.opacity(min(1, 0.9 * glow)), lineWidth: 4 + 10 * glow)
+                    .blur(radius: 6 + 10 * glow)
+                    .clipShape(shape)
+                    .blendMode(.plusLighter)
+            }
+        }
         .allowsHitTesting(false)
     }
 }

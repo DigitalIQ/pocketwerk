@@ -316,7 +316,9 @@ private struct IconColorSection: View {
                     }
                     ColorRow(title: "Tint", color: primary)
                 default:
-                    SwatchPicker(title: "Color", color: primary)
+                    SwatchPicker(title: "Color", color: primary) { c in
+                        editor.edit { $0.icon.background = .gradient(colors: StudioPalette.gradientPair(c), angle: 90) }
+                    }
                 }
             }
             if showsForeground {
