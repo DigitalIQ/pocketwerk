@@ -80,7 +80,7 @@ struct PopupItemCell: View {
                 }
             }
             .overlay(alignment: .topLeading) {
-                if let shortcut, model.modifiers.contains(.control), !preview {
+                if let shortcut, model.modifiers.contains(.control) {
                     Text("\(shortcut)")
                         .font(.system(size: 10, weight: .bold).monospacedDigit())
                         .foregroundStyle(.white)

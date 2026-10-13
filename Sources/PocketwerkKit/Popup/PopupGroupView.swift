@@ -20,9 +20,9 @@ struct PopupGroupView: View {
         self.preview = preview
     }
 
-    init(group: ItemGroup, model: PopupModel, size: CGSize?) {
+    init(group: ItemGroup, model: PopupModel, size: CGSize?, preview: Bool = false) {
         self.group = group
-        self.preview = false
+        self.preview = preview
         self.model = model
         self.size = size
     }
@@ -68,7 +68,7 @@ struct PopupCard: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.colorSchemeContrast) private var contrast
 
-    private var store: LibraryStore { .shared }
+    private var store: LibraryStore { model.store }
 
     var body: some View {
         let style = store.popupStyle(of: group)
@@ -81,7 +81,7 @@ struct PopupCard: View {
         let lightText = PopupLook.prefersLightText(background, dark: scheme == .dark)
         let surfaceStyle = { var s = style; s.background = background; return s }()
 
-        let sidebar = !preview && model.usesSidebar
+        let sidebar = model.usesSidebar && (!preview || model.sidebarOverride == true)
         HStack(spacing: 0) {
             if sidebar {
                 PopupSidebar(model: model, style: style, lightText: lightText)
@@ -222,7 +222,7 @@ struct PopupHeader: View {
     @ViewBuilder
     private var title: some View {
         let font = PopupLook.font(style.labels, size: 13 * scale, weightBoost: 0.15)
-        if !preview, model.groupIDs.count > 1, !model.isInFolder {
+        if !preview, model.groupIDs.count > 1, !model.isInFolder, !model.usesSidebar {
             // Quick switcher.
             Menu {
                 ForEach(Array(model.groups.enumerated()), id: \.element.id) { i, g in

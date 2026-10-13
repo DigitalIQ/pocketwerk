@@ -22,7 +22,7 @@ extension LibraryStore {
             g.items[i].url = url
             if g.items[i].kind == .app, let id = Bundle(url: url)?.bundleIdentifier { g.items[i].bundleID = id }
         }
-        LibraryHealth.shared.scheduleScan()
+        if self === LibraryStore.shared { LibraryHealth.shared.scheduleScan() }
     }
 
     /// Adds URLs at a position of the shown (possibly sorted) order. Existing URLs are skipped.

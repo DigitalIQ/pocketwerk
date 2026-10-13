@@ -16,21 +16,26 @@ struct PopupSidebar: View {
         12 + CGFloat(groupCount) * (rowHeight + 2) + 40
     }
 
-    private var collapsed: Bool { LibraryStore.shared.settings.sidebarCollapsed }
+    private var collapsed: Bool { model.store.settings.sidebarCollapsed }
     private var color: Color { PopupLook.labelColor(style.labels, lightText: lightText) }
+
+    private var rows: some View {
+        VStack(spacing: 2) {
+            ForEach(Array(model.groups.enumerated()), id: \.element.id) { i, group in
+                SidebarRow(group: group, index: i, model: model, collapsed: collapsed, color: color, labels: style.labels)
+            }
+        }
+        .padding(.horizontal, 8)
+        .padding(.top, 12)
+    }
 
     var body: some View {
         VStack(spacing: 0) {
-            ScrollView(.vertical) {
-                VStack(spacing: 2) {
-                    ForEach(Array(model.groups.enumerated()), id: \.element.id) { i, group in
-                        SidebarRow(group: group, index: i, model: model, collapsed: collapsed, color: color, labels: style.labels)
-                    }
-                }
-                .padding(.horizontal, 8)
-                .padding(.top, 12)
+            // Scrolls only when the groups do not fit.
+            ViewThatFits(in: .vertical) {
+                rows
+                ScrollView(.vertical) { rows }.scrollIndicators(.never)
             }
-            .scrollIndicators(.never)
             Spacer(minLength: 0)
             HStack {
                 Button { model.toggleSidebar() } label: {
@@ -124,6 +129,13 @@ private struct SidebarRow: View {
     private var marker: some View {
         if let emoji = group.emoji, !emoji.isEmpty {
             Text(emoji).font(.system(size: collapsed ? 18 : 15)).frame(width: 22)
+        } else if let first = model.store.visibleItems(of: group).first {
+            // The first item's icon reads better than a color dot on any background.
+            let size: CGFloat = collapsed ? 24 : 18
+            Image(nsImage: PopupIconCache.shared.icon(for: first, size: size))
+                .resizable()
+                .frame(width: size, height: size)
+                .frame(width: 22)
         } else {
             Circle()
                 .fill(GroupColor.swatch(for: group).color)

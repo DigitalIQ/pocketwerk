@@ -54,7 +54,8 @@ final class PopupModel {
         self.slotID = slotID
     }
 
-    var store: LibraryStore { .shared }
+    /// The library this popup reads. Previews may pass their own.
+    @ObservationIgnored var store: LibraryStore = .shared
 
     var currentGroup: ItemGroup? {
         guard !groupIDs.isEmpty else { return nil }
@@ -126,7 +127,10 @@ final class PopupModel {
     // MARK: Sidebar
 
     /// Group list on the left instead of swiping (settings), only when there is more than one group.
-    var usesSidebar: Bool { store.settings.popupNavigation == .sidebar && groupIDs.count > 1 }
+    var usesSidebar: Bool { (sidebarOverride ?? (store.settings.popupNavigation == .sidebar)) && groupIDs.count > 1 }
+
+    /// Forces the sidebar on or off (previews), nil = follow the setting.
+    var sidebarOverride: Bool?
 
     var sidebarWidth: CGFloat {
         guard usesSidebar else { return 0 }
