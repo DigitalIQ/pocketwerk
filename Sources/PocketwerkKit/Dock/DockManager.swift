@@ -86,6 +86,10 @@ final class DockManager {
         observers.append(NotificationCenter.default.addObserver(forName: .libraryDidChange, object: store, queue: .main) { [weak self] _ in
             MainActor.assumeIsolated { self?.syncWithLibrary() }
         })
+        // Favicons change the item grid of Dock icons.
+        observers.append(NotificationCenter.default.addObserver(forName: .itemIconsDidChange, object: nil, queue: .main) { [weak self] _ in
+            MainActor.assumeIsolated { self?.refreshIcons() }
+        })
         rememberLibrary()
         DockProfiles.shared.start()
         // Rebuild launchers made by an older app version and heal icons, after launch settles.
@@ -442,6 +446,8 @@ final class DockManager {
     private struct Art {
         var image: NSImage
         var clip: Bool
+        /// Already drawn on the macOS icon grid (IconRenderer output): use as is.
+        var onGrid = false
     }
 
     private func iconArt(_ target: LauncherTarget) -> (Art, String) {
@@ -449,9 +455,9 @@ final class DockManager {
         switch target {
         case .slot(let id):
             guard let slot = lib.slot(id) else { return (Art(image: NSImage(), clip: false), "") }
-            let shape = LauncherIcon.shape(for: slot, library: lib)
+            // IconRenderer already draws on the 1024 grid (art 0.832, rounded mask), so no second inset.
             let art = IconRenderer.slotIcon(slot, library: lib, size: 1024)
-            return (Art(image: art, clip: shape == .squircle || shape == .roundedSquare || shape == .square),
+            return (Art(image: art, clip: false, onGrid: true),
                     LauncherIcon.hash(LauncherIcon.inputs(for: slot, library: lib)))
         case .spacer(let id):
             guard let spacer = lib.spacers.first(where: { $0.id == id }) else { return (Art(image: NSImage(), clip: false), "") }
@@ -461,10 +467,10 @@ final class DockManager {
 
     /// Custom Finder icon (after signing, so codesign never sees it) plus the PNG the running launcher shows.
     private func applyIcon(_ art: Art, to bundle: URL, id: UUID) {
-        let custom = LauncherIcon.compose(art.image, scale: LauncherIcon.customIconScale, clip: art.clip)
+        let custom = art.onGrid ? art.image : LauncherIcon.compose(art.image, scale: LauncherIcon.customIconScale, clip: art.clip)
         NSWorkspace.shared.setIcon(custom, forFile: bundle.path, options: [])
         NSWorkspace.shared.noteFileSystemChanged(bundle.path)
-        let png = LauncherIcon.png(LauncherIcon.compose(art.image, clip: art.clip), pixels: 512)
+        let png = LauncherIcon.png(art.onGrid ? art.image : LauncherIcon.compose(art.image, clip: art.clip), pixels: 512)
         let url = PWShared.iconURL(id: id.uuidString)
         try? FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
         try? png?.write(to: url, options: .atomic)

@@ -58,6 +58,10 @@ final class PopupIconCache {
         NotificationCenter.default.addObserver(forName: NSApplication.didChangeScreenParametersNotification, object: nil, queue: .main) { _ in
             MainActor.assumeIsolated { PopupIconCache.shared.purge() }
         }
+        // A favicon arrived: drop cached link icons so the new one shows.
+        NotificationCenter.default.addObserver(forName: .itemIconsDidChange, object: nil, queue: .main) { _ in
+            MainActor.assumeIsolated { PopupIconCache.shared.purge() }
+        }
         scheduleWarm(after: 1.0)
     }
 

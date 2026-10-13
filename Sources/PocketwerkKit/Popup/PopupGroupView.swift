@@ -77,6 +77,7 @@ struct PopupCard: View {
         let shape = RoundedRectangle(cornerRadius: radius, style: .continuous)
         let background = reduceTransparency ? PopupLook.opaque(style.background, dark: scheme == .dark) : style.background
         let lightText = PopupLook.prefersLightText(background, dark: scheme == .dark)
+        let surfaceStyle = { var s = style; s.background = background; return s }()
 
         VStack(spacing: 0) {
             if metrics.headerHeight > 0 {
@@ -98,12 +99,9 @@ struct PopupCard: View {
         .frame(width: cardSize.width, height: cardSize.height, alignment: .top)
         .background {
             ZStack {
-                StyleBackgroundView(background: background, pointer: model.pointer,
+                // The style init applies glass amount, matte and opacity on top of the fill.
+                StyleBackgroundView(style: surfaceStyle, pointer: model.pointer,
                                     isActive: (preview || model.isVisible) && !ProcessInfo.processInfo.isLowPowerModeEnabled)
-                    .opacity(style.opacity)
-                if style.glassAmount > 0, !reduceTransparency {
-                    Rectangle().fill(.ultraThinMaterial).opacity(style.glassAmount * 0.7)
-                }
             }
             .contentShape(shape)
             .gesture(swipeGesture)

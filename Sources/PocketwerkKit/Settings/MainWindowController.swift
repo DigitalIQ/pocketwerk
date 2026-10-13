@@ -81,16 +81,20 @@ final class MainWindowController: NSObject, NSWindowDelegate {
     private func open() {
         if window == nil {
             model.columnVisibility = LibraryStore.shared.settings.sidebarCollapsed ? .detailOnly : .all
-            let w = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 980, height: 640),
+            // The Design Studio needs about 1000 x 640 next to the sidebar.
+            let w = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 1260, height: 800),
                              styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
                              backing: .buffered, defer: false)
             w.title = "Pocketwerk"
             w.isReleasedWhenClosed = false
             w.toolbarStyle = .unified
-            w.contentMinSize = NSSize(width: 720, height: 460)
-            w.contentViewController = NSHostingController(rootView: MainWindowView(model: model))
-            w.setFrameAutosaveName("PocketwerkMainWindow")
-            if !w.setFrameUsingName("PocketwerkMainWindow") { w.center() }
+            w.contentMinSize = NSSize(width: 900, height: 600)
+            let hosting = NSHostingController(rootView: MainWindowView(model: model))
+            hosting.sizingOptions = [.minSize]
+            w.contentViewController = hosting
+            w.setContentSize(NSSize(width: 1260, height: 800))
+            if !w.setFrameUsingName("PocketwerkMainWindow2") { w.center() }
+            w.setFrameAutosaveName("PocketwerkMainWindow2")
             w.delegate = self
             window = w
         }
