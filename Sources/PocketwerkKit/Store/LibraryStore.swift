@@ -214,14 +214,14 @@ final class LibraryStore {
         replace(with: lib)
     }
 
-    nonisolated(unsafe) static let encoder: JSONEncoder = {
+    nonisolated static let encoder: JSONEncoder = {
         let e = JSONEncoder()
         e.outputFormatting = [.prettyPrinted, .sortedKeys]
         e.dateEncodingStrategy = .iso8601
         return e
     }()
 
-    nonisolated(unsafe) static let decoder: JSONDecoder = {
+    nonisolated static let decoder: JSONDecoder = {
         let d = JSONDecoder()
         d.dateDecodingStrategy = .iso8601
         return d
@@ -250,7 +250,7 @@ final class LibraryStore {
 
     static func starterLibrary() -> Library {
         var lib = Library()
-        var g = ItemGroup(name: "Favoriten")
+        var g = ItemGroup(name: "Favorites")
         let apps = ["/System/Applications/Mail.app", "/System/Applications/Calendar.app",
                     "/System/Applications/Notes.app", "/Applications/Safari.app",
                     "/System/Applications/Music.app", "/System/Applications/System Settings.app"]
