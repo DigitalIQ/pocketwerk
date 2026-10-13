@@ -537,3 +537,31 @@ html { scrollbar-color: var(--board-lit) transparent; }
 @media (prefers-color-scheme: dark) {
   .privacy { background: #16211d; box-shadow: inset 0 1px 0 var(--line), inset 0 -1px 0 var(--line); }
 }
+
+/* ---------- real screenshots ---------- */
+.real-pockets { margin-top: clamp(64px, 9vw, 110px); }
+.pocket-wall {
+  margin-top: 18px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; align-items: end;
+  padding: 28px 20px 0; border-radius: 26px; overflow: hidden;
+  background-color: var(--board-deep);
+  background-image: radial-gradient(circle at 50% 50%, rgba(5, 33, 26, 0.85) 0 2.6px, transparent 3px), linear-gradient(to top, rgba(244, 246, 243, 0.16) 0 92px, transparent 92px);
+  background-size: 20px 20px, 100% 100%;
+  box-shadow: var(--shadow);
+}
+.real-pop { margin: 0; display: grid; justify-items: center; }
+.real-pop img { width: 100%; height: auto; }
+.real-icon { display: grid; place-items: center; width: 54px; height: 54px; margin-top: 4px; border-radius: 13px; background: var(--board-lit); position: relative; }
+.real-icon::after { content: ""; position: absolute; bottom: -8px; left: 50%; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: var(--paper); }
+.real-icon .mg { width: 36px; height: 36px; }
+.real-pop figcaption { margin: 18px 0 16px; color: var(--on-board-muted); font-size: 0.92rem; text-align: center; }
+.real-pop figcaption b { color: var(--paper); font-weight: 700; }
+.real-note { margin-top: 12px; color: var(--muted); font-size: 0.92rem; }
+.app-shot { margin: clamp(40px, 6vw, 72px) 0 0; }
+.app-shot img { width: 100%; height: auto; filter: drop-shadow(0 24px 30px rgba(5, 30, 24, 0.35)); }
+.app-shot figcaption { margin-top: 14px; color: var(--muted); font-size: 0.95rem; }
+.app-shot-board img { filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.45)); }
+@media (max-width: 860px) {
+  .pocket-wall { grid-template-columns: repeat(3, minmax(260px, 1fr)); overflow-x: auto; scroll-snap-type: x mandatory; padding-inline: 12px; }
+  .real-pop { scroll-snap-align: center; }
+}
+.real-pop-studio img { width: 80%; }

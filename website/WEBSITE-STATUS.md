@@ -70,11 +70,13 @@ Logo: mark (pegboard plate, orange pocket, three tiles: paper, yellow, mint) plu
 15. Phase 6, tweak panel skipped: it exists for a person to drag values; no person in this run.
 16. Phase 7: meta, canonical, Open Graph image (1200 x 630), `robots.txt` (all crawlers incl. AI crawlers), `sitemap.xml`, `llms.txt`, JSON-LD `SoftwareApplication` plus `FAQPage`. No legal texts, no cookie banner: the site sets no cookies, loads no trackers and has no forms; the only third-party request is three.js from jsDelivr after the first interaction. Note: on a GitHub Pages project site, crawlers read robots.txt at the domain root, so `site/robots.txt` mainly documents intent.
 
+17. 2026-10-13, real screenshots: three real popups on a board-green Dock strip ("Three pockets from the app") under the demo, the Design Studio screenshot under the swatch rail, the profile editor under the profile switcher. AVIF and WebP in 2 to 3 widths with srcset, PNG fallback, all lazy. Studio popup shown at 80 % because its screenshot is at a larger scale than the other two. Video rendered with the real shots (16.5 s, MP4 597 KB, WebM 560 KB), poster is the 5 s frame, `data-video-ready="true"`. Footer and JSON-LD link the repo's LICENSE file.
+
 ## Measurements (local, `python3 -m http.server`, Lighthouse 12.8.2)
 
 | Run | Performance | Accessibility | Best practices | SEO | LCP | TBT | CLS |
 |---|---|---|---|---|---|---|---|
-| Mobile | 99 | 100 | 100 | 100 | 2.2 s | 0 ms | 0 |
+| Mobile | 98 | 100 | 100 | 100 | 2.3 s | 20 ms | 0 |
 | Desktop | 100 | 100 | 100 | 100 | 0.5 s | 0 ms | 0 |
 
 GitHub Pages serves with compression and a CDN, so live numbers should be equal or better. Not re-measured live (no deploy).
@@ -82,7 +84,6 @@ GitHub Pages serves with compression and a CDN, so live numbers should be equal 
 ## Open questions for the maker
 
 1. Are issues and pull requests welcome? Not claimed until confirmed.
-2. Add a `LICENSE` file at the repo root; the footer links the repository meanwhile.
 3. Public syntax of the URL scheme and the CLI for profile switching.
 4. Version number for the download button.
 

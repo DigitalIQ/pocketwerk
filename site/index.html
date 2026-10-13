@@ -42,7 +42,7 @@
       "operatingSystem": "macOS 26 Tahoe or later",
       "processorRequirements": "Apple Silicon or Intel",
       "inLanguage": ["en", "de"],
-      "license": "https://opensource.org/license/mit",
+      "license": "https://github.com/DigitalIQ/pocketwerk/blob/main/LICENSE",
       "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "downloadUrl": "https://github.com/DigitalIQ/pocketwerk/releases/latest",
@@ -155,8 +155,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
 <section class="film" aria-labelledby="film-h">
   <h2 id="film-h" class="sr-only">Pocketwerk in action</h2>
-  <figure class="film-frame" id="film" data-video-ready="false" data-mp4="video/pocketwerk.mp4" data-webm="video/pocketwerk.webm">
-    <img src="assets/img/video-poster.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Title card of the Pocketwerk video: the line Pockets for your Dock above a row of Dock icons.">
+  <figure class="film-frame" id="film" data-video-ready="true" data-mp4="video/pocketwerk.mp4" data-webm="video/pocketwerk.webm">
+    <img src="assets/img/video-poster.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Frame from the Pocketwerk video: the Evening pocket open above its Dock icon, with the caption One click opens a pocket.">
     <figcaption>A pocket opens from the Dock, changes its look and switches the Dock profile.</figcaption>
   </figure>
 </section>
@@ -213,6 +213,27 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <p class="demo-note">Example pocket, drawn for this page. Keys: arrows, Return, Space, type to search, <kbd>⌘</kbd>-click, <kbd>⌥</kbd>-click.</p>
     </div>
   </div>
+  <div class="wrap real-pockets">
+    <h3>Three pockets from the app</h3>
+    <div class="pocket-wall" tabindex="0" role="region" aria-label="Three pockets from the app">
+        <figure class="real-pop">
+          <picture><source type="image/avif" srcset="assets/shots/popup-evening-436.avif 436w, assets/shots/popup-evening-872.avif 872w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 30vw, 300px"><source type="image/webp" srcset="assets/shots/popup-evening-436.webp 436w, assets/shots/popup-evening-872.webp 872w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 30vw, 300px"><img src="assets/shots/popup-evening.png" width="872" height="600" loading="lazy" decoding="async" alt="The Evening pocket with an animated aurora look: Music, TV, Podcasts, Books, VLC, News, Steam and Chess."></picture>
+          <span class="real-icon" aria-hidden="true"><span class="mg"><i style="background:#e5363f"></i><i style="background:#16171a"></i><i style="background:#8b3fd1"></i><i style="background:#f08a24"></i></span></span>
+          <figcaption><b>Evening</b>, animated aurora look</figcaption>
+        </figure>
+        <figure class="real-pop">
+          <picture><source type="image/avif" srcset="assets/shots/popup-code-436.avif 436w, assets/shots/popup-code-872.avif 872w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 30vw, 300px"><source type="image/webp" srcset="assets/shots/popup-code-436.webp 436w, assets/shots/popup-code-872.webp 872w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 30vw, 300px"><img src="assets/shots/popup-code.png" width="872" height="600" loading="lazy" decoding="async" alt="The Code pocket in a graphite look: Xcode, Visual Studio Code, Ghostty, Terminal, OrbStack, Instruments, CotEditor and Activity Monitor."></picture>
+          <span class="real-icon" aria-hidden="true"><span class="mg"><i style="background:#2f7bf5"></i><i style="background:#f4f6f3"></i><i style="background:#1c2a8a"></i><i style="background:#16171a"></i></span></span>
+          <figcaption><b>Code</b>, graphite look</figcaption>
+        </figure>
+        <figure class="real-pop real-pop-studio">
+          <picture><source type="image/avif" srcset="assets/shots/popup-studio-436.avif 436w, assets/shots/popup-studio-872.avif 872w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 30vw, 300px"><source type="image/webp" srcset="assets/shots/popup-studio-436.webp 436w, assets/shots/popup-studio-872.webp 872w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 30vw, 300px"><img src="assets/shots/popup-studio.png" width="872" height="600" loading="lazy" decoding="async" alt="The Studio pocket in a pastel animated look: Affinity, Freeform, Image Playground, Photos and Preview."></picture>
+          <span class="real-icon" aria-hidden="true"><span class="mg"><i style="background:#9be15d"></i><i style="background:#1f6f86"></i><i style="background:#16171a"></i><i style="background:#f4f6f3"></i></span></span>
+          <figcaption><b>Studio</b>, pastel animated look</figcaption>
+        </figure>
+    </div>
+    <p class="real-note">Screenshots from Pocketwerk with demo pockets. Each one opens above its own Dock icon.</p>
+  </div>
 </section>
 
 <section class="studio" id="design" aria-labelledby="design-h">
@@ -234,6 +255,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <button type="button" class="swatch" data-look="paper" aria-pressed="false"><span class="chip c-paper"></span>Paper</button>
       <button type="button" class="swatch" data-look="pointer" aria-pressed="false"><span class="chip c-pointer"></span>Pointer</button>
     </div>
+
+    <figure class="app-shot">
+      <picture><source type="image/avif" srcset="assets/shots/design-studio-800.avif 800w, assets/shots/design-studio-1280.avif 1280w, assets/shots/design-studio-1680.avif 1680w" sizes="(min-width: 1248px) 1200px, calc(100vw - 32px)"><source type="image/webp" srcset="assets/shots/design-studio-800.webp 800w, assets/shots/design-studio-1280.webp 1280w, assets/shots/design-studio-1680.webp 1680w" sizes="(min-width: 1248px) 1200px, calc(100vw - 32px)"><img src="assets/shots/design-studio.png" width="1600" height="1005" loading="lazy" decoding="async" alt="The Design Studio in Pocketwerk: a gallery of looks on the left, a live preview of the Studio pocket in the Candy Clouds look in the middle, icon settings on the right."></picture>
+      <figcaption>The Design Studio in the app, here with the Candy Clouds look.</figcaption>
+    </figure>
 
     <div class="icon-styles">
       <div class="icon-copy">
@@ -276,6 +302,12 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <li><svg aria-hidden="true"><use href="#g-link"/></svg>URL</li>
       </ul>
     </div>
+  </div>
+  <div class="wrap">
+    <figure class="app-shot app-shot-board">
+      <picture><source type="image/avif" srcset="assets/shots/profiles-800.avif 800w, assets/shots/profiles-1280.avif 1280w, assets/shots/profiles-1680.avif 1680w" sizes="(min-width: 1248px) 1200px, calc(100vw - 32px)"><source type="image/webp" srcset="assets/shots/profiles-800.webp 800w, assets/shots/profiles-1280.webp 1280w, assets/shots/profiles-1680.webp 1680w" sizes="(min-width: 1248px) 1200px, calc(100vw - 32px)"><img src="assets/shots/profiles.png" width="1600" height="1005" loading="lazy" decoding="async" alt="The Dock profiles editor in Pocketwerk: the Deep Work profile with its apps and the Downloads folder, the options for when it is applied, and its hotkey Control Option 1."></picture>
+      <figcaption>The profile editor: apps, folders and links, what happens when the profile is applied, and its hotkey.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -385,7 +417,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <ul class="footer-links">
       <li><a href="https://github.com/DigitalIQ/pocketwerk">Source on GitHub</a></li>
       <li><a href="https://github.com/DigitalIQ/pocketwerk/releases">Releases</a></li>
-      <li><a href="https://opensource.org/license/mit">MIT License</a></li>
+      <li><a href="https://github.com/DigitalIQ/pocketwerk/blob/main/LICENSE">MIT License</a></li>
     </ul>
     <p class="fine">No cookies, no tracking.</p>
   </div>

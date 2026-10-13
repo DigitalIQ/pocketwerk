@@ -37,6 +37,13 @@ Logo "Pocketwerk" (home). Links: Features, Design, Profiles, Install, FAQ. Butto
 - Idea 4, heading: Pockets that fill themselves. Text: Smart pockets show your Most Used, Recently Opened and Running Apps.
 - Demo label: Try it: an example pocket. Buttons: Grid, List, Tiles. Note under demo: Example pocket, drawn for this page.
 
+### Real screenshots (added 2026-10-13)
+
+- Features, heading: Three pockets from the app. Captions: Evening, animated aurora look / Code, graphite look / Studio, pastel animated look. Note: Screenshots from Pocketwerk with demo pockets. Each one opens above its own Dock icon.
+- Design Studio caption: The Design Studio in the app, here with the Candy Clouds look.
+- Profiles caption: The profile editor: apps, folders and links, what happens when the profile is applied, and its hotkey.
+- Video caption unchanged; poster alt: Frame from the Pocketwerk video: the Evening pocket open above its Dock icon, with the caption One click opens a pocket.
+
 ### Design Studio
 
 - H2: Make every pocket look its own way

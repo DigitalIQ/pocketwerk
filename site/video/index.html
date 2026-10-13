@@ -21,7 +21,8 @@
   .sub { position: absolute; left: 100px; top: 460px; font-size: 30px; color: #c9ddd4; font-weight: 450; }
   .mark { position: absolute; left: 100px; top: 96px; width: 72px; height: 72px; border-radius: 16px; }
   .caption { position: absolute; left: 0; right: 0; top: 52px; text-align: center; font-size: 44px; font-weight: 800; font-stretch: 118%; letter-spacing: -0.02em; }
-  .shot { position: absolute; left: 50%; top: 140px; width: 960px; height: 600px; margin-left: -480px; border-radius: 22px; object-fit: contain; background: #164a3e; box-shadow: 0 30px 60px -24px rgba(0,0,0,.6); }
+  .shot { position: absolute; left: 50%; top: 140px; width: 960px; height: 600px; margin-left: -480px; object-fit: contain; filter: drop-shadow(0 24px 30px rgba(0,0,0,.45)); }
+  .shot.pop { filter: none; }
   .clip.dock { inset: auto; position: absolute; left: 0; right: 0; margin: 0 auto; width: fit-content; bottom: 40px; display: flex; gap: 14px; padding: 14px 18px; border-radius: 28px; background: rgba(244,246,243,.2); border: 1px solid rgba(255,255,255,.3); }
   .ic { width: 72px; height: 72px; border-radius: 17px; }
   .pk { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 12px; background: #24735f; }
@@ -46,9 +47,10 @@
   <!-- the Dock stays for scenes 1 and 2 -->
   <div id="dock" class="dock clip" data-start="0" data-duration="7.6" data-track-index="1">
     <span class="ic" style="background:#f4f6f3"></span>
+    <span class="ic" style="background:#24735f"></span>
     <span class="ic pk"><i style="background:#9fdcc4"></i><i style="background:#f4f6f3"></i><i style="background:#0f1b17"></i><i style="background:#ffd15c"></i></span>
+    <span class="ic pk" id="pk2"><i style="background:#e5363f"></i><i style="background:#16171a"></i><i style="background:#8b3fd1"></i><i style="background:#f08a24"></i></span>
     <span class="ic" style="background:#0f1b17"></span>
-    <span class="ic pk" id="pk2"><i style="background:#ffd15c"></i><i style="background:#ff6b2c"></i><i style="background:#9fdcc4"></i><i style="background:#f4f6f3"></i></span>
     <span class="ic" style="background:#ffd15c"></span>
     <span class="ic" style="background:#9fdcc4"></span>
   </div>
@@ -56,7 +58,7 @@
   <!-- 2: a pocket opens -->
   <div id="s2" class="clip" data-start="3.6" data-duration="4" data-track-index="2">
     <div class="caption" id="c2">One click opens a pocket</div>
-    <img class="shot" id="shot2" src="assets/shots/popup.png" alt="" style="top:120px;height:520px;width:832px;margin-left:-416px">
+    <img class="shot pop" id="shot2" src="assets/shots/popup-evening.png" alt="" style="top:116px;height:530px;width:770px;margin-left:-385px">
   </div>
 
   <!-- 3: design studio -->
@@ -68,7 +70,7 @@
   <!-- 4: dock profiles -->
   <div id="s4" class="clip" data-start="11.2" data-duration="3.2" data-track-index="2">
     <div class="caption" id="c4">Switch the whole Dock with a hotkey</div>
-    <div class="key" id="k4">⌃⌥2</div>
+    <div class="key" id="k4">⌃⌥1</div>
     <img class="shot" id="shot4" src="assets/shots/profiles.png" alt="" style="top:120px;height:540px;width:864px;margin-left:-432px">
   </div>
 
