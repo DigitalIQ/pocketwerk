@@ -37,9 +37,9 @@ Terms: a **group** is a named set of items (apps, files, folders, links) with it
 | Folder | Entry points other modules call |
 |---|---|
 | `App/` | `PocketwerkMain.run()`, `AppCoordinator`, `URLRouter.handle(_:)`, `MainMenu.install()`, `MenuAction.item(...)` |
-| `Dock/` | `DockManager.shared`: `start()`, `installLauncher(for:)`, `removeLauncher(for:)`, `addToDock(slotID:)`, `removeFromDock(slotID:)`, `isInDock(slotID:)`, `refreshIcons()`. `DockProfiles.shared`: `captureCurrent(name:)`, `apply(_:)`. `DockGeometry` (Dock edge, screen, tile frame, magnification) |
+| `Dock/` | `DockManager.shared`: `start()`, `installLauncher(for:)`, `removeLauncher(for:)`, `addToDock(slotID:)`, `removeFromDock(slotID:)`, `isInDock(slotID:)`, `refreshIcons()`. `DockProfiles.shared`: `captureCurrent(name:)`, `apply(_:)` |
 | `Icons/` | `IconRenderer.icon(for:size:)`, `groupIcon(_:size:)`, `slotIcon(_:library:size:)`, `render(spec:style:name:items:size:)` |
-| `Popup/` | `PopupController.shared`: `toggle(slotID:)`, `toggleAll()`, `toggle(groupIDs:slotID:anchor:)`, `show(...)`, `hide()`. `PopupGroupView(group:preview:)`. `ItemOpener.open(_:in:)`, `openAll(_:)` |
+| `Popup/` | `PopupController.shared`: `prepare()` (at launch), `toggle(slotID:anchor:source:)`, `toggleAll(anchor:source:)`, `toggle(groupIDs:slotID:anchor:source:)`, `show(...)`, `hide()`. `anchor` = pointer position of the Dock click (Cocoa coordinates, nil = current mouse location); `source` `.dock` / `.hotkey` / `.menuBar` picks `placement` or `hotkeyPlacement`. `PopupGroupView(group:preview:)`. `ItemOpener.open(_:in:)`, `openAll(_:)`, `hideAll(_:)`, `quitAll(_:force:)`. `PopupIconCache.shared.icon(for:size:)`. `DockGeometry` (Dock edge, Dock screen, magnification gap, placement; pure functions) |
 | `Theme/` | `ThemeLibrary.builtIn`, `ThemeLibrary.apply(_:to:)`, `StyleBackgroundView(background:pointer:isActive:)` |
 | `Studio/` | `DesignStudioView(groupID:)` |
 | `Settings/` | `MainWindowController.shared.show(selecting:)` |

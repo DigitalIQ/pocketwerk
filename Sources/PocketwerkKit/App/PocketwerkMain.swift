@@ -21,6 +21,7 @@ final class AppCoordinator: NSObject, NSApplicationDelegate {
         HotkeyCenter.shared.start()
         DockManager.shared.start()
         ServicesProvider.shared.register()
+        PopupController.shared.prepare()
 
         NotificationCenter.default.addObserver(forName: .libraryDidChange, object: nil, queue: .main) { _ in
             MainActor.assumeIsolated { AppCoordinator.current?.applyActivationPolicy() }
