@@ -54,6 +54,13 @@ struct GeneralSettings: View {
 
     var body: some View {
         Form {
+            Section("App Icon") {
+                AppIconVariantPicker()
+                if store.settings.liveMainDockIcon {
+                    Text("The Dock shows a live mini grid of your first group. Turn off “Live main Dock icon” under Dock Icons to see the variant there.")
+                        .font(.caption).foregroundStyle(.secondary)
+                }
+            }
             Section("App") {
                 Picker("Show Pocketwerk in", selection: Binding(get: { AppPresence(store.settings) },
                                                                 set: { p in var s = store.settings; p.apply(to: &s); store.settings = s })) {
@@ -135,16 +142,11 @@ struct PopupSettings: View {
                 placementPicker("When clicking a Dock icon", \.placement)
                 placementPicker("When using a shortcut", \.hotkeyPlacement)
                 LabeledContent("Distance from the Dock") {
-                    HStack {
-                        Slider(value: settingBinding(\.popoverOffset), in: 0...40, step: 1).frame(width: 160)
-                            .accessibilityLabel(Text("Distance from the Dock"))
-                        Text("\(Int(store.settings.popoverOffset)) pt").monospacedDigit().foregroundStyle(.secondary)
-                            .frame(width: 44, alignment: .trailing)
-                    }
+                    // Shows the popup over the Dock while dragging, so the gap can be judged live.
+                    PopoverOffsetSlider().frame(width: 220)
                 }
             }
             Section("Several Groups") {
-                // RELEASE-1.0: the sidebar navigation ships in 1.1; the picker returns with it.
                 if PopupController.supportsSidebar {
                     Picker("Navigation", selection: settingBinding(\.popupNavigation)) {
                         Text("Carousel (swipe between groups)").tag(PopupNavigation.carousel)
