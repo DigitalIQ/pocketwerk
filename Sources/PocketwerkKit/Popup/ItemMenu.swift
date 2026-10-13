@@ -10,6 +10,10 @@ enum ItemMenu {
         let running = item.kind == .app ? RunningApps.shared.app(for: item) : nil
         let editable = model.isEditable(in: group)
 
+        if editable, MissingItemActions.isMissing(item) {
+            menu.addItem(MenuAction.item(String(localized: "Locate…")) { MissingItemActions.locate(item, group: group, model: model) })
+            menu.addItem(.separator())
+        }
         menu.addItem(MenuAction.item(running == nil ? String(localized: "Open") : String(localized: "Show")) {
             model.activate(item, in: group)
         })

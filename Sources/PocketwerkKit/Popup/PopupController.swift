@@ -32,6 +32,8 @@ final class PopupController {
     private var autoCloseSuspended = false
     private var swipe = SwipeTracker()
     private var prepared = false
+    /// The offset preview is up: it stays while the settings window has focus.
+    private var previewing = false
 
     // MARK: Public API
 
@@ -72,7 +74,13 @@ final class PopupController {
 
     /// anchor: screen point (Cocoa coordinates) to place the popup near; nil = mouse location.
     func show(groupIDs: [UUID], slotID: UUID?, anchor: CGPoint? = nil, source: PopupSource? = nil) {
+        show(groupIDs: groupIDs, slotID: slotID, anchor: anchor, source: source, placementOverride: nil, offsetOverride: nil, takeFocus: true)
+    }
+
+    private func show(groupIDs: [UUID], slotID: UUID?, anchor: CGPoint?, source: PopupSource?,
+                      placementOverride: PopupPlacement?, offsetOverride: Double?, takeFocus: Bool) {
         prepare()
+        if takeFocus { previewing = false }
         let store = LibraryStore.shared
         let ids = groupIDs.filter { store.group($0) != nil }
         guard !ids.isEmpty else {
@@ -82,14 +90,17 @@ final class PopupController {
         let s = activeSession()
         let settings = store.settings
         let pointer = anchor ?? NSEvent.mouseLocation
-        let placement: PopupPlacement
+        var placement: PopupPlacement
         switch source {
         case .hotkey: placement = settings.hotkeyPlacement
         case .menuBar: placement = .mouse
         case .dock, nil: placement = settings.placement
         }
+        if let placementOverride { placement = placementOverride }
         s.anchor = pointer
         s.placement = placement
+        s.offsetOverride = offsetOverride
+        let offset = offsetOverride ?? settings.popoverOffset
 
         let m = s.model
         m.groupIDs = ids
@@ -97,6 +108,7 @@ final class PopupController {
         m.position = CarouselPosition(group: 0, page: 0)
         m.folderStack = []
         m.selection = nil
+        m.focusVisible = false
         m.picked = []
         m.query = ""
         m.renaming = nil
@@ -105,10 +117,10 @@ final class PopupController {
         m.dropIndex = nil
         m.modifiers = NSEvent.modifierFlags
         let prefs = DockPrefs.current()
-        m.maxSize = DockGeometry.maxPopupSize(screens: ScreenBox.all, placement: placement, anchor: pointer, prefs: prefs, offset: settings.popoverOffset)
+        m.maxSize = DockGeometry.maxPopupSize(screens: ScreenBox.all, placement: placement, anchor: pointer, prefs: prefs, offset: offset)
 
         let size = m.desiredSize()
-        let result = DockGeometry.place(size: size, placement: placement, anchor: pointer, screens: ScreenBox.all, prefs: prefs, offset: settings.popoverOffset)
+        let result = DockGeometry.place(size: size, placement: placement, anchor: pointer, screens: ScreenBox.all, prefs: prefs, offset: offset)
         s.placed = result
         m.panelSize = result.frame.size
         applyAppearance(s)
@@ -123,13 +135,42 @@ final class PopupController {
         currentSlotID = slotID
         isVisible = true
         m.isVisible = true
-        installMonitors()
-        animateIn(s, to: result)
+        if takeFocus {
+            installMonitors()
+            PopupSound.play(.open)
+        }
+        animateIn(s, to: result, takeFocus: takeFocus)
         panel.invalidateShadow()
+        m.announceGroup()
+    }
+
+    /// Live preview for the "Distance to Dock" setting: shows the popup over the Dock at `offset`
+    /// without taking focus and moves it on every call. nil hides the preview.
+    func previewOffset(_ offset: Double?) {
+        guard let offset else {
+            if previewing { previewing = false; hide() }
+            return
+        }
+        if previewing, isVisible, let s = session {
+            s.offsetOverride = offset
+            resize(s, animated: false)
+            return
+        }
+        let ids = LibraryStore.shared.library.carouselGroups.map(\.id)
+        guard !ids.isEmpty else { return }
+        if isVisible { hide() }
+        previewing = true
+        show(groupIDs: ids, slotID: nil, anchor: nil, source: .dock, placementOverride: .dockCenter, offsetOverride: offset, takeFocus: false)
     }
 
     func hide() {
         hide(byOutsideClick: false)
+    }
+
+    /// Asks which group dropped items belong to (menu at the pointer). For drops whose target is ambiguous,
+    /// such as the main app's Dock icon.
+    func chooseGroup(for urls: [URL], at point: CGPoint? = nil) {
+        PopupGroupPicker.present(for: urls, at: point)
     }
 
     // MARK: Sessions
@@ -156,6 +197,10 @@ final class PopupController {
                 guard let self, let s else { return }
                 self.resize(s)
             },
+            resizeInstantly: { [weak self, weak s] in
+                guard let self, let s else { return }
+                self.resize(s, animated: false)
+            },
             quickLook: { [weak s] item in
                 guard let s else { return }
                 QuickLookPanel.shared.toggle(item, beside: s.panel)
@@ -166,6 +211,7 @@ final class PopupController {
             },
             willLaunch: { [weak self] in
                 self?.suppressCloseUntil = Date().addingTimeInterval(1.5)
+                PopupSound.play(.launch)
             },
             didLaunch: { [weak self, weak s] in
                 guard let self, let s else { return }
@@ -210,6 +256,7 @@ final class PopupController {
     private func hide(byOutsideClick: Bool) {
         guard let s = session, isVisible else { return }
         lastHide = (byOutsideClick ? currentKey : nil, Date())
+        previewing = false
         isVisible = false
         currentKey = nil
         currentSlotID = nil
@@ -222,7 +269,7 @@ final class PopupController {
     }
 
     private func resignedKey(_ s: PopupSession) {
-        guard s === session, isVisible, !s.model.pinned, !autoCloseSuspended else { return }
+        guard s === session, isVisible, !s.model.pinned, !autoCloseSuspended, !previewing else { return }
         if Date() < suppressCloseUntil { return }
         // Menus and the Quick Look panel do not count as leaving the popup.
         DispatchQueue.main.async { [weak self] in
@@ -235,10 +282,9 @@ final class PopupController {
 
     // MARK: Geometry and animation
 
-    private func resize(_ s: PopupSession) {
+    private func resize(_ s: PopupSession, animated: Bool = true) {
         guard s.panel.isVisible else { return }
         let size = s.model.desiredSize()
-        guard size != s.panel.frame.size else { return }
         let frame: CGRect
         if s.model.pinned {
             // Pinned windows grow from their top left corner and stay on their screen.
@@ -250,10 +296,11 @@ final class PopupController {
         } else {
             let settings = LibraryStore.shared.settings
             frame = DockGeometry.place(size: size, placement: s.placement, anchor: s.anchor, screens: ScreenBox.all,
-                                       prefs: DockPrefs.current(), offset: settings.popoverOffset).frame
+                                       prefs: DockPrefs.current(), offset: s.offsetOverride ?? settings.popoverOffset).frame
         }
+        guard frame != s.panel.frame else { return }
         s.model.panelSize = frame.size
-        let duration = Self.animationDuration(LibraryStore.shared.settings.animationSpeed) * 0.9
+        let duration = animated ? Self.animationDuration(LibraryStore.shared.settings.animationSpeed) * 0.9 : 0
         if duration > 0 {
             NSAnimationContext.runAnimationGroup { ctx in
                 ctx.duration = duration
@@ -270,20 +317,20 @@ final class PopupController {
     }
 
     /// 200 ms fade with an 8 pt rise toward the screen center. None under Reduce Motion or with speed off.
-    private func animateIn(_ s: PopupSession, to result: PopupPlacementResult) {
+    private func animateIn(_ s: PopupSession, to result: PopupPlacementResult, takeFocus: Bool = true) {
         let panel = s.panel
         let duration = Self.animationDuration(LibraryStore.shared.settings.animationSpeed)
         if duration == 0 {
             panel.alphaValue = 1
             panel.setFrame(result.frame, display: true)
             panel.orderFrontRegardless()
-            panel.makeKey()
+            if takeFocus { panel.makeKey() }
             return
         }
         panel.alphaValue = 0
         panel.setFrame(DockGeometry.animationStart(for: result.frame, rise: result.rise, distance: 8), display: true)
         panel.orderFrontRegardless()
-        panel.makeKey()
+        if takeFocus { panel.makeKey() }
         NSAnimationContext.runAnimationGroup { ctx in
             ctx.duration = duration
             ctx.timingFunction = Self.easeOut
@@ -376,7 +423,7 @@ final class PopupController {
     }
 
     private func outsideClick() {
-        guard isVisible, let s = session, !s.model.pinned, !autoCloseSuspended else { return }
+        guard isVisible, let s = session, !s.model.pinned, !autoCloseSuspended, !previewing else { return }
         let p = NSEvent.mouseLocation
         if s.panel.frame.contains(p) { return }
         if QuickLookPanel.shared.isVisible, QuickLookPanel.shared.panel.frame.contains(p) { return }
@@ -385,7 +432,7 @@ final class PopupController {
 
     /// Clicks into another window of this app close the popup too.
     private func localClick(_ event: NSEvent) {
-        guard isVisible, let s = session, !s.model.pinned, !autoCloseSuspended else { return }
+        guard isVisible, let s = session, !s.model.pinned, !autoCloseSuspended, !previewing else { return }
         guard let w = event.window, w !== s.panel, w !== QuickLookPanel.shared.panel else { return }
         if w is NSPanel, w.className.contains("Menu") { return }
         hide(byOutsideClick: true)
@@ -459,6 +506,7 @@ final class PopupController {
             if let sel = m.selection, sel < items.count { m.actions.quickLook(items[sel]) }
             return true
         case 123, 124, 125, 126: // arrows
+            m.focusVisible = true
             let dir: MoveDirection = [123: .left, 124: .right, 125: .down, 126: .up][event.keyCode]!
             if cmd || flags.contains(.option) {
                 if dir == .left || dir == .right { withPopupAnimation { m.step(dir == .left ? -1 : 1) } }
@@ -537,11 +585,25 @@ final class PopupController {
         }
         if flags.contains(.control) { return false }
 
+        // 1...9 open the items of the current page while nothing is typed (hold ⌃ to see the numbers).
+        if m.query.isEmpty, flags.isDisjoint(with: [.option, .shift]), chars.count == 1,
+           let digit = Int(chars), (1...9).contains(digit) {
+            let index = range.lowerBound + digit - 1
+            if index < min(range.upperBound, items.count) {
+                m.selection = index
+                m.activate(items[index], in: group)
+            } else {
+                NSSound.beep()
+            }
+            return true
+        }
+
         // Type to search.
         if let typed = event.characters, !typed.isEmpty,
            typed.unicodeScalars.allSatisfy({ !CharacterSet.controlCharacters.contains($0) && $0.value < 0xF700 }) {
             m.query += typed
             m.selection = 0
+            m.focusVisible = true
             m.position.page = 0
             m.actions.resize()
             return true

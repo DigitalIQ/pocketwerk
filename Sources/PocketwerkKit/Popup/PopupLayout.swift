@@ -14,6 +14,8 @@ nonisolated struct PopupLayoutInput: Equatable, Sendable {
     var padding: Double = 18
     var labelMode: LabelMode = .always
     var labelSize: Double = 11
+    /// Grid labels: 2 when a name does not fit on one line.
+    var labelLines = 1
     var showHeader = true
     /// Dots row for pages or several groups.
     var showDots = true
@@ -61,6 +63,8 @@ nonisolated struct PopupMetrics: Equatable, Sendable {
     var padding: CGFloat
     var labelSize: CGFloat
     var labelHeight: CGFloat
+    /// Lines a grid label may use.
+    var labelLines: Int = 1
     var headerHeight: CGFloat
     var dotsHeight: CGFloat
     /// Size of the item area (one page or the scroll viewport).
@@ -87,12 +91,17 @@ nonisolated struct PopupMetrics: Equatable, Sendable {
         }
     }
 
+    /// Width available to a grid label before scaling.
+    static func gridLabelWidth(iconSize: Double) -> Double {
+        iconSize + max(18, iconSize * 0.4) - 6
+    }
+
     /// Cell size for a layout before scaling.
-    static func cellSize(layout: LayoutKind, iconSize: Double, labelMode: LabelMode, labelSize: Double) -> (cell: CGSize, icon: CGFloat, labelHeight: CGFloat) {
+    static func cellSize(layout: LayoutKind, iconSize: Double, labelMode: LabelMode, labelSize: Double, labelLines: Int = 1) -> (cell: CGSize, icon: CGFloat, labelHeight: CGFloat) {
         let lineHeight = (labelSize * 1.3).rounded(.up)
         switch layout {
         case .grid:
-            let labelH = labelMode == .off ? 0 : lineHeight + 4
+            let labelH = labelMode == .off ? 0 : lineHeight * CGFloat(min(max(labelLines, 1), 2)) + 4
             let width = iconSize + max(18, iconSize * 0.4)
             return (CGSize(width: width, height: iconSize + 10 + labelH), iconSize, labelH)
         case .list:
@@ -110,7 +119,7 @@ nonisolated struct PopupMetrics: Equatable, Sendable {
 
     static func compute(_ input: PopupLayoutInput) -> PopupMetrics {
         let s = CGFloat(input.scale)
-        let base = cellSize(layout: input.layout, iconSize: input.iconSize, labelMode: input.labelMode, labelSize: input.labelSize)
+        let base = cellSize(layout: input.layout, iconSize: input.iconSize, labelMode: input.labelMode, labelSize: input.labelSize, labelLines: input.labelLines)
         let cell = CGSize(width: (base.cell.width * s).rounded(), height: (base.cell.height * s).rounded())
         let gap = (CGFloat(input.layout == .list ? input.spacing * 0.4 : input.spacing) * s).rounded()
         let padding = (CGFloat(input.padding) * s).rounded()
@@ -160,6 +169,7 @@ nonisolated struct PopupMetrics: Equatable, Sendable {
             itemsPerPage: scrolls ? layoutCount : cols * visibleRows, scrolls: scrolls,
             cell: cell, iconSize: (base.icon * s).rounded(), gap: gap, padding: padding,
             labelSize: CGFloat(input.labelSize) * s, labelHeight: base.labelHeight * s,
+            labelLines: input.layout == .grid ? min(max(input.labelLines, 1), 2) : (input.layout == .tiles ? 2 : 1),
             headerHeight: header, dotsHeight: dots,
             gridSize: CGSize(width: gridW, height: gridH), size: CGSize(width: width.rounded(), height: height.rounded()))
     }
