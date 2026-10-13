@@ -42,9 +42,19 @@ final class LauncherDelegate: NSObject, NSApplicationDelegate {
     /// A click on the Dock tile of the running launcher.
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         launcherLog.notice("reopen id=\(self.id, privacy: .public)")
-        forwardClick()
+        forwardClick(spring: Self.isDragging)
         return false
     }
+
+    /// Spring-loading: a drag resting on the tile activates the app while the mouse button is still
+    /// down. The main app then shows the popup (without toggling it) so the drop can land inside.
+    func applicationDidBecomeActive(_ notification: Notification) {
+        guard Self.isDragging else { return }
+        launcherLog.notice("spring id=\(self.id, privacy: .public)")
+        forwardClick(spring: true)
+    }
+
+    private static var isDragging: Bool { NSEvent.pressedMouseButtons & 1 != 0 }
 
     /// Files dropped on the tile.
     func application(_ application: NSApplication, open urls: [URL]) {
@@ -59,7 +69,7 @@ final class LauncherDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: Click
 
-    private func forwardClick() {
+    private func forwardClick(spring: Bool = false) {
         guard !isSpacer else { return }
         // The Dock can deliver launch and reopen for one click; drop the second.
         guard Date().timeIntervalSince(lastForward) > 0.25 else { return }
@@ -70,11 +80,11 @@ final class LauncherDelegate: NSObject, NSApplicationDelegate {
             DistributedNotificationCenter.default().postNotificationName(
                 PWShared.openSlotNotification, object: id,
                 userInfo: [PWShared.xKey: Double(point.x), PWShared.yKey: Double(point.y),
-                           PWShared.timeKey: Date().timeIntervalSince1970],
+                           PWShared.timeKey: Date().timeIntervalSince1970, PWShared.springKey: spring],
                 deliverImmediately: true)
             // Lets the main app take key focus for its popup.
             NSApp.yieldActivation(to: main)
-        } else {
+        } else if !spring {
             open(PWShared.openURL(slotID: id, at: point))
         }
     }

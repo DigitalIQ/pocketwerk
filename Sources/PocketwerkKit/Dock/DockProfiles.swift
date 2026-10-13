@@ -11,6 +11,10 @@ protocol ProfileSystem: AnyObject {
     func launch(appAt url: URL)
     /// Opens a file, folder or link without bringing its app to the front.
     func open(_ url: URL)
+    /// Opens files or folders with a given app (IDE projects), in the background.
+    func open(_ urls: [URL], withAppAt app: URL)
+    /// Starts an app with arguments as a new instance (browser profiles), in the background.
+    func launch(appAt url: URL, arguments: [String])
     func fileExists(_ path: String) -> Bool
     /// Current path of an app by bundle id.
     func locate(bundleID: String) -> String?
@@ -38,6 +42,21 @@ final class WorkspaceProfileSystem: ProfileSystem {
         let config = NSWorkspace.OpenConfiguration()
         config.activates = false
         NSWorkspace.shared.open(url, configuration: config)
+    }
+
+    func open(_ urls: [URL], withAppAt app: URL) {
+        let config = NSWorkspace.OpenConfiguration()
+        config.activates = false
+        NSWorkspace.shared.open(urls, withApplicationAt: app, configuration: config)
+    }
+
+    func launch(appAt url: URL, arguments: [String]) {
+        let config = NSWorkspace.OpenConfiguration()
+        config.activates = false
+        config.arguments = arguments
+        // A running browser hands the new instance's arguments to its main process.
+        config.createsNewApplicationInstance = true
+        NSWorkspace.shared.openApplication(at: url, configuration: config)
     }
 
     func fileExists(_ path: String) -> Bool { FileManager.default.fileExists(atPath: path) }
@@ -69,6 +88,10 @@ final class DockProfiles {
     private(set) var isApplying = false
     private(set) var lastResult: ProfileApplyResult?
     @ObservationIgnored private var lastApplyAt = Date.distantPast
+    /// Asks for a short note about the profile being left ("last context"). nil = no prompt (tests, CLI).
+    @ObservationIgnored var askContextNote: ((DockProfile) -> String?)?
+    /// Shows the note of the profile just applied.
+    @ObservationIgnored var showContextNote: ((DockProfile) -> Void)?
 
     init(store: LibraryStore = .shared, domain: DockDomain = DockDomains.makeDefault(), system: ProfileSystem = WorkspaceProfileSystem()) {
         self.store = store
@@ -94,7 +117,7 @@ final class DockProfiles {
         repairProfiles()
         guard let id = store.settings.startupProfileID else { return }
         // Give the Dock and login items a moment; never during the first frame.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [self] in apply(id, skipIfActive: true) }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [self] in apply(id, skipIfActive: true, interactive: false) }
     }
 
     /// Fills whichever half of a profile is missing: tiles from raw data, or raw data from tiles.
@@ -186,8 +209,9 @@ final class DockProfiles {
 
     /// Rewrites the Dock with the profile and restarts it once. Then quits, launches and opens
     /// what the profile asks for. Overlapping calls are refused, so a profile is never half applied.
+    /// `interactive` is false for automatic switches (Spaces, startup): they never ask for a note.
     @discardableResult
-    func apply(_ profileID: UUID, skipIfActive: Bool? = nil) -> ProfileApplyResult {
+    func apply(_ profileID: UUID, skipIfActive: Bool? = nil, interactive: Bool = true) -> ProfileApplyResult {
         guard !isApplying else { return ProfileApplyResult(status: .busy) }
         guard let p = profile(profileID) else { return finish(ProfileApplyResult(status: .notFound)) }
         isApplying = true
@@ -205,6 +229,11 @@ final class DockProfiles {
            Date().timeIntervalSince(lastApplyAt) > 3 {
             saveCurrent(into: last)
         }
+        // "Last context": a note for the profile being left, shown again on return.
+        if interactive, store.settings.askLastContext, let last = store.settings.lastAppliedProfileID, last != profileID,
+           let leaving = profile(last), let ask = askContextNote, let note = ask(leaving) {
+            updateProfile(last, undoable: false) { $0.note = note }
+        }
 
         let (values, missing) = restorableValues(of: p)
         result.missing = missing
@@ -221,7 +250,10 @@ final class DockProfiles {
 
         let targets = DockSnapshot.appTargets(values)
         if p.quitOthers, !p.keepAppsOpen {
-            let keep = Set(targets.compactMap(\.bundleID) + p.keepRunning
+            // Apps of profiles marked "stay open" survive every switch.
+            let stayOpen = store.library.profiles.filter { $0.appsStayOpen && $0.id != profileID }
+                .flatMap { $0.tiles.compactMap(\.bundleID) }
+            let keep = Set(targets.compactMap(\.bundleID) + p.keepRunning + stayOpen
                            + [PWShared.mainBundleID, "com.apple.finder", "com.apple.dock"])
             let keepPaths = Set(targets.map(\.path))
             for app in system.runningApps() where !keep.contains(app.bundleID)
@@ -243,6 +275,7 @@ final class DockProfiles {
                 result.launched.append(t.bundleID ?? t.path)
             }
         }
+        runTileActions(of: p, result: &result)
         for url in p.openAfterApply {
             if url.isFileURL, !system.fileExists(url.path) {
                 result.missing.append(url.lastPathComponent)
@@ -255,7 +288,61 @@ final class DockProfiles {
 
     private func finish(_ r: ProfileApplyResult) -> ProfileApplyResult {
         lastResult = r
+        if r.status == .applied, store.settings.askLastContext, let p = profile(store.settings.lastAppliedProfileID ?? UUID()),
+           !p.note.isEmpty {
+            showContextNote?(p)
+        }
         return r
+    }
+
+    /// Per-app actions of a profile: open the app, open a project with it, open a browser profile.
+    private func runTileActions(of p: DockProfile, result: inout ProfileApplyResult) {
+        let running = system.runningApps()
+        var runningIDs = Set(running.map(\.bundleID))
+        for tile in p.tiles where tile.kind == .app && !tile.actions.isEmpty {
+            guard let appPath = appPath(of: tile) else {
+                result.missing.append(tile.label ?? tile.bundleID ?? "?")
+                continue
+            }
+            let app = URL(fileURLWithPath: appPath)
+            for action in tile.actions {
+                switch action {
+                case .openApp:
+                    let id = tile.bundleID ?? appPath
+                    if !runningIDs.contains(id), !result.launched.contains(id) {
+                        system.launch(appAt: app)
+                        result.launched.append(id)
+                        runningIDs.insert(id)
+                    }
+                case .openProject(let url):
+                    guard system.fileExists(url.path) else { result.missing.append(url.lastPathComponent); continue }
+                    system.open([url], withAppAt: app)
+                case .browserProfile(let bid, let profile):
+                    system.launch(appAt: app, arguments: BrowserProfiles.arguments(bundleID: bid, profile: profile))
+                }
+            }
+        }
+    }
+
+    private func appPath(of tile: DockTile) -> String? {
+        if let path = tile.url?.path, system.fileExists(path) { return path }
+        return tile.bundleID.flatMap { system.locate(bundleID: $0) }
+    }
+
+    /// Applies the next profile in list order (profiles excluded from cycling are skipped).
+    @discardableResult
+    func applyNext() -> ProfileApplyResult {
+        guard let id = HotkeyPlan.nextProfile(store.library) else { return ProfileApplyResult(status: .notFound) }
+        return apply(id, skipIfActive: false)
+    }
+
+    /// Applies the profile linked to the current Space or display, if any. One Dock restart at most.
+    @discardableResult
+    func applyForSpace(_ identifiers: [String]) -> ProfileApplyResult? {
+        guard store.settings.profilePerSpace,
+              let id = SpaceRules.profile(for: identifiers, in: store.library.profiles),
+              store.settings.lastAppliedProfileID != id else { return nil }
+        return apply(id, skipIfActive: true, interactive: false)
     }
 
     /// The profile's Dock values with missing files dropped (or moved apps found again).
@@ -320,18 +407,63 @@ final class DockProfiles {
         try LibraryStore.encoder.encode(p).write(to: url, options: .atomic)
     }
 
+    /// Every profile that is not private, as one JSON array.
+    func exportAll(to url: URL) throws {
+        let shared = store.library.profiles.filter { !$0.isPrivate }.map(Self.forSharing)
+        try LibraryStore.encoder.encode(shared).write(to: url, options: .atomic)
+    }
+
+    /// A copy for other Macs: no hotkey, no Space links, no local note.
+    static func forSharing(_ p: DockProfile) -> DockProfile {
+        var c = p
+        c.hotkey = nil
+        c.spaces = []
+        c.leaderKey = nil
+        c.focusFilterID = nil
+        c.note = ""
+        return c
+    }
+
+    /// Writes one shareable profile to a temporary file, for the share sheet.
+    func shareFile(_ id: UUID) throws -> URL {
+        guard let p = profile(id) else { throw ProfileError.notFound }
+        let dir = FileManager.default.temporaryDirectory.appendingPathComponent("Pocketwerk Share", isDirectory: true)
+        try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        let url = dir.appendingPathComponent("\(LauncherBuilder.bundleName(for: p.name)).json")
+        try LibraryStore.encoder.encode(Self.forSharing(p)).write(to: url, options: .atomic)
+        return url
+    }
+
     /// Adds the profile from a JSON file. Never replaces an existing one: a clashing id gets a new one.
     @discardableResult
     func importProfile(from url: URL) throws -> DockProfile {
+        guard let first = try importProfiles(from: url).first else { throw ProfileError.badFile }
+        return first
+    }
+
+    /// Adds one profile or an array of profiles. Additive only; clashes get a new id or name.
+    @discardableResult
+    func importProfiles(from url: URL) throws -> [DockProfile] {
         let data = try Data(contentsOf: url)
-        guard var p = try? LibraryStore.decoder.decode(DockProfile.self, from: data) else { throw ProfileError.badFile }
-        if profile(p.id) != nil { p.id = UUID() }
-        if store.library.profiles.contains(where: { $0.name == p.name }) {
-            p.name = String(localized: "\(p.name) (Imported)")
+        let decoded: [DockProfile]
+        if let one = try? LibraryStore.decoder.decode(DockProfile.self, from: data) {
+            decoded = [one]
+        } else if let many = try? LibraryStore.decoder.decode([DockProfile].self, from: data) {
+            decoded = many
+        } else {
+            throw ProfileError.badFile
         }
-        if p.tiles.isEmpty { p.tiles = DockSnapshot.tiles(from: DockSnapshot.decode(p.plistData)) }
-        let imported = p
-        store.mutate { $0.profiles.append(imported) }
-        return imported
+        var added: [DockProfile] = []
+        for var p in decoded {
+            if profile(p.id) != nil || added.contains(where: { $0.id == p.id }) { p.id = UUID() }
+            if store.library.profiles.contains(where: { $0.name == p.name }) || added.contains(where: { $0.name == p.name }) {
+                p.name = String(localized: "\(p.name) (Imported)")
+            }
+            if p.tiles.isEmpty { p.tiles = DockSnapshot.tiles(from: DockSnapshot.decode(p.plistData)) }
+            added.append(p)
+        }
+        let all = added
+        store.mutate { $0.profiles.append(contentsOf: all) }
+        return added
     }
 }

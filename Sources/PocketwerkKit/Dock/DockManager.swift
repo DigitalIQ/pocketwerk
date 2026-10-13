@@ -92,6 +92,9 @@ final class DockManager {
         })
         rememberLibrary()
         DockProfiles.shared.start()
+        LastContextUI.install()
+        MainDockTile.shared.start()
+        SpaceWatcher.shared.start()
         // Rebuild launchers made by an older app version and heal icons, after launch settles.
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in self?.maintainLaunchers() }
     }
@@ -103,14 +106,27 @@ final class DockManager {
         if let t = info[PWShared.timeKey] as? Double, Date().timeIntervalSince1970 - t > 2 { return }
         var anchor: CGPoint?
         if let x = info[PWShared.xKey] as? Double, let y = info[PWShared.yKey] as? Double { anchor = CGPoint(x: x, y: y) }
-        Self.log.info("open request slot=\(id.uuidString, privacy: .public) anchor=\(anchor.map { "\($0.x),\($0.y)" } ?? "-", privacy: .public)")
-        openSlot(id, anchor: anchor)
+        let spring = (info[PWShared.springKey] as? Bool) ?? false
+        Self.log.info("open request slot=\(id.uuidString, privacy: .public) anchor=\(anchor.map { "\($0.x),\($0.y)" } ?? "-", privacy: .public) spring=\(spring)")
+        if spring {
+            springOpen(id, anchor: anchor)
+        } else {
+            openSlot(id, anchor: anchor)
+        }
     }
 
     /// Opens the popup of a slot above its tile.
     func openSlot(_ id: UUID, anchor: CGPoint?) {
         guard store.slot(id) != nil else { return }
         PopupController.shared.toggle(groupIDs: store.groups(for: id).map(\.id), slotID: id, anchor: anchor, source: .dock)
+    }
+
+    /// A drag rests on the slot's tile: show its popup (never toggle it closed) so the drop can land inside.
+    func springOpen(_ id: UUID, anchor: CGPoint?) {
+        guard store.slot(id) != nil else { return }
+        let popup = PopupController.shared
+        if popup.isVisible, popup.currentSlotID == id { return }
+        popup.show(groupIDs: store.groups(for: id).map(\.id), slotID: id, anchor: anchor, source: .dock)
     }
 
     private func rememberLibrary() {
