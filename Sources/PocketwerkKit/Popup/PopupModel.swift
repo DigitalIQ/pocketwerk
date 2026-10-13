@@ -85,7 +85,7 @@ final class PopupModel {
         let style = store.popupStyle(of: group)
         var input = PopupLayoutInput(style: style, itemCount: cellCount(of: group), groupCount: groupIDs.count, maxSize: maxSize)
         // Folders need the back button, search shows its text, pinned windows their close button.
-        if isInFolder || !query.isEmpty || pinned { input.showHeader = true }
+        if isInFolder || !query.isEmpty || pinned || !picked.isEmpty { input.showHeader = true }
         // Inside a folder or a search the carousel pauses, so its dots go away.
         if isInFolder || !query.isEmpty { input.groupCount = 1 }
         return PopupMetrics.compute(input)
@@ -200,6 +200,8 @@ final class PopupModel {
     func activate(_ item: DockItem, in group: ItemGroup, modifiers: NSEvent.ModifierFlags = []) {
         if modifiers.contains(.command) {
             if picked.contains(item.url) { picked.remove(item.url) } else { picked.insert(item.url) }
+            // The header with "Open Selected" may appear or go away.
+            actions.resize()
             return
         }
         if modifiers.contains(.option), item.kind == .app, RunningApps.shared.isRunning(item) {
@@ -219,6 +221,7 @@ final class PopupModel {
         let items = shownItems(of: group).filter { picked.contains($0.url) }
         guard !items.isEmpty else { return }
         picked = []
+        actions.resize()
         actions.willLaunch()
         ItemOpener.open(items, in: group.id)
         actions.didLaunch()

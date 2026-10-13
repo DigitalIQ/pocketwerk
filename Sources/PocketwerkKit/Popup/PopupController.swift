@@ -443,7 +443,7 @@ final class PopupController {
             if QuickLookPanel.shared.isVisible { QuickLookPanel.shared.close() }
             else if !m.query.isEmpty { m.query = ""; m.selection = nil; m.actions.resize() }
             else if m.isInFolder { withPopupAnimation { m.leaveFolder() } }
-            else if !m.picked.isEmpty { m.picked = [] }
+            else if !m.picked.isEmpty { m.picked = []; m.actions.resize() }
             else if !m.pinned { close(s) }
             return true
         case 36, 76: // Return
@@ -524,6 +524,7 @@ final class PopupController {
                 return true
             case "a":
                 m.picked = Set(items.map(\.url))
+                m.actions.resize()
                 return true
             case "o":
                 if !m.picked.isEmpty { m.openPicked(in: group) } else { m.openAll(in: group) }
