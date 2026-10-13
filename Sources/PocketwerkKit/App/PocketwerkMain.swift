@@ -58,6 +58,7 @@ final class AppCoordinator: NSObject, NSApplicationDelegate {
 
 enum URLRouter {
     static func handle(_ url: URL) {
+        if DockRoutes.handle(url) { return }
         guard url.scheme == PWShared.urlScheme else {
             // Files dropped on the app icon: add to the first group.
             if url.isFileURL, let first = LibraryStore.shared.library.groups.first {

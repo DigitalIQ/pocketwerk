@@ -1,0 +1,12 @@
+#!/bin/zsh
+# Command line wrapper: runs the Pocketwerk binary in CLI mode.
+# Finds the app in $POCKETWERK_APP, ~/Applications or /Applications.
+set -euo pipefail
+
+for app in "${POCKETWERK_APP:-}" "$HOME/Applications/Pocketwerk.app" "/Applications/Pocketwerk.app"; do
+  if [[ -n "$app" && -x "$app/Contents/MacOS/Pocketwerk" ]]; then
+    exec "$app/Contents/MacOS/Pocketwerk" --cli "$@"
+  fi
+done
+echo "pocketwerk: Pocketwerk.app not found (set POCKETWERK_APP)" >&2
+exit 69
