@@ -56,7 +56,7 @@ Each slot gets a small app bundle in `~/Applications/Pocketwerk/`, copied from `
 
 ## Conventions
 
-- UI strings are English in code. SwiftUI `Text("...")` literals are localized automatically; AppKit strings use `String(localized:)`. German lives in `Resources/Localization/de.lproj/Localizable.strings`.
+- UI strings are English in code. SwiftUI `Text("...")` literals are localized automatically; AppKit strings use `String(localized:)`. All strings live in the string catalog `Resources/Localization/Localizable.xcstrings` (English source, German translation). `scripts/localize.sh` adds new strings from the compiler output; `scripts/build-app.sh` compiles the catalog into `en.lproj` and `de.lproj`.
 - No third-party packages. No network access except the daily update check against the GitHub releases API and favicon fetches for link items.
 - No telemetry.
 - Animations respect Reduce Motion, Reduce Transparency and Low Power Mode.

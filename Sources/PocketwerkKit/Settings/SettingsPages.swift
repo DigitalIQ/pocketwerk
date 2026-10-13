@@ -132,9 +132,12 @@ struct PopupSettings: View {
                 }
             }
             Section("Several Groups") {
-                Picker("Navigation", selection: settingBinding(\.popupNavigation)) {
-                    Text("Carousel (swipe between groups)").tag(PopupNavigation.carousel)
-                    Text("Sidebar (list of groups)").tag(PopupNavigation.sidebar)
+                // RELEASE-1.0: the sidebar navigation ships in 1.1; the picker returns with it.
+                if PopupController.supportsSidebar {
+                    Picker("Navigation", selection: settingBinding(\.popupNavigation)) {
+                        Text("Carousel (swipe between groups)").tag(PopupNavigation.carousel)
+                        Text("Sidebar (list of groups)").tag(PopupNavigation.sidebar)
+                    }
                 }
                 Toggle("Keep the size while swiping", isOn: settingBinding(\.lockSizeWhileSwiping))
                 Toggle("Show the Most Used group", isOn: settingBinding(\.showMostUsed))

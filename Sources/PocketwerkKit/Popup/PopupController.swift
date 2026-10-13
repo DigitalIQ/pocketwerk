@@ -15,6 +15,8 @@ enum PopupSource {
 /// The window is created once and reused, so it appears within one frame of the click.
 final class PopupController {
     static let shared = PopupController()
+    /// Sidebar navigation (one list of groups beside the items) ships in 1.1.
+    static let supportsSidebar = false
 
     private var session: PopupSession?
     /// Popped-out popups that stay until closed.
