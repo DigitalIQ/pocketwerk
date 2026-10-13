@@ -6,7 +6,7 @@ import Testing
 /// Renders popup previews to PNG for a visual check. Runs only with POCKETWERK_SHOTS=1,
 /// writes to `.tmp/shots/` in the package folder.
 @Suite struct PopupRenderTests {
-    static var enabled: Bool { ProcessInfo.processInfo.environment["POCKETWERK_SHOTS"] == "1" }
+    nonisolated static var enabled: Bool { ProcessInfo.processInfo.environment["POCKETWERK_SHOTS"] == "1" }
 
     static func folder() -> URL {
         let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
