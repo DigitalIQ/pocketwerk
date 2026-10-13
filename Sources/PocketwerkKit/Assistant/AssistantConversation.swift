@@ -102,8 +102,10 @@ final class AssistantConversation {
         You change one group in Pocketwerk, a Mac app that keeps apps, files, folders and links in groups with their own look and Dock icon.
         Turn the user's request into edits. Only use these kinds and value formats:
         \(AssistantKinds.help)
-        Before addApp, call findApps to get the exact installed app name. Only remove items the user clearly asks to remove.
+        For addApp only use exact names from "Installed apps you can add". Only remove items the user clearly asks to remove.
+        Do every part of the request you can, even when another part is not possible.
         Theme names: \(names).
+        The Group, Look and Items lines describe the current state. Never repeat them as edits; only change what the request asks for.
         If the request is not about this group, make no edits and say what you can do.
         """
     }
@@ -112,7 +114,7 @@ final class AssistantConversation {
     private func makeSessionIfNeeded() -> LanguageModelSession {
         // A fresh session every few turns keeps the transcript small.
         if let session, turnsInSession < 4 { return session }
-        let s = LanguageModelSession(tools: [FindAppsTool(apps: AppCatalog.shared.apps)], instructions: instructions)
+        let s = LanguageModelSession(instructions: instructions)
         session = s
         turnsInSession = 0
         return s
@@ -140,7 +142,8 @@ final class AssistantConversation {
             let outcome = AssistantInterpreter.apply(plan.edits.map { AssistantEditInput(kind: $0.kind, value: $0.value) },
                                                      to: group, themes: store.allThemes, apps: AppCatalog.shared.apps,
                                                      defaultStyle: store.settings.defaultStyle)
-            turn.reply = plan.reply
+            turn.reply = outcome.removals.isEmpty ? plan.reply
+                : plan.reply + " " + String(localized: "Nothing is removed until you confirm below.")
             turn.changes = outcome.changes
             turn.skipped = outcome.skipped
             turn.removals = outcome.removals
@@ -169,13 +172,16 @@ final class AssistantConversation {
     private func ask(_ request: String, retry: Bool) async throws -> AssistantPlan {
         guard let group = store.group(groupID) else { throw CancellationError() }
         let themeName = group.themeID.flatMap { id in store.allThemes.first { $0.id == id }?.name }
+        let named = FindAppsTool.candidates(for: request, apps: AppCatalog.shared.apps).map(\.name)
         let prompt = AssistantContext.summary(of: group, in: store.library, apps: AppCatalog.shared.apps, themeName: themeName)
+            + (named.isEmpty ? "" : "\nInstalled apps you can add: " + named.joined(separator: ", "))
             + "\n\nRequest: " + request
         let session = makeSessionIfNeeded()
         do {
             let response = try await session.respond(to: prompt, generating: AssistantPlan.self,
                                                      options: GenerationOptions(temperature: 0.2))
             turnsInSession += 1
+            Log.app.debug("Assistant edits: \(response.content.edits.map { "\($0.kind)=\($0.value)" }.joined(separator: "; "), privacy: .private)")
             return response.content
         } catch LanguageModelSession.GenerationError.exceededContextWindowSize(let context) where retry {
             Log.app.info("Assistant context full, new session: \(context.debugDescription)")

@@ -50,6 +50,11 @@ import Testing
         }
         try render(AppDrawerView(groupID: store.library.orderedGroups[0].id), size: CGSize(width: 760, height: 520), name: "drawer")
         try render(AddLinkSheet(groupID: store.library.orderedGroups[0].id), size: CGSize(width: 440, height: 260), name: "link")
+        try render(AssistantView(groupID: store.library.orderedGroups[0].id), size: CGSize(width: 760, height: 520), name: "assistant")
+        try render(HelpView(initial: "keys"), size: CGSize(width: 760, height: 520), name: "help")
+        model.selection = .group(store.library.orderedGroups[0].id)
+        model.groupTab = .options
+        try render(MainWindowView(model: model), size: CGSize(width: 1260, height: 800), name: "main-options-b")
         let starters = StarterGroups.build { AppLocator.url(forBundleID: $0) }
         try render(WelcomeView(starters: starters) {}, size: CGSize(width: 520, height: 520), name: "welcome")
         try render(ImportReviewView(summary: ImportSummary(newGroups: ["Games"], existingGroups: ["Work"], newProfiles: [],

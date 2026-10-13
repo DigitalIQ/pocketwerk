@@ -51,6 +51,12 @@ enum AssistantInterpreter {
             }
         }
         for edit in edits {
+            let snapshot = g
+            let changeCount = out.changes.count
+            defer {
+                // An edit that only restates the current state is not a change.
+                if g == snapshot && out.changes.count > changeCount { out.changes.removeSubrange(changeCount...) }
+            }
             let kind = edit.kind.trimmingCharacters(in: .whitespaces)
             let value = edit.value.trimmingCharacters(in: .whitespacesAndNewlines)
             let lower = value.lowercased()
@@ -72,7 +78,19 @@ enum AssistantInterpreter {
                 out.changes.append(value.isEmpty ? String(localized: "Category cleared") : String(localized: "Category “\(value)”"))
 
             case "theme":
-                guard let theme = matchTheme(value, in: themes) else { skip(String(localized: "No look named “\(value)”")); continue }
+                guard let theme = matchTheme(value, in: themes) else {
+                    // "warm sunset", "dark blue": describe a look instead of naming one.
+                    if let colors = moodColors(value) {
+                        ownLook()
+                        g.style.background = colors.count == 1 ? .solid(colors[0]) : .gradient(colors: colors, angle: 135)
+                        g.themeID = nil
+                        out.changes.append(colors.count == 1 ? String(localized: "Fill \(colors[0].hex)")
+                                           : String(localized: "Gradient \(colors.map(\.hex).joined(separator: " → "))"))
+                    } else {
+                        skip(String(localized: "No look named “\(value)”"))
+                    }
+                    continue
+                }
                 ownLook()
                 g.style = ThemeLibrary.apply(theme, to: g.style)
                 if let icon = theme.icon { g.icon = ThemeLibrary.apply(icon, to: g.icon) }
@@ -257,6 +275,23 @@ enum AssistantInterpreter {
         "silver": RGBA(0.76, 0.77, 0.80), "coral": RGBA(0.98, 0.50, 0.42), "lavender": RGBA(0.72, 0.66, 0.92),
         "olive": RGBA(0.45, 0.48, 0.22), "turquoise": RGBA(0.22, 0.78, 0.74),
     ]
+
+    /// Colors for mood words ("warm sunset", "ocean", "forest") or plain color words in a phrase.
+    static func moodColors(_ text: String) -> [RGBA]? {
+        let t = text.lowercased()
+        let moods: [(words: [String], colors: [RGBA])] = [
+            (["sunset", "sunrise", "warm", "autumn", "fire"], [RGBA(0.98, 0.58, 0.25), RGBA(0.90, 0.30, 0.45)]),
+            (["ocean", "sea", "cool", "ice", "water"], [RGBA(0.20, 0.70, 0.80), RGBA(0.16, 0.30, 0.70)]),
+            (["forest", "nature", "leaf", "spring"], [RGBA(0.40, 0.70, 0.35), RGBA(0.12, 0.40, 0.28)]),
+            (["night", "midnight", "space", "galaxy"], [RGBA(0.10, 0.10, 0.30), RGBA(0.42, 0.22, 0.62)]),
+            (["candy", "sweet", "pastel"], [RGBA(0.98, 0.72, 0.82), RGBA(0.70, 0.78, 0.98)]),
+            (["desert", "sand"], [RGBA(0.93, 0.80, 0.58), RGBA(0.78, 0.52, 0.32)]),
+        ]
+        if let m = moods.first(where: { $0.words.contains { t.contains($0) } }) { return m.colors }
+        let named = splitList(t.replacingOccurrences(of: " ", with: ",")).compactMap { namedColors[$0] }
+        if named.isEmpty { return color(t).map { [$0] } }
+        return Array(named.prefix(3))
+    }
 
     static func matchTheme(_ name: String, in themes: [Theme]) -> Theme? {
         let n = name.lowercased().trimmingCharacters(in: .whitespaces)

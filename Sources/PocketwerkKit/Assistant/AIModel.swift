@@ -73,6 +73,7 @@ nonisolated struct FindAppsTool: Tool {
 
     func call(arguments: Arguments) async throws -> String {
         let hits = Self.search(arguments.query, in: apps)
+        Log.app.debug("findApps(\(arguments.query, privacy: .private)) -> \(hits.count)")
         return hits.isEmpty ? "No installed app matches." : hits.map { app in
             app.category.map { "\(app.name) (\($0))" } ?? app.name
         }.joined(separator: ", ")
@@ -81,8 +82,46 @@ nonisolated struct FindAppsTool: Tool {
     static func search(_ query: String, in apps: [AppInfo], limit: Int = 12) -> [AppInfo] {
         let q = query.trimmingCharacters(in: .whitespaces)
         guard !q.isEmpty else { return [] }
-        let byName = apps.filter { $0.name.localizedStandardContains(q) }
-        let byCategory = apps.filter { ($0.category ?? "").localizedStandardContains(q) && !byName.contains($0) }
-        return Array((byName + byCategory).prefix(limit))
+        var hits = apps.filter { $0.name.localizedStandardContains(q) }
+        hits += apps.filter { ($0.category ?? "").localizedStandardContains(q) && !hits.contains($0) }
+        if hits.isEmpty {
+            // "Calendar and Reminders", "music apps": try the single words.
+            for word in q.split(whereSeparator: { !$0.isLetter && !$0.isNumber }).map(String.init) where word.count >= 3 {
+                hits += apps.filter { app in
+                    !hits.contains(app) && (app.name.localizedStandardContains(word) || (app.category ?? "").localizedStandardContains(word))
+                }
+            }
+        }
+        return Array(hits.prefix(limit))
+    }
+
+    /// Installed apps for the request: apps named in it, plus apps of categories it mentions
+    /// ("my music apps", "developer tools"). Gives the model exact names without a tool round trip.
+    static func candidates(for request: String, apps: [AppInfo], limit: Int = 16) -> [AppInfo] {
+        let text = request.lowercased()
+        // Only when the request is about adding; otherwise "weather tomorrow" would offer the Weather app.
+        let addWords = ["add", "put", "include", "insert", "bring", "hinzu", "füge", "rein"]
+        let words = Set(text.split(whereSeparator: { !$0.isLetter }).map(String.init))
+        guard addWords.contains(where: { words.contains($0) || text.contains($0 + " ") }) else { return [] }
+        var out = mentioned(in: request, apps: apps, limit: limit)
+        var categories = Set(SuggestionRanker.wantedCategories(name: text, category: nil))
+        for c in Set(apps.compactMap(\.category)) where text.contains(c.lowercased()) { categories.insert(c) }
+        for app in apps where out.count < limit {
+            if let c = app.category, categories.contains(c), !out.contains(app) { out.append(app) }
+        }
+        return out
+    }
+
+    /// Installed apps whose name appears in the request, so the model gets exact names up front.
+    static func mentioned(in request: String, apps: [AppInfo], limit: Int = 12) -> [AppInfo] {
+        let text = request.lowercased()
+        return Array(apps.filter { app in
+            let name = app.name.lowercased()
+            guard name.count >= 3, let range = text.range(of: name) else { return false }
+            // Whole words only: "Notes" must not match inside "footnotes".
+            let before = range.lowerBound == text.startIndex ? " " : text[text.index(before: range.lowerBound)]
+            let after = range.upperBound == text.endIndex ? " " : text[range.upperBound]
+            return !before.isLetter && !after.isLetter
+        }.prefix(limit))
     }
 }
