@@ -31,6 +31,7 @@ final class LauncherDelegate: NSObject, NSApplicationDelegate {
         center.addObserver(self, selector: #selector(quitRequested(_:)), name: PWShared.launcherQuitNotification,
                            object: id, suspensionBehavior: .deliverImmediately)
         loadIcon()
+        watchIcons()
 
         let isDefaultLaunch = (note.userInfo?[NSApplication.launchIsDefaultUserInfoKey] as? Bool) ?? true
         launcherLog.notice("launched id=\(self.id, privacy: .public) default=\(isDefaultLaunch) policy=\(NSApp.activationPolicy().rawValue)")
@@ -70,6 +71,7 @@ final class LauncherDelegate: NSObject, NSApplicationDelegate {
     // MARK: Click
 
     private func forwardClick(spring: Bool = false) {
+        loadIcon(force: false)
         guard !isSpacer else { return }
         // The Dock can deliver launch and reopen for one click; drop the second.
         guard Date().timeIntervalSince(lastForward) > 0.25 else { return }
@@ -103,14 +105,36 @@ final class LauncherDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: Icon
 
-    @objc private func iconChanged(_ note: Notification) { loadIcon() }
+    @objc private func iconChanged(_ note: Notification) { loadIcon(force: true) }
 
     @objc private func quitRequested(_ note: Notification) { NSApp.terminate(nil) }
 
-    private func loadIcon() {
+    /// Modification date of the PNG last shown, so a reload only happens when it changed.
+    private var iconDate: Date?
+    private var iconWatcher: DispatchSourceFileSystemObject?
+
+    /// Shows the current icon PNG. `force` reloads even when the file date did not change.
+    private func loadIcon(force: Bool = true) {
         let url = PWShared.iconURL(id: id)
+        let date = (try? FileManager.default.attributesOfItem(atPath: url.path)[.modificationDate]) as? Date
+        guard force || date != iconDate else { return }
         guard let data = try? Data(contentsOf: url), let image = NSImage(data: data) else { return }
+        iconDate = date
         NSApp.applicationIconImage = image
+        NSApp.dockTile.display()
+    }
+
+    /// Watches the icons folder too, in case a notification was missed while the launcher was busy.
+    private func watchIcons() {
+        let folder = PWShared.iconsFolder()
+        try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        let fd = Darwin.open(folder.path, O_EVTONLY)
+        guard fd >= 0 else { return }
+        let source = DispatchSource.makeFileSystemObjectSource(fileDescriptor: fd, eventMask: [.write, .rename], queue: .main)
+        source.setEventHandler { [weak self] in MainActor.assumeIsolated { self?.loadIcon(force: false) } }
+        source.setCancelHandler { Darwin.close(fd) }
+        source.resume()
+        iconWatcher = source
     }
 }
 

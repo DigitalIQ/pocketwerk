@@ -260,6 +260,19 @@ nonisolated enum DockPlist {
         entries.filter { !matches($0, path: path, bundleID: bundleID) }
     }
 
+    /// Replaces the tile of a launcher with a fresh entry at the same index: new GUID, no cached
+    /// bookmark or dates. The Dock caches the icon per entry; only a new entry makes it read the icon again.
+    /// Position and label stay. Entries that do not match are returned unchanged.
+    static func refreshing(app path: String, label: String, bundleID: String?, in entries: [Entry]) -> [Entry] {
+        var out = entries
+        guard let i = out.firstIndex(where: { matches($0, path: path, bundleID: bundleID) }) else { return entries }
+        let shown = Self.label(of: out[i]) ?? label
+        var fresh = appTile(path: path, label: shown.isEmpty ? label : shown, bundleID: bundleID)
+        if let old = out[i]["GUID"] as? Int, fresh["GUID"] as? Int == old { fresh["GUID"] = old + 1 }
+        out[i] = fresh
+        return out
+    }
+
     /// Points an existing app tile to a new path (renamed launcher) and keeps its position.
     static func replacingPath(_ entry: Entry, path: String, label: String) -> Entry {
         guard self.path(of: entry) != path || Self.label(of: entry) != label else { return entry }

@@ -91,3 +91,54 @@ import Testing
         #expect(DockPlist.identity(of: c) == "url|https://a.example")
     }
 }
+
+@Suite struct DockTileRefreshTests {
+    @Test func refreshingKeepsPlaceAndLabelButDropsCaches() {
+        let bid = "io.github.digitaliq.pocketwerk.slot.R"
+        var tile = DockPlist.appTile(path: "/L/Work.app", label: "My Work", bundleID: bid)
+        var data = DockPlist.tileData(tile)
+        data["book"] = Data([1])
+        data["file-mod-date"] = 123
+        data["parent-mod-date"] = 456
+        tile["tile-data"] = data
+        tile["GUID"] = 42
+        let entries = [DockPlist.appTile(path: "/A/Mail.app", label: "Mail", bundleID: nil), tile,
+                       DockPlist.spacerTile(.spacer)]
+        let out = DockPlist.refreshing(app: "/L/Work.app", label: "Work", bundleID: bid, in: entries)
+        #expect(out.count == 3)
+        #expect(DockPlist.path(of: out[1]) == "/L/Work.app")
+        #expect(DockPlist.label(of: out[1]) == "My Work")
+        #expect(DockPlist.bundleID(of: out[1]) == bid)
+        #expect(out[1]["GUID"] as? Int != 42)
+        let fresh = DockPlist.tileData(out[1])
+        #expect(fresh["book"] == nil && fresh["file-mod-date"] == nil && fresh["parent-mod-date"] == nil)
+        #expect(DockPlist.identity(of: out[0]) == DockPlist.identity(of: entries[0]))
+        // Not pinned: unchanged.
+        #expect((DockPlist.refreshing(app: "/x.app", label: "x", bundleID: "nope", in: entries) as NSArray).isEqual(to: entries))
+    }
+
+    @Test func managerRefreshesPinnedTilesWithOneRestart() {
+        let store = LibraryStore(fileURL: FileManager.default.temporaryDirectory.appendingPathComponent("tr-\(UUID().uuidString).json"))
+        let domain = FakeDockDomain()
+        let manager = DockManager(store: store, domain: domain, folder: FileManager.default.temporaryDirectory)
+        let a = store.addSlot(name: "A", groupIDs: [])
+        let b = store.addSlot(name: "B", groupIDs: [])
+        store.updateSlot(a.id) { $0.launcherPath = "/L/A.app" }
+        store.updateSlot(b.id) { $0.launcherPath = "/L/B.app" }
+        var apps = [DockPlist.appTile(path: "/A/Mail.app", label: "Mail", bundleID: nil)]
+        for (slot, path) in [(a, "/L/A.app"), (b, "/L/B.app")] {
+            var e = DockPlist.appTile(path: path, label: slot.name, bundleID: LauncherTarget.slot(slot.id).bundleID)
+            e["tile-data"] = DockPlist.tileData(e).merging(["book": Data([7])]) { $1 }
+            apps.append(e)
+        }
+        domain.values[DockPlist.appsKey] = apps
+        manager.queueTileRefresh(.slot(a.id))
+        manager.queueTileRefresh(.slot(b.id))
+        manager.flushTileRefresh()
+        manager.flushDockChanges()
+        let out = domain.values[DockPlist.appsKey] as? [[String: Any]] ?? []
+        #expect(out.compactMap(DockPlist.path(of:)) == ["/A/Mail.app", "/L/A.app", "/L/B.app"])
+        #expect(out.dropFirst().allSatisfy { DockPlist.tileData($0)["book"] == nil })
+        #expect(domain.restarts == 1)
+    }
+}

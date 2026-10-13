@@ -258,7 +258,8 @@ final class DockManager {
         let needsBuild = !LauncherBuilder.isCurrent(destination, spec: spec)
         if needsBuild { wasRunning = stopLauncher(target) || wasRunning }
         let (art, hash) = iconArt(target)
-        let icns = LauncherIcon.png(LauncherIcon.compose(art.image, clip: art.clip), pixels: 1024)
+        // Slot art is already on the macOS icon grid; only spacer art gets the inset here.
+        let icns = LauncherIcon.png(art.onGrid ? art.image : LauncherIcon.compose(art.image, clip: art.clip), pixels: 1024)
         return InstallJob(target: target, spec: spec, template: template, destination: destination,
                           needsBuild: needsBuild, icns: icns, hash: hash, wasRunning: wasRunning)
     }
@@ -266,6 +267,7 @@ final class DockManager {
     /// Main-actor part after the build: custom icon (after signing), registration, Dock path, relaunch.
     private func finish(_ job: InstallJob) {
         let (art, hash) = iconArt(job.target)
+        let iconChanged = job.needsBuild || hash != storedIconHash(job.target)
         applyIcon(art, to: job.destination, id: job.target.id)
         LauncherBuilder.register(job.destination)
         let path = job.destination.path
@@ -286,6 +288,7 @@ final class DockManager {
         if isInDock(job.target) {
             let label = displayName(job.target) ?? ""
             modifyDock { DockPlist.adding(app: path, label: label, bundleID: job.target.bundleID, to: $0) }
+            if iconChanged { queueTileRefresh(job.target) }
         }
         if job.wasRunning { launchQuietly(job.destination) }
         rememberLibrary()
@@ -503,6 +506,44 @@ final class DockManager {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: work)
     }
 
+    private func storedIconHash(_ target: LauncherTarget) -> String? {
+        switch target {
+        case .slot(let id): store.slot(id)?.iconHash
+        case .spacer(let id): spacerIconHashes[id]
+        }
+    }
+
+    // MARK: Pinned tile refresh
+
+    @ObservationIgnored private var pendingTileRefresh: Set<LauncherTarget> = []
+    @ObservationIgnored private var tileRefreshWork: DispatchWorkItem?
+
+    /// The Dock keeps the icon of a pinned tile per entry, even across restarts. A changed icon
+    /// therefore gets a fresh entry at the same place. Batched: one Dock restart for all tiles.
+    func queueTileRefresh(_ target: LauncherTarget) {
+        pendingTileRefresh.insert(target)
+        tileRefreshWork?.cancel()
+        let work = DispatchWorkItem { [weak self] in MainActor.assumeIsolated { self?.flushTileRefresh() } }
+        tileRefreshWork = work
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: work)
+    }
+
+    /// Rewrites the queued tiles now (the restart itself follows through `scheduleDockRestart`).
+    func flushTileRefresh() {
+        tileRefreshWork?.cancel()
+        tileRefreshWork = nil
+        let targets = pendingTileRefresh
+        pendingTileRefresh = []
+        let tiles: [(path: String, label: String, bundleID: String)] = targets.compactMap { t in
+            guard let path = launcherPath(t) else { return nil }
+            return (path, displayName(t) ?? "", t.bundleID)
+        }
+        guard !tiles.isEmpty else { return }
+        modifyDock { entries in
+            tiles.reduce(entries) { DockPlist.refreshing(app: $1.path, label: $1.label, bundleID: $1.bundleID, in: $0) }
+        }
+    }
+
     /// Re-renders launcher icons whose inputs changed (per-slot hash). Callers debounce.
     func refreshIcons() {
         let lib = store.library
@@ -512,13 +553,17 @@ final class DockManager {
             guard hash != slot.iconHash else { continue }
             applyIcon(art, to: URL(fileURLWithPath: path), id: slot.id)
             store.updateSlot(slot.id, undoable: false) { $0.iconHash = hash }
+            if isInDock(.slot(slot.id)) { queueTileRefresh(.slot(slot.id)) }
         }
         for spacer in lib.spacers {
             guard let path = spacer.launcherPath, FileManager.default.fileExists(atPath: path), !busy.contains(spacer.id) else { continue }
             let (art, hash) = iconArt(.spacer(spacer.id))
             guard hash != spacerIconHashes[spacer.id] else { continue }
+            let known = spacerIconHashes[spacer.id] != nil
             applyIcon(art, to: URL(fileURLWithPath: path), id: spacer.id)
             spacerIconHashes[spacer.id] = hash
+            // The first pass after launch only learns the hash; no Dock restart for that.
+            if known, isInDock(.spacer(spacer.id)) { queueTileRefresh(.spacer(spacer.id)) }
         }
     }
 }
