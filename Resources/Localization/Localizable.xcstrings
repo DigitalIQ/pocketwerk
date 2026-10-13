@@ -2,10 +2,24 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "%@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
     },
     "%@ (Imported)" : {
       "localizations" : {
@@ -18,7 +32,14 @@
       }
     },
     "%@ (current)" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ (aktuell)"
+          }
+        }
+      }
     },
     "%@ Copy" : {
       "localizations" : {
@@ -31,7 +52,14 @@
       }
     },
     "%@ Gradient" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@-Verlauf"
+          }
+        }
+      }
     },
     "%@ Look" : {
       "localizations" : {
@@ -86,7 +114,14 @@
       }
     },
     "%@ is already active." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ist bereits aktiv."
+          }
+        }
+      }
     },
     "%@ is used by %@. Only the first one works." : {
       "localizations" : {
@@ -106,6 +141,12 @@
     },
     "%@, group %lld of %lld" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, Gruppe %2$lld von %3$lld"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -155,7 +196,14 @@
       }
     },
     "%lld changes made" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Änderungen vorgenommen"
+          }
+        }
+      }
     },
     "%lld items" : {
       "localizations" : {
@@ -204,7 +252,14 @@
       }
     },
     "%lld points" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Punkte"
+          }
+        }
+      }
     },
     "%lld pt" : {
       "extractionState" : "stale",
@@ -308,16 +363,44 @@
       }
     },
     "A Dock icon can show one group or several. With several, swipe or use the arrow keys in the popup to switch." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Dock-Symbol kann eine oder mehrere Gruppen zeigen. Bei mehreren wechselst du im Popup per Wischen oder mit den Pfeiltasten."
+          }
+        }
+      }
     },
     "A Space" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Space"
+          }
+        }
+      }
     },
     "A display" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Bildschirm"
+          }
+        }
+      }
     },
     "A gradient needs two colors" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Verlauf braucht zwei Farben"
+          }
+        }
+      }
     },
     "A menu" : {
       "localizations" : {
@@ -330,10 +413,24 @@
       }
     },
     "A note for when you come back. It shows when you switch to this profile again." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine Notiz für deine Rückkehr. Sie erscheint, wenn du wieder zu diesem Profil wechselst."
+          }
+        }
+      }
     },
     "A profile is a saved copy of the whole Dock. Apply it from the menu bar, with a shortcut, or with the leader key." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Profil ist eine gesicherte Kopie des gesamten Docks. Wende es über die Menüleiste, per Tastenkürzel oder mit der Leader-Taste an."
+          }
+        }
+      }
     },
     "A profile is a saved copy of your whole Dock. Switch between them with one click, a hotkey, a URL or the command line." : {
       "localizations" : {
@@ -386,7 +483,14 @@
       }
     },
     "Actions for %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktionen für %@"
+          }
+        }
+      }
     },
     "Active" : {
       "localizations" : {
@@ -399,7 +503,14 @@
       }
     },
     "Active shortcuts" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktive Tastenkürzel"
+          }
+        }
+      }
     },
     "Add" : {
       "localizations" : {
@@ -412,10 +523,24 @@
       }
     },
     "Add %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ hinzufügen"
+          }
+        }
+      }
     },
     "Add %lld Items to" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Einträge hinzufügen zu"
+          }
+        }
+      }
     },
     "Add %lld items to which group?" : {
       "localizations" : {
@@ -498,7 +623,14 @@
       }
     },
     "Add Follow-up Key…" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folgetaste hinzufügen …"
+          }
+        }
+      }
     },
     "Add Groups" : {
       "localizations" : {
@@ -621,7 +753,14 @@
       }
     },
     "Add my music apps" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meine Musik-Apps hinzufügen"
+          }
+        }
+      }
     },
     "Add profile" : {
       "localizations" : {
@@ -664,7 +803,14 @@
       }
     },
     "Add “%@” to" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ hinzufügen zu"
+          }
+        }
+      }
     },
     "Add ⌘, ⌥ or ⌃ to the key." : {
       "localizations" : {
@@ -677,7 +823,14 @@
       }
     },
     "Added %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ hinzugefügt"
+          }
+        }
+      }
     },
     "Address" : {
       "localizations" : {
@@ -760,7 +913,14 @@
       }
     },
     "An extra copy of the library can go to any folder, for example iCloud Drive, after every change." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach jeder Änderung kann eine zusätzliche Kopie der Bibliothek in einen beliebigen Ordner gehen, zum Beispiel in iCloud Drive."
+          }
+        }
+      }
     },
     "Angle" : {
       "localizations" : {
@@ -803,7 +963,14 @@
       }
     },
     "Another profile is being applied." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein anderes Profil wird gerade angewendet."
+          }
+        }
+      }
     },
     "App" : {
       "localizations" : {
@@ -826,10 +993,24 @@
       }
     },
     "App Icon" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App-Symbol"
+          }
+        }
+      }
     },
     "App suggestions in the App Drawer" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App-Vorschläge in der App-Übersicht"
+          }
+        }
+      }
     },
     "App, running" : {
       "localizations" : {
@@ -852,31 +1033,93 @@
       }
     },
     "Appearance can be light, dark or system" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Erscheinungsbild kann hell, dunkel oder System sein"
+          }
+        }
+      }
     },
     "Appearance: %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erscheinungsbild: %@"
+          }
+        }
+      }
     },
     "Apple Intelligence" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence"
+          }
+        }
+      }
     },
     "Apple Intelligence did not accept this request. Try other words." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence hat diese Anfrage nicht akzeptiert. Versuche andere Worte."
+          }
+        }
+      }
     },
     "Apple Intelligence is not available right now." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence ist gerade nicht verfügbar."
+          }
+        }
+      }
     },
     "Apple Intelligence is still getting ready. Try again in a few minutes." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence wird noch vorbereitet. Versuche es in ein paar Minuten erneut."
+          }
+        }
+      }
     },
     "Apple Intelligence runs on this Mac. Nothing leaves it." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence läuft auf diesem Mac. Nichts verlässt ihn."
+          }
+        }
+      }
     },
     "Applied %@." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ angewendet."
+          }
+        }
+      }
     },
     "Applied %@. Missing: %@." : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ angewendet. Fehlt: %2$@."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -896,13 +1139,34 @@
       }
     },
     "Applies a Pocketwerk Dock profile when this Focus turns on." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wendet ein Pocketwerk-Dock-Profil an, wenn dieser Fokus eingeschaltet wird."
+          }
+        }
+      }
     },
     "Applies the next profile in the list." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wendet das nächste Profil in der Liste an."
+          }
+        }
+      }
     },
     "Applies the profile linked to the Space or display you move to." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wendet das Profil an, das mit dem Space oder Bildschirm verknüpft ist, zu dem du wechselst."
+          }
+        }
+      }
     },
     "Applies this look" : {
       "localizations" : {
@@ -925,16 +1189,44 @@
       }
     },
     "Apply Dock Profile" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dock-Profil anwenden"
+          }
+        }
+      }
     },
     "Apply Next Dock Profile" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nächstes Dock-Profil anwenden"
+          }
+        }
+      }
     },
     "Apply a Dock profile" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Dock-Profil anwenden"
+          }
+        }
+      }
     },
     "Apply a profile" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Profil anwenden"
+          }
+        }
+      }
     },
     "Apply at startup" : {
       "localizations" : {
@@ -947,10 +1239,24 @@
       }
     },
     "Apply automatically on" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatisch anwenden bei"
+          }
+        }
+      }
     },
     "Apply the next profile" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das nächste Profil anwenden"
+          }
+        }
+      }
     },
     "Apps" : {
       "localizations" : {
@@ -993,7 +1299,14 @@
       }
     },
     "Apps you often open within a few minutes of each other. Counted on this Mac only." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apps, die du oft innerhalb weniger Minuten nacheinander öffnest. Nur auf diesem Mac gezählt."
+          }
+        }
+      }
     },
     "App…" : {
       "localizations" : {
@@ -1016,19 +1329,54 @@
       }
     },
     "Ask for a note when switching away" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beim Wegwechseln nach einer Notiz fragen"
+          }
+        }
+      }
     },
     "Assistant" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assistent"
+          }
+        }
+      }
     },
     "Assistant Is Off" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assistent ist ausgeschaltet"
+          }
+        }
+      }
     },
     "Assistant and Suggestions" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assistent und Vorschläge"
+          }
+        }
+      }
     },
     "Assistant in the group editor" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assistent im Gruppeneditor"
+          }
+        }
+      }
     },
     "Assistent" : {
       "extractionState" : "stale",
@@ -1082,7 +1430,14 @@
       }
     },
     "Automatic" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatisch"
+          }
+        }
+      }
     },
     "Automatic shortcut" : {
       "localizations" : {
@@ -1165,7 +1520,14 @@
       }
     },
     "Based on app categories and apps you use together" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basierend auf App-Kategorien und Apps, die du zusammen verwendest"
+          }
+        }
+      }
     },
     "Black" : {
       "localizations" : {
@@ -1208,7 +1570,14 @@
       }
     },
     "Border %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rahmen %@"
+          }
+        }
+      }
     },
     "Border and Corners" : {
       "localizations" : {
@@ -1221,10 +1590,24 @@
       }
     },
     "Bottom left" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unten links"
+          }
+        }
+      }
     },
     "Bottom right" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unten rechts"
+          }
+        }
+      }
     },
     "Bubbles" : {
       "localizations" : {
@@ -1247,10 +1630,24 @@
       }
     },
     "Cannot do “%@” yet" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ ist noch nicht möglich"
+          }
+        }
+      }
     },
     "Can’t be found. Click to locate or remove it." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht gefunden. Klicke, um es zu suchen oder zu entfernen."
+          }
+        }
+      }
     },
     "Cardboard" : {
       "localizations" : {
@@ -1293,10 +1690,24 @@
       }
     },
     "Category cleared" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorie entfernt"
+          }
+        }
+      }
     },
     "Category “%@”" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorie „%@“"
+          }
+        }
+      }
     },
     "Center" : {
       "localizations" : {
@@ -1329,10 +1740,24 @@
       }
     },
     "Change this group in your own words" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ändere diese Gruppe mit eigenen Worten"
+          }
+        }
+      }
     },
     "Changes undone" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Änderungen widerrufen"
+          }
+        }
+      }
     },
     "Change…" : {
       "localizations" : {
@@ -1345,7 +1770,14 @@
       }
     },
     "Check Again" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erneut prüfen"
+          }
+        }
+      }
     },
     "Check Now" : {
       "localizations" : {
@@ -1458,7 +1890,14 @@
       }
     },
     "Choose the new location of “%@”." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle den neuen Ort von „%@“."
+          }
+        }
+      }
     },
     "Circle" : {
       "localizations" : {
@@ -1471,7 +1910,14 @@
       }
     },
     "Clear Conversation" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unterhaltung löschen"
+          }
+        }
+      }
     },
     "Clear search" : {
       "localizations" : {
@@ -1614,13 +2060,34 @@
       }
     },
     "Columns must be 1 to 12 or auto" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spalten müssen 1 bis 12 oder automatisch sein"
+          }
+        }
+      }
     },
     "Columns: %lld" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spalten: %lld"
+          }
+        }
+      }
     },
     "Columns: automatic" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spalten: automatisch"
+          }
+        }
+      }
     },
     "Comb" : {
       "localizations" : {
@@ -1633,16 +2100,44 @@
       }
     },
     "Command %lld" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Befehl %lld"
+          }
+        }
+      }
     },
     "Command Line" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Befehlszeile"
+          }
+        }
+      }
     },
     "Commands" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Befehle"
+          }
+        }
+      }
     },
     "Commands…" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Befehle …"
+          }
+        }
+      }
     },
     "Copy" : {
       "localizations" : {
@@ -1655,7 +2150,14 @@
       }
     },
     "Copy %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ kopieren"
+          }
+        }
+      }
     },
     "Copy Details" : {
       "localizations" : {
@@ -1688,16 +2190,44 @@
       }
     },
     "Corner radius %lld pt" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eckenradius %lld pt"
+          }
+        }
+      }
     },
     "Create" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstellen"
+          }
+        }
+      }
     },
     "Create a group with ⌘N, then add apps from the App Drawer, files with ⇧⌘F, or drop anything from the Finder onto the list." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstelle eine Gruppe mit ⌘N und füge dann Apps aus der App-Übersicht hinzu, Dateien mit ⇧⌘F, oder ziehe beliebige Objekte aus dem Finder auf die Liste."
+          }
+        }
+      }
     },
     "Created" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstellt"
+          }
+        }
+      }
     },
     "Curtains" : {
       "localizations" : {
@@ -1790,10 +2320,24 @@
       }
     },
     "Date Created" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstellungsdatum"
+          }
+        }
+      }
     },
     "Date Modified" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Änderungsdatum"
+          }
+        }
+      }
     },
     "Delete" : {
       "localizations" : {
@@ -1956,10 +2500,24 @@
       }
     },
     "Describe a change" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Änderung beschreiben"
+          }
+        }
+      }
     },
     "Desktop %lld" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schreibtisch %lld"
+          }
+        }
+      }
     },
     "Desktop Picture" : {
       "localizations" : {
@@ -1982,10 +2540,24 @@
       }
     },
     "Diagnostics" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diagnose"
+          }
+        }
+      }
     },
     "Diagnostics are written to a local text file only when you export them." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Diagnose wird nur dann in eine lokale Textdatei geschrieben, wenn du sie exportierst."
+          }
+        }
+      }
     },
     "Dim" : {
       "localizations" : {
@@ -2018,13 +2590,34 @@
       }
     },
     "Dismiss %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ schließen"
+          }
+        }
+      }
     },
     "Display" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bildschirm"
+          }
+        }
+      }
     },
     "Display as" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anzeigen als"
+          }
+        }
+      }
     },
     "Distance from the Dock" : {
       "localizations" : {
@@ -2037,7 +2630,14 @@
       }
     },
     "Distance to Dock" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abstand zum Dock"
+          }
+        }
+      }
     },
     "Dock" : {
       "localizations" : {
@@ -2080,10 +2680,24 @@
       }
     },
     "Dock Icons and Profiles" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dock-Symbole und Profile"
+          }
+        }
+      }
     },
     "Dock Profile" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dock-Profil"
+          }
+        }
+      }
     },
     "Dock Profiles" : {
       "localizations" : {
@@ -2096,7 +2710,14 @@
       }
     },
     "Dock Profiles.json" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dock Profiles.json"
+          }
+        }
+      }
     },
     "Dock Slots" : {
       "localizations" : {
@@ -2119,10 +2740,24 @@
       }
     },
     "Dock icon: %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dock-Symbol: %@"
+          }
+        }
+      }
     },
     "Dock icons" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dock-Symbole"
+          }
+        }
+      }
     },
     "Dock only" : {
       "localizations" : {
@@ -2165,10 +2800,24 @@
       }
     },
     "Dots" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punkte"
+          }
+        }
+      }
     },
     "Double press or key sequence" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doppelt drücken oder Tastenfolge"
+          }
+        }
+      }
     },
     "Down" : {
       "localizations" : {
@@ -2211,10 +2860,24 @@
       }
     },
     "Drag an item onto a group in the sidebar to move it there. If that group already has it, the item only leaves the old group." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ziehe einen Eintrag auf eine Gruppe in der Seitenleiste, um ihn dorthin zu bewegen. Hat die Gruppe ihn schon, verlässt der Eintrag nur die alte Gruppe."
+          }
+        }
+      }
     },
     "Drag items to change their order, or pick a sort order in the toolbar. Right-click an item to rename it, move it to another group or remove it. An empty name brings back the original one." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ziehe Einträge, um die Reihenfolge zu ändern, oder wähle in der Symbolleiste eine Sortierung. Klicke mit der rechten Maustaste auf einen Eintrag, um ihn umzubenennen, in eine andere Gruppe zu bewegen oder zu entfernen. Ein leerer Name bringt den ursprünglichen zurück."
+          }
+        }
+      }
     },
     "Drifting Light" : {
       "localizations" : {
@@ -2257,7 +2920,14 @@
       }
     },
     "Drop files on a Dock icon to add them. Hold a drag over the icon to open its popup and drop inside." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lege Dateien auf einem Dock-Symbol ab, um sie hinzuzufügen. Halte beim Ziehen über dem Symbol an, um das Popup zu öffnen und darin abzulegen."
+          }
+        }
+      }
     },
     "Drops" : {
       "localizations" : {
@@ -2340,7 +3010,14 @@
       }
     },
     "Emoji %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emoji %@"
+          }
+        }
+      }
     },
     "Emoji & Symbols" : {
       "localizations" : {
@@ -2393,7 +3070,14 @@
       }
     },
     "Every change is listed and can be undone. Items are only removed after you confirm." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jede Änderung wird aufgelistet und lässt sich widerrufen. Einträge werden erst nach deiner Bestätigung entfernt."
+          }
+        }
+      }
     },
     "Export" : {
       "localizations" : {
@@ -2406,7 +3090,14 @@
       }
     },
     "Export All…" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles exportieren …"
+          }
+        }
+      }
     },
     "Export Backup…" : {
       "localizations" : {
@@ -2419,7 +3110,14 @@
       }
     },
     "Export Diagnostics…" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diagnose exportieren …"
+          }
+        }
+      }
     },
     "Export…" : {
       "localizations" : {
@@ -2442,10 +3140,24 @@
       }
     },
     "Falling Snow" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falling Snow"
+          }
+        }
+      }
     },
     "Fan" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fan"
+          }
+        }
+      }
     },
     "Fast" : {
       "localizations" : {
@@ -2498,10 +3210,24 @@
       }
     },
     "Fill %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Füllung %@"
+          }
+        }
+      }
     },
     "Filled" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gefüllt"
+          }
+        }
+      }
     },
     "Filter" : {
       "localizations" : {
@@ -2514,7 +3240,14 @@
       }
     },
     "Find %@ Profiles" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@-Profile suchen"
+          }
+        }
+      }
     },
     "Finish" : {
       "localizations" : {
@@ -2577,7 +3310,14 @@
       }
     },
     "For example Office, Design, Games" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zum Beispiel Büro, Design, Spiele"
+          }
+        }
+      }
     },
     "Force Quit" : {
       "localizations" : {
@@ -2620,7 +3360,14 @@
       }
     },
     "Full-Screen Space" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vollbild-Space"
+          }
+        }
+      }
     },
     "Fur" : {
       "localizations" : {
@@ -2643,7 +3390,14 @@
       }
     },
     "Getting Started" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erste Schritte"
+          }
+        }
+      }
     },
     "Give each group its own Dock icon. A click opens it as a popup." : {
       "localizations" : {
@@ -2686,7 +3440,14 @@
       }
     },
     "Glass fill" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glasfüllung"
+          }
+        }
+      }
     },
     "Glossy" : {
       "localizations" : {
@@ -2699,7 +3460,14 @@
       }
     },
     "Glow" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glow"
+          }
+        }
+      }
     },
     "Glyph Rain" : {
       "localizations" : {
@@ -2732,7 +3500,14 @@
       }
     },
     "Gradient %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verlauf %@"
+          }
+        }
+      }
     },
     "Gradient %@ to %@" : {
       "localizations" : {
@@ -2817,7 +3592,14 @@
       }
     },
     "Group colors" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gruppenfarben"
+          }
+        }
+      }
     },
     "Group name" : {
       "localizations" : {
@@ -2850,7 +3632,14 @@
       }
     },
     "Groups and Items" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gruppen und Einträge"
+          }
+        }
+      }
     },
     "Groups of apps, files and links behind your Dock icons." : {
       "localizations" : {
@@ -2903,7 +3692,14 @@
       }
     },
     "Help" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hilfe"
+          }
+        }
+      }
     },
     "Hidden from All Groups" : {
       "localizations" : {
@@ -2956,7 +3752,14 @@
       }
     },
     "Hide Apps of Group" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apps einer Gruppe ausblenden"
+          }
+        }
+      }
     },
     "Hide Pocketwerk" : {
       "localizations" : {
@@ -2969,7 +3772,14 @@
       }
     },
     "Hide a group's apps" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apps einer Gruppe ausblenden"
+          }
+        }
+      }
     },
     "Hide from All Groups" : {
       "localizations" : {
@@ -2992,7 +3802,14 @@
       }
     },
     "Hides every running app of a group." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blendet alle laufenden Apps einer Gruppe aus."
+          }
+        }
+      }
     },
     "Highlight" : {
       "localizations" : {
@@ -3005,19 +3822,54 @@
       }
     },
     "Home" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home"
+          }
+        }
+      }
     },
     "Honey" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Honey"
+          }
+        }
+      }
     },
     "Hot Corner" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktive Ecke"
+          }
+        }
+      }
     },
     "Hot Corner and Menu Bar" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktive Ecke und Menüleiste"
+          }
+        }
+      }
     },
     "Hot corner" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktive Ecke"
+          }
+        }
+      }
     },
     "Hotkey" : {
       "localizations" : {
@@ -3110,7 +3962,14 @@
       }
     },
     "Icon size %lld pt" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Symbolgröße %lld pt"
+          }
+        }
+      }
     },
     "Image" : {
       "localizations" : {
@@ -3253,7 +4112,14 @@
       }
     },
     "Iris" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iris"
+          }
+        }
+      }
     },
     "Items" : {
       "localizations" : {
@@ -3276,7 +4142,14 @@
       }
     },
     "Keep" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behalten"
+          }
+        }
+      }
     },
     "Keep Open as Window" : {
       "localizations" : {
@@ -3309,7 +4182,14 @@
       }
     },
     "Keep this profile's apps open when switching away" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apps dieses Profils beim Wegwechseln geöffnet lassen"
+          }
+        }
+      }
     },
     "Kind" : {
       "localizations" : {
@@ -3372,10 +4252,24 @@
       }
     },
     "Labels can be always, hover or off" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beschriftungen können immer, beim Hover oder aus sein"
+          }
+        }
+      }
     },
     "Labels: %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beschriftungen: %@"
+          }
+        }
+      }
     },
     "Last Opened" : {
       "localizations" : {
@@ -3398,10 +4292,24 @@
       }
     },
     "Last context note" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letzte Kontextnotiz"
+          }
+        }
+      }
     },
     "Last time in %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zuletzt in %@"
+          }
+        }
+      }
     },
     "Launch at login" : {
       "localizations" : {
@@ -3444,19 +4352,54 @@
       }
     },
     "Layout can be grid, list or tiles" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Layout kann Raster, Liste oder Kacheln sein"
+          }
+        }
+      }
     },
     "Layout: %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Layout: %@"
+          }
+        }
+      }
     },
     "Leader Key" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leader-Taste"
+          }
+        }
+      }
     },
     "Leader key" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leader-Taste"
+          }
+        }
+      }
     },
     "Leader letter" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leader-Buchstabe"
+          }
+        }
+      }
     },
     "Leave empty to use the original name" : {
       "localizations" : {
@@ -3469,7 +4412,14 @@
       }
     },
     "Leaving %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verlasse %@"
+          }
+        }
+      }
     },
     "Left" : {
       "localizations" : {
@@ -3482,7 +4432,14 @@
       }
     },
     "Letter after the leader key" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buchstabe nach der Leader-Taste"
+          }
+        }
+      }
     },
     "Letters" : {
       "localizations" : {
@@ -3555,10 +4512,24 @@
       }
     },
     "Link This Display" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diesen Bildschirm verknüpfen"
+          }
+        }
+      }
     },
     "Link This Space" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diesen Space verknüpfen"
+          }
+        }
+      }
     },
     "Link address" : {
       "localizations" : {
@@ -3581,7 +4552,14 @@
       }
     },
     "Linked to a Space or display" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit einem Space oder Bildschirm verknüpft"
+          }
+        }
+      }
     },
     "List" : {
       "localizations" : {
@@ -3594,13 +4572,34 @@
       }
     },
     "List profiles" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile auflisten"
+          }
+        }
+      }
     },
     "List the current Dock tiles" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktuelle Dock-Kacheln auflisten"
+          }
+        }
+      }
     },
     "Live main Dock icon" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktives Haupt-Dock-Symbol"
+          }
+        }
+      }
     },
     "Living Effect" : {
       "localizations" : {
@@ -3623,13 +4622,34 @@
       }
     },
     "Locate or remove the missing item" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fehlenden Eintrag suchen oder entfernen"
+          }
+        }
+      }
     },
     "Locate…" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suchen …"
+          }
+        }
+      }
     },
     "Look “%@”" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Look „%@“"
+          }
+        }
+      }
     },
     "Looking for apps…" : {
       "localizations" : {
@@ -3652,7 +4672,14 @@
       }
     },
     "Make it dark blue with a list view" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mach sie dunkelblau mit Listenansicht"
+          }
+        }
+      }
     },
     "Manual" : {
       "localizations" : {
@@ -3855,7 +4882,14 @@
       }
     },
     "Missing items" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fehlende Einträge"
+          }
+        }
+      }
     },
     "Missing now" : {
       "localizations" : {
@@ -3888,7 +4922,14 @@
       }
     },
     "More" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mehr"
+          }
+        }
+      }
     },
     "More actions for %@" : {
       "localizations" : {
@@ -4001,7 +5042,14 @@
       }
     },
     "Moved to %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach %@ bewegt"
+          }
+        }
+      }
     },
     "Name" : {
       "localizations" : {
@@ -4114,7 +5162,14 @@
       }
     },
     "New suggestions" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neue Vorschläge"
+          }
+        }
+      }
     },
     "Next" : {
       "localizations" : {
@@ -4127,7 +5182,14 @@
       }
     },
     "Next Dock Profile" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nächstes Dock-Profil"
+          }
+        }
+      }
     },
     "Next Dock profile" : {
       "localizations" : {
@@ -4220,7 +5282,14 @@
       }
     },
     "No Suggestions Yet" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch keine Vorschläge"
+          }
+        }
+      }
     },
     "No analytics, no account, no server. Your data stays on this Mac." : {
       "localizations" : {
@@ -4233,7 +5302,14 @@
       }
     },
     "No border" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Rahmen"
+          }
+        }
+      }
     },
     "No groups" : {
       "localizations" : {
@@ -4246,7 +5322,14 @@
       }
     },
     "No item “%@” in this group" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Eintrag „%@“ in dieser Gruppe"
+          }
+        }
+      }
     },
     "No link, file or folder found." : {
       "localizations" : {
@@ -4259,7 +5342,14 @@
       }
     },
     "No look named “%@”" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Look namens „%@“"
+          }
+        }
+      }
     },
     "No matches" : {
       "localizations" : {
@@ -4272,10 +5362,24 @@
       }
     },
     "No profile" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Profil"
+          }
+        }
+      }
     },
     "No profiles found" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Profile gefunden"
+          }
+        }
+      }
     },
     "No release found." : {
       "localizations" : {
@@ -4288,7 +5392,14 @@
       }
     },
     "No suggestions. Add a few apps or set a category." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Vorschläge. Füge ein paar Apps hinzu oder lege eine Kategorie fest."
+          }
+        }
+      }
     },
     "None" : {
       "localizations" : {
@@ -4341,10 +5452,24 @@
       }
     },
     "Note" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notiz"
+          }
+        }
+      }
     },
     "Note for %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notiz für %@"
+          }
+        }
+      }
     },
     "Nothing Yet" : {
       "localizations" : {
@@ -4367,7 +5492,14 @@
       }
     },
     "Nothing is removed until you confirm below." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nichts wird entfernt, bevor du unten bestätigst."
+          }
+        }
+      }
     },
     "OK" : {
       "localizations" : {
@@ -4410,7 +5542,14 @@
       }
     },
     "Once" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einmal"
+          }
+        }
+      }
     },
     "One readable JSON file with groups, Dock icons, profiles, shortcuts and settings." : {
       "localizations" : {
@@ -4473,7 +5612,14 @@
       }
     },
     "Open All Items of Group" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Einträge einer Gruppe öffnen"
+          }
+        }
+      }
     },
     "Open Download Page" : {
       "localizations" : {
@@ -4496,13 +5642,34 @@
       }
     },
     "Open Pocketwerk" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pocketwerk öffnen"
+          }
+        }
+      }
     },
     "Open Profile “%@”" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profil „%@“ öffnen"
+          }
+        }
+      }
     },
     "Open Project or Folder…" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Projekt oder Ordner öffnen …"
+          }
+        }
+      }
     },
     "Open Safari, Chrome, Arc or Brave first" : {
       "localizations" : {
@@ -4515,10 +5682,24 @@
       }
     },
     "Open Settings" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen öffnen"
+          }
+        }
+      }
     },
     "Open When Applied" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beim Anwenden öffnen"
+          }
+        }
+      }
     },
     "Open With" : {
       "localizations" : {
@@ -4557,7 +5738,14 @@
       }
     },
     "Open every item of a group" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Einträge einer Gruppe öffnen"
+          }
+        }
+      }
     },
     "Open groups from anywhere with ⌥⇧1 to ⌥⇧9." : {
       "localizations" : {
@@ -4580,7 +5768,14 @@
       }
     },
     "Open the main window" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hauptfenster öffnen"
+          }
+        }
+      }
     },
     "Open the profile's apps in the background" : {
       "localizations" : {
@@ -4603,7 +5798,14 @@
       }
     },
     "Open this window when Pocketwerk starts" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieses Fenster beim Start von Pocketwerk öffnen"
+          }
+        }
+      }
     },
     "Opening" : {
       "localizations" : {
@@ -4616,16 +5818,44 @@
       }
     },
     "Opens %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffnet %@"
+          }
+        }
+      }
     },
     "Opens every app, file, folder and link of a group." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffnet alle Apps, Dateien, Ordner und Links einer Gruppe."
+          }
+        }
+      }
     },
     "Opens profile %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffnet Profil %@"
+          }
+        }
+      }
     },
     "Opens when applied" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffnet sich beim Anwenden"
+          }
+        }
+      }
     },
     "Optional" : {
       "localizations" : {
@@ -4668,7 +5898,14 @@
       }
     },
     "Outline" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontur"
+          }
+        }
+      }
     },
     "Pack" : {
       "localizations" : {
@@ -4767,13 +6004,34 @@
       }
     },
     "Pick a category" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorie wählen"
+          }
+        }
+      }
     },
     "Picked on this Mac by Apple Intelligence" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf diesem Mac von Apple Intelligence ausgewählt"
+          }
+        }
+      }
     },
     "Pin a group to keep it at the top. Hidden groups stay out of All Groups but keep their own Dock icon and shortcut." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hefte eine Gruppe an, um sie oben zu halten. Ausgeblendete Gruppen erscheinen nicht in „Alle Gruppen“, behalten aber ihr eigenes Dock-Symbol und Tastenkürzel."
+          }
+        }
+      }
     },
     "Pin to Top" : {
       "localizations" : {
@@ -4846,10 +6104,24 @@
       }
     },
     "Pocketwerk Help" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pocketwerk-Hilfe"
+          }
+        }
+      }
     },
     "Pocketwerk has no account, no analytics and no server. Your groups and usage counts stay on this Mac." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pocketwerk hat keinen Account, keine Analyse und keinen Server. Deine Gruppen und Nutzungszahlen bleiben auf diesem Mac."
+          }
+        }
+      }
     },
     "Pocketwerk is up to date." : {
       "localizations" : {
@@ -4862,10 +6134,24 @@
       }
     },
     "Pocketwerk keeps apps, files, folders and links in groups. Each group can have its own icon in the Dock. Click the icon and the group opens as a popup above it." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pocketwerk hält Apps, Dateien, Ordner und Links in Gruppen. Jede Gruppe kann ein eigenes Symbol im Dock haben. Klicke auf das Symbol, und die Gruppe öffnet sich als Popup darüber."
+          }
+        }
+      }
     },
     "Pocketwerk learns which apps you use together. Check again in a few days." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pocketwerk lernt, welche Apps du zusammen verwendest. Schau in ein paar Tagen wieder nach."
+          }
+        }
+      }
     },
     "Pocketwerk on GitHub" : {
       "localizations" : {
@@ -4888,7 +6174,14 @@
       }
     },
     "Pocketwerk's own Dock icon shows the first group as a mini grid." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das eigene Dock-Symbol von Pocketwerk zeigt die erste Gruppe als Mini-Raster."
+          }
+        }
+      }
     },
     "Pointer" : {
       "localizations" : {
@@ -4941,10 +6234,24 @@
       }
     },
     "Press" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drücken"
+          }
+        }
+      }
     },
     "Press the leader key, then the letter of a group or profile. A small list shows the letters while Pocketwerk waits." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drücke die Leader-Taste und dann den Buchstaben einer Gruppe oder eines Profils. Eine kleine Liste zeigt die Buchstaben, solange Pocketwerk wartet."
+          }
+        }
+      }
     },
     "Press to record a new shortcut" : {
       "localizations" : {
@@ -4987,16 +6294,44 @@
       }
     },
     "Privacy" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datenschutz"
+          }
+        }
+      }
     },
     "Private" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privat"
+          }
+        }
+      }
     },
     "Private (left out of Export All and sharing)" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privat (bei „Alles exportieren“ und Teilen ausgelassen)"
+          }
+        }
+      }
     },
     "Profile" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profil"
+          }
+        }
+      }
     },
     "Profile Name" : {
       "localizations" : {
@@ -5099,10 +6434,24 @@
       }
     },
     "Quit Apps of Group" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apps einer Gruppe beenden"
+          }
+        }
+      }
     },
     "Quit Group" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gruppe beenden"
+          }
+        }
+      }
     },
     "Quit Pocketwerk" : {
       "localizations" : {
@@ -5115,7 +6464,14 @@
       }
     },
     "Quit a group's apps" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apps einer Gruppe beenden"
+          }
+        }
+      }
     },
     "Quit apps that are not in this profile" : {
       "localizations" : {
@@ -5128,7 +6484,14 @@
       }
     },
     "Quits every running app of a group. Apps can still ask to save." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beendet alle laufenden Apps einer Gruppe. Apps können weiterhin nachfragen, ob gesichert werden soll."
+          }
+        }
+      }
     },
     "Rain" : {
       "localizations" : {
@@ -5221,7 +6584,14 @@
       }
     },
     "Remove %@?" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ entfernen?"
+          }
+        }
+      }
     },
     "Remove %lld Items" : {
       "localizations" : {
@@ -5244,7 +6614,14 @@
       }
     },
     "Remove Follow-up Keys" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folgetasten entfernen"
+          }
+        }
+      }
     },
     "Remove Image" : {
       "localizations" : {
@@ -5307,16 +6684,44 @@
       }
     },
     "Remove: %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entfernen: %@"
+          }
+        }
+      }
     },
     "Removed %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ entfernt"
+          }
+        }
+      }
     },
     "Removed." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entfernt."
+          }
+        }
+      }
     },
     "Removed. Undo with Command Z." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entfernt. Mit ⌘Z widerrufen."
+          }
+        }
+      }
     },
     "Rename" : {
       "localizations" : {
@@ -5339,10 +6744,24 @@
       }
     },
     "Rename it to Studio and pick a fitting emoji" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Benenne sie in Studio um und wähle ein passendes Emoji"
+          }
+        }
+      }
     },
     "Renamed to “%@”" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Umbenannt in „%@“"
+          }
+        }
+      }
     },
     "Rename…" : {
       "localizations" : {
@@ -5375,10 +6794,24 @@
       }
     },
     "Report a Problem…" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Problem melden …"
+          }
+        }
+      }
     },
     "Request for the assistant" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anfrage an den Assistenten"
+          }
+        }
+      }
     },
     "Reset" : {
       "localizations" : {
@@ -5391,7 +6824,14 @@
       }
     },
     "Rest the pointer in this corner to show all groups. Pick a corner that macOS does not use for its own hot corners." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halte den Zeiger in dieser Ecke an, um alle Gruppen zu zeigen. Wähle eine Ecke, die macOS nicht für eigene aktive Ecken verwendet."
+          }
+        }
+      }
     },
     "Restart the Dock once so pinned tiles show their new icons." : {
       "localizations" : {
@@ -5404,10 +6844,24 @@
       }
     },
     "Restore the group as it was before" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gruppe wie zuvor wiederherstellen"
+          }
+        }
+      }
     },
     "Rewrites the Dock with a saved profile." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Überschreibt das Dock mit einem gesicherten Profil."
+          }
+        }
+      }
     },
     "Ribbons" : {
       "localizations" : {
@@ -5480,13 +6934,34 @@
       }
     },
     "Rows per page: %lld" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeilen pro Seite: %lld"
+          }
+        }
+      }
     },
     "Rows per page: all" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeilen pro Seite: alle"
+          }
+        }
+      }
     },
     "Run scripts/pocketwerk, or Pocketwerk.app/Contents/MacOS/Pocketwerk --cli." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Führe scripts/pocketwerk aus, oder Pocketwerk.app/Contents/MacOS/Pocketwerk --cli."
+          }
+        }
+      }
     },
     "Running Apps" : {
       "localizations" : {
@@ -5579,7 +7054,14 @@
       }
     },
     "Save Note" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notiz sichern"
+          }
+        }
+      }
     },
     "Save as Theme" : {
       "localizations" : {
@@ -5592,10 +7074,24 @@
       }
     },
     "Save the Dock as a new profile" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dock als neues Profil sichern"
+          }
+        }
+      }
     },
     "Save the Dock into the active profile" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dock im aktiven Profil sichern"
+          }
+        }
+      }
     },
     "Save this look as a theme" : {
       "localizations" : {
@@ -5618,7 +7114,14 @@
       }
     },
     "Saves the last five hours of Pocketwerk's own log and a short summary as a text file. Nothing is sent. Look at the file before you share it." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sichert die letzten fünf Stunden des Pocketwerk-Protokolls und eine kurze Zusammenfassung als Textdatei. Es wird nichts gesendet. Sieh dir die Datei an, bevor du sie teilst."
+          }
+        }
+      }
     },
     "Search Looks" : {
       "localizations" : {
@@ -5651,7 +7154,14 @@
       }
     },
     "Seasonal touches" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saisonale Akzente"
+          }
+        }
+      }
     },
     "Section" : {
       "localizations" : {
@@ -5674,10 +7184,24 @@
       }
     },
     "Send" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senden"
+          }
+        }
+      }
     },
     "Send (⌘↩)" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senden (⌘↩)"
+          }
+        }
+      }
     },
     "Serif" : {
       "localizations" : {
@@ -5690,7 +7214,14 @@
       }
     },
     "Set Dock Profile" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dock-Profil festlegen"
+          }
+        }
+      }
     },
     "Settings" : {
       "localizations" : {
@@ -5703,7 +7234,14 @@
       }
     },
     "Settings > Backup exports everything into one JSON file. Import offers Merge, which only adds, and Replace. Both can be undone with ⌘Z." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen > Backup exportiert alles in eine JSON-Datei. Der Import bietet Zusammenführen, das nur hinzufügt, und Ersetzen. Beides lässt sich mit ⌘Z widerrufen."
+          }
+        }
+      }
     },
     "Settings…" : {
       "localizations" : {
@@ -5736,10 +7274,24 @@
       }
     },
     "Shadow off" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schatten aus"
+          }
+        }
+      }
     },
     "Shadow on" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schatten an"
+          }
+        }
+      }
     },
     "Shape" : {
       "localizations" : {
@@ -5752,7 +7304,14 @@
       }
     },
     "Share…" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teilen …"
+          }
+        }
+      }
     },
     "Shortcut" : {
       "localizations" : {
@@ -5765,19 +7324,54 @@
       }
     },
     "Shortcut options" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optionen für Tastenkürzel"
+          }
+        }
+      }
     },
     "Shortcut: %lld" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tastenkürzel: %lld"
+          }
+        }
+      }
     },
     "Shortcuts" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kurzbefehle"
+          }
+        }
+      }
     },
     "Shortcuts lists these actions under Pocketwerk when the app was built with App Intents metadata. The URLs below always work with the “Open URL” action." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kurzbefehle listet diese Aktionen unter Pocketwerk auf, wenn die App mit App-Intents-Metadaten gebaut wurde. Die URLs unten funktionieren immer mit der Aktion „URL öffnen“."
+          }
+        }
+      }
     },
     "Shortcuts need no extra permission and work in full screen apps." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tastenkürzel brauchen keine zusätzliche Berechtigung und funktionieren in Apps im Vollbildmodus."
+          }
+        }
+      }
     },
     "Shortcuts work everywhere, also in full screen apps. No extra permission is needed." : {
       "extractionState" : "stale",
@@ -5791,7 +7385,14 @@
       }
     },
     "Shortcuts work everywhere, also in full screen apps. No extra permission is needed. Use the … button to require a double press or a follow-up key." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tastenkürzel funktionieren überall, auch in Apps im Vollbildmodus. Es ist keine zusätzliche Berechtigung nötig. Mit der Taste „…“ verlangst du doppeltes Drücken oder eine Folgetaste."
+          }
+        }
+      }
     },
     "Show" : {
       "localizations" : {
@@ -5834,7 +7435,14 @@
       }
     },
     "Show Data Folder" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datenordner zeigen"
+          }
+        }
+      }
     },
     "Show Group" : {
       "localizations" : {
@@ -5867,10 +7475,24 @@
       }
     },
     "Show a group" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine Gruppe anzeigen"
+          }
+        }
+      }
     },
     "Show a group's popup" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Popup einer Gruppe anzeigen"
+          }
+        }
+      }
     },
     "Show all groups" : {
       "localizations" : {
@@ -5883,10 +7505,24 @@
       }
     },
     "Show group names" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gruppennamen anzeigen"
+          }
+        }
+      }
     },
     "Show icons only" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur Symbole anzeigen"
+          }
+        }
+      }
     },
     "Show in All Groups" : {
       "localizations" : {
@@ -5909,10 +7545,24 @@
       }
     },
     "Show labels only on hover" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beschriftungen nur beim Hover anzeigen"
+          }
+        }
+      }
     },
     "Show page dots" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seitenpunkte anzeigen"
+          }
+        }
+      }
     },
     "Show the Most Used group" : {
       "localizations" : {
@@ -5925,7 +7575,14 @@
       }
     },
     "Show the current Space and display ids" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktuelle Space- und Bildschirm-IDs anzeigen"
+          }
+        }
+      }
     },
     "Show this group as a popup" : {
       "localizations" : {
@@ -5938,10 +7595,24 @@
       }
     },
     "Shows a group's popup at the pointer." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeigt das Popup einer Gruppe am Zeiger."
+          }
+        }
+      }
     },
     "Shows the folder contents" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeigt den Ordnerinhalt"
+          }
+        }
+      }
     },
     "Shows your desktop picture behind the popup, blurred." : {
       "localizations" : {
@@ -5974,10 +7645,24 @@
       }
     },
     "Siri and Shortcuts" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siri und Kurzbefehle"
+          }
+        }
+      }
     },
     "Siri, Shortcuts, URL and command line commands" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siri, Kurzbefehle, URL- und Befehlszeilenbefehle"
+          }
+        }
+      }
     },
     "Size" : {
       "localizations" : {
@@ -6030,7 +7715,14 @@
       }
     },
     "Skip in “Next Profile”" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bei „Nächstes Profil“ überspringen"
+          }
+        }
+      }
     },
     "Skipped version" : {
       "localizations" : {
@@ -6073,10 +7765,24 @@
       }
     },
     "Smart groups fill themselves" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intelligente Gruppen füllen sich von selbst"
+          }
+        }
+      }
     },
     "Smart groups fill themselves: Most Used, Recently Opened and Running Apps. They are counted on this Mac only." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intelligente Gruppen füllen sich von selbst: Meistgenutzt, Zuletzt geöffnet und Laufende Apps. Sie werden nur auf diesem Mac gezählt."
+          }
+        }
+      }
     },
     "Snow" : {
       "localizations" : {
@@ -6089,10 +7795,24 @@
       }
     },
     "Something not working?" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etwas funktioniert nicht?"
+          }
+        }
+      }
     },
     "Something went wrong: %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etwas ist schiefgelaufen: %@"
+          }
+        }
+      }
     },
     "Sort" : {
       "localizations" : {
@@ -6115,7 +7835,14 @@
       }
     },
     "Sort by" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortieren nach"
+          }
+        }
+      }
     },
     "Sort items by" : {
       "localizations" : {
@@ -6138,7 +7865,14 @@
       }
     },
     "Sorted by %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortiert nach %@"
+          }
+        }
+      }
     },
     "Spacer" : {
       "localizations" : {
@@ -6181,10 +7915,24 @@
       }
     },
     "Spacing %lld pt" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abstand %lld pt"
+          }
+        }
+      }
     },
     "Spacing can be tight, normal or airy" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Abstand kann eng, normal oder luftig sein"
+          }
+        }
+      }
     },
     "Speed" : {
       "localizations" : {
@@ -6237,7 +7985,14 @@
       }
     },
     "Standard" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard"
+          }
+        }
+      }
     },
     "Starfield" : {
       "localizations" : {
@@ -6270,7 +8025,14 @@
       }
     },
     "Starts from links, shortcuts and Dock icons stay without a window." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starts über Links, Kurzbefehle und Dock-Symbole bleiben ohne Fenster."
+          }
+        }
+      }
     },
     "Startup profile" : {
       "localizations" : {
@@ -6323,25 +8085,74 @@
       }
     },
     "Suggested" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorgeschlagen"
+          }
+        }
+      }
     },
     "Suggested Groups" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorgeschlagene Gruppen"
+          }
+        }
+      }
     },
     "Suggested Groups…" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorgeschlagene Gruppen …"
+          }
+        }
+      }
     },
     "Suggested from categories" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aus Kategorien vorgeschlagen"
+          }
+        }
+      }
     },
     "Swipe between pages (otherwise scroll)" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zwischen Seiten wischen (sonst scrollen)"
+          }
+        }
+      }
     },
     "Switch with Spaces and displays" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit Spaces und Bildschirmen wechseln"
+          }
+        }
+      }
     },
     "Switching" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wechseln"
+          }
+        }
+      }
     },
     "Symbol" : {
       "localizations" : {
@@ -6374,7 +8185,14 @@
       }
     },
     "Tags" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tags"
+          }
+        }
+      }
     },
     "Terrazzo" : {
       "localizations" : {
@@ -6437,13 +8255,34 @@
       }
     },
     "That was too much at once. Try a shorter request." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das war auf einmal zu viel. Versuche eine kürzere Anfrage."
+          }
+        }
+      }
     },
     "The App Drawer suggests apps that fit the group. Without Apple Intelligence the suggestions come from app categories and the apps you use together." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die App-Übersicht schlägt Apps vor, die zur Gruppe passen. Ohne Apple Intelligence stammen die Vorschläge aus App-Kategorien und den Apps, die du zusammen verwendest."
+          }
+        }
+      }
     },
     "The Assistant tab changes the selected group from plain language, for example “make it dark blue with list view” or “add Pages and Numbers”. It runs on this Mac with Apple Intelligence." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Tab „Assistent“ ändert die ausgewählte Gruppe per Alltagssprache, zum Beispiel „Mach sie dunkelblau mit Listenansicht“ oder „Füge Pages und Numbers hinzu“. Er läuft mit Apple Intelligence auf diesem Mac."
+          }
+        }
+      }
     },
     "The Dock is empty or could not be read." : {
       "localizations" : {
@@ -6456,7 +8295,14 @@
       }
     },
     "The Dock shows a live mini grid of your first group. Turn off “Live main Dock icon” under Dock Icons to see the variant there." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Dock zeigt ein aktives Mini-Raster deiner ersten Gruppe. Schalte „Aktives Haupt-Dock-Symbol“ unter „Dock-Symbole“ aus, um dort die Variante zu sehen."
+          }
+        }
+      }
     },
     "The Dock tile for \"%@\" could not be built." : {
       "localizations" : {
@@ -6469,7 +8315,14 @@
       }
     },
     "The assistant can change the look, labels, layout, Dock icon and name, and add or remove apps. It runs on this Mac; the conversation is forgotten when Pocketwerk quits." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Assistent kann Look, Beschriftungen, Layout, Dock-Symbol und Namen ändern sowie Apps hinzufügen oder entfernen. Er läuft auf diesem Mac. Die Unterhaltung wird vergessen, wenn Pocketwerk beendet wird."
+          }
+        }
+      }
     },
     "The browser did not answer." : {
       "localizations" : {
@@ -6482,7 +8335,14 @@
       }
     },
     "The category helps app suggestions. The leader letter opens the group after the leader key (Settings > Hotkeys)." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Kategorie hilft bei App-Vorschlägen. Der Leader-Buchstabe öffnet die Gruppe nach der Leader-Taste (Einstellungen > Tastenkürzel)."
+          }
+        }
+      }
     },
     "The check asks GitHub for the latest release. Nothing else is sent." : {
       "localizations" : {
@@ -6531,7 +8391,14 @@
       }
     },
     "The group changed since then. Use Edit > Undo instead." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Gruppe wurde seitdem geändert. Verwende stattdessen Bearbeiten > Widerrufen."
+          }
+        }
+      }
     },
     "The launcher template is missing from the app." : {
       "localizations" : {
@@ -6544,10 +8411,24 @@
       }
     },
     "The leader key works like a prefix: press it, then the letter of a group or profile. A small list shows the letters while Pocketwerk waits." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Leader-Taste funktioniert wie ein Präfix: Drücke sie und dann den Buchstaben einer Gruppe oder eines Profils. Eine kleine Liste zeigt die Buchstaben, solange Pocketwerk wartet."
+          }
+        }
+      }
     },
     "The menu bar icon opens all groups or a menu with every group and its items. Right-click it to always get the menu." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Menüleistensymbol öffnet alle Gruppen oder ein Menü mit jeder Gruppe und ihren Einträgen. Klicke mit der rechten Maustaste darauf, um immer das Menü zu erhalten."
+          }
+        }
+      }
     },
     "The menu command “%@” uses this shortcut." : {
       "localizations" : {
@@ -6570,7 +8451,14 @@
       }
     },
     "The only network requests are the daily update check against GitHub (can be turned off) and website icons for links." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die einzigen Netzwerkanfragen sind die tägliche Update-Prüfung bei GitHub (lässt sich ausschalten) und Website-Symbole für Links."
+          }
+        }
+      }
     },
     "The theme keeps the popup and Dock icon look. Use it for any group." : {
       "localizations" : {
@@ -6583,10 +8471,24 @@
       }
     },
     "The … button next to a shortcut makes it a double or triple press, or adds a follow-up key, for example ⌃⌥G then W." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit der Taste „…“ neben einem Tastenkürzel wird es zum doppelten oder dreifachen Drücken, oder du fügst eine Folgetaste hinzu, zum Beispiel ⌃⌥G und dann W."
+          }
+        }
+      }
     },
     "Thick border" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dicker Rahmen"
+          }
+        }
+      }
     },
     "Thickness" : {
       "localizations" : {
@@ -6599,13 +8501,34 @@
       }
     },
     "Thin border" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dünner Rahmen"
+          }
+        }
+      }
     },
     "Thinking…" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denkt nach …"
+          }
+        }
+      }
     },
     "This Mac does not support Apple Intelligence." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser Mac unterstützt Apple Intelligence nicht."
+          }
+        }
+      }
     },
     "This file is not a Pocketwerk backup." : {
       "localizations" : {
@@ -6648,7 +8571,14 @@
       }
     },
     "Three Times" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dreimal"
+          }
+        }
+      }
     },
     "Tight" : {
       "localizations" : {
@@ -6711,10 +8641,24 @@
       }
     },
     "Top left" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oben links"
+          }
+        }
+      }
     },
     "Top right" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oben rechts"
+          }
+        }
+      }
     },
     "Trail" : {
       "localizations" : {
@@ -6747,16 +8691,44 @@
       }
     },
     "Turn it on under Settings > General." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schalte es unter Einstellungen > Allgemein ein."
+          }
+        }
+      }
     },
     "Turn on Apple Intelligence in System Settings to use this." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schalte Apple Intelligence in den Systemeinstellungen ein, um dies zu verwenden."
+          }
+        }
+      }
     },
     "Turn on “Switch with Spaces and displays” to use these." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schalte „Mit Spaces und Bildschirmen wechseln“ ein, um diese zu verwenden."
+          }
+        }
+      }
     },
     "Twice" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zweimal"
+          }
+        }
+      }
     },
     "Type" : {
       "localizations" : {
@@ -6779,10 +8751,24 @@
       }
     },
     "URLs" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URLs"
+          }
+        }
+      }
     },
     "Under Settings > Popup you can pick a screen corner. Rest the pointer there for a moment to show all groups." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unter Einstellungen > Popup kannst du eine Bildschirmecke wählen. Halte den Zeiger kurz dort an, um alle Gruppen zu zeigen."
+          }
+        }
+      }
     },
     "Undo" : {
       "localizations" : {
@@ -6795,7 +8781,14 @@
       }
     },
     "Undone" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widerrufen"
+          }
+        }
+      }
     },
     "Unhide" : {
       "localizations" : {
@@ -6818,22 +8811,64 @@
       }
     },
     "Unknown Dock icon “%@”" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unbekanntes Dock-Symbol „%@“"
+          }
+        }
+      }
     },
     "Unknown border “%@”" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unbekannter Rahmen „%@“"
+          }
+        }
+      }
     },
     "Unknown color “%@”" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unbekannte Farbe „%@“"
+          }
+        }
+      }
     },
     "Unknown corner radius “%@”" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unbekannter Eckenradius „%@“"
+          }
+        }
+      }
     },
     "Unknown icon size “%@”" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unbekannte Symbolgröße „%@“"
+          }
+        }
+      }
     },
     "Unknown sort order “%@”" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unbekannte Sortierung „%@“"
+          }
+        }
+      }
     },
     "Unpin" : {
       "localizations" : {
@@ -6916,7 +8951,14 @@
       }
     },
     "Use a warm gradient and round corners" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwende einen warmen Verlauf und runde Ecken"
+          }
+        }
+      }
     },
     "Use default look" : {
       "localizations" : {
@@ -6939,10 +8981,24 @@
       }
     },
     "Used Together" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zusammen verwendet"
+          }
+        }
+      }
     },
     "Uses its own look now" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwendet jetzt einen eigenen Look"
+          }
+        }
+      }
     },
     "Uses the automatic shortcut for its position in the sidebar." : {
       "localizations" : {
@@ -7015,7 +9071,14 @@
       }
     },
     "Wait for the letter" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf den Buchstaben warten"
+          }
+        }
+      }
     },
     "Wallpaper" : {
       "localizations" : {
@@ -7088,7 +9151,14 @@
       }
     },
     "Where you left off" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wo du aufgehört hast"
+          }
+        }
+      }
     },
     "White" : {
       "localizations" : {
@@ -7131,10 +9201,24 @@
       }
     },
     "Windows" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fenster"
+          }
+        }
+      }
     },
     "Work" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arbeit"
+          }
+        }
+      }
     },
     "Your apps, files and links in groups, one click from the Dock." : {
       "localizations" : {
@@ -7197,28 +9281,84 @@
       }
     },
     "missing" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "fehlt"
+          }
+        }
+      }
     },
     "selected" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ausgewählt"
+          }
+        }
+      }
     },
     "work, travel" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arbeit, Reisen"
+          }
+        }
+      }
     },
     "–" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "–"
+          }
+        }
+      }
     },
     "“%@” can’t be found" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ wurde nicht gefunden"
+          }
+        }
+      }
     },
     "“%@” is not an emoji" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ ist kein Emoji"
+          }
+        }
+      }
     },
     "“%@” is not installed" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ ist nicht installiert"
+          }
+        }
+      }
     },
     "⌘%lld" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⌘%lld"
+          }
+        }
+      }
     },
     "⌥⇧1 to ⌥⇧9 open the first nine groups" : {
       "localizations" : {
@@ -7231,7 +9371,14 @@
       }
     },
     "⌥⇧1 to ⌥⇧9 open the first nine groups. Give any group, Dock icon or profile its own shortcut under Settings > Hotkeys." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⌥⇧1 bis ⌥⇧9 öffnen die ersten neun Gruppen. Gib jeder Gruppe, jedem Dock-Symbol und jedem Profil unter Einstellungen > Tastenkürzel ein eigenes Tastenkürzel."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
