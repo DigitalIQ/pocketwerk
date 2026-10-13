@@ -137,9 +137,15 @@ enum AssistantInterpreter {
             case "border":
                 ownLook()
                 switch lower {
-                case "none", "off", "no":
+                case "none", "off", "no", "false", "nein", "aus", "kein", "keiner":
                     g.style.border = nil
                     out.changes.append(String(localized: "No border"))
+                case "yes", "on", "true", "ja", "an":
+                    // The model sometimes answers a yes/no question instead of naming a border.
+                    if g.style.border == nil {
+                        g.style.border = BorderStyle()
+                        out.changes.append(String(localized: "Thin border"))
+                    }
                 case "thin":
                     var b = g.style.border ?? BorderStyle(); b.width = 1; g.style.border = b
                     out.changes.append(String(localized: "Thin border"))
