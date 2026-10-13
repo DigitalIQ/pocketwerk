@@ -54,6 +54,12 @@ nonisolated enum GroupOrdering {
         return shown
     }
 
+    /// Slots that only show smart groups. Smart groups are computed and cannot have their own Dock icon.
+    static func smartOnlySlots(_ lib: Library) -> [UUID] {
+        let smart = Set(lib.groups.filter { $0.smart != nil }.map(\.id))
+        return lib.slots.filter { !$0.groupIDs.isEmpty && $0.groupIDs.allSatisfy(smart.contains) }.map(\.id)
+    }
+
     /// "example.com" -> "https://example.com". nil when the text is not a usable link.
     static func normalizedLink(_ text: String) -> URL? {
         let t = text.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -115,6 +121,17 @@ extension LibraryStore {
             for i in lib.slots.indices { lib.slots[i].groupIDs.removeAll { $0 == id } }
         }
         for slot in orphanSlots {
+            if DockManager.shared.isInDock(slotID: slot) { DockManager.shared.removeFromDock(slotID: slot) }
+            DockManager.shared.removeLauncher(for: slot)
+        }
+    }
+
+    /// Removes stale Dock icons of smart groups (older versions or imports could create them).
+    func removeSmartOnlySlots() {
+        let stale = GroupOrdering.smartOnlySlots(library)
+        guard !stale.isEmpty else { return }
+        mutate(undoable: false) { lib in lib.slots.removeAll { stale.contains($0.id) } }
+        for slot in stale {
             if DockManager.shared.isInDock(slotID: slot) { DockManager.shared.removeFromDock(slotID: slot) }
             DockManager.shared.removeLauncher(for: slot)
         }

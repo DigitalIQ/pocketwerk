@@ -29,15 +29,21 @@ final class HotkeyCenter {
 
     @ObservationIgnored private let signature: OSType = 0x5057_484B // "PWHK"
     @ObservationIgnored private var handler: EventHandlerRef?
+    /// Permanent registrations: the first key of every binding.
     @ObservationIgnored private var refs: [UInt32: EventHotKeyRef] = [:]
-    @ObservationIgnored private var targets: [UInt32: HotkeyTarget] = [:]
+    @ObservationIgnored private var steps: [UInt32: HotkeyStep] = [:]
+    /// Short-lived registrations for the next key of a sequence or the leader letters.
+    @ObservationIgnored private var followRefs: [UInt32: EventHotKeyRef] = [:]
     @ObservationIgnored private var registered: [HotkeyBinding] = []
+    @ObservationIgnored private var resolver = HotkeyResolver()
+    @ObservationIgnored private var waitTimer: Timer?
     @ObservationIgnored private var pauseCount = 0
     @ObservationIgnored private var observer: NSObjectProtocol?
     @ObservationIgnored private var store: LibraryStore { LibraryStore.shared }
 
     /// Registers all hotkeys and re-syncs on every `.libraryDidChange`.
     func start() {
+        HotkeyPlan.keyCodeForCharacter = { KeyboardLayout.keyCode(for: $0) }
         installHandlerIfNeeded()
         sync()
         guard observer == nil else { return }
@@ -76,30 +82,38 @@ final class HotkeyCenter {
         guard force || wanted != registered else { return }
         unregisterAll()
         installHandlerIfNeeded()
-        var failures = Set<HotkeyTarget>()
-        var ok: [HotkeyBinding] = []
-        for (i, b) in wanted.enumerated() {
+        var failedSteps = Set<HotkeyStep>()
+        for (i, step) in HotkeyPlan.rootSteps(wanted).enumerated() {
             let id = UInt32(i + 1)
-            var ref: EventHotKeyRef?
-            let err = RegisterEventHotKey(b.hotkey.keyCode, b.hotkey.modifiers, EventHotKeyID(signature: signature, id: id),
-                                          GetEventDispatcherTarget(), 0, &ref)
-            if err == noErr, let ref {
+            if let ref = register(step, id: id) {
                 refs[id] = ref
-                targets[id] = b.target
-                ok.append(b)
-            } else if !b.isDefault {
-                failures.insert(b.target)
+                steps[id] = step
+            } else {
+                failedSteps.insert(step)
             }
         }
+        let failures = Set(wanted.filter { !$0.isDefault && failedSteps.contains($0.hotkey.steps[0]) }.map(\.target))
+        let ok = wanted.filter { !failedSteps.contains($0.hotkey.steps[0]) }
+        resolver = HotkeyResolver(bindings: ok, sequenceTimeout: max(0.5, store.settings.leaderTimeout))
         registered = wanted
         if failed != failures { failed = failures }
         if active != ok { active = ok }
     }
 
+    private func register(_ step: HotkeyStep, id: UInt32) -> EventHotKeyRef? {
+        var ref: EventHotKeyRef?
+        let err = RegisterEventHotKey(step.keyCode, step.modifiers, EventHotKeyID(signature: signature, id: id),
+                                      GetEventDispatcherTarget(), 0, &ref)
+        if err != noErr { Log.app.info("Hotkey \(step.keyCode)/\(step.modifiers) not registered: \(err)") }
+        return err == noErr ? ref : nil
+    }
+
     private func unregisterAll() {
+        endWaiting()
+        resolver.reset()
         for ref in refs.values { UnregisterEventHotKey(ref) }
         refs = [:]
-        targets = [:]
+        steps = [:]
         registered = []
     }
 
@@ -110,8 +124,69 @@ final class HotkeyCenter {
     }
 
     func fire(_ id: UInt32) {
-        guard pauseCount == 0, let target = targets[id] else { return }
-        perform(target)
+        guard pauseCount == 0, let step = steps[id] else { return }
+        switch resolver.press(step, at: Date()) {
+        case .fire(let target):
+            endWaiting()
+            perform(target)
+        case .wait(let deadline, let followUps):
+            startWaiting(until: deadline, followUps: followUps)
+        case .nothing:
+            endWaiting()
+        }
+    }
+
+    // MARK: Sequences, multi-press, leader
+
+    /// Registers the possible next keys for a moment and shows what they do.
+    private func startWaiting(until deadline: Date, followUps: [HotkeyStep]) {
+        for ref in followRefs.values { UnregisterEventHotKey(ref) }
+        followRefs = [:]
+        let known = Set(steps.values)
+        var nextID = UInt32(10_000)
+        for step in followUps where !known.contains(step) {
+            if let ref = register(step, id: nextID) {
+                followRefs[nextID] = ref
+                steps[nextID] = step
+            }
+            nextID += 1
+        }
+        waitTimer?.invalidate()
+        waitTimer = Timer.scheduledTimer(withTimeInterval: max(0.05, deadline.timeIntervalSinceNow), repeats: false) { _ in
+            MainActor.assumeIsolated { HotkeyCenter.shared.waitEnded() }
+        }
+        if !followUps.isEmpty { LeaderHUD.shared.show(options: hudOptions(for: followUps)) }
+    }
+
+    private func waitEnded() {
+        let target = resolver.timeout()
+        endWaiting()
+        if let target { perform(target) }
+    }
+
+    private func endWaiting() {
+        waitTimer?.invalidate()
+        waitTimer = nil
+        for (id, ref) in followRefs {
+            UnregisterEventHotKey(ref)
+            steps[id] = nil
+        }
+        followRefs = [:]
+        LeaderHUD.shared.hide()
+    }
+
+    /// "W  Work" lines for the next possible keys.
+    private func hudOptions(for followUps: [HotkeyStep]) -> [(key: String, title: String)] {
+        let lib = store.library
+        let path = resolver.path
+        return resolver.bindings.compactMap { b in
+            let s = b.hotkey.steps
+            guard s.count == path.count + 1, Array(s.prefix(path.count)) == path, followUps.contains(s[path.count]) else { return nil }
+            let key = HotkeyFormat.describe(Hotkey(keyCode: s[path.count].keyCode, modifiers: s[path.count].modifiers)) {
+                KeyboardLayout.character(for: $0)
+            }
+            return (key, HotkeyPlan.name(of: b.target, in: lib))
+        }
     }
 
     func perform(_ target: HotkeyTarget) {
@@ -136,14 +211,16 @@ final class HotkeyCenter {
 
 enum HotkeyValidator {
     /// A message when the combo cannot be used, nil when it is fine.
-    static func problem(for hotkey: Hotkey, target: HotkeyTarget?, in lib: Library) -> String? {
+    /// `firstKeyChecked`: only the follow-up keys or press count changed, the first key was accepted before.
+    static func problem(for hotkey: Hotkey, target: HotkeyTarget?, in lib: Library, firstKeyChecked: Bool = false) -> String? {
+        if let owner = HotkeyPlan.owner(of: hotkey, in: lib, excluding: target) {
+            return String(localized: "Already used by \(HotkeyPlan.name(of: owner, in: lib)).")
+        }
+        if firstKeyChecked { return nil }
         let mods = hotkey.modifiers
         let strong = HotkeyFormat.command | HotkeyFormat.option | HotkeyFormat.control
         if mods & strong == 0 && !HotkeyFormat.isFunctionKey(hotkey.keyCode) {
             return String(localized: "Add ⌘, ⌥ or ⌃ to the key.")
-        }
-        if let owner = HotkeyPlan.owner(of: hotkey, in: lib, excluding: target) {
-            return String(localized: "Already used by \(HotkeyPlan.name(of: owner, in: lib)).")
         }
         if isSystemShortcut(hotkey) {
             return String(localized: "macOS already uses this shortcut.")

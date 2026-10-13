@@ -132,6 +132,7 @@ final class AppCatalog {
     private(set) var apps: [AppInfo] = []
     private(set) var isLoading = false
     @ObservationIgnored private var loadedAt: Date?
+    @ObservationIgnored private var running: Task<Void, Never>?
 
     /// Loads once, then again when older than five minutes (new installs show up).
     func loadIfNeeded() async {
@@ -140,14 +141,17 @@ final class AppCatalog {
     }
 
     func reload() async {
-        guard !isLoading else { return }
+        // A second caller waits for the scan that is already running.
+        if let running { await running.value; return }
         isLoading = true
         let s = LibraryStore.shared.settings
         let paths = s.appSearchPaths
         let skip = s.hideAgentApps
-        let result = await Task.detached(priority: .userInitiated) { AppScanner.scan(paths: paths, skipAgents: skip) }.value
-        apps = result
+        let task = Task.detached(priority: .userInitiated) { AppScanner.scan(paths: paths, skipAgents: skip) }
+        running = Task { _ = await task.value }
+        apps = await task.value
         loadedAt = Date()
         isLoading = false
+        running = nil
     }
 }

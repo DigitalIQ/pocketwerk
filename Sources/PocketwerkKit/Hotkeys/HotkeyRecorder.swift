@@ -10,6 +10,8 @@ struct HotkeyRecorder: View {
     var target: HotkeyTarget?
     /// Shown in grey when no hotkey is set, e.g. the automatic "⌥⇧3".
     var placeholder: String?
+    /// Offer double/triple press and follow-up keys.
+    var allowsAdvanced = true
 
     @State private var recording = false
     @State private var liveModifiers = ""
@@ -17,6 +19,8 @@ struct HotkeyRecorder: View {
     @State private var monitor: Any?
     /// A click that ends recording must not start it again when it lands on the button.
     @State private var stoppedByClickAt = Date.distantPast
+    /// Recording the next key of a sequence instead of a new hotkey.
+    @State private var followUp = false
 
     var body: some View {
         VStack(alignment: .trailing, spacing: 3) {
@@ -33,6 +37,28 @@ struct HotkeyRecorder: View {
                 .accessibilityValue(Text(hotkey.map(HotkeyCenter.describe) ?? String(localized: "None")))
                 .accessibilityHint(Text("Press to record a new shortcut"))
 
+                if let current = hotkey, !recording, allowsAdvanced {
+                    Menu {
+                        Picker("Press", selection: Binding(get: { max(1, current.tapCount) }, set: { setTaps($0) })) {
+                            Text("Once").tag(1)
+                            Text("Twice").tag(2)
+                            Text("Three Times").tag(3)
+                        }
+                        Divider()
+                        Button("Add Follow-up Key…") { followUp = true; start() }
+                            .disabled((current.sequence?.count ?? 0) >= 3)
+                        if !(current.sequence ?? []).isEmpty {
+                            Button("Remove Follow-up Keys") { var h = current; h.sequence = nil; hotkey = h }
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                    }
+                    .menuStyle(.borderlessButton)
+                    .menuIndicator(.hidden)
+                    .fixedSize()
+                    .help("Double press or key sequence")
+                    .accessibilityLabel(Text("Shortcut options"))
+                }
                 if hotkey != nil && !recording {
                     Button {
                         hotkey = nil
@@ -53,13 +79,28 @@ struct HotkeyRecorder: View {
     }
 
     private var label: String {
+        if recording && followUp, let hotkey {
+            return HotkeyCenter.describe(hotkey) + " " + (liveModifiers.isEmpty ? "…" : liveModifiers)
+        }
         if recording { return liveModifiers.isEmpty ? String(localized: "Type shortcut…") : liveModifiers }
         if let hotkey { return HotkeyCenter.describe(hotkey) }
         return placeholder ?? String(localized: "Record Shortcut")
     }
 
+    private func setTaps(_ n: Int) {
+        guard var h = hotkey else { return }
+        h.tapCount = n
+        if let problem = HotkeyValidator.problem(for: h, target: target, in: LibraryStore.shared.library, firstKeyChecked: true) {
+            message = problem
+            return
+        }
+        message = nil
+        hotkey = h
+    }
+
     private func toggleRecording() {
         if recording { stop(); return }
+        followUp = false
         if Date().timeIntervalSince(stoppedByClickAt) < 0.5 { return }
         start()
     }
@@ -79,6 +120,7 @@ struct HotkeyRecorder: View {
     private func stop() {
         guard recording else { return }
         recording = false
+        followUp = false
         liveModifiers = ""
         if let monitor { NSEvent.removeMonitor(monitor) }
         monitor = nil
@@ -107,8 +149,13 @@ struct HotkeyRecorder: View {
                 return true
             }
             if mods == 0 && code == UInt32(kVK_Tab) { stop(); return false }
-            let candidate = Hotkey(keyCode: code, modifiers: mods)
-            if let problem = HotkeyValidator.problem(for: candidate, target: target, in: LibraryStore.shared.library) {
+            var candidate = Hotkey(keyCode: code, modifiers: mods)
+            if followUp, var base = hotkey {
+                base.sequence = (base.sequence ?? []) + [candidate]
+                candidate = base
+            }
+            if let problem = HotkeyValidator.problem(for: candidate, target: target, in: LibraryStore.shared.library,
+                                                     firstKeyChecked: followUp) {
                 message = "\(HotkeyCenter.describe(candidate)): \(problem)"
                 NSSound.beep()
                 return true

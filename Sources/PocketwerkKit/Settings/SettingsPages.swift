@@ -36,6 +36,7 @@ struct SettingsPageView: View {
             case .popup: PopupSettings()
             case .hotkeys: HotkeySettings()
             case .backup: BackupSettings()
+            case .diagnostics: DiagnosticsSettings()
             case .updates: UpdateSettings()
             case .about: AboutView()
             }
@@ -72,6 +73,17 @@ struct GeneralSettings: View {
                         Button("Open Login Items") { LoginItem.openSystemSettings() }.controlSize(.small)
                     }
                 }
+            }
+            Section("Windows") {
+                Toggle("Open this window when Pocketwerk starts", isOn: settingBinding(\.showWindowOnLaunch))
+                Text("Starts from links, shortcuts and Dock icons stay without a window.")
+                    .font(.caption).foregroundStyle(.secondary)
+                Toggle("Seasonal touches", isOn: settingBinding(\.seasonalTouches))
+            }
+            Section("Apple Intelligence") {
+                Toggle("Assistant in the group editor", isOn: settingBinding(\.assistantEnabled))
+                Toggle("App suggestions in the App Drawer", isOn: settingBinding(\.suggestionsEnabled))
+                Text(AIStatus.current.message).font(.caption).foregroundStyle(.secondary)
             }
             Section("Opening") {
                 Toggle("Close the popup after opening an item", isOn: settingBinding(\.closeAfterOpen))
@@ -147,7 +159,24 @@ struct PopupSettings: View {
                     Text("All groups").tag(MenuBarClick.carousel)
                     Text("A menu").tag(MenuBarClick.menu)
                 }
+                Picker("Icon", selection: settingBinding(\.menuBarIconStyle)) {
+                    ForEach(MenuBarIcon.allCases, id: \.self) { style in
+                        Label { Text(style.title) } icon: { Image(nsImage: style.image(groups: store.library.carouselGroups)) }
+                            .tag(style.rawValue)
+                    }
+                }
                 Text("Right-click the icon to always get the menu.").font(.caption).foregroundStyle(.secondary)
+            }
+            Section {
+                Picker("Hot corner", selection: settingBinding(\.hotCorner)) {
+                    Text(HotCornerGeometry.title(nil)).tag(Int?.none)
+                    ForEach(0..<4, id: \.self) { c in Text(HotCornerGeometry.title(c)).tag(Int?.some(c)) }
+                }
+            } header: {
+                Text("Hot Corner")
+            } footer: {
+                Text("Rest the pointer in this corner to show all groups. Pick a corner that macOS does not use for its own hot corners.")
+                    .font(.caption).foregroundStyle(.secondary)
             }
         }
     }
@@ -198,14 +227,38 @@ struct HotkeySettings: View {
                 }
                 Toggle("⌥⇧1 to ⌥⇧9 open the first nine groups", isOn: settingBinding(\.numberHotkeys))
             } footer: {
-                Text("Shortcuts work everywhere, also in full screen apps. No extra permission is needed.")
+                Text("Shortcuts work everywhere, also in full screen apps. No extra permission is needed. Use the … button to require a double press or a follow-up key.")
+                    .font(.caption).foregroundStyle(.secondary)
+            }
+            Section {
+                LabeledContent("Leader key") {
+                    HotkeyRecorder(hotkey: settingBinding(\.leaderHotkey), target: nil, allowsAdvanced: false)
+                }
+                LabeledContent("Wait for the letter") {
+                    HStack {
+                        Slider(value: settingBinding(\.leaderTimeout), in: 0.5...4, step: 0.25).frame(width: 160)
+                            .accessibilityLabel(Text("Wait for the letter"))
+                        Text(store.settings.leaderTimeout.formatted(.number.precision(.fractionLength(2))) + " s")
+                            .monospacedDigit().foregroundStyle(.secondary).frame(width: 48, alignment: .trailing)
+                    }
+                }
+            } header: {
+                Text("Leader Key")
+            } footer: {
+                Text("Press the leader key, then the letter of a group or profile. A small list shows the letters while Pocketwerk waits.")
                     .font(.caption).foregroundStyle(.secondary)
             }
             Section("Groups") {
                 ForEach(lib.orderedGroups) { g in
-                    row(Text(verbatim: [g.emoji, g.name].compactMap { $0 }.joined(separator: " ")),
-                        hotkey: groupBinding(g.id), target: .group(g.id),
-                        placeholder: defaults[g.id].map(HotkeyCenter.describe))
+                    LabeledContent {
+                        HStack(spacing: 8) {
+                            LeaderLetterField(letter: groupLetter(g.id))
+                            HotkeyRecorder(hotkey: groupBinding(g.id), target: .group(g.id),
+                                           placeholder: defaults[g.id].map(HotkeyCenter.describe))
+                        }
+                    } label: {
+                        Text(verbatim: [g.emoji, g.name].compactMap { $0 }.joined(separator: " "))
+                    }
                 }
             }
             if !lib.slots.isEmpty {
@@ -218,7 +271,14 @@ struct HotkeySettings: View {
             if !lib.profiles.isEmpty {
                 Section("Dock Profiles") {
                     ForEach(lib.profiles) { p in
-                        row(Text(verbatim: p.name), hotkey: profileBinding(p.id), target: .profile(p.id))
+                        LabeledContent {
+                            HStack(spacing: 8) {
+                                LeaderLetterField(letter: profileLetter(p.id))
+                                HotkeyRecorder(hotkey: profileBinding(p.id), target: .profile(p.id))
+                            }
+                        } label: {
+                            Text(verbatim: p.name)
+                        }
                     }
                 }
             }
@@ -237,6 +297,17 @@ struct HotkeySettings: View {
         Binding(get: { store.group(id)?.hotkey }, set: { v in store.updateGroup(id) { $0.hotkey = v } })
     }
 
+    private func groupLetter(_ id: UUID) -> Binding<String?> {
+        Binding(get: { store.group(id)?.leaderKey }, set: { v in store.updateGroup(id) { $0.leaderKey = v } })
+    }
+
+    private func profileLetter(_ id: UUID) -> Binding<String?> {
+        Binding(get: { store.library.profiles.first { $0.id == id }?.leaderKey },
+                set: { v in store.mutate { lib in
+                    if let i = lib.profiles.firstIndex(where: { $0.id == id }) { lib.profiles[i].leaderKey = v }
+                } })
+    }
+
     private func slotBinding(_ id: UUID) -> Binding<Hotkey?> {
         Binding(get: { store.slot(id)?.hotkey }, set: { v in store.updateSlot(id) { $0.hotkey = v } })
     }
@@ -246,6 +317,27 @@ struct HotkeySettings: View {
                 set: { v in store.mutate { lib in
                     if let i = lib.profiles.firstIndex(where: { $0.id == id }) { lib.profiles[i].hotkey = v }
                 } })
+    }
+}
+
+/// One letter used after the leader key. Empty = none.
+struct LeaderLetterField: View {
+    @Binding var letter: String?
+    @State private var text = ""
+
+    var body: some View {
+        TextField("", text: $text, prompt: Text("–"))
+            .frame(width: 30)
+            .multilineTextAlignment(.center)
+            .onAppear { text = letter ?? "" }
+            .onChange(of: letter) { _, new in if (new ?? "") != text { text = new ?? "" } }
+            .onChange(of: text) { _, new in
+                let one = new.trimmingCharacters(in: .whitespaces).suffix(1).uppercased()
+                if one != new { text = one; return }
+                letter = one.isEmpty ? nil : one
+            }
+            .help("Letter after the leader key")
+            .accessibilityLabel(Text("Leader letter"))
     }
 }
 
@@ -374,6 +466,33 @@ struct ImportReviewView: View {
     }
 }
 
+// MARK: - Diagnostics
+
+struct DiagnosticsSettings: View {
+    private var store: LibraryStore { LibraryStore.shared }
+
+    var body: some View {
+        let lib = store.library
+        Form {
+            Section {
+                LabeledContent("Groups") { Text("\(lib.groups.count)").monospacedDigit() }
+                LabeledContent("Items") { Text("\(lib.groups.reduce(0) { $0 + $1.items.count })").monospacedDigit() }
+                LabeledContent("Dock icons") { Text("\(lib.slots.count)").monospacedDigit() }
+                LabeledContent("Profiles") { Text("\(lib.profiles.count)").monospacedDigit() }
+                LabeledContent("Missing items") { Text("\(LibraryHealth.shared.missing.count)").monospacedDigit() }
+                LabeledContent("Active shortcuts") { Text("\(HotkeyCenter.shared.active.count)").monospacedDigit() }
+            }
+            Section {
+                Button("Export Diagnostics…") { Diagnostics.exportWithPanel() }
+                Button("Show Data Folder") { BackupService.showDataFolder() }
+            } footer: {
+                Text("Saves the last five hours of Pocketwerk's own log and a short summary as a text file. Nothing is sent. Look at the file before you share it.")
+                    .font(.caption).foregroundStyle(.secondary)
+            }
+        }
+    }
+}
+
 // MARK: - Updates
 
 struct UpdateSettings: View {
@@ -439,5 +558,12 @@ struct AboutView: View {
         }
         .padding(40)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(alignment: .top) {
+            SeasonalSnow()
+                .frame(height: 220)
+                .background(SeasonalSnow.isSeason() && LibraryStore.shared.settings.seasonalTouches
+                            ? AnyShapeStyle(LinearGradient(colors: [.blue.opacity(0.35), .clear], startPoint: .top, endPoint: .bottom))
+                            : AnyShapeStyle(.clear))
+        }
     }
 }

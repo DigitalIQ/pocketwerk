@@ -103,6 +103,16 @@ nonisolated enum HotkeyFormat {
 
 /// Reads characters from the current keyboard layout, so a German layout shows Z, Y and Ö correctly.
 enum KeyboardLayout {
+    /// Key code that types this character on the current layout (letters, digits, punctuation).
+    static func keyCode(for text: String) -> UInt32? {
+        let wanted = text.lowercased()
+        guard !wanted.isEmpty else { return nil }
+        for code in UInt32(0)...UInt32(127) where HotkeyFormat.specialKeys[Int(code)] == nil {
+            if character(for: code)?.lowercased() == wanted { return code }
+        }
+        return HotkeyFormat.ansiFallback.first { $0.value.lowercased() == wanted }.map { UInt32($0.key) }
+    }
+
     static func character(for keyCode: UInt32) -> String? {
         guard let source = TISCopyCurrentASCIICapableKeyboardLayoutInputSource()?.takeRetainedValue(),
               let raw = TISGetInputSourceProperty(source, kTISPropertyUnicodeKeyLayoutData)

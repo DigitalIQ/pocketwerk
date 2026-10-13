@@ -76,6 +76,15 @@ enum MainMenu {
         main.addItem(windowItem)
         NSApp.windowsMenu = window
 
+        let helpItem = NSMenuItem()
+        let help = NSMenu(title: String(localized: "Help"))
+        help.addItem(MenuAction.item(String(localized: "Pocketwerk Help"), key: "?") { HelpWindowController.shared.show() })
+        help.addItem(MenuAction.item(String(localized: "Report a Problem…")) { HelpWindowController.reportProblem() })
+        help.addItem(MenuAction.item(String(localized: "Export Diagnostics…")) { Diagnostics.exportWithPanel() })
+        helpItem.submenu = help
+        main.addItem(helpItem)
+        NSApp.helpMenu = help
+
         NSApp.mainMenu = main
     }
 

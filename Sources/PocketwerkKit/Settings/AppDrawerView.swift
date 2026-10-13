@@ -9,6 +9,7 @@ struct AppDrawerView: View {
     @State private var categories = Set<String>()
     @State private var sort: AppSort = .name
     @State private var filter: AppFilter = .all
+    @State private var suggestions = SuggestionEngine()
     private var catalog: AppCatalog { AppCatalog.shared }
     private var store: LibraryStore { LibraryStore.shared }
 
@@ -40,12 +41,17 @@ struct AppDrawerView: View {
                 .fixedSize()
             }
             .padding(12)
+            if store.settings.suggestionsEnabled, let group, group.smart == nil {
+                suggestionRow(group)
+            }
             Divider()
             ScrollView {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 92, maximum: 120), spacing: 8)], spacing: 10) {
                     ForEach(shown) { app in
-                        AppTile(app: app, selected: group?.indexOfApp(url: app.url, bundleID: app.bundleID) != nil) {
+                        let selected = group?.indexOfApp(url: app.url, bundleID: app.bundleID) != nil
+                        AppTile(app: app, selected: selected) {
                             store.toggleApp(url: app.url, bundleID: app.bundleID, in: groupID)
+                            Announce.say(selected ? String(localized: "Removed \(app.name)") : String(localized: "Added \(app.name)"))
                         }
                     }
                 }
@@ -68,7 +74,71 @@ struct AppDrawerView: View {
             .padding(12)
         }
         .frame(minWidth: 640, idealWidth: 760, minHeight: 480, idealHeight: 560)
-        .task { await catalog.loadIfNeeded() }
+        .task {
+            await catalog.loadIfNeeded()
+            if store.settings.suggestionsEnabled, let group = store.group(groupID) {
+                await suggestions.generate(for: group, from: catalog.apps, usage: store.library.usage)
+            }
+        }
+    }
+
+    /// Dismissable suggestion chips. Click adds the app; × hides the suggestion.
+    private func suggestionRow(_ group: ItemGroup) -> some View {
+        HStack(spacing: 8) {
+            Label(suggestions.source == .model ? "Suggested" : "Suggested from categories",
+                  systemImage: suggestions.source == .model ? "sparkles" : "square.grid.3x3")
+                .font(.caption).foregroundStyle(.secondary).fixedSize()
+                .help(suggestions.source == .model ? "Picked on this Mac by Apple Intelligence"
+                      : "Based on app categories and apps you use together")
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 6) {
+                    if suggestions.isWorking && suggestions.visible.isEmpty {
+                        ProgressView().controlSize(.small)
+                    } else if suggestions.visible.isEmpty {
+                        Text("No suggestions. Add a few apps or set a category.").font(.caption).foregroundStyle(.secondary)
+                    }
+                    ForEach(suggestions.visible) { app in
+                        HStack(spacing: 4) {
+                            Button {
+                                store.toggleApp(url: app.url, bundleID: app.bundleID, in: groupID)
+                                suggestions.dismissed.insert(app.id)
+                                Announce.say(String(localized: "Added \(app.name)"))
+                            } label: {
+                                HStack(spacing: 4) {
+                                    Image(nsImage: AppIconCache.icon(for: app.url)).resizable().frame(width: 16, height: 16)
+                                    Text(app.name).lineLimit(1)
+                                    Image(systemName: "plus").font(.caption2.weight(.bold))
+                                }
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel(Text("Add \(app.name)"))
+                            Button { suggestions.dismissed.insert(app.id) } label: {
+                                Image(systemName: "xmark").font(.caption2)
+                            }
+                            .buttonStyle(.plain)
+                            .foregroundStyle(.secondary)
+                            .accessibilityLabel(Text("Dismiss \(app.name)"))
+                        }
+                        .padding(.horizontal, 8).padding(.vertical, 4)
+                        .background(.quaternary, in: Capsule())
+                    }
+                }
+            }
+            Button {
+                suggestions.dismissed.formUnion(suggestions.visible.map(\.id))
+                Task {
+                    if let g = store.group(groupID) {
+                        await suggestions.generate(for: g, from: catalog.apps.filter { !suggestions.dismissed.contains($0.id) },
+                                                   usage: store.library.usage)
+                    }
+                }
+            } label: { Image(systemName: "arrow.clockwise") }
+                .buttonStyle(.borderless)
+                .disabled(suggestions.isWorking)
+                .help("New suggestions")
+                .accessibilityLabel(Text("New suggestions"))
+        }
+        .padding(.horizontal, 12).padding(.bottom, 8)
     }
 
     private var categoryMenu: some View {

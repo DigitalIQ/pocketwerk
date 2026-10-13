@@ -8,6 +8,7 @@ final class MenuBarController: NSObject, NSMenuDelegate {
     private var item: NSStatusItem?
     private var observer: NSObjectProtocol?
     private let menu = NSMenu()
+    private var shownStyle: String?
 
     func install() {
         menu.delegate = self
@@ -25,18 +26,26 @@ final class MenuBarController: NSObject, NSMenuDelegate {
         if wanted, item == nil {
             let i = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
             if let button = i.button {
-                let image = NSImage(systemSymbolName: "square.grid.2x2", accessibilityDescription: "Pocketwerk")
-                image?.isTemplate = true
-                button.image = image
                 button.target = self
                 button.action = #selector(clicked(_:))
                 button.sendAction(on: [.leftMouseUp, .rightMouseUp])
                 button.setAccessibilityLabel("Pocketwerk")
             }
             item = i
+            shownStyle = nil
         } else if !wanted, let i = item {
             NSStatusBar.system.removeStatusItem(i)
             item = nil
+        }
+        // Icon follows the style setting live; the color style also follows the group colors.
+        let lib = LibraryStore.shared.library
+        let style = lib.settings.menuBarIconStyle
+        let key = style == MenuBarIcon.color.rawValue
+            ? style + lib.carouselGroups.prefix(4).map { GroupColor.swatch(for: $0).hex }.joined() : style
+        if let button = item?.button, key != shownStyle {
+            button.image = MenuBarIcon(rawValue: style).map { $0.image(groups: lib.carouselGroups) }
+                ?? MenuBarIcon.monochrome.image(groups: [])
+            shownStyle = key
         }
     }
 
@@ -115,8 +124,15 @@ final class MenuBarController: NSObject, NSMenuDelegate {
         }
 
         out.append(.separator())
+        out.append(MenuAction.item(String(localized: "Open Pocketwerk")) { MainWindowController.shared.show() })
         out.append(MenuAction.item(String(localized: "New Group…")) { MainWindowController.shared.newGroup() })
         out.append(MenuAction.item(String(localized: "Settings…"), key: ",") { MainWindowController.shared.show(page: .general) })
+        let help = NSMenuItem(title: String(localized: "Help"), action: nil, keyEquivalent: "")
+        let helpMenu = NSMenu()
+        helpMenu.addItem(MenuAction.item(String(localized: "Pocketwerk Help")) { HelpWindowController.shared.show() })
+        helpMenu.addItem(MenuAction.item(String(localized: "Report a Problem…")) { HelpWindowController.reportProblem() })
+        help.submenu = helpMenu
+        out.append(help)
         out.append(.separator())
         out.append(NSMenuItem(title: String(localized: "Quit Pocketwerk"), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         return out
@@ -152,5 +168,47 @@ final class MenuBarController: NSObject, NSMenuDelegate {
         sub.addItem(MenuAction.item(String(localized: "Edit Group…")) { MainWindowController.shared.show(selecting: group.id) })
         entry.submenu = sub
         return entry
+    }
+}
+
+/// Looks for the menu bar icon. Template images adapt to light and dark menu bars.
+enum MenuBarIcon: String, CaseIterable {
+    case monochrome, filled, dots, color
+
+    var title: String {
+        switch self {
+        case .monochrome: String(localized: "Outline")
+        case .filled: String(localized: "Filled")
+        case .dots: String(localized: "Dots")
+        case .color: String(localized: "Group colors")
+        }
+    }
+
+    func image(groups: [ItemGroup]) -> NSImage {
+        switch self {
+        case .monochrome: return symbol("square.grid.2x2")
+        case .filled: return symbol("square.grid.2x2.fill")
+        case .dots: return symbol("circle.grid.2x2.fill")
+        case .color:
+            let colors = groups.prefix(4).map { GroupColor.swatch(for: $0).nsColor.withAlphaComponent(1) }
+            let fill = colors.isEmpty ? [NSColor.systemBlue, .systemPink, .systemOrange, .systemGreen] : colors
+            let img = NSImage(size: NSSize(width: 16, height: 16), flipped: true) { _ in
+                for i in 0..<4 {
+                    let rect = NSRect(x: CGFloat(i % 2) * 8.5 + 0.5, y: CGFloat(i / 2) * 8.5 + 0.5, width: 6.5, height: 6.5)
+                    fill[i % fill.count].setFill()
+                    NSBezierPath(roundedRect: rect, xRadius: 1.8, yRadius: 1.8).fill()
+                }
+                return true
+            }
+            img.isTemplate = false
+            img.accessibilityDescription = "Pocketwerk"
+            return img
+        }
+    }
+
+    private func symbol(_ name: String) -> NSImage {
+        let img = NSImage(systemSymbolName: name, accessibilityDescription: "Pocketwerk") ?? NSImage()
+        img.isTemplate = true
+        return img
     }
 }

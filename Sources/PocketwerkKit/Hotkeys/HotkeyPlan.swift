@@ -18,15 +18,37 @@ nonisolated struct HotkeyBinding: Hashable, Sendable {
     var hotkey: Hotkey
     /// True for the automatic ⌥⇧1...9 group keys.
     var isDefault = false
+    /// Made from the leader hotkey plus a letter.
+    var viaLeader = false
 }
 
 /// Pure planning: which hotkeys exist, which collide. No Carbon calls here, so it is testable.
 nonisolated enum HotkeyPlan {
-    /// Hotkeys compare by key and modifiers only.
+    /// Hotkeys compare by keys, modifiers, press count and follow-up keys.
     struct Combo: Hashable {
-        var keyCode: UInt32
-        var modifiers: UInt32
-        init(_ h: Hotkey) { keyCode = h.keyCode; modifiers = h.modifiers }
+        var steps: [HotkeyStep]
+        var tapCount: Int
+        init(_ h: Hotkey) { steps = h.steps; tapCount = max(1, h.tapCount) }
+    }
+
+    /// Maps a typed letter to its key code. HotkeyCenter swaps in the current keyboard layout.
+    nonisolated(unsafe) static var keyCodeForCharacter: (String) -> UInt32? = { ch in
+        HotkeyFormat.ansiFallback.first { $0.value == ch.uppercased() }.map { UInt32($0.key) }
+    }
+
+    /// Leader hotkey plus the letter of a group or profile, e.g. ⌃⌥Space then W.
+    static func leaderBindings(_ lib: Library) -> [HotkeyBinding] {
+        guard let leader = lib.settings.leaderHotkey, leader.sequence?.isEmpty ?? true else { return [] }
+        var out: [HotkeyBinding] = []
+        func add(_ letter: String?, _ target: HotkeyTarget) {
+            guard let letter, let first = letter.first, let code = keyCodeForCharacter(String(first)) else { return }
+            var h = leader
+            h.sequence = [Hotkey(keyCode: code, modifiers: 0)]
+            out.append(.init(target: target, hotkey: h, viaLeader: true))
+        }
+        for g in lib.orderedGroups { add(g.leaderKey, .group(g.id)) }
+        for p in lib.profiles { add(p.leaderKey, .profile(p.id)) }
+        return out
     }
 
     /// Every hotkey the user set, in a fixed order (main, next profile, groups, slots, profiles).
@@ -38,7 +60,7 @@ nonisolated enum HotkeyPlan {
         for g in lib.orderedGroups { if let h = g.hotkey { out.append(.init(target: .group(g.id), hotkey: h)) } }
         for s in lib.slots { if let h = s.hotkey { out.append(.init(target: .slot(s.id), hotkey: h)) } }
         for p in lib.profiles { if let h = p.hotkey { out.append(.init(target: .profile(p.id), hotkey: h)) } }
-        return out
+        return out + leaderBindings(lib)
     }
 
     /// Automatic ⌥⇧1...9 for the first nine sidebar groups that have no own hotkey.
@@ -62,7 +84,13 @@ nonisolated enum HotkeyPlan {
 
     /// The hotkey a group answers to: its own, or its ⌥⇧ number default.
     static func effectiveHotkey(forGroup id: UUID, in lib: Library) -> HotkeyBinding? {
-        bindings(lib).first { $0.target == .group(id) }
+        bindings(lib).first { $0.target == .group(id) && !$0.viaLeader }
+    }
+
+    /// First keys that must be registered with the system (one registration per key and modifiers).
+    static func rootSteps(_ bindings: [HotkeyBinding]) -> [HotkeyStep] {
+        var seen = Set<HotkeyStep>()
+        return bindings.compactMap { $0.hotkey.steps.first }.filter { seen.insert($0).inserted }
     }
 
     /// Combos used by more than one target.
