@@ -192,7 +192,7 @@ nonisolated enum LauncherBuilder {
     static func writeICNS(png: Data, to url: URL) throws {
         guard let source = CGImageSourceCreateWithData(png as CFData, nil),
               let image = CGImageSourceCreateImageAtIndex(source, 0, nil),
-              let dest = CGImageDestinationCreateWithURL(url as CFURL, UTType.icns.identifier as CFString, 5, nil)
+              let dest = CGImageDestinationCreateWithURL(url as CFURL, UTType.icns.identifier as CFString, 6, nil)
         else { throw LauncherError.invalidBundle(url.path) }
         for size in [16, 32, 128, 256, 512] {
             if let scaled = scale(image, to: size) { CGImageDestinationAddImage(dest, scaled, nil) }
