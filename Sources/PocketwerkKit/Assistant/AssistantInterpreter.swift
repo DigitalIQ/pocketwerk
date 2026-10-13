@@ -27,7 +27,7 @@ nonisolated enum AssistantKinds {
     static let help = """
     rename: new name | emoji: one emoji | category: one or two words | theme: a theme name from the list | \
     color: color name or #RRGGBB (solid fill) | gradient: two or three colors separated by commas | \
-    glass: a tint color or clear | border: none, thin, thick or a color | labels: always, hover or off | \
+    glass: a tint color or clear | border: none, thin, thick or a color | labels: always, hover, off or a color | \
     layout: grid, list or tiles | columns: a number or auto | iconSize: small, medium, large or points | \
     corners: square, round or points | spacing: tight, normal or airy | \
     dockIcon: grid, stack, emoji, monogram, text:WORD or symbol:SF_SYMBOL_NAME | \
@@ -38,10 +38,14 @@ nonisolated enum AssistantKinds {
 
 /// Applies model edits to a group. Pure apart from theme and symbol lookups, so it is testable.
 enum AssistantInterpreter {
+    /// `request` is the user's own text. It guards against looks that do not match what was asked
+    /// (a cold theme for "warm gradient") and fills in a gradient or round corners the model left out.
     static func apply(_ edits: [AssistantEditInput], to original: ItemGroup, themes: [Theme], apps: [AppInfo],
-                      defaultStyle: GroupStyle = GroupStyle()) -> AssistantOutcome {
+                      defaultStyle: GroupStyle = GroupStyle(), request: String = "") -> AssistantOutcome {
         var out = AssistantOutcome(group: original)
         var g = original
+        // A question that is not about the group ("what is the weather?") changes nothing.
+        let edits = request.isEmpty || AssistantVocabulary.isEditRequest(request) ? edits : []
         // Look edits on a group that follows the default look would be invisible: give it its own copy.
         func ownLook() {
             if g.usesDefaultStyle {
@@ -59,7 +63,7 @@ enum AssistantInterpreter {
             }
             let kind = edit.kind.trimmingCharacters(in: .whitespaces)
             let value = edit.value.trimmingCharacters(in: .whitespacesAndNewlines)
-            let lower = value.lowercased()
+            let lower = AssistantVocabulary.keyword(value)
             func skip(_ why: String) { out.skipped.append(why) }
 
             switch kind {
@@ -78,9 +82,17 @@ enum AssistantInterpreter {
                 out.changes.append(value.isEmpty ? String(localized: "Category cleared") : String(localized: "Category “\(value)”"))
 
             case "theme":
-                guard let theme = matchTheme(value, in: themes) else {
+                // A look only counts when it fits the mood that was asked for ("warm" never gets a cold look).
+                let wanted = AssistantVocabulary.moodsIn(request + " " + value)
+                    .intersection([.warm, .cool, .dark, .light, .pastel, .nature])
+                let fits: (Theme) -> Bool = { t in
+                    let tags = AssistantVocabulary.tags(for: t)
+                    if !wanted.allSatisfy({ tags.contains($0.rawValue) }) { return false }
+                    return !AssistantVocabulary.wantsGradient(request) || tags.contains("gradient") || tags.contains("animated")
+                }
+                guard let theme = matchTheme(value, in: themes).flatMap({ fits($0) ? $0 : nil }) else {
                     // "warm sunset", "dark blue": describe a look instead of naming one.
-                    if let colors = moodColors(value) {
+                    if let colors = moodColors(value) ?? moodColors(request) {
                         ownLook()
                         g.style.background = colors.count == 1 ? .solid(colors[0]) : .gradient(colors: colors, angle: 135)
                         g.themeID = nil
@@ -105,7 +117,9 @@ enum AssistantInterpreter {
                 out.changes.append(String(localized: "Fill \(c.hex)"))
 
             case "gradient":
-                let colors = splitList(value).compactMap(color)
+                var colors = AssistantVocabulary.allColors(value)
+                if colors.count < 2, let mood = moodColors(value) ?? moodColors(request), mood.count >= 2 { colors = mood }
+                if colors.count == 1 { colors.append(partner(for: colors[0])) }
                 guard colors.count >= 2 else { skip(String(localized: "A gradient needs two colors")); continue }
                 ownLook()
                 g.style.background = .gradient(colors: Array(colors.prefix(4)), angle: 135)
@@ -142,6 +156,13 @@ enum AssistantInterpreter {
                 let mode: LabelMode? = lower.contains("hover") ? .onHover
                     : ["off", "none", "hidden", "hide", "no"].contains(lower) ? .off
                     : ["always", "on", "show", "yes"].contains(lower) ? .always : nil
+                if mode == nil, let c = color(value) {
+                    ownLook()
+                    g.style.labels.colorMode = .custom
+                    g.style.labels.color = c
+                    out.changes.append(String(localized: "Label color \(c.hex)"))
+                    continue
+                }
                 guard let mode else { skip(String(localized: "Labels can be always, hover or off")); continue }
                 ownLook()
                 g.style.labels.mode = mode
@@ -178,8 +199,8 @@ enum AssistantInterpreter {
             case "corners":
                 let r: Double? = switch lower {
                 case "square", "sharp": 6
-                case "round", "rounded": 24
-                case "very round", "pill": 36
+                case "round", "rounded": 30
+                case "very round", "pill": 40
                 default: Double(lower.filter { $0.isNumber || $0 == "." }).map { min(48, max(0, $0)) }
                 }
                 guard let r else { skip(String(localized: "Unknown corner radius “\(value)”")); continue }
@@ -229,6 +250,7 @@ enum AssistantInterpreter {
                 out.changes.append(String(localized: "Added \(app.name)"))
 
             case "removeItem":
+                guard request.isEmpty || AssistantVocabulary.asksToRemove(request) else { continue }
                 guard let item = matchItem(value, in: g.items) else { skip(String(localized: "No item “\(value)” in this group")); continue }
                 if !out.removals.contains(where: { $0.id == item.id }) { out.removals.append(item) }
 
@@ -236,8 +258,33 @@ enum AssistantInterpreter {
                 skip(String(localized: "Cannot do “\(kind)” yet"))
             }
         }
+        // The request asked for a gradient or round corners and the edits did not deliver: add them.
+        if !request.isEmpty && AssistantVocabulary.wantsGradient(request) {
+            let isGradient: Bool = switch g.style.background { case .gradient, .mesh: true; default: false }
+            var colors = moodColors(request) ?? []
+            if colors.count == 1 { colors.append(partner(for: colors[0])) }
+            if !isGradient, colors.count >= 2 {
+                ownLook()
+                g.style.background = .gradient(colors: colors, angle: 135)
+                g.themeID = nil
+                out.changes.append(String(localized: "Gradient \(colors.map(\.hex).joined(separator: " → "))"))
+            }
+        }
+        if !request.isEmpty && AssistantVocabulary.wantsRoundCorners(request) && g.style.cornerRadius < 30 {
+            ownLook()
+            g.style.cornerRadius = 30
+            out.changes.append(String(localized: "Corner radius 30 pt"))
+        }
         out.group = g
         return out
+    }
+
+    /// Second gradient color for a single one: a neighbour hue, a bit darker.
+    static func partner(for c: RGBA) -> RGBA {
+        let ns = NSColor(srgbRed: c.r, green: c.g, blue: c.b, alpha: 1)
+        let h = (ns.hueComponent + 0.07).truncatingRemainder(dividingBy: 1)
+        return RGBA(NSColor(hue: h, saturation: min(1, ns.saturationComponent + 0.05),
+                            brightness: max(0.15, ns.brightnessComponent * 0.8), alpha: 1))
     }
 
     // MARK: Matching
@@ -248,50 +295,11 @@ enum AssistantInterpreter {
             .map { $0.trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
     }
 
-    /// "#3366FF", "3366ff" or a plain color name ("dark blue", "warm orange").
-    static func color(_ text: String) -> RGBA? {
-        let t = text.trimmingCharacters(in: .whitespaces).lowercased()
-        let hex = t.hasPrefix("#") ? String(t.dropFirst()) : t
-        if (hex.count == 6 || hex.count == 8), hex.allSatisfy(\.isHexDigit) { return RGBA(hex: hex) }
-        let words = t.split(separator: " ").map(String.init)
-        guard let base = words.last.flatMap({ namedColors[$0] }) else { return nil }
-        var c = base
-        if words.contains("dark") || words.contains("deep") { c = RGBA(c.r * 0.55, c.g * 0.55, c.b * 0.55) }
-        if words.contains("light") || words.contains("pale") || words.contains("pastel") {
-            c = RGBA(c.r + (1 - c.r) * 0.55, c.g + (1 - c.g) * 0.55, c.b + (1 - c.b) * 0.55)
-        }
-        return c
-    }
+    /// "#3366FF", "3366ff" or a color phrase in English or German ("dark blue", "Dunkelblau", "red.").
+    static func color(_ text: String) -> RGBA? { AssistantVocabulary.color(text) }
 
-    /// Own palette for color words.
-    static let namedColors: [String: RGBA] = [
-        "red": RGBA(0.86, 0.22, 0.24), "orange": RGBA(0.95, 0.52, 0.16), "yellow": RGBA(0.97, 0.80, 0.22),
-        "green": RGBA(0.25, 0.68, 0.36), "mint": RGBA(0.42, 0.85, 0.72), "teal": RGBA(0.16, 0.56, 0.60),
-        "cyan": RGBA(0.30, 0.76, 0.90), "blue": RGBA(0.20, 0.45, 0.90), "navy": RGBA(0.09, 0.15, 0.36),
-        "indigo": RGBA(0.33, 0.30, 0.78), "purple": RGBA(0.58, 0.32, 0.80), "violet": RGBA(0.52, 0.36, 0.86),
-        "pink": RGBA(0.95, 0.42, 0.62), "magenta": RGBA(0.85, 0.25, 0.70), "brown": RGBA(0.52, 0.36, 0.24),
-        "beige": RGBA(0.90, 0.84, 0.72), "gray": RGBA(0.52, 0.53, 0.56), "grey": RGBA(0.52, 0.53, 0.56),
-        "black": RGBA(0.06, 0.06, 0.07), "white": RGBA(0.97, 0.97, 0.96), "gold": RGBA(0.84, 0.66, 0.26),
-        "silver": RGBA(0.76, 0.77, 0.80), "coral": RGBA(0.98, 0.50, 0.42), "lavender": RGBA(0.72, 0.66, 0.92),
-        "olive": RGBA(0.45, 0.48, 0.22), "turquoise": RGBA(0.22, 0.78, 0.74),
-    ]
-
-    /// Colors for mood words ("warm sunset", "ocean", "forest") or plain color words in a phrase.
-    static func moodColors(_ text: String) -> [RGBA]? {
-        let t = text.lowercased()
-        let moods: [(words: [String], colors: [RGBA])] = [
-            (["sunset", "sunrise", "warm", "autumn", "fire"], [RGBA(0.98, 0.58, 0.25), RGBA(0.90, 0.30, 0.45)]),
-            (["ocean", "sea", "cool", "ice", "water"], [RGBA(0.20, 0.70, 0.80), RGBA(0.16, 0.30, 0.70)]),
-            (["forest", "nature", "leaf", "spring"], [RGBA(0.40, 0.70, 0.35), RGBA(0.12, 0.40, 0.28)]),
-            (["night", "midnight", "space", "galaxy"], [RGBA(0.10, 0.10, 0.30), RGBA(0.42, 0.22, 0.62)]),
-            (["candy", "sweet", "pastel"], [RGBA(0.98, 0.72, 0.82), RGBA(0.70, 0.78, 0.98)]),
-            (["desert", "sand"], [RGBA(0.93, 0.80, 0.58), RGBA(0.78, 0.52, 0.32)]),
-        ]
-        if let m = moods.first(where: { $0.words.contains { t.contains($0) } }) { return m.colors }
-        let named = splitList(t.replacingOccurrences(of: " ", with: ",")).compactMap { namedColors[$0] }
-        if named.isEmpty { return color(t).map { [$0] } }
-        return Array(named.prefix(3))
-    }
+    /// Colors for a phrase: named colors, or the colors of a mood ("warm", "Sonnenuntergang", "ocean").
+    static func moodColors(_ text: String) -> [RGBA]? { AssistantVocabulary.moodColors(text) }
 
     static func matchTheme(_ name: String, in themes: [Theme]) -> Theme? {
         let n = name.lowercased().trimmingCharacters(in: .whitespaces)

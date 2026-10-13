@@ -95,16 +95,20 @@ final class AssistantConversation {
     }
 
     private var instructions: String {
-        let themes = store.allThemes.map(\.name)
+        // Each look with short mood tags, so the model can pick one that fits ("warm gradient").
         var seen = Set<String>()
-        let names = themes.filter { seen.insert($0).inserted }.prefix(70).joined(separator: ", ")
+        let names = store.allThemes.filter { seen.insert($0.name).inserted }.prefix(60).map { t in
+            "\(t.name) [\(AssistantVocabulary.tags(for: t).sorted().joined(separator: " "))]"
+        }.joined(separator: ", ")
         return """
         You change one group in Pocketwerk, a Mac app that keeps apps, files, folders and links in groups with their own look and Dock icon.
         Turn the user's request into edits. Only use these kinds and value formats:
         \(AssistantKinds.help)
         For addApp only use exact names from "Installed apps you can add". Only remove items the user clearly asks to remove.
         Do every part of the request you can, even when another part is not possible.
-        Theme names: \(names).
+        Looks with their tags: \(names).
+        Only use theme when a look's tags match the request (warm, cool, dark, light, pastel, nature, gradient). Otherwise describe the fill yourself with color or gradient, for example gradient: orange, coral, pink.
+        Values stay in English keywords or color words; the reply follows the language rule in the request.
         The Group, Look and Items lines describe the current state. Never repeat them as edits; only change what the request asks for.
         If the request is not about this group, make no edits and say what you can do.
         """
@@ -141,8 +145,10 @@ final class AssistantConversation {
             guard let group = store.group(groupID) else { return }
             let outcome = AssistantInterpreter.apply(plan.edits.map { AssistantEditInput(kind: $0.kind, value: $0.value) },
                                                      to: group, themes: store.allThemes, apps: AppCatalog.shared.apps,
-                                                     defaultStyle: store.settings.defaultStyle)
-            turn.reply = outcome.removals.isEmpty ? plan.reply
+                                                     defaultStyle: store.settings.defaultStyle, request: request)
+            turn.reply = !AssistantVocabulary.isEditRequest(request)
+                ? String(localized: "I can only change this group: its look, items, name and Dock icon.")
+                : outcome.removals.isEmpty ? plan.reply
                 : plan.reply + " " + String(localized: "Nothing is removed until you confirm below.")
             turn.changes = outcome.changes
             turn.skipped = outcome.skipped
@@ -175,7 +181,8 @@ final class AssistantConversation {
         let named = FindAppsTool.candidates(for: request, apps: AppCatalog.shared.apps).map(\.name)
         let prompt = AssistantContext.summary(of: group, in: store.library, apps: AppCatalog.shared.apps, themeName: themeName)
             + (named.isEmpty ? "" : "\nInstalled apps you can add: " + named.joined(separator: ", "))
-            + "\n\nRequest: " + request
+            + "\n\nWrite the reply in \(AssistantVocabulary.replyLanguage(for: request))."
+            + "\nRequest: " + request
         let session = makeSessionIfNeeded()
         do {
             let response = try await session.respond(to: prompt, generating: AssistantPlan.self,

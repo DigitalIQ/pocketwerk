@@ -44,6 +44,22 @@ import Testing
         #expect(store.group(g.id)?.items.contains { $0.displayName == "Calculator" } == true) // removal waits for confirmation
     }
 
+    @Test(.enabled(if: AppModelLiveTests.enabled), .timeLimit(.minutes(3))) func germanWarmGradient() async throws {
+        try #require(AIStatus.current.isAvailable)
+        let store = LibraryStore.shared
+        await AppCatalog.shared.reload()
+        let g = store.addGroup(name: "Work", emoji: nil)
+        let chat = AssistantConversation.forGroup(g.id)
+        await chat.send("Verwende einen warmen Verlauf und runde Ecken")
+        let turn = try #require(chat.turns.last)
+        print("DE REPLY:", turn.reply, "| CHANGES:", turn.changes, "| SKIPPED:", turn.skipped)
+        let after = try #require(store.group(g.id))
+        guard case .gradient(let colors, _) = after.style.background else { Issue.record("no gradient"); return }
+        #expect(AssistantVocabulary.colorMoods(colors).contains(.warm))
+        #expect(after.style.cornerRadius >= 30)
+        #expect(AssistantVocabulary.replyLanguage(for: turn.reply, fallback: "en") == "German")
+    }
+
     @Test(.enabled(if: AppModelLiveTests.enabled), .timeLimit(.minutes(2))) func suggestionsFromModel() async throws {
         try #require(AIStatus.current.isAvailable)
         await AppCatalog.shared.reload()
