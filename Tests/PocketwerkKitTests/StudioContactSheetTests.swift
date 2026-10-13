@@ -139,3 +139,34 @@ import Testing
         try Self.write(sheet, "effects-textures.png", scale: 1)
     }
 }
+
+/// The whole Design Studio in an offscreen window, captured per inspector tab.
+@Suite struct StudioWindowShotTests {
+    @Test func studioTabs() throws {
+        FaviconStore.fetchingEnabled = false
+        let store = LibraryStore(fileURL: FileManager.default.temporaryDirectory.appendingPathComponent("pw-studio-\(UUID().uuidString).json"))
+        let group = store.addGroup(name: "Studio")
+        store.updateGroup(group.id) { $0.items = IconsRendererTests.items }
+        store.applyTheme(ThemeLibrary.builtIn.first { $0.id == "theme.northernveil" }!, to: group.id)
+        _ = store.saveTheme(from: group.id, name: "Veil Copy")
+        let tabs: [(StudioTab, String)] = [(.icon, "studio-icon.png"), (.popup, "studio-popup.png"), (.grid, "studio-grid.png")]
+        for (tab, file) in tabs {
+            let view = DesignStudioView(groupID: group.id, store: store)
+            let host = NSHostingView(rootView: view)
+            let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 1360, height: 860), styleMask: [.titled], backing: .buffered, defer: false)
+            window.isReleasedWhenClosed = false
+            window.appearance = NSAppearance(named: .darkAqua)
+            window.contentView = host
+            host.layoutSubtreeIfNeeded()
+            // Switch the tab through the editor inside the view.
+            if let editor = Mirror(reflecting: view).descendant("_editor", "_value") as? StudioEditor { editor.tab = tab }
+            RunLoop.main.run(until: Date().addingTimeInterval(0.4))
+            host.layoutSubtreeIfNeeded()
+            let rep = try #require(host.bitmapImageRepForCachingDisplay(in: host.bounds))
+            host.cacheDisplay(in: host.bounds, to: rep)
+            let data = try #require(rep.representation(using: .png, properties: [:]))
+            try data.write(to: StudioContactSheetTests.shotsDir.appendingPathComponent(file))
+            window.close()
+        }
+    }
+}
