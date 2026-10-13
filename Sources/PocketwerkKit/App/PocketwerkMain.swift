@@ -40,7 +40,7 @@ final class AppCoordinator: NSObject, NSApplicationDelegate {
 
     /// Click on the main app's own Dock icon: show every group, swipeable.
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        PopupController.shared.toggleAll()
+        PopupController.shared.toggleAll(anchor: NSEvent.mouseLocation, source: .dock)
         return false
     }
 

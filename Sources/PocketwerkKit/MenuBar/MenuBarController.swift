@@ -52,7 +52,7 @@ final class MenuBarController: NSObject, NSMenuDelegate {
                 return CGPoint(x: frame.midX, y: frame.minY)
             }
             let ids = LibraryStore.shared.library.carouselGroups.map(\.id)
-            PopupController.shared.toggle(groupIDs: ids, slotID: nil, anchor: anchor)
+            PopupController.shared.toggle(groupIDs: ids, slotID: nil, anchor: anchor, source: .menuBar)
         }
     }
 
@@ -84,7 +84,7 @@ final class MenuBarController: NSObject, NSMenuDelegate {
         }
 
         let all = MenuAction.item(String(localized: "Show All Groups")) {
-            PopupController.shared.toggle(groupIDs: lib.carouselGroups.map(\.id), slotID: nil)
+            PopupController.shared.toggleAll(source: .menuBar)
         }
         all.image = NSImage(systemSymbolName: "square.grid.2x2", accessibilityDescription: nil)
         out.append(all)
@@ -147,7 +147,7 @@ final class MenuBarController: NSObject, NSMenuDelegate {
         openAll.isEnabled = items.count > 0
         sub.addItem(openAll)
         sub.addItem(MenuAction.item(String(localized: "Show Group")) {
-            PopupController.shared.toggle(groupIDs: [group.id], slotID: nil)
+            PopupController.shared.toggle(groupIDs: [group.id], slotID: nil, source: .menuBar)
         })
         sub.addItem(MenuAction.item(String(localized: "Edit Group…")) { MainWindowController.shared.show(selecting: group.id) })
         entry.submenu = sub

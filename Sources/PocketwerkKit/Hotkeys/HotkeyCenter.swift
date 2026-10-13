@@ -117,13 +117,13 @@ final class HotkeyCenter {
     func perform(_ target: HotkeyTarget) {
         switch target {
         case .main:
-            PopupController.shared.toggle(groupIDs: store.library.carouselGroups.map(\.id), slotID: nil)
+            PopupController.shared.toggleAll(source: .hotkey)
         case .nextProfile:
             if let id = HotkeyPlan.nextProfile(store.library) { DockProfiles.shared.apply(id) }
         case .group(let id):
-            PopupController.shared.toggle(groupIDs: [id], slotID: nil)
+            PopupController.shared.toggle(groupIDs: [id], slotID: nil, source: .hotkey)
         case .slot(let id):
-            PopupController.shared.toggle(slotID: id)
+            PopupController.shared.toggle(slotID: id, source: .hotkey)
         case .profile(let id):
             DockProfiles.shared.apply(id)
         case .saveToActiveProfile:

@@ -7,31 +7,6 @@ extension LibraryStore {
         group.usesDefaultStyle ? library.settings.defaultStyle : group.style
     }
 
-    func renameItem(_ itemID: UUID, in groupID: UUID, to name: String) {
-        let owner = owningGroupID(of: itemID, fallback: groupID)
-        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        updateGroup(owner) { g in
-            guard let i = g.items.firstIndex(where: { $0.id == itemID }) else { return }
-            g.items[i].customName = trimmed.isEmpty ? nil : trimmed
-        }
-    }
-
-    /// Moves an item into another group (appended at the end).
-    func moveItem(_ itemID: UUID, from groupID: UUID, to targetID: UUID) {
-        let owner = owningGroupID(of: itemID, fallback: groupID)
-        guard owner != targetID else { return }
-        mutate { lib in
-            guard let si = lib.groups.firstIndex(where: { $0.id == owner }),
-                  let ti = lib.groups.firstIndex(where: { $0.id == targetID }),
-                  lib.groups[ti].smart == nil,
-                  let ii = lib.groups[si].items.firstIndex(where: { $0.id == itemID }) else { return }
-            let item = lib.groups[si].items.remove(at: ii)
-            if !lib.groups[ti].items.contains(where: { $0.url == item.url }) {
-                lib.groups[ti].items.append(item)
-            }
-        }
-    }
-
     /// Adds URLs at a position of the shown (possibly sorted) order. Existing URLs are skipped.
     func insertItems(_ urls: [URL], into groupID: UUID, atShownIndex index: Int, shown: [DockItem]) {
         guard let group = group(groupID), group.smart == nil else { return }

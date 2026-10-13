@@ -35,7 +35,7 @@ enum MainMenu {
             .with(modifiers: [.command, .shift]))
         file.addItem(.separator())
         file.addItem(MenuAction.item(String(localized: "Show All Groups")) {
-            PopupController.shared.toggle(groupIDs: LibraryStore.shared.library.carouselGroups.map(\.id), slotID: nil)
+            PopupController.shared.toggleAll(source: .hotkey)
         })
         file.addItem(.separator())
         file.addItem(withTitle: String(localized: "Close"), action: #selector(NSWindow.performClose(_:)), keyEquivalent: "w")

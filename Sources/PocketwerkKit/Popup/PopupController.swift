@@ -56,10 +56,7 @@ final class PopupController {
 
     /// Every group, swipeable. Used by the main app Dock icon, the menu bar, and the main hotkey.
     func toggleAll(anchor: CGPoint? = nil, source: PopupSource? = nil) {
-        let groups = LibraryStore.shared.library.groups
-            .filter { !$0.hiddenFromAll }
-            .sorted { $0.pinned && !$1.pinned }
-            .map(\.id)
+        let groups = LibraryStore.shared.library.carouselGroups.map(\.id)
         toggle(groupIDs: groups, slotID: nil, anchor: anchor, source: source)
     }
 

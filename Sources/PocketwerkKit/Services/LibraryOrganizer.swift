@@ -144,7 +144,7 @@ extension LibraryStore {
     /// Custom name for an item. Empty text clears it and restores the original name.
     func renameItem(_ itemID: UUID, in groupID: UUID, to name: String) {
         let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        updateGroup(groupID) { g in
+        updateGroup(owningGroupID(of: itemID, fallback: groupID)) { g in
             guard let i = g.items.firstIndex(where: { $0.id == itemID }) else { return }
             g.items[i].customName = trimmed.isEmpty ? nil : trimmed
         }

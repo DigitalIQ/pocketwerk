@@ -106,7 +106,7 @@ final class DockManager {
     /// Opens the popup of a slot above its tile.
     func openSlot(_ id: UUID, anchor: CGPoint?) {
         guard store.slot(id) != nil else { return }
-        PopupController.shared.toggle(groupIDs: store.groups(for: id).map(\.id), slotID: id, anchor: anchor)
+        PopupController.shared.toggle(groupIDs: store.groups(for: id).map(\.id), slotID: id, anchor: anchor, source: .dock)
     }
 
     private func rememberLibrary() {
