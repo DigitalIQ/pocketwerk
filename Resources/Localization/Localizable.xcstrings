@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
+    "%@" : {
+
+    },
     "%@ (Imported)" : {
       "localizations" : {
         "de" : {
@@ -11,6 +17,9 @@
         }
       }
     },
+    "%@ (current)" : {
+
+    },
     "%@ Copy" : {
       "localizations" : {
         "de" : {
@@ -20,6 +29,9 @@
           }
         }
       }
+    },
+    "%@ Gradient" : {
+
     },
     "%@ Look" : {
       "localizations" : {
@@ -73,6 +85,9 @@
         }
       }
     },
+    "%@ is already active." : {
+
+    },
     "%@ is used by %@. Only the first one works." : {
       "localizations" : {
         "de" : {
@@ -85,6 +100,16 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "%1$@ is used by %2$@. Only the first one works."
+          }
+        }
+      }
+    },
+    "%@, group %lld of %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, group %2$lld of %3$lld"
           }
         }
       }
@@ -128,6 +153,9 @@
           }
         }
       }
+    },
+    "%lld changes made" : {
+
     },
     "%lld items" : {
       "localizations" : {
@@ -175,7 +203,11 @@
         }
       }
     },
+    "%lld points" : {
+
+    },
     "%lld pt" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -275,6 +307,18 @@
         }
       }
     },
+    "A Dock icon can show one group or several. With several, swipe or use the arrow keys in the popup to switch." : {
+
+    },
+    "A Space" : {
+
+    },
+    "A display" : {
+
+    },
+    "A gradient needs two colors" : {
+
+    },
     "A menu" : {
       "localizations" : {
         "de" : {
@@ -284,6 +328,12 @@
           }
         }
       }
+    },
+    "A note for when you come back. It shows when you switch to this profile again." : {
+
+    },
+    "A profile is a saved copy of the whole Dock. Apply it from the menu bar, with a shortcut, or with the leader key." : {
+
     },
     "A profile is a saved copy of your whole Dock. Switch between them with one click, a hotkey, a URL or the command line." : {
       "localizations" : {
@@ -335,6 +385,9 @@
         }
       }
     },
+    "Actions for %@" : {
+
+    },
     "Active" : {
       "localizations" : {
         "de" : {
@@ -345,6 +398,9 @@
         }
       }
     },
+    "Active shortcuts" : {
+
+    },
     "Add" : {
       "localizations" : {
         "de" : {
@@ -354,6 +410,12 @@
           }
         }
       }
+    },
+    "Add %@" : {
+
+    },
+    "Add %lld Items to" : {
+
     },
     "Add %lld items to which group?" : {
       "localizations" : {
@@ -434,6 +496,9 @@
           }
         }
       }
+    },
+    "Add Follow-up Key…" : {
+
     },
     "Add Groups" : {
       "localizations" : {
@@ -555,6 +620,9 @@
         }
       }
     },
+    "Add my music apps" : {
+
+    },
     "Add profile" : {
       "localizations" : {
         "de" : {
@@ -595,6 +663,9 @@
         }
       }
     },
+    "Add “%@” to" : {
+
+    },
     "Add ⌘, ⌥ or ⌃ to the key." : {
       "localizations" : {
         "de" : {
@@ -604,6 +675,9 @@
           }
         }
       }
+    },
+    "Added %@" : {
+
     },
     "Address" : {
       "localizations" : {
@@ -685,6 +759,9 @@
         }
       }
     },
+    "An extra copy of the library can go to any folder, for example iCloud Drive, after every change." : {
+
+    },
     "Angle" : {
       "localizations" : {
         "de" : {
@@ -725,6 +802,9 @@
         }
       }
     },
+    "Another profile is being applied." : {
+
+    },
     "App" : {
       "localizations" : {
         "de" : {
@@ -744,6 +824,12 @@
           }
         }
       }
+    },
+    "App Icon" : {
+
+    },
+    "App suggestions in the App Drawer" : {
+
     },
     "App, running" : {
       "localizations" : {
@@ -765,6 +851,40 @@
         }
       }
     },
+    "Appearance can be light, dark or system" : {
+
+    },
+    "Appearance: %@" : {
+
+    },
+    "Apple Intelligence" : {
+
+    },
+    "Apple Intelligence did not accept this request. Try other words." : {
+
+    },
+    "Apple Intelligence is not available right now." : {
+
+    },
+    "Apple Intelligence is still getting ready. Try again in a few minutes." : {
+
+    },
+    "Apple Intelligence runs on this Mac. Nothing leaves it." : {
+
+    },
+    "Applied %@." : {
+
+    },
+    "Applied %@. Missing: %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Applied %1$@. Missing: %2$@."
+          }
+        }
+      }
+    },
     "Applied. Left out because they are missing: %@" : {
       "localizations" : {
         "de" : {
@@ -774,6 +894,15 @@
           }
         }
       }
+    },
+    "Applies a Pocketwerk Dock profile when this Focus turns on." : {
+
+    },
+    "Applies the next profile in the list." : {
+
+    },
+    "Applies the profile linked to the Space or display you move to." : {
+
     },
     "Applies this look" : {
       "localizations" : {
@@ -795,6 +924,18 @@
         }
       }
     },
+    "Apply Dock Profile" : {
+
+    },
+    "Apply Next Dock Profile" : {
+
+    },
+    "Apply a Dock profile" : {
+
+    },
+    "Apply a profile" : {
+
+    },
     "Apply at startup" : {
       "localizations" : {
         "de" : {
@@ -804,6 +945,12 @@
           }
         }
       }
+    },
+    "Apply automatically on" : {
+
+    },
+    "Apply the next profile" : {
+
     },
     "Apps" : {
       "localizations" : {
@@ -845,6 +992,9 @@
         }
       }
     },
+    "Apps you often open within a few minutes of each other. Counted on this Mac only." : {
+
+    },
     "App…" : {
       "localizations" : {
         "de" : {
@@ -865,7 +1015,23 @@
         }
       }
     },
+    "Ask for a note when switching away" : {
+
+    },
+    "Assistant" : {
+
+    },
+    "Assistant Is Off" : {
+
+    },
+    "Assistant and Suggestions" : {
+
+    },
+    "Assistant in the group editor" : {
+
+    },
     "Assistent" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -914,6 +1080,9 @@
           }
         }
       }
+    },
+    "Automatic" : {
+
     },
     "Automatic shortcut" : {
       "localizations" : {
@@ -995,6 +1164,9 @@
         }
       }
     },
+    "Based on app categories and apps you use together" : {
+
+    },
     "Black" : {
       "localizations" : {
         "de" : {
@@ -1035,6 +1207,9 @@
         }
       }
     },
+    "Border %@" : {
+
+    },
     "Border and Corners" : {
       "localizations" : {
         "de" : {
@@ -1044,6 +1219,12 @@
           }
         }
       }
+    },
+    "Bottom left" : {
+
+    },
+    "Bottom right" : {
+
     },
     "Bubbles" : {
       "localizations" : {
@@ -1064,6 +1245,12 @@
           }
         }
       }
+    },
+    "Cannot do “%@” yet" : {
+
+    },
+    "Can’t be found. Click to locate or remove it." : {
+
     },
     "Cardboard" : {
       "localizations" : {
@@ -1105,6 +1292,12 @@
         }
       }
     },
+    "Category cleared" : {
+
+    },
+    "Category “%@”" : {
+
+    },
     "Center" : {
       "localizations" : {
         "de" : {
@@ -1135,6 +1328,12 @@
         }
       }
     },
+    "Change this group in your own words" : {
+
+    },
+    "Changes undone" : {
+
+    },
     "Change…" : {
       "localizations" : {
         "de" : {
@@ -1144,6 +1343,9 @@
           }
         }
       }
+    },
+    "Check Again" : {
+
     },
     "Check Now" : {
       "localizations" : {
@@ -1255,6 +1457,9 @@
         }
       }
     },
+    "Choose the new location of “%@”." : {
+
+    },
     "Circle" : {
       "localizations" : {
         "de" : {
@@ -1264,6 +1469,9 @@
           }
         }
       }
+    },
+    "Clear Conversation" : {
+
     },
     "Clear search" : {
       "localizations" : {
@@ -1405,6 +1613,15 @@
         }
       }
     },
+    "Columns must be 1 to 12 or auto" : {
+
+    },
+    "Columns: %lld" : {
+
+    },
+    "Columns: automatic" : {
+
+    },
     "Comb" : {
       "localizations" : {
         "de" : {
@@ -1415,6 +1632,18 @@
         }
       }
     },
+    "Command %lld" : {
+
+    },
+    "Command Line" : {
+
+    },
+    "Commands" : {
+
+    },
+    "Commands…" : {
+
+    },
     "Copy" : {
       "localizations" : {
         "de" : {
@@ -1424,6 +1653,9 @@
           }
         }
       }
+    },
+    "Copy %@" : {
+
     },
     "Copy Details" : {
       "localizations" : {
@@ -1454,6 +1686,18 @@
           }
         }
       }
+    },
+    "Corner radius %lld pt" : {
+
+    },
+    "Create" : {
+
+    },
+    "Create a group with ⌘N, then add apps from the App Drawer, files with ⇧⌘F, or drop anything from the Finder onto the list." : {
+
+    },
+    "Created" : {
+
     },
     "Curtains" : {
       "localizations" : {
@@ -1544,6 +1788,12 @@
           }
         }
       }
+    },
+    "Date Created" : {
+
+    },
+    "Date Modified" : {
+
     },
     "Delete" : {
       "localizations" : {
@@ -1705,6 +1955,12 @@
         }
       }
     },
+    "Describe a change" : {
+
+    },
+    "Desktop %lld" : {
+
+    },
     "Desktop Picture" : {
       "localizations" : {
         "de" : {
@@ -1724,6 +1980,12 @@
           }
         }
       }
+    },
+    "Diagnostics" : {
+
+    },
+    "Diagnostics are written to a local text file only when you export them." : {
+
     },
     "Dim" : {
       "localizations" : {
@@ -1755,6 +2017,15 @@
         }
       }
     },
+    "Dismiss %@" : {
+
+    },
+    "Display" : {
+
+    },
+    "Display as" : {
+
+    },
     "Distance from the Dock" : {
       "localizations" : {
         "de" : {
@@ -1764,6 +2035,9 @@
           }
         }
       }
+    },
+    "Distance to Dock" : {
+
     },
     "Dock" : {
       "localizations" : {
@@ -1805,6 +2079,12 @@
         }
       }
     },
+    "Dock Icons and Profiles" : {
+
+    },
+    "Dock Profile" : {
+
+    },
     "Dock Profiles" : {
       "localizations" : {
         "de" : {
@@ -1814,6 +2094,9 @@
           }
         }
       }
+    },
+    "Dock Profiles.json" : {
+
     },
     "Dock Slots" : {
       "localizations" : {
@@ -1834,6 +2117,12 @@
           }
         }
       }
+    },
+    "Dock icon: %@" : {
+
+    },
+    "Dock icons" : {
+
     },
     "Dock only" : {
       "localizations" : {
@@ -1875,6 +2164,12 @@
         }
       }
     },
+    "Dots" : {
+
+    },
+    "Double press or key sequence" : {
+
+    },
     "Down" : {
       "localizations" : {
         "de" : {
@@ -1915,6 +2210,12 @@
         }
       }
     },
+    "Drag an item onto a group in the sidebar to move it there. If that group already has it, the item only leaves the old group." : {
+
+    },
+    "Drag items to change their order, or pick a sort order in the toolbar. Right-click an item to rename it, move it to another group or remove it. An empty name brings back the original one." : {
+
+    },
     "Drifting Light" : {
       "localizations" : {
         "de" : {
@@ -1954,6 +2255,9 @@
           }
         }
       }
+    },
+    "Drop files on a Dock icon to add them. Hold a drag over the icon to open its popup and drop inside." : {
+
     },
     "Drops" : {
       "localizations" : {
@@ -2035,6 +2339,9 @@
         }
       }
     },
+    "Emoji %@" : {
+
+    },
     "Emoji & Symbols" : {
       "localizations" : {
         "de" : {
@@ -2085,6 +2392,9 @@
         }
       }
     },
+    "Every change is listed and can be undone. Items are only removed after you confirm." : {
+
+    },
     "Export" : {
       "localizations" : {
         "de" : {
@@ -2095,6 +2405,9 @@
         }
       }
     },
+    "Export All…" : {
+
+    },
     "Export Backup…" : {
       "localizations" : {
         "de" : {
@@ -2104,6 +2417,9 @@
           }
         }
       }
+    },
+    "Export Diagnostics…" : {
+
     },
     "Export…" : {
       "localizations" : {
@@ -2124,6 +2440,12 @@
           }
         }
       }
+    },
+    "Falling Snow" : {
+
+    },
+    "Fan" : {
+
     },
     "Fast" : {
       "localizations" : {
@@ -2175,6 +2497,12 @@
         }
       }
     },
+    "Fill %@" : {
+
+    },
+    "Filled" : {
+
+    },
     "Filter" : {
       "localizations" : {
         "de" : {
@@ -2184,6 +2512,9 @@
           }
         }
       }
+    },
+    "Find %@ Profiles" : {
+
     },
     "Finish" : {
       "localizations" : {
@@ -2245,6 +2576,9 @@
         }
       }
     },
+    "For example Office, Design, Games" : {
+
+    },
     "Force Quit" : {
       "localizations" : {
         "de" : {
@@ -2285,6 +2619,9 @@
         }
       }
     },
+    "Full-Screen Space" : {
+
+    },
     "Fur" : {
       "localizations" : {
         "de" : {
@@ -2304,6 +2641,9 @@
           }
         }
       }
+    },
+    "Getting Started" : {
+
     },
     "Give each group its own Dock icon. A click opens it as a popup." : {
       "localizations" : {
@@ -2345,6 +2685,9 @@
         }
       }
     },
+    "Glass fill" : {
+
+    },
     "Glossy" : {
       "localizations" : {
         "de" : {
@@ -2354,6 +2697,9 @@
           }
         }
       }
+    },
+    "Glow" : {
+
     },
     "Glyph Rain" : {
       "localizations" : {
@@ -2384,6 +2730,9 @@
           }
         }
       }
+    },
+    "Gradient %@" : {
+
     },
     "Gradient %@ to %@" : {
       "localizations" : {
@@ -2467,6 +2816,9 @@
         }
       }
     },
+    "Group colors" : {
+
+    },
     "Group name" : {
       "localizations" : {
         "de" : {
@@ -2496,6 +2848,9 @@
           }
         }
       }
+    },
+    "Groups and Items" : {
+
     },
     "Groups of apps, files and links behind your Dock icons." : {
       "localizations" : {
@@ -2547,6 +2902,9 @@
         }
       }
     },
+    "Help" : {
+
+    },
     "Hidden from All Groups" : {
       "localizations" : {
         "de" : {
@@ -2597,6 +2955,9 @@
         }
       }
     },
+    "Hide Apps of Group" : {
+
+    },
     "Hide Pocketwerk" : {
       "localizations" : {
         "de" : {
@@ -2606,6 +2967,9 @@
           }
         }
       }
+    },
+    "Hide a group's apps" : {
+
     },
     "Hide from All Groups" : {
       "localizations" : {
@@ -2627,6 +2991,9 @@
         }
       }
     },
+    "Hides every running app of a group." : {
+
+    },
     "Highlight" : {
       "localizations" : {
         "de" : {
@@ -2636,6 +3003,21 @@
           }
         }
       }
+    },
+    "Home" : {
+
+    },
+    "Honey" : {
+
+    },
+    "Hot Corner" : {
+
+    },
+    "Hot Corner and Menu Bar" : {
+
+    },
+    "Hot corner" : {
+
     },
     "Hotkey" : {
       "localizations" : {
@@ -2726,6 +3108,9 @@
           }
         }
       }
+    },
+    "Icon size %lld pt" : {
+
     },
     "Image" : {
       "localizations" : {
@@ -2867,6 +3252,9 @@
         }
       }
     },
+    "Iris" : {
+
+    },
     "Items" : {
       "localizations" : {
         "de" : {
@@ -2886,6 +3274,9 @@
           }
         }
       }
+    },
+    "Keep" : {
+
     },
     "Keep Open as Window" : {
       "localizations" : {
@@ -2916,6 +3307,9 @@
           }
         }
       }
+    },
+    "Keep this profile's apps open when switching away" : {
+
     },
     "Kind" : {
       "localizations" : {
@@ -2977,6 +3371,12 @@
         }
       }
     },
+    "Labels can be always, hover or off" : {
+
+    },
+    "Labels: %@" : {
+
+    },
     "Last Opened" : {
       "localizations" : {
         "de" : {
@@ -2996,6 +3396,12 @@
           }
         }
       }
+    },
+    "Last context note" : {
+
+    },
+    "Last time in %@" : {
+
     },
     "Launch at login" : {
       "localizations" : {
@@ -3037,6 +3443,21 @@
         }
       }
     },
+    "Layout can be grid, list or tiles" : {
+
+    },
+    "Layout: %@" : {
+
+    },
+    "Leader Key" : {
+
+    },
+    "Leader key" : {
+
+    },
+    "Leader letter" : {
+
+    },
     "Leave empty to use the original name" : {
       "localizations" : {
         "de" : {
@@ -3047,6 +3468,9 @@
         }
       }
     },
+    "Leaving %@" : {
+
+    },
     "Left" : {
       "localizations" : {
         "de" : {
@@ -3056,6 +3480,9 @@
           }
         }
       }
+    },
+    "Letter after the leader key" : {
+
     },
     "Letters" : {
       "localizations" : {
@@ -3127,6 +3554,12 @@
         }
       }
     },
+    "Link This Display" : {
+
+    },
+    "Link This Space" : {
+
+    },
     "Link address" : {
       "localizations" : {
         "de" : {
@@ -3147,6 +3580,9 @@
         }
       }
     },
+    "Linked to a Space or display" : {
+
+    },
     "List" : {
       "localizations" : {
         "de" : {
@@ -3156,6 +3592,15 @@
           }
         }
       }
+    },
+    "List profiles" : {
+
+    },
+    "List the current Dock tiles" : {
+
+    },
+    "Live main Dock icon" : {
+
     },
     "Living Effect" : {
       "localizations" : {
@@ -3177,6 +3622,15 @@
         }
       }
     },
+    "Locate or remove the missing item" : {
+
+    },
+    "Locate…" : {
+
+    },
+    "Look “%@”" : {
+
+    },
     "Looking for apps…" : {
       "localizations" : {
         "de" : {
@@ -3196,6 +3650,9 @@
           }
         }
       }
+    },
+    "Make it dark blue with a list view" : {
+
     },
     "Manual" : {
       "localizations" : {
@@ -3397,6 +3854,9 @@
         }
       }
     },
+    "Missing items" : {
+
+    },
     "Missing now" : {
       "localizations" : {
         "de" : {
@@ -3426,6 +3886,9 @@
           }
         }
       }
+    },
+    "More" : {
+
     },
     "More actions for %@" : {
       "localizations" : {
@@ -3537,6 +4000,9 @@
         }
       }
     },
+    "Moved to %@" : {
+
+    },
     "Name" : {
       "localizations" : {
         "de" : {
@@ -3647,6 +4113,9 @@
         }
       }
     },
+    "New suggestions" : {
+
+    },
     "Next" : {
       "localizations" : {
         "de" : {
@@ -3656,6 +4125,9 @@
           }
         }
       }
+    },
+    "Next Dock Profile" : {
+
     },
     "Next Dock profile" : {
       "localizations" : {
@@ -3747,6 +4219,9 @@
         }
       }
     },
+    "No Suggestions Yet" : {
+
+    },
     "No analytics, no account, no server. Your data stays on this Mac." : {
       "localizations" : {
         "de" : {
@@ -3756,6 +4231,9 @@
           }
         }
       }
+    },
+    "No border" : {
+
     },
     "No groups" : {
       "localizations" : {
@@ -3767,6 +4245,9 @@
         }
       }
     },
+    "No item “%@” in this group" : {
+
+    },
     "No link, file or folder found." : {
       "localizations" : {
         "de" : {
@@ -3776,6 +4257,9 @@
           }
         }
       }
+    },
+    "No look named “%@”" : {
+
     },
     "No matches" : {
       "localizations" : {
@@ -3787,6 +4271,12 @@
         }
       }
     },
+    "No profile" : {
+
+    },
+    "No profiles found" : {
+
+    },
     "No release found." : {
       "localizations" : {
         "de" : {
@@ -3796,6 +4286,9 @@
           }
         }
       }
+    },
+    "No suggestions. Add a few apps or set a category." : {
+
     },
     "None" : {
       "localizations" : {
@@ -3847,6 +4340,12 @@
         }
       }
     },
+    "Note" : {
+
+    },
+    "Note for %@" : {
+
+    },
     "Nothing Yet" : {
       "localizations" : {
         "de" : {
@@ -3866,6 +4365,9 @@
           }
         }
       }
+    },
+    "Nothing is removed until you confirm below." : {
+
     },
     "OK" : {
       "localizations" : {
@@ -3906,6 +4408,9 @@
           }
         }
       }
+    },
+    "Once" : {
+
     },
     "One readable JSON file with groups, Dock icons, profiles, shortcuts and settings." : {
       "localizations" : {
@@ -3967,6 +4472,9 @@
         }
       }
     },
+    "Open All Items of Group" : {
+
+    },
     "Open Download Page" : {
       "localizations" : {
         "de" : {
@@ -3987,6 +4495,15 @@
         }
       }
     },
+    "Open Pocketwerk" : {
+
+    },
+    "Open Profile “%@”" : {
+
+    },
+    "Open Project or Folder…" : {
+
+    },
     "Open Safari, Chrome, Arc or Brave first" : {
       "localizations" : {
         "de" : {
@@ -3996,6 +4513,12 @@
           }
         }
       }
+    },
+    "Open Settings" : {
+
+    },
+    "Open When Applied" : {
+
     },
     "Open With" : {
       "localizations" : {
@@ -4033,6 +4556,9 @@
         }
       }
     },
+    "Open every item of a group" : {
+
+    },
     "Open groups from anywhere with ⌥⇧1 to ⌥⇧9." : {
       "localizations" : {
         "de" : {
@@ -4052,6 +4578,9 @@
           }
         }
       }
+    },
+    "Open the main window" : {
+
     },
     "Open the profile's apps in the background" : {
       "localizations" : {
@@ -4073,6 +4602,9 @@
         }
       }
     },
+    "Open this window when Pocketwerk starts" : {
+
+    },
     "Opening" : {
       "localizations" : {
         "de" : {
@@ -4082,6 +4614,18 @@
           }
         }
       }
+    },
+    "Opens %@" : {
+
+    },
+    "Opens every app, file, folder and link of a group." : {
+
+    },
+    "Opens profile %@" : {
+
+    },
+    "Opens when applied" : {
+
     },
     "Optional" : {
       "localizations" : {
@@ -4122,6 +4666,9 @@
           }
         }
       }
+    },
+    "Outline" : {
+
     },
     "Pack" : {
       "localizations" : {
@@ -4219,6 +4766,15 @@
         }
       }
     },
+    "Pick a category" : {
+
+    },
+    "Picked on this Mac by Apple Intelligence" : {
+
+    },
+    "Pin a group to keep it at the top. Hidden groups stay out of All Groups but keep their own Dock icon and shortcut." : {
+
+    },
     "Pin to Top" : {
       "localizations" : {
         "de" : {
@@ -4289,6 +4845,12 @@
         }
       }
     },
+    "Pocketwerk Help" : {
+
+    },
+    "Pocketwerk has no account, no analytics and no server. Your groups and usage counts stay on this Mac." : {
+
+    },
     "Pocketwerk is up to date." : {
       "localizations" : {
         "de" : {
@@ -4298,6 +4860,12 @@
           }
         }
       }
+    },
+    "Pocketwerk keeps apps, files, folders and links in groups. Each group can have its own icon in the Dock. Click the icon and the group opens as a popup above it." : {
+
+    },
+    "Pocketwerk learns which apps you use together. Check again in a few days." : {
+
     },
     "Pocketwerk on GitHub" : {
       "localizations" : {
@@ -4318,6 +4886,9 @@
           }
         }
       }
+    },
+    "Pocketwerk's own Dock icon shows the first group as a mini grid." : {
+
     },
     "Pointer" : {
       "localizations" : {
@@ -4369,6 +4940,12 @@
         }
       }
     },
+    "Press" : {
+
+    },
+    "Press the leader key, then the letter of a group or profile. A small list shows the letters while Pocketwerk waits." : {
+
+    },
     "Press to record a new shortcut" : {
       "localizations" : {
         "de" : {
@@ -4408,6 +4985,18 @@
           }
         }
       }
+    },
+    "Privacy" : {
+
+    },
+    "Private" : {
+
+    },
+    "Private (left out of Export All and sharing)" : {
+
+    },
+    "Profile" : {
+
     },
     "Profile Name" : {
       "localizations" : {
@@ -4509,6 +5098,12 @@
         }
       }
     },
+    "Quit Apps of Group" : {
+
+    },
+    "Quit Group" : {
+
+    },
     "Quit Pocketwerk" : {
       "localizations" : {
         "de" : {
@@ -4519,6 +5114,9 @@
         }
       }
     },
+    "Quit a group's apps" : {
+
+    },
     "Quit apps that are not in this profile" : {
       "localizations" : {
         "de" : {
@@ -4528,6 +5126,9 @@
           }
         }
       }
+    },
+    "Quits every running app of a group. Apps can still ask to save." : {
+
     },
     "Rain" : {
       "localizations" : {
@@ -4619,6 +5220,9 @@
         }
       }
     },
+    "Remove %@?" : {
+
+    },
     "Remove %lld Items" : {
       "localizations" : {
         "de" : {
@@ -4638,6 +5242,9 @@
           }
         }
       }
+    },
+    "Remove Follow-up Keys" : {
+
     },
     "Remove Image" : {
       "localizations" : {
@@ -4699,6 +5306,18 @@
         }
       }
     },
+    "Remove: %@" : {
+
+    },
+    "Removed %@" : {
+
+    },
+    "Removed." : {
+
+    },
+    "Removed. Undo with Command Z." : {
+
+    },
     "Rename" : {
       "localizations" : {
         "de" : {
@@ -4718,6 +5337,12 @@
           }
         }
       }
+    },
+    "Rename it to Studio and pick a fitting emoji" : {
+
+    },
+    "Renamed to “%@”" : {
+
     },
     "Rename…" : {
       "localizations" : {
@@ -4749,6 +5374,12 @@
         }
       }
     },
+    "Report a Problem…" : {
+
+    },
+    "Request for the assistant" : {
+
+    },
     "Reset" : {
       "localizations" : {
         "de" : {
@@ -4759,6 +5390,9 @@
         }
       }
     },
+    "Rest the pointer in this corner to show all groups. Pick a corner that macOS does not use for its own hot corners." : {
+
+    },
     "Restart the Dock once so pinned tiles show their new icons." : {
       "localizations" : {
         "de" : {
@@ -4768,6 +5402,12 @@
           }
         }
       }
+    },
+    "Restore the group as it was before" : {
+
+    },
+    "Rewrites the Dock with a saved profile." : {
+
     },
     "Ribbons" : {
       "localizations" : {
@@ -4838,6 +5478,15 @@
           }
         }
       }
+    },
+    "Rows per page: %lld" : {
+
+    },
+    "Rows per page: all" : {
+
+    },
+    "Run scripts/pocketwerk, or Pocketwerk.app/Contents/MacOS/Pocketwerk --cli." : {
+
     },
     "Running Apps" : {
       "localizations" : {
@@ -4929,6 +5578,9 @@
         }
       }
     },
+    "Save Note" : {
+
+    },
     "Save as Theme" : {
       "localizations" : {
         "de" : {
@@ -4938,6 +5590,12 @@
           }
         }
       }
+    },
+    "Save the Dock as a new profile" : {
+
+    },
+    "Save the Dock into the active profile" : {
+
     },
     "Save this look as a theme" : {
       "localizations" : {
@@ -4958,6 +5616,9 @@
           }
         }
       }
+    },
+    "Saves the last five hours of Pocketwerk's own log and a short summary as a text file. Nothing is sent. Look at the file before you share it." : {
+
     },
     "Search Looks" : {
       "localizations" : {
@@ -4989,6 +5650,9 @@
         }
       }
     },
+    "Seasonal touches" : {
+
+    },
     "Section" : {
       "localizations" : {
         "de" : {
@@ -5009,6 +5673,12 @@
         }
       }
     },
+    "Send" : {
+
+    },
+    "Send (⌘↩)" : {
+
+    },
     "Serif" : {
       "localizations" : {
         "de" : {
@@ -5019,6 +5689,9 @@
         }
       }
     },
+    "Set Dock Profile" : {
+
+    },
     "Settings" : {
       "localizations" : {
         "de" : {
@@ -5028,6 +5701,9 @@
           }
         }
       }
+    },
+    "Settings > Backup exports everything into one JSON file. Import offers Merge, which only adds, and Replace. Both can be undone with ⌘Z." : {
+
     },
     "Settings…" : {
       "localizations" : {
@@ -5059,6 +5735,12 @@
         }
       }
     },
+    "Shadow off" : {
+
+    },
+    "Shadow on" : {
+
+    },
     "Shape" : {
       "localizations" : {
         "de" : {
@@ -5068,6 +5750,9 @@
           }
         }
       }
+    },
+    "Share…" : {
+
     },
     "Shortcut" : {
       "localizations" : {
@@ -5079,7 +5764,23 @@
         }
       }
     },
+    "Shortcut options" : {
+
+    },
+    "Shortcut: %lld" : {
+
+    },
+    "Shortcuts" : {
+
+    },
+    "Shortcuts lists these actions under Pocketwerk when the app was built with App Intents metadata. The URLs below always work with the “Open URL” action." : {
+
+    },
+    "Shortcuts need no extra permission and work in full screen apps." : {
+
+    },
     "Shortcuts work everywhere, also in full screen apps. No extra permission is needed." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5088,6 +5789,9 @@
           }
         }
       }
+    },
+    "Shortcuts work everywhere, also in full screen apps. No extra permission is needed. Use the … button to require a double press or a follow-up key." : {
+
     },
     "Show" : {
       "localizations" : {
@@ -5129,6 +5833,9 @@
         }
       }
     },
+    "Show Data Folder" : {
+
+    },
     "Show Group" : {
       "localizations" : {
         "de" : {
@@ -5159,6 +5866,12 @@
         }
       }
     },
+    "Show a group" : {
+
+    },
+    "Show a group's popup" : {
+
+    },
     "Show all groups" : {
       "localizations" : {
         "de" : {
@@ -5168,6 +5881,12 @@
           }
         }
       }
+    },
+    "Show group names" : {
+
+    },
+    "Show icons only" : {
+
     },
     "Show in All Groups" : {
       "localizations" : {
@@ -5189,6 +5908,12 @@
         }
       }
     },
+    "Show labels only on hover" : {
+
+    },
+    "Show page dots" : {
+
+    },
     "Show the Most Used group" : {
       "localizations" : {
         "de" : {
@@ -5199,6 +5924,9 @@
         }
       }
     },
+    "Show the current Space and display ids" : {
+
+    },
     "Show this group as a popup" : {
       "localizations" : {
         "de" : {
@@ -5208,6 +5936,12 @@
           }
         }
       }
+    },
+    "Shows a group's popup at the pointer." : {
+
+    },
+    "Shows the folder contents" : {
+
     },
     "Shows your desktop picture behind the popup, blurred." : {
       "localizations" : {
@@ -5238,6 +5972,12 @@
           }
         }
       }
+    },
+    "Siri and Shortcuts" : {
+
+    },
+    "Siri, Shortcuts, URL and command line commands" : {
+
     },
     "Size" : {
       "localizations" : {
@@ -5289,6 +6029,9 @@
         }
       }
     },
+    "Skip in “Next Profile”" : {
+
+    },
     "Skipped version" : {
       "localizations" : {
         "de" : {
@@ -5329,6 +6072,12 @@
         }
       }
     },
+    "Smart groups fill themselves" : {
+
+    },
+    "Smart groups fill themselves: Most Used, Recently Opened and Running Apps. They are counted on this Mac only." : {
+
+    },
     "Snow" : {
       "localizations" : {
         "de" : {
@@ -5338,6 +6087,12 @@
           }
         }
       }
+    },
+    "Something not working?" : {
+
+    },
+    "Something went wrong: %@" : {
+
     },
     "Sort" : {
       "localizations" : {
@@ -5359,6 +6114,9 @@
         }
       }
     },
+    "Sort by" : {
+
+    },
     "Sort items by" : {
       "localizations" : {
         "de" : {
@@ -5378,6 +6136,9 @@
           }
         }
       }
+    },
+    "Sorted by %@" : {
+
     },
     "Spacer" : {
       "localizations" : {
@@ -5418,6 +6179,12 @@
           }
         }
       }
+    },
+    "Spacing %lld pt" : {
+
+    },
+    "Spacing can be tight, normal or airy" : {
+
     },
     "Speed" : {
       "localizations" : {
@@ -5469,6 +6236,9 @@
         }
       }
     },
+    "Standard" : {
+
+    },
     "Starfield" : {
       "localizations" : {
         "de" : {
@@ -5498,6 +6268,9 @@
           }
         }
       }
+    },
+    "Starts from links, shortcuts and Dock icons stay without a window." : {
+
     },
     "Startup profile" : {
       "localizations" : {
@@ -5549,6 +6322,27 @@
         }
       }
     },
+    "Suggested" : {
+
+    },
+    "Suggested Groups" : {
+
+    },
+    "Suggested Groups…" : {
+
+    },
+    "Suggested from categories" : {
+
+    },
+    "Swipe between pages (otherwise scroll)" : {
+
+    },
+    "Switch with Spaces and displays" : {
+
+    },
+    "Switching" : {
+
+    },
     "Symbol" : {
       "localizations" : {
         "de" : {
@@ -5578,6 +6372,9 @@
           }
         }
       }
+    },
+    "Tags" : {
+
     },
     "Terrazzo" : {
       "localizations" : {
@@ -5639,6 +6436,15 @@
         }
       }
     },
+    "That was too much at once. Try a shorter request." : {
+
+    },
+    "The App Drawer suggests apps that fit the group. Without Apple Intelligence the suggestions come from app categories and the apps you use together." : {
+
+    },
+    "The Assistant tab changes the selected group from plain language, for example “make it dark blue with list view” or “add Pages and Numbers”. It runs on this Mac with Apple Intelligence." : {
+
+    },
     "The Dock is empty or could not be read." : {
       "localizations" : {
         "de" : {
@@ -5648,6 +6454,9 @@
           }
         }
       }
+    },
+    "The Dock shows a live mini grid of your first group. Turn off “Live main Dock icon” under Dock Icons to see the variant there." : {
+
     },
     "The Dock tile for \"%@\" could not be built." : {
       "localizations" : {
@@ -5659,6 +6468,9 @@
         }
       }
     },
+    "The assistant can change the look, labels, layout, Dock icon and name, and add or remove apps. It runs on this Mac; the conversation is forgotten when Pocketwerk quits." : {
+
+    },
     "The browser did not answer." : {
       "localizations" : {
         "de" : {
@@ -5668,6 +6480,9 @@
           }
         }
       }
+    },
+    "The category helps app suggestions. The leader letter opens the group after the leader key (Settings > Hotkeys)." : {
+
     },
     "The check asks GitHub for the latest release. Nothing else is sent." : {
       "localizations" : {
@@ -5715,6 +6530,9 @@
         }
       }
     },
+    "The group changed since then. Use Edit > Undo instead." : {
+
+    },
     "The launcher template is missing from the app." : {
       "localizations" : {
         "de" : {
@@ -5724,6 +6542,12 @@
           }
         }
       }
+    },
+    "The leader key works like a prefix: press it, then the letter of a group or profile. A small list shows the letters while Pocketwerk waits." : {
+
+    },
+    "The menu bar icon opens all groups or a menu with every group and its items. Right-click it to always get the menu." : {
+
     },
     "The menu command “%@” uses this shortcut." : {
       "localizations" : {
@@ -5745,6 +6569,9 @@
         }
       }
     },
+    "The only network requests are the daily update check against GitHub (can be turned off) and website icons for links." : {
+
+    },
     "The theme keeps the popup and Dock icon look. Use it for any group." : {
       "localizations" : {
         "de" : {
@@ -5755,6 +6582,12 @@
         }
       }
     },
+    "The … button next to a shortcut makes it a double or triple press, or adds a follow-up key, for example ⌃⌥G then W." : {
+
+    },
+    "Thick border" : {
+
+    },
     "Thickness" : {
       "localizations" : {
         "de" : {
@@ -5764,6 +6597,15 @@
           }
         }
       }
+    },
+    "Thin border" : {
+
+    },
+    "Thinking…" : {
+
+    },
+    "This Mac does not support Apple Intelligence." : {
+
     },
     "This file is not a Pocketwerk backup." : {
       "localizations" : {
@@ -5804,6 +6646,9 @@
           }
         }
       }
+    },
+    "Three Times" : {
+
     },
     "Tight" : {
       "localizations" : {
@@ -5865,6 +6710,12 @@
         }
       }
     },
+    "Top left" : {
+
+    },
+    "Top right" : {
+
+    },
     "Trail" : {
       "localizations" : {
         "de" : {
@@ -5895,6 +6746,18 @@
         }
       }
     },
+    "Turn it on under Settings > General." : {
+
+    },
+    "Turn on Apple Intelligence in System Settings to use this." : {
+
+    },
+    "Turn on “Switch with Spaces and displays” to use these." : {
+
+    },
+    "Twice" : {
+
+    },
     "Type" : {
       "localizations" : {
         "de" : {
@@ -5915,6 +6778,12 @@
         }
       }
     },
+    "URLs" : {
+
+    },
+    "Under Settings > Popup you can pick a screen corner. Rest the pointer there for a moment to show all groups." : {
+
+    },
     "Undo" : {
       "localizations" : {
         "de" : {
@@ -5924,6 +6793,9 @@
           }
         }
       }
+    },
+    "Undone" : {
+
     },
     "Unhide" : {
       "localizations" : {
@@ -5944,6 +6816,24 @@
           }
         }
       }
+    },
+    "Unknown Dock icon “%@”" : {
+
+    },
+    "Unknown border “%@”" : {
+
+    },
+    "Unknown color “%@”" : {
+
+    },
+    "Unknown corner radius “%@”" : {
+
+    },
+    "Unknown icon size “%@”" : {
+
+    },
+    "Unknown sort order “%@”" : {
+
     },
     "Unpin" : {
       "localizations" : {
@@ -6025,6 +6915,9 @@
         }
       }
     },
+    "Use a warm gradient and round corners" : {
+
+    },
     "Use default look" : {
       "localizations" : {
         "de" : {
@@ -6044,6 +6937,12 @@
           }
         }
       }
+    },
+    "Used Together" : {
+
+    },
+    "Uses its own look now" : {
+
     },
     "Uses the automatic shortcut for its position in the sidebar." : {
       "localizations" : {
@@ -6115,6 +7014,9 @@
         }
       }
     },
+    "Wait for the letter" : {
+
+    },
     "Wallpaper" : {
       "localizations" : {
         "de" : {
@@ -6185,6 +7087,9 @@
         }
       }
     },
+    "Where you left off" : {
+
+    },
     "White" : {
       "localizations" : {
         "de" : {
@@ -6224,6 +7129,12 @@
           }
         }
       }
+    },
+    "Windows" : {
+
+    },
+    "Work" : {
+
     },
     "Your apps, files and links in groups, one click from the Dock." : {
       "localizations" : {
@@ -6285,6 +7196,30 @@
         }
       }
     },
+    "missing" : {
+
+    },
+    "selected" : {
+
+    },
+    "work, travel" : {
+
+    },
+    "–" : {
+
+    },
+    "“%@” can’t be found" : {
+
+    },
+    "“%@” is not an emoji" : {
+
+    },
+    "“%@” is not installed" : {
+
+    },
+    "⌘%lld" : {
+
+    },
     "⌥⇧1 to ⌥⇧9 open the first nine groups" : {
       "localizations" : {
         "de" : {
@@ -6294,6 +7229,9 @@
           }
         }
       }
+    },
+    "⌥⇧1 to ⌥⇧9 open the first nine groups. Give any group, Dock icon or profile its own shortcut under Settings > Hotkeys." : {
+
     }
   },
   "version" : "1.0"
