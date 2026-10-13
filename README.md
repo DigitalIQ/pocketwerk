@@ -2,7 +2,7 @@
 
 Free, open-source app folders for the Mac Dock: each group of apps, files, folders and links gets its own Dock icon and opens right above it.
 
-![A Pocketwerk popup open above its Dock icon](site/assets/shots/popup.png)
+![A Pocketwerk popup open above its Dock icon](site/assets/shots/popup-evening.png)
 
 [Website](https://digitaliq.github.io/pocketwerk/) · [Download](https://github.com/DigitalIQ/pocketwerk/releases/latest) · [User guide](docs/USER_GUIDE.md) · [Changelog](CHANGELOG.md)
 
