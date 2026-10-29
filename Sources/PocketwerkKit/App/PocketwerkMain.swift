@@ -15,6 +15,7 @@ final class AppCoordinator: NSObject, NSApplicationDelegate {
     let store = LibraryStore.shared
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        if SnapshotMode.runIfRequested() { return }
         MainMenu.install()
         AppIconVariants.applyCurrent()
         applyActivationPolicy()

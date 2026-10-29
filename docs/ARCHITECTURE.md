@@ -19,8 +19,11 @@ export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
 swift build                                  # debug build
 swift test                                   # tests
 UNIVERSAL=0 ./scripts/build-app.sh           # app bundle for this Mac only
+scripts/snap.sh                              # build, then save light and dark PNGs of every page to .tmp/shots
 ./scripts/build-app.sh --install             # universal app, copied to ~/Applications
 ```
+
+`scripts/snap.sh` runs the built app with `--snapshot` (`App/SnapshotMode.swift`). It uses a demo library in `.tmp/snap-store`, a fake Dock plist and launcher folder, and never starts the menu bar item, hotkeys, `DockManager`, services or the update check. It captures the real windows with `screencapture -l` (Terminal needs Screen Recording permission), prints `SNAPSHOT <path>` per file and exits 1 on any failure. `PAGES=studio,popup scripts/snap.sh` limits the pages. Page names are in `SnapshotRun.makePages`.
 
 `build-app.sh` copies `Resources/Info.plist`, `Resources/AppIcon.icns`, `Resources/Localization/*.lproj` and the launcher template (`Contents/Resources/LauncherTemplate.app`), then signs ad hoc. SwiftPM resource bundles are not used: `PocketwerkKit` has no `resources:`. Images and sounds are drawn in code or loaded from `Contents/Resources` via `Bundle.main`.
 
