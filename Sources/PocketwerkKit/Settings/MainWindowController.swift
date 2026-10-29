@@ -108,8 +108,28 @@ final class MainWindowController: NSObject, NSWindowDelegate {
             window = w
         }
         LibraryHealth.shared.scheduleScan()
+        let opening = window?.isVisible != true
         NSApp.activate()
         window?.makeKeyAndOrderFront(nil)
+        if opening, let window { moveFocusOffNameField(in: window) }
+    }
+
+    /// AppKit gives a window that opens the focus of its first text field, which is the group name, and
+    /// selects the name. Give it to the sidebar instead, as Finder and Mail do. The inline rename of a
+    /// new group keeps its focus.
+    private func moveFocusOffNameField(in window: NSWindow) {
+        guard model.renamingGroupID == nil,
+              let editor = window.firstResponder as? NSTextView, editor.isFieldEditor else { return }
+        window.makeFirstResponder(window.contentView.flatMap(Self.firstTable(in:)))
+    }
+
+    /// The sidebar list, the first table in the view tree.
+    private static func firstTable(in view: NSView) -> NSTableView? {
+        if let table = view as? NSTableView { return table }
+        for subview in view.subviews {
+            if let table = firstTable(in: subview) { return table }
+        }
+        return nil
     }
 
     var isVisible: Bool { window?.isVisible == true }

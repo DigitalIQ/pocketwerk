@@ -11,6 +11,7 @@ All notable changes to Pocketwerk are listed here. The format follows [Keep a Ch
 ### Fixed
 
 - Dock profiles and Dock icons now share one copy of a test Dock file, so a profile captured in a test sees the slots added before it.
+- Opening the main window no longer focuses the group name and selects its text. The sidebar takes the focus; a new group still opens its name for typing.
 
 ### Development
 
