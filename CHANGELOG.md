@@ -4,6 +4,8 @@ All notable changes to Pocketwerk are listed here. The format follows [Keep a Ch
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-10-29
+
 ### Changed
 
 - Liquid Glass app icon with dark, tinted and clear looks. The Honey, Ocean, Graphite and Iris variants are glass too.
@@ -90,6 +92,7 @@ First public release.
 - English and German interface.
 - Support for Reduce Motion, Reduce Transparency and Low Power Mode.
 
-[Unreleased]: https://github.com/DigitalIQ/pocketwerk/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/DigitalIQ/pocketwerk/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/DigitalIQ/pocketwerk/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/DigitalIQ/pocketwerk/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/DigitalIQ/pocketwerk/releases/tag/v1.0.0
