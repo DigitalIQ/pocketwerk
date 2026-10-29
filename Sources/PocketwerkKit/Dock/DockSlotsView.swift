@@ -144,16 +144,17 @@ private struct SlotRow: View {
             .menuStyle(.borderlessButton)
             .fixedSize()
             .accessibilityLabel(Text("More actions for \(slot.name)"))
+            // Anchored to the "…" button it came from; on the row it opened beside the sidebar.
+            .popover(isPresented: $editingGroups, arrowEdge: .top) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("The popup swipes between these groups.").font(.caption).foregroundStyle(.secondary)
+                    SlotGroupsEditor(slot: slot)
+                }
+                .padding(14)
+                .frame(width: 280)
+            }
         }
         .padding(.vertical, 2)
-        .popover(isPresented: $editingGroups, arrowEdge: .trailing) {
-            VStack(alignment: .leading, spacing: 8) {
-                Text("The popup swipes between these groups.").font(.caption).foregroundStyle(.secondary)
-                SlotGroupsEditor(slot: slot)
-            }
-            .padding(14)
-            .frame(width: 280)
-        }
     }
 
     /// Status, then the groups. Most slots show the one group they are named after; the name says that already.
