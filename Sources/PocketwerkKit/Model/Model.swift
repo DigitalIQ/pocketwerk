@@ -66,7 +66,7 @@ nonisolated struct DockItem: Codable, Identifiable, Hashable, Sendable {
 
     init(kind: ItemKind, url: URL, customName: String? = nil) {
         self.kind = kind
-        self.url = url
+        self.url = kind == .app ? AppPaths.visible(url) : url
         self.customName = customName
         if kind == .app { self.bundleID = Bundle(url: url)?.bundleIdentifier }
     }

@@ -229,7 +229,15 @@ final class LibraryStore {
 
     private static func load(from url: URL) -> Library? {
         guard let data = try? Data(contentsOf: url) else { return nil }
-        if let lib = decodeLeniently(data) { return lib }
+        if var lib = decodeLeniently(data) {
+            // Older versions stored the cryptex path of Safari and other system apps.
+            for g in lib.groups.indices {
+                for i in lib.groups[g].items.indices where lib.groups[g].items[i].kind == .app {
+                    lib.groups[g].items[i].url = AppPaths.visible(lib.groups[g].items[i].url)
+                }
+            }
+            return lib
+        }
         // Keep the unreadable file so nothing is lost.
         let backup = url.deletingLastPathComponent()
             .appendingPathComponent("library-unreadable-\(Int(Date().timeIntervalSince1970)).json")
