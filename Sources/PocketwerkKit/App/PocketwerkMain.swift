@@ -16,6 +16,7 @@ final class AppCoordinator: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         if SnapshotMode.runIfRequested() { return }
+        if SelfTest.runIfRequested() { return }
         MainMenu.install()
         AppIconVariants.applyCurrent()
         applyActivationPolicy()

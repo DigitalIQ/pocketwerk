@@ -66,10 +66,17 @@ final class FileDockDomain: DockDomain {
 }
 
 enum DockDomains {
+    /// One file domain per path: DockManager and DockProfiles must see each other's writes,
+    /// as they do through cfprefsd with the real Dock.
+    private static var files: [String: FileDockDomain] = [:]
+
     /// The real Dock, or a file when $POCKETWERK_DOCK_PLIST is set.
     static func makeDefault() -> DockDomain {
         if let path = ProcessInfo.processInfo.environment["POCKETWERK_DOCK_PLIST"], !path.isEmpty {
-            return FileDockDomain(url: URL(fileURLWithPath: path))
+            if let shared = files[path] { return shared }
+            let domain = FileDockDomain(url: URL(fileURLWithPath: path))
+            files[path] = domain
+            return domain
         }
         return SystemDockDomain()
     }
