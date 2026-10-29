@@ -61,7 +61,9 @@ struct PopupItemCell: View {
         let selected = model.selection == index
         let picked = model.picked.contains(url)
         let pressed = model.pressed == url
-        let running = style.runningIndicator && (item.map { RunningApps.shared.isRunning($0) } ?? false)
+        // Snapshots hide the dots: they depend on what runs on the Mac, and shots must repeat.
+        let running = style.runningIndicator && !SnapshotMode.requested
+            && (item.map { RunningApps.shared.isRunning($0) } ?? false)
         let radius = cellRadius
         let shape = RoundedRectangle(cornerRadius: radius, style: .continuous)
 

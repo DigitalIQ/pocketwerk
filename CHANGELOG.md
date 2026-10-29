@@ -21,6 +21,7 @@ All notable changes to Pocketwerk are listed here. The format follows [Keep a Ch
 
 - `scripts/snap.sh` saves light and dark pictures of every page to `.tmp/shots`.
 - `scripts/selftest.sh` runs the real app functions on a test library and prints PASS or FAIL per step. `release.sh` runs it before the DMG is made.
+- Snapshots hide the running-app dots in the popup, so every run gives the same pictures.
 
 ## [1.1.0] - 2026-10-13
 
