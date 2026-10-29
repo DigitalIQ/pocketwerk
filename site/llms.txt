@@ -1,6 +1,6 @@
 # Pocketwerk
 
-> Pocketwerk (current version 1.1.0) is a free, open-source macOS app released under the MIT license by DigitalIQ. It groups apps, files, folders and links into "pockets" that can each get their own icon in the macOS Dock.
+> Pocketwerk (current version 1.2.0) is a free, open-source macOS app released under the MIT license by DigitalIQ. It groups apps, files, folders and links into "pockets" that can each get their own icon in the macOS Dock.
 
 Clicking a pocket's Dock icon opens a themed popup directly above that icon; a second click closes it. Pocketwerk runs on macOS 26 Tahoe and later, on Apple Silicon and Intel Macs. Its interface is available in English and German.
 
