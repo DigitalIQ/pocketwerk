@@ -42,8 +42,16 @@ enum AppIconVariants {
     /// The icon in a variant, 512 px, cached.
     static func image(_ variant: AppIconVariant) -> NSImage {
         if let hit = cache[variant] { return hit }
+        guard let (tint, amount) = variant.tint else { return original }
+        // The Dock shows applicationIconImage flat, without glass, so scripts/make-icon.sh
+        // renders the glass variants ahead of time. The tint below is the fallback.
+        if let url = Bundle.main.url(forResource: "AppIcon-\(variant.rawValue)", withExtension: "heic"),
+           let glass = NSImage(contentsOf: url) {
+            glass.size = NSSize(width: 512, height: 512)
+            cache[variant] = glass
+            return glass
+        }
         let base = original
-        guard let (tint, amount) = variant.tint else { return base }
         var rect = CGRect(x: 0, y: 0, width: 512, height: 512)
         guard let cg = base.cgImage(forProposedRect: &rect, context: nil, hints: nil) else { return base }
         let input = CIImage(cgImage: cg)

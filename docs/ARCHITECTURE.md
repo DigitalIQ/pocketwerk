@@ -22,7 +22,20 @@ UNIVERSAL=0 ./scripts/build-app.sh           # app bundle for this Mac only
 ./scripts/build-app.sh --install             # universal app, copied to ~/Applications
 ```
 
-`build-app.sh` copies `Resources/Info.plist`, `Resources/AppIcon.icns`, `Resources/Localization/*.lproj` and the launcher template (`Contents/Resources/LauncherTemplate.app`), then signs ad hoc. SwiftPM resource bundles are not used: `PocketwerkKit` has no `resources:`. Images and sounds are drawn in code or loaded from `Contents/Resources` via `Bundle.main`.
+`build-app.sh` copies `Resources/Info.plist`, the app icon (`Resources/Assets.car`, `Resources/AppIcon.icns`, `Resources/AppIconVariants/*.heic`), `Resources/Localization/*.lproj` and the launcher template (`Contents/Resources/LauncherTemplate.app`), then signs ad hoc. SwiftPM resource bundles are not used: `PocketwerkKit` has no `resources:`. Images and sounds are drawn in code or loaded from `Contents/Resources` via `Bundle.main`.
+
+## App icon
+
+The icon is an Icon Composer file: `Icon/AppIcon.icon`, with `icon.json` and one SVG per layer in `Assets/` (pocket, front tile, back tiles, dots). The layers keep the coordinates of `site/assets/brand/icon-1024.svg`. They hold only the shapes: macOS adds the rounded square, the glass, the shadow and the dark, tinted and clear looks.
+
+To change it, edit the SVGs or `icon.json` (by hand or with `open -a "Icon Composer" Icon/AppIcon.icon`), then:
+
+```bash
+./scripts/make-icon.sh     # actool -> Resources/Assets.car + AppIcon.icns, ictool -> Resources/AppIconVariants/*.heic
+./scripts/icon-review.sh   # contact sheet of every look and small sizes in .tmp/icon-review/icon.png
+```
+
+Commit the compiled files; `build-app.sh` only copies them. `Info.plist` names the icon twice: `CFBundleIconName` for `Assets.car`, `CFBundleIconFile` for the `.icns` fallback. The color variants in Settings (`AppIconVariants`) are set through `NSApp.applicationIconImage`, which shows a flat picture, so `make-icon.sh` renders each one with glass ahead of time. The standard variant clears the override and the Dock shows the real icon in every look.
 
 ## Data
 

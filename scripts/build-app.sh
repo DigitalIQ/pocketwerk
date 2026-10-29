@@ -33,7 +33,11 @@ rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp "$BIN/Pocketwerk" "$APP/Contents/MacOS/Pocketwerk"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
-[[ -f Resources/AppIcon.icns ]] && cp Resources/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"
+# App icon: Assets.car holds the Liquid Glass icon (CFBundleIconName), AppIcon.icns the flat fallback
+# (CFBundleIconFile). Both are built from Icon/AppIcon.icon by scripts/make-icon.sh and committed.
+cp Resources/Assets.car Resources/AppIcon.icns "$APP/Contents/Resources/"
+# Glass pictures of the icon color variants, loaded by name via Bundle.main.
+cp Resources/AppIconVariants/*.heic "$APP/Contents/Resources/"
 # Localizations: SwiftUI Text("...") and String(localized:) look these up in Bundle.main.
 # The string catalog is compiled into en.lproj / de.lproj (Localizable.strings + .stringsdict).
 xcrun xcstringstool compile Resources/Localization/Localizable.xcstrings --output-directory "$APP/Contents/Resources" >/dev/null
