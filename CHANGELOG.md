@@ -8,6 +8,15 @@ All notable changes to Pocketwerk are listed here. The format follows [Keep a Ch
 
 - Liquid Glass app icon with dark, tinted and clear looks. The Honey, Ocean, Graphite and Iris variants are glass too.
 
+### Fixed
+
+- Dock profiles and Dock icons now share one copy of a test Dock file, so a profile captured in a test sees the slots added before it.
+
+### Development
+
+- `scripts/snap.sh` saves light and dark pictures of every page to `.tmp/shots`.
+- `scripts/selftest.sh` runs the real app functions on a test library and prints PASS or FAIL per step. `release.sh` runs it before the DMG is made.
+
 ## [1.1.0] - 2026-10-13
 
 ### Added
