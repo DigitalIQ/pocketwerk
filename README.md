@@ -227,6 +227,10 @@ The app bundle lands in `build/Pocketwerk.app`. [docs/ARCHITECTURE.md](docs/ARCH
 
 Bug reports, ideas and pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) first. Security issues go through [SECURITY.md](SECURITY.md).
 
+## Support
+
+If Pocketwerk is useful to you, you can [buy me a coffee](https://buymeacoffee.com/manuel_8472). Pocketwerk stays free either way.
+
 ## License
 
 MIT. See [LICENSE](LICENSE). Made by DigitalIQ.
