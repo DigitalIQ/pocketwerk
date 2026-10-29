@@ -4,6 +4,10 @@ All notable changes to Pocketwerk are listed here. The format follows [Keep a Ch
 
 ## [Unreleased]
 
+### Changed
+
+- Liquid Glass app icon with dark, tinted and clear looks. The Honey, Ocean, Graphite and Iris variants are glass too.
+
 ## [1.1.0] - 2026-10-13
 
 ### Added
