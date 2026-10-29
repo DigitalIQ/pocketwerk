@@ -114,7 +114,7 @@ extension LibraryStore {
         let running: [URL] = kind == .runningApps
             ? NSWorkspace.shared.runningApplications
                 .filter { $0.activationPolicy == .regular && $0.bundleIdentifier != Bundle.main.bundleIdentifier }
-                .compactMap(\.bundleURL)
+                .compactMap(\.bundleURL).map { AppPaths.visible($0) }
             : []
         return SmartGroups.items(kind, library: library, limit: limit,
                                  resolveApp: { AppLocator.url(forBundleID: $0) }, runningApps: running)

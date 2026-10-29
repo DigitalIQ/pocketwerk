@@ -1,3 +1,4 @@
+import AppKit
 import Carbon.HIToolbox
 import Foundation
 import Testing
@@ -211,6 +212,41 @@ private func app(_ bundleID: String, _ path: String, count: Int = 0) -> DockItem
                                         exists: { $0 == "/here.txt" || $0 == "/New/Moved.app" })
         #expect(result.relinked[moved.id]?.path == "/New/Moved.app")
         #expect(result.missing == [gone.id, lost.id])
+    }
+}
+
+// MARK: - App paths
+
+@Suite struct AppPathTests {
+    let cryptex = "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
+
+    @Test func cryptexAppShowsApplicationsLink() {
+        // Both paths lead to the same bundle, as on a Mac since macOS 13.
+        let url = AppPaths.visible(URL(fileURLWithPath: cryptex), resolve: { _ in URL(fileURLWithPath: cryptex) })
+        #expect(url.path == "/Applications/Safari.app")
+    }
+
+    @Test func keepsCryptexPathWithoutMatchingLink() {
+        let url = AppPaths.visible(URL(fileURLWithPath: cryptex), resolve: { $0 })
+        #expect(url.path == cryptex)
+    }
+
+    @Test func otherPathsStayUnchanged() {
+        for path in ["/System/Applications/Mail.app", "/Applications/Utilities", "/Users/x/Safari.app"] {
+            let url = URL(fileURLWithPath: path)
+            #expect(AppPaths.visible(url, resolve: { _ in URL(fileURLWithPath: "/x") }) == url)
+        }
+        let link = URL(string: "https://www.apple.com")!
+        #expect(AppPaths.visible(link) == link)
+    }
+
+    @Test func realSafariItemOpensFromApplications() throws {
+        // On this Mac: the item shows /Applications, and that path still is the Safari bundle.
+        let found = try #require(NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.apple.Safari"))
+        let item = DockItem(kind: .app, url: found)
+        #expect(item.url.deletingLastPathComponent().path == "/Applications")
+        #expect(item.bundleID == "com.apple.Safari")
+        #expect(Bundle(url: item.url)?.bundleIdentifier == "com.apple.Safari")
     }
 }
 

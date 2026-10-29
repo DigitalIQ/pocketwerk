@@ -11,11 +11,17 @@ All notable changes to Pocketwerk are listed here. The format follows [Keep a Ch
 ### Fixed
 
 - Dock profiles and Dock icons now share one copy of a test Dock file, so a profile captured in a test sees the slots added before it.
+- Opening the main window no longer focuses the group name and selects its text. The sidebar takes the focus; a new group still opens its name for typing.
+- Safari and the other system apps in the cryptex show `/Applications` as their path, not `/System/Volumes/Preboot/Cryptexes/App/System/Applications`.
+- The Record Shortcut buttons use the normal button font instead of a monospaced one.
+- Dock Icons page: a grouped layout like the settings pages, without the group name repeated under each slot. A slot's groups and its place in the list are in its … menu.
+- Profiles in the list show a small preview of their first Dock tiles, like the rows on the other pages.
 
 ### Development
 
 - `scripts/snap.sh` saves light and dark pictures of every page to `.tmp/shots`.
 - `scripts/selftest.sh` runs the real app functions on a test library and prints PASS or FAIL per step. `release.sh` runs it before the DMG is made.
+- Snapshots hide the running-app dots in the popup, so every run gives the same pictures.
 
 ## [1.1.0] - 2026-10-13
 

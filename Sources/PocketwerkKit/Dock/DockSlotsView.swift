@@ -14,12 +14,11 @@ struct DockSlotsView: View {
             if let failure = dock.lastFailure {
                 FailureBanner(failure: failure) { dock.lastFailure = nil }
             }
-            List {
+            Form {
                 Section {
                     ForEach(store.library.slots) { slot in
                         SlotRow(slot: slot, onEditIcon: onEditIcon)
                     }
-                    .onMove { store.moveSlots(from: $0, to: $1) }
                 } header: {
                     Text("Dock Slots")
                 } footer: {
@@ -41,6 +40,7 @@ struct DockSlotsView: View {
                         .foregroundStyle(.secondary)
                 }
             }
+            .formStyle(.grouped)
             Divider()
             HStack {
                 Menu {
@@ -77,7 +77,7 @@ struct DockSlotsView: View {
 private struct SlotRow: View {
     let slot: DockSlot
     var onEditIcon: ((UUID) -> Void)?
-    @State private var expanded = false
+    @State private var editingGroups = false
 
     private var store: LibraryStore { LibraryStore.shared }
     private var dock: DockManager { DockManager.shared }
@@ -85,69 +85,85 @@ private struct SlotRow: View {
     var body: some View {
         let installed = slot.launcherPath.map { FileManager.default.fileExists(atPath: $0) } ?? false
         let inDock = installed && dock.isInDock(slotID: slot.id)
-        VStack(alignment: .leading, spacing: 6) {
-            HStack(spacing: 10) {
-                Image(nsImage: IconRenderer.slotIcon(slot, library: store.library, size: 64))
-                    .resizable()
-                    .frame(width: 32, height: 32)
-                    .accessibilityHidden(true)
-                VStack(alignment: .leading, spacing: 2) {
-                    TextField("Name", text: Binding(
-                        get: { slot.name },
-                        set: { name in store.updateSlot(slot.id) { $0.name = name } }))
-                        .textFieldStyle(.plain)
-                        .font(.headline)
-                        .accessibilityLabel(Text("Slot name"))
-                    Text(status(installed: installed, inDock: inDock))
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-                Spacer()
-                if dock.busy.contains(slot.id) {
-                    ProgressView().controlSize(.small)
-                }
-                if inDock {
-                    Button("Remove from Dock") { dock.removeFromDock(slotID: slot.id) }
-                } else {
-                    Button("Add to Dock") { dock.addToDock(slotID: slot.id) }
-                        .disabled(slot.groupIDs.isEmpty)
-                }
-                Menu {
-                    Button(installed ? "Update Launcher" : "Install Launcher") { dock.installInBackground(.slot(slot.id)) }
-                    if installed {
-                        Button("Uninstall Launcher") { dock.removeLauncher(for: slot.id) }
-                        Button("Show in Finder") {
-                            NSWorkspace.shared.activateFileViewerSelecting([URL(fileURLWithPath: slot.launcherPath!)])
-                        }
-                    }
-                    if let onEditIcon {
-                        Divider()
-                        Button("Customize Icon…") { onEditIcon(slot.id) }
-                    }
-                    if slot.icon != nil {
-                        Button("Use Group Icon") { store.updateSlot(slot.id) { $0.icon = nil } }
-                    }
-                    Divider()
-                    Button("Delete Slot", role: .destructive) { store.deleteSlot(slot.id) }
-                } label: {
-                    Image(systemName: "ellipsis.circle")
-                }
-                .menuStyle(.borderlessButton)
-                .fixedSize()
-                .accessibilityLabel(Text("More actions for \(slot.name)"))
+        HStack(spacing: 10) {
+            Image(nsImage: IconRenderer.slotIcon(slot, library: store.library, size: 64))
+                .resizable()
+                .frame(width: 32, height: 32)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 2) {
+                TextField("Name", text: Binding(
+                    get: { slot.name },
+                    set: { name in store.updateSlot(slot.id) { $0.name = name } }))
+                    .textFieldStyle(.plain)
+                    .font(.headline)
+                    .labelsHidden()
+                    .accessibilityLabel(Text("Slot name"))
+                Text(subtitle(installed: installed, inDock: inDock))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
             }
-            DisclosureGroup(isExpanded: $expanded) {
-                SlotGroupsEditor(slot: slot)
+            Spacer()
+            if dock.busy.contains(slot.id) {
+                ProgressView().controlSize(.small)
+            }
+            if inDock {
+                Button("Remove from Dock") { dock.removeFromDock(slotID: slot.id) }
+            } else {
+                Button("Add to Dock") { dock.addToDock(slotID: slot.id) }
+                    .disabled(slot.groupIDs.isEmpty)
+            }
+            Menu {
+                Button("Choose Groups…") { editingGroups = true }
+                // A grouped form has no drag to reorder, so the order lives here.
+                let index = store.library.slots.firstIndex { $0.id == slot.id } ?? 0
+                Button("Move Up") { store.moveSlots(from: [index], to: index - 1) }
+                    .disabled(index == 0)
+                Button("Move Down") { store.moveSlots(from: [index], to: index + 2) }
+                    .disabled(index >= store.library.slots.count - 1)
+                Divider()
+                Button(installed ? "Update Launcher" : "Install Launcher") { dock.installInBackground(.slot(slot.id)) }
+                if installed {
+                    Button("Uninstall Launcher") { dock.removeLauncher(for: slot.id) }
+                    Button("Show in Finder") {
+                        NSWorkspace.shared.activateFileViewerSelecting([URL(fileURLWithPath: slot.launcherPath!)])
+                    }
+                }
+                if let onEditIcon {
+                    Divider()
+                    Button("Customize Icon…") { onEditIcon(slot.id) }
+                }
+                if slot.icon != nil {
+                    Button("Use Group Icon") { store.updateSlot(slot.id) { $0.icon = nil } }
+                }
+                Divider()
+                Button("Delete Slot", role: .destructive) { store.deleteSlot(slot.id) }
             } label: {
-                Text(groupSummary).font(.callout).foregroundStyle(.secondary)
+                Image(systemName: "ellipsis.circle")
+            }
+            .menuStyle(.borderlessButton)
+            .fixedSize()
+            .accessibilityLabel(Text("More actions for \(slot.name)"))
+            // Anchored to the "…" button it came from; on the row it opened beside the sidebar.
+            .popover(isPresented: $editingGroups, arrowEdge: .top) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("The popup swipes between these groups.").font(.caption).foregroundStyle(.secondary)
+                    SlotGroupsEditor(slot: slot)
+                }
+                .padding(14)
+                .frame(width: 280)
             }
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 2)
     }
 
-    private var groupSummary: String {
+    /// Status, then the groups. Most slots show the one group they are named after; the name says that already.
+    private func subtitle(installed: Bool, inDock: Bool) -> String {
+        let status = status(installed: installed, inDock: inDock)
         let names = slot.groupIDs.compactMap { store.group($0)?.name }
-        return names.isEmpty ? String(localized: "No groups") : names.joined(separator: ", ")
+        if names == [slot.name] { return status }
+        let groups = names.isEmpty ? String(localized: "No groups") : names.joined(separator: ", ")
+        return status + " · " + groups
     }
 
     private func status(installed: Bool, inDock: Bool) -> String {
@@ -221,6 +237,7 @@ private struct SpacerRow: View {
                 get: { spacer.text },
                 set: { t in store.updateSpacer(spacer.id) { $0.text = t; $0.icon.content = .text(t) } }))
                 .frame(maxWidth: 180)
+                .labelsHidden()
                 .accessibilityLabel(Text("Spacer text"))
             ColorPicker("Color", selection: Binding(
                 get: { spacer.icon.foreground.color },

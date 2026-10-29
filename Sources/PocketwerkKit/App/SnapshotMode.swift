@@ -16,7 +16,7 @@ import SwiftUI
 /// In this mode no menu bar item, hotkey, Dock manager, service or update check starts, and nothing is
 /// written to the Dock. `scripts/snap.sh` sets the folders and wipes the old test data.
 enum SnapshotMode {
-    static var requested: Bool { CommandLine.arguments.contains("--snapshot") }
+    static let requested = CommandLine.arguments.contains("--snapshot")
 
     /// True when the app is in snapshot mode; the caller then skips its normal launch.
     static func runIfRequested() -> Bool {

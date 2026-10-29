@@ -133,7 +133,8 @@ private struct ProfileListRow: View {
     private var store: LibraryStore { LibraryStore.shared }
 
     var body: some View {
-        HStack {
+        HStack(spacing: 8) {
+            ProfilePreview(profile: profile)
             VStack(alignment: .leading, spacing: 1) {
                 Text(profile.name).lineLimit(1)
                 Text("\(profile.tiles.count) tiles").font(.caption).foregroundStyle(.secondary)
@@ -155,6 +156,38 @@ private struct ProfileListRow: View {
                 Image(systemName: "checkmark.circle.fill").foregroundStyle(.tint)
                     .accessibilityLabel(Text("Active"))
             }
+        }
+    }
+}
+
+/// The first four tiles of a profile in a small grid, so profiles can be told apart at a glance,
+/// like groups and Dock icons in their lists.
+private struct ProfilePreview: View {
+    let profile: DockProfile
+
+    var body: some View {
+        let icons = profile.tiles.filter { [TileKind.app, .folder, .file].contains($0.kind) }.prefix(4).map(ProfileTiles.icon(for:))
+        ZStack {
+            RoundedRectangle(cornerRadius: 7).fill(.quaternary)
+            if icons.isEmpty {
+                Image(systemName: "square.stack.3d.up").foregroundStyle(.secondary)
+            } else {
+                Grid(horizontalSpacing: 1, verticalSpacing: 1) {
+                    GridRow { cell(icons, 0); cell(icons, 1) }
+                    GridRow { cell(icons, 2); cell(icons, 3) }
+                }
+            }
+        }
+        .frame(width: 32, height: 32)
+        .accessibilityHidden(true)
+    }
+
+    @ViewBuilder
+    private func cell(_ icons: [NSImage], _ index: Int) -> some View {
+        if icons.indices.contains(index) {
+            Image(nsImage: icons[index]).resizable().frame(width: 14, height: 14)
+        } else {
+            Color.clear.frame(width: 14, height: 14)
         }
     }
 }

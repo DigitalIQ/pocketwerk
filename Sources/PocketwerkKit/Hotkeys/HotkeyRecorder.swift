@@ -27,7 +27,6 @@ struct HotkeyRecorder: View {
             HStack(spacing: 4) {
                 Button(action: toggleRecording) {
                     Text(label)
-                        .monospaced()
                         .foregroundStyle(hotkey == nil && !recording ? .secondary : .primary)
                         .frame(minWidth: 110)
                 }
