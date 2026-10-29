@@ -15,6 +15,7 @@ All notable changes to Pocketwerk are listed here. The format follows [Keep a Ch
 - Safari and the other system apps in the cryptex show `/Applications` as their path, not `/System/Volumes/Preboot/Cryptexes/App/System/Applications`.
 - The Record Shortcut buttons use the normal button font instead of a monospaced one.
 - Dock Icons page: a grouped layout like the settings pages, without the group name repeated under each slot. A slot's groups and its place in the list are in its … menu.
+- Profiles in the list show a small preview of their first Dock tiles, like the rows on the other pages.
 
 ### Development
 
