@@ -54,6 +54,12 @@ A module may add new types and files inside its own folder. Signatures in the ta
 
 Each slot gets a small app bundle in `~/Applications/Pocketwerk/`, copied from `LauncherTemplate.app`, with its own bundle ID (`io.github.digitaliq.pocketwerk.slot.<UUID>`), name and icon, signed ad hoc. A click on its Dock tile sends `PWShared.openSlotNotification` (distributed notification, slot ID plus pointer position) to the main app, which opens the popup above that tile. If the main app is not running, the launcher opens `pocketwerk://open?slot=<UUID>&x=..&y=..` instead. Launchers are updated in place so Dock pins stay valid.
 
+## Self-test
+
+`scripts/selftest.sh` builds the app (`UNIVERSAL=0 CONFIG=debug`), creates fresh test folders in `.tmp/selftest/` and runs `build/Pocketwerk.app/Contents/MacOS/Pocketwerk --selftest` with `POCKETWERK_DATA_DIR`, `POCKETWERK_DOCK_PLIST` and `POCKETWERK_LAUNCHER_DIR` pointing there. `--no-build` tests the bundle in `build/` as it is; `scripts/release.sh` runs it against the release build before the DMG is made.
+
+`App/SelfTest.swift` takes over `applicationDidFinishLaunching` and calls the same functions the UI calls, on the assembled app with real windows and menus: groups and items, rename, reorder, move, undo and redo (also through ⌘Z and ⇧⌘Z in the main menu), themes, save and reload, a launcher build with signature check, the fake Dock plist, Dock profiles, `pocketwerk://` routes, the popup, the main window and assistant phrases (with fixed model edits, no network). It also audits the main menu, the menu bar menu and the Dock menu (every enabled item has an action that something answers, no duplicate key equivalents) and the default hotkeys. It prints `PASS <step>` or `FAIL <step>: <reason>` and exits 0, 1 on a failed step, or 2 when a variable is missing or points into `~/Applications` or `~/Library`. It starts no hotkeys, no update check, no menu bar item and no launcher listener, so a running Pocketwerk is not disturbed. A new feature with UI wiring gets a step there; pure logic still gets a unit test.
+
 ## Conventions
 
 - UI strings are English in code. SwiftUI `Text("...")` literals are localized automatically; AppKit strings use `String(localized:)`. All strings live in the string catalog `Resources/Localization/Localizable.xcstrings` (English source, German translation). `scripts/localize.sh` adds new strings from the compiler output; `scripts/build-app.sh` compiles the catalog into `en.lproj` and `de.lproj`.
