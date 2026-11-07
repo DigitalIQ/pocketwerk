@@ -4,7 +4,12 @@ All notable changes to Pocketwerk are listed here. The format follows [Keep a Ch
 
 ## [Unreleased]
 
-## [1.2.1] - 2026-11-07
+## [1.3.0] - 2026-11-07
+
+### Added
+
+- Language setting in Settings > General: Same as macOS, English or Deutsch, with **Restart Now** to switch right away.
+- The website is available in German too, with an English | Deutsch switch in the header.
 
 ### Security
 
@@ -99,8 +104,8 @@ First public release.
 - English and German interface.
 - Support for Reduce Motion, Reduce Transparency and Low Power Mode.
 
-[Unreleased]: https://github.com/DigitalIQ/pocketwerk/compare/v1.2.1...HEAD
-[1.2.1]: https://github.com/DigitalIQ/pocketwerk/compare/v1.2.0...v1.2.1
+[Unreleased]: https://github.com/DigitalIQ/pocketwerk/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/DigitalIQ/pocketwerk/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/DigitalIQ/pocketwerk/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/DigitalIQ/pocketwerk/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/DigitalIQ/pocketwerk/releases/tag/v1.0.0
