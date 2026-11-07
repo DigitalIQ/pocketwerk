@@ -59,7 +59,7 @@ Logo: mark (pegboard plate, orange pocket, three tiles: paper, yellow, mint) plu
 5. Phase 2, references: no favourite sites from a person; references taken from the product's world (workshop pegboard, the macOS Dock, equipment plates). See `website/referenzen/notizen.md`.
 6. Phase 2, palette: board green plus pocket orange, chosen to stand apart from blue-dominant Mac app icons and from the dark-glow look of the category. Cream, terracotta and neon-on-black avoided on purpose.
 7. Phase 2, research: manual search, no volumes. Competitors anonymised in the notes because the brief forbids naming other Dock apps.
-8. Phase 3, language: English only for now (global audience on GitHub). German page is a later option.
+8. Phase 3, language: English and German since 2026-11-07 (`site/de/`, EN | DE switch in the header, hreflang and sitemap alternates). Screenshots, video and OG image are still English.
 9. Phase 3, no invented claims: no version number, no URL-scheme syntax, no "contributions welcome", no counts or ratings. Example themes and profiles on the page are labelled as examples.
 10. Phase 4: concept seed rolled direction 3 of 7, the workshop pegboard. Two declined challengers raised it (one even line weight; one saturated field owning whole regions, monumental numerals only for ⌘1-9). No image generation, so code-led. Contract in `website/design/richtung.md` and as an HTML comment at the top of `site/index.html`.
 

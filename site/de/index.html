@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pocketwerk: App-Ordner für das Mac-Dock. Kostenlos und Open Source</title>
+<meta name="description" content="Fasse Apps, Dateien, Ordner und Links in Pockets zusammen, die sich direkt über ihrem eigenen Dock-Symbol öffnen. Kostenlos, MIT-Lizenz, ohne Account. Für macOS 26 Tahoe.">
+<link rel="canonical" href="https://digitaliq.github.io/pocketwerk/de/">
+<link rel="alternate" hreflang="en" href="https://digitaliq.github.io/pocketwerk/">
+<link rel="alternate" hreflang="de" href="https://digitaliq.github.io/pocketwerk/de/">
+<link rel="alternate" hreflang="x-default" href="https://digitaliq.github.io/pocketwerk/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1b5546">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pocketwerk">
+<meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Pocketwerk: Pockets für dein Dock">
+<meta property="og:description" content="Kostenlose Open-Source-App-Ordner für das Mac-Dock. Jedes Pocket bekommt ein eigenes Dock-Symbol und öffnet sich direkt darüber.">
+<meta property="og:url" content="https://digitaliq.github.io/pocketwerk/de/">
+<meta property="og:image" content="https://digitaliq.github.io/pocketwerk/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pocketwerk-Logo und der englische Slogan: Pockets for your Dock.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pocketwerk: Pockets für dein Dock">
+<meta name="twitter:description" content="Kostenlose Open-Source-App-Ordner für das Mac-Dock. Jedes Pocket bekommt ein eigenes Dock-Symbol und öffnet sich direkt darüber.">
+<link rel="icon" href="../assets/brand/mark-small.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
+<link rel="preload" href="../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.min.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"
+} }
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://digitaliq.github.io/pocketwerk/de/#page",
+      "url": "https://digitaliq.github.io/pocketwerk/de/",
+      "name": "Pocketwerk: App-Ordner für das Mac-Dock. Kostenlos und Open Source",
+      "inLanguage": "de",
+      "about": { "@id": "https://digitaliq.github.io/pocketwerk/#app" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://digitaliq.github.io/pocketwerk/#app",
+      "name": "Pocketwerk",
+      "description": "Kostenlose Open-Source-App für macOS, die Apps, Dateien, Ordner und Links in Pockets zusammenfasst. Jedes Pocket kann ein eigenes Dock-Symbol bekommen und öffnet ein gestaltetes Popup direkt darüber.",
+      "applicationCategory": "UtilitiesApplication",
+      "softwareVersion": "1.3.0",
+      "operatingSystem": "macOS 26 Tahoe oder neuer",
+      "processorRequirements": "Apple Silicon or Intel",
+      "inLanguage": ["en", "de"],
+      "license": "https://github.com/DigitalIQ/pocketwerk/blob/main/LICENSE",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "downloadUrl": "https://github.com/DigitalIQ/pocketwerk/releases/latest",
+      "installUrl": "https://github.com/DigitalIQ/pocketwerk/releases/latest",
+      "codeRepository": "https://github.com/DigitalIQ/pocketwerk",
+      "url": "https://digitaliq.github.io/pocketwerk/de/",
+      "image": "https://digitaliq.github.io/pocketwerk/assets/brand/icon-1024.png",
+      "author": { "@type": "Organization", "name": "DigitalIQ", "url": "https://github.com/DigitalIQ" },
+      "featureList": [
+        "Pockets aus Apps, Dateien, Ordnern und Links, jedes mit eigenem Dock-Symbol",
+        "Popup öffnet sich direkt über dem Dock-Symbol; Ansichten als Raster, Liste und Kacheln",
+        "Alle öffnen, Alle ausblenden und Alle beenden pro Pocket",
+        "Design Studio mit Liquid Glass, Farben, Verläufen, Fotos, Texturen und Hintergründen, die auf den Zeiger reagieren",
+        "Dock-Profile, die per Tastenkürzel, Menüleiste, Befehlszeile oder URL gewechselt werden",
+        "Globale Tastenkürzel ohne die Berechtigung für Bedienungshilfen",
+        "Intelligente Pockets: Meistgenutzt, Zuletzt geöffnet, Laufende Apps",
+        "Assistent auf dem Gerät (Apple Intelligence, macOS 26 oder neuer auf unterstützten Macs), der ein Pocket per Alltagssprache bearbeitet; jede Änderung lässt sich widerrufen",
+        "App-Vorschläge für ein Pocket, auf dem Mac berechnet",
+        "Seitenleiste im Popup, um zwischen mehreren Pockets zu wechseln",
+        "Dock-Profile, die dem aktuellen Space oder Bildschirm folgen",
+        "Kurzbefehle und Siri-Aktionen für Pockets und Profile",
+        "Leader-Taste, aktive Ecke und Varianten des App-Symbols",
+        "Kein Account, kein Tracking, keine Analyse"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "inLanguage": "de",
+      "mainEntity": [
+        { "@type": "Question", "name": "Ist Pocketwerk wirklich kostenlos?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Es ist kostenlos und Open Source unter der MIT-Lizenz. Es gibt keinen Account und nichts zu kaufen." } },
+        { "@type": "Question", "name": "Warum blockiert macOS den ersten Start?", "acceptedAnswer": { "@type": "Answer", "text": "Pocketwerk ist nicht von Apple notarisiert. macOS stoppt den ersten Start solcher Apps. Klick einmal in den Systemeinstellungen unter Datenschutz & Sicherheit auf „Trotzdem öffnen“, danach startet es normal." } },
+        { "@type": "Question", "name": "Was unterscheidet ein Pocket von einem Ordner im Dock?", "acceptedAnswer": { "@type": "Answer", "text": "Ein Dock-Ordner zeigt die Dateien eines einzelnen Finder-Ordners. Ein Pocket mischt Apps, Dateien, Ordner und Links, hat ein eigenes Dock-Symbol und einen eigenen Look und kann alle seine Apps auf einmal öffnen, ausblenden oder beenden." } },
+        { "@type": "Question", "name": "Braucht Pocketwerk die Berechtigung für Bedienungshilfen?", "acceptedAnswer": { "@type": "Answer", "text": "Für die Tastenkürzel nicht. Globale Tastenkürzel für Pockets und Profile funktionieren ohne sie." } },
+        { "@type": "Question", "name": "Was verlässt meinen Mac?", "acceptedAnswer": { "@type": "Answer", "text": "Eine tägliche Update-Prüfung und Abfragen nach den Favicons deiner Links. Sonst nichts. Deine Pockets liegen in einer JSON-Datei auf deinem Mac." } },
+        { "@type": "Question", "name": "Auf welchen Macs läuft es?", "acceptedAnswer": { "@type": "Answer", "text": "Auf Macs mit macOS 26 Tahoe oder neuer, mit Apple Silicon und mit Intel." } },
+        { "@type": "Question", "name": "Welche Sprachen spricht es?", "acceptedAnswer": { "@type": "Answer", "text": "Deutsch und Englisch." } },
+        { "@type": "Question", "name": "Wo ist der Quellcode?", "acceptedAnswer": { "@type": "Answer", "text": "Den vollständigen Quellcode gibt es auf GitHub unter github.com/DigitalIQ/pocketwerk." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<!-- German version of ../index.html. Same structure and scripts; keep both in sync. Design contract: see the comment in ../index.html. -->
+<a class="skip" href="#main">Zum Inhalt springen</a>
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 5.5v-.5a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13m0 0-5-5m5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <!-- item glyphs: one even 2px line -->
+  <symbol id="g-code" viewBox="0 0 32 32"><path d="m12 10-6 6 6 6m8-12 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="g-globe" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="16" cy="16" r="9"/><path d="M7 16h18M16 7c-3.5 4-3.5 14 0 18m0-18c3.5 4 3.5 14 0 18"/></g></symbol>
+  <symbol id="g-term" viewBox="0 0 32 32"><path d="m8 11 5 5-5 5m8 0h8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="g-pen" viewBox="0 0 32 32"><path d="m19.5 7.5 5 5L13 24H8v-5Zm-3 3 5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></symbol>
+  <symbol id="g-note" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 21V9l11-2v12"/><circle cx="10" cy="21" r="3"/><circle cx="21" cy="19" r="3"/></g></symbol>
+  <symbol id="g-folder" viewBox="0 0 32 32"><path d="M6 10.5a2 2 0 0 1 2-2h5l2.5 2.5H24a2 2 0 0 1 2 2V22a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></symbol>
+  <symbol id="g-doc" viewBox="0 0 32 32"><path d="M10 6h8l5 5v15H10Zm8 0v5h5M13.5 16h6m-6 4h6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+  <symbol id="g-link" viewBox="0 0 32 32"><path d="M14 18a4.5 4.5 0 0 0 6.4.4l3.3-3.3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M18 14a4.5 4.5 0 0 0-6.4-.4l-3.3 3.3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="g-cal" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="7" y="8.5" width="18" height="16" rx="2.5"/><path d="M7 13.5h18M12 6v4m8-4v4" stroke-linecap="round"/></g></symbol>
+  <symbol id="g-photo" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="6" y="8" width="20" height="16" rx="2.5"/><path d="m6 21 6-6 5 5 3-3 6 6"/><circle cx="20.5" cy="13" r="1.8"/></g></symbol>
+  <symbol id="g-chat" viewBox="0 0 32 32"><path d="M7 9.5a2.5 2.5 0 0 1 2.5-2.5h13A2.5 2.5 0 0 1 25 9.5v9a2.5 2.5 0 0 1-2.5 2.5H14l-5 4v-4H9.5A2.5 2.5 0 0 1 7 18.5Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></symbol>
+  <symbol id="g-film" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="6" y="8" width="20" height="16" rx="2.5"/><path d="M11 8v16m10-16v16M6 13h5m10 0h5M6 19h5m10 0h5"/></g></symbol>
+  <symbol id="g-wrench" viewBox="0 0 32 32"><path d="M20.5 6.5a5.5 5.5 0 0 0-5.2 7.3L7 22.1 9.9 25l8.3-8.3a5.5 5.5 0 0 0 7.3-5.2l-3.3 3.3-3.3-.8-.8-3.3Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="hero board" id="top">
+  <nav class="nav" aria-label="Hauptnavigation">
+    <a class="brand" href="#top" aria-label="Pocketwerk, zurück nach oben">
+      <img src="../assets/brand/mark.svg" width="32" height="32" alt="">
+      <span>Pocketwerk</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Funktionen</a></li>
+      <li><a href="#design">Design</a></li>
+      <li><a href="#profiles">Profile</a></li>
+      <li><a href="#install">Installation</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <ul class="lang" aria-label="Sprache">
+      <li><a href="../" hreflang="en" lang="en" aria-label="English">EN</a></li>
+      <li><a href="./" hreflang="de" lang="de" aria-label="Deutsch" aria-current="true">DE</a></li>
+    </ul>
+    <a class="btn btn-small btn-paper" href="https://github.com/DigitalIQ/pocketwerk/releases/latest">Download</a>
+  </nav>
+
+  <div class="hero-stage" id="stage" aria-hidden="true">
+    <picture>
+      <source media="(max-width: 860px)" srcset="../assets/img/hero-poster-narrow.webp" type="image/webp">
+      <source srcset="../assets/img/hero-poster-wide.webp" type="image/webp">
+      <img class="hero-poster" src="../assets/img/hero-poster-wide.jpg" width="1600" height="960" alt="" fetchpriority="high">
+    </picture>
+  </div>
+
+  <div class="hero-copy">
+    <h1>Pockets für dein&nbsp;Dock.</h1>
+    <p class="lede">Kostenlose Open-Source-App-Ordner für das Mac-Dock. Jedes Pocket bekommt ein eigenes Dock-Symbol und öffnet sich direkt darüber.</p>
+    <div class="hero-actions">
+      <a class="btn btn-orange" href="https://github.com/DigitalIQ/pocketwerk/releases/latest">
+        <svg aria-hidden="true"><use href="#i-download"/></svg>Download für Mac</a>
+      <div class="brew">
+        <code id="brew-hero">brew install --cask digitaliq/tap/pocketwerk</code>
+        <button class="copy" type="button" data-copy="brew-hero"><svg aria-hidden="true"><use href="#i-copy"/></svg><span>Kopieren</span></button>
+      </div>
+    </div>
+  </div>
+  <p class="sr-only">Illustration: ein gläsernes Dock, über drei seiner Symbole hängen Pockets mit App-Symbolen. Ein Pocket ist geöffnet.</p>
+</header>
+
+<main id="main">
+
+<section class="film" aria-labelledby="film-h">
+  <h2 id="film-h" class="sr-only">Pocketwerk in Aktion</h2>
+  <figure class="film-frame" id="film" data-video-ready="true" data-mp4="../video/pocketwerk.mp4" data-webm="../video/pocketwerk.webm">
+    <img src="../assets/img/video-poster.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Bild aus dem Pocketwerk-Video: das Pocket Evening offen über seinem Dock-Symbol, mit der englischen Einblendung One click opens a pocket.">
+    <figcaption>Ein Pocket öffnet sich aus dem Dock, ändert sein Aussehen und wechselt das Dock-Profil. Das Video ist englisch beschriftet.</figcaption>
+  </figure>
+</section>
+
+<section class="features" id="features" aria-labelledby="features-h">
+  <div class="wrap features-grid">
+    <div class="features-copy">
+      <h2 id="features-h">Ein Dock-Symbol, eine ganze Gruppe</h2>
+      <p class="intro">Fasse die Apps, Dateien, Ordner und Links, die du zusammen nutzt, in einem Pocket zusammen. Gib ihm ein Dock-Symbol. Ein Klick öffnet es, ein zweiter schließt es wieder. In der App heißen Pockets „Gruppen“.</p>
+      <dl class="ideas">
+        <div><dt>Öffnet sich, wo du klickst</dt><dd>Das Popup erscheint direkt über dem Dock-Symbol des Pockets. Zeig es als Raster, Liste oder Kacheln; es passt sich dem Inhalt an und blättert durch den Rest. Liegen mehrere Pockets in einem Popup, wechselt eine Seitenleiste zwischen ihnen.</dd></div>
+        <div><dt>Apps, Dateien, Ordner, Links</dt><dd>Ordner öffnen sich im Popup. Mit der Leertaste startest du Quick Look. Zieh Einträge hinein und wieder heraus, wohin du sie brauchst.</dd></div>
+        <div><dt>Die ganze Gruppe auf einmal</dt><dd>Alle öffnen, Alle ausblenden oder Alle beenden für ein Pocket. <kbd>⌥</kbd>-Klick beendet eine einzelne App, mit <kbd>⌘</kbd>-Klick wählst du mehrere aus und öffnest sie zusammen.</dd></div>
+        <div><dt>Pockets, die sich selbst füllen</dt><dd>Intelligente Pockets zeigen deine Apps unter Meistgenutzt, Zuletzt geöffnet und Laufende Apps.</dd></div>
+      </dl>
+    </div>
+
+    <div class="demo" id="demo">
+      <p class="demo-label" id="demo-label">Probier es aus: ein Beispiel-Pocket.</p>
+      <div class="desk">
+        <div class="pocket look-glass" id="pocket" data-view="grid" data-open="true">
+          <div class="pocket-head">
+            <span class="pocket-name">Studio</span>
+            <span class="pocket-search" id="pocket-search" aria-live="polite"></span>
+            <div class="views" role="group" aria-label="Ansicht">
+              <button type="button" aria-pressed="true" data-view="grid">Raster</button>
+              <button type="button" aria-pressed="false" data-view="list">Liste</button>
+              <button type="button" aria-pressed="false" data-view="tiles">Kacheln</button>
+            </div>
+          </div>
+          <ul class="items" id="items" role="listbox" aria-labelledby="demo-label" aria-multiselectable="true">
+            <li role="option" aria-selected="false" tabindex="0" data-kind="app"><span class="tile t-mint"><svg><use href="#g-code"/></svg></span><span class="name">Editor</span><span class="kind">App</span></li>
+            <li role="option" aria-selected="false" tabindex="-1" data-kind="app"><span class="tile t-paper"><svg><use href="#g-globe"/></svg></span><span class="name">Browser</span><span class="kind">App</span></li>
+            <li role="option" aria-selected="false" tabindex="-1" data-kind="app"><span class="tile t-ink"><svg><use href="#g-term"/></svg></span><span class="name">Terminal</span><span class="kind">App</span></li>
+            <li role="option" aria-selected="false" tabindex="-1" data-kind="app"><span class="tile t-yellow"><svg><use href="#g-pen"/></svg></span><span class="name">Skizzenbuch</span><span class="kind">App</span></li>
+            <li role="option" aria-selected="false" tabindex="-1" data-kind="folder"><span class="tile t-green"><svg><use href="#g-folder"/></svg></span><span class="name">Projekt</span><span class="kind">Ordner</span></li>
+            <li role="option" aria-selected="false" tabindex="-1" data-kind="file"><span class="tile t-paper"><svg><use href="#g-doc"/></svg></span><span class="name">Briefing.pdf</span><span class="kind">Datei</span></li>
+            <li role="option" aria-selected="false" tabindex="-1" data-kind="link"><span class="tile t-mint"><svg><use href="#g-link"/></svg></span><span class="name">Team-Wiki</span><span class="kind">Link</span></li>
+            <li role="option" aria-selected="false" tabindex="-1" data-kind="app"><span class="tile t-orange"><svg><use href="#g-note"/></svg></span><span class="name">Musik</span><span class="kind">App</span></li>
+            <li role="option" aria-selected="false" tabindex="-1" data-kind="app"><span class="tile t-yellow"><svg><use href="#g-cal"/></svg></span><span class="name">Kalender</span><span class="kind">App</span></li>
+          </ul>
+        </div>
+        <div class="mini-dock">
+          <span class="dock-icon t-paper" aria-hidden="true"><svg><use href="#g-chat"/></svg></span>
+          <span class="dock-icon t-ink" aria-hidden="true"><svg><use href="#g-term"/></svg></span>
+          <button class="dock-icon dock-pocket" id="dock-pocket" type="button" aria-expanded="true" aria-controls="pocket" aria-label="Pocket Studio">
+            <span class="mg"><i class="t-mint"></i><i class="t-paper"></i><i class="t-ink"></i><i class="t-yellow"></i></span>
+          </button>
+          <span class="dock-icon t-yellow" aria-hidden="true"><svg><use href="#g-photo"/></svg></span>
+          <span class="dock-icon t-mint" aria-hidden="true"><svg><use href="#g-film"/></svg></span>
+        </div>
+      </div>
+      <p class="demo-status" id="demo-status" aria-live="polite">Klick auf einen Eintrag, nutze die Pfeiltasten oder klick auf das Dock-Symbol des Pockets.</p>
+      <p class="demo-note">Beispiel-Pocket, für diese Seite gezeichnet. Tasten: Pfeile, Return, Leertaste, Tippen zum Suchen, <kbd>⌘</kbd>-Klick, <kbd>⌥</kbd>-Klick.</p>
+    </div>
+  </div>
+  <div class="wrap real-pockets">
+    <h3>Drei Pockets aus der App</h3>
+    <div class="pocket-wall" tabindex="0" role="region" aria-label="Drei Pockets aus der App">
+        <figure class="real-pop">
+          <picture><source type="image/avif" srcset="../assets/shots/popup-evening-436.avif 436w, ../assets/shots/popup-evening-872.avif 872w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 30vw, 300px"><source type="image/webp" srcset="../assets/shots/popup-evening-436.webp 436w, ../assets/shots/popup-evening-872.webp 872w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 30vw, 300px"><img src="../assets/shots/popup-evening.png" width="872" height="600" loading="lazy" decoding="async" alt="Das Pocket Evening mit animiertem Aurora-Look: Music, TV, Podcasts, Books, VLC, News, Steam und Chess."></picture>
+          <span class="real-icon" aria-hidden="true"><span class="mg"><i style="background:#e5363f"></i><i style="background:#16171a"></i><i style="background:#8b3fd1"></i><i style="background:#f08a24"></i></span></span>
+          <figcaption><b>Evening</b>, animierter Aurora-Look</figcaption>
+        </figure>
+        <figure class="real-pop">
+          <picture><source type="image/avif" srcset="../assets/shots/popup-code-436.avif 436w, ../assets/shots/popup-code-872.avif 872w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 30vw, 300px"><source type="image/webp" srcset="../assets/shots/popup-code-436.webp 436w, ../assets/shots/popup-code-872.webp 872w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 30vw, 300px"><img src="../assets/shots/popup-code.png" width="872" height="600" loading="lazy" decoding="async" alt="Das Pocket Code in einem Graphit-Look: Xcode, Visual Studio Code, Ghostty, Terminal, OrbStack, Instruments, CotEditor und Activity Monitor."></picture>
+          <span class="real-icon" aria-hidden="true"><span class="mg"><i style="background:#2f7bf5"></i><i style="background:#f4f6f3"></i><i style="background:#1c2a8a"></i><i style="background:#16171a"></i></span></span>
+          <figcaption><b>Code</b>, Graphit-Look</figcaption>
+        </figure>
+        <figure class="real-pop real-pop-studio">
+          <picture><source type="image/avif" srcset="../assets/shots/popup-studio-436.avif 436w, ../assets/shots/popup-studio-872.avif 872w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 30vw, 300px"><source type="image/webp" srcset="../assets/shots/popup-studio-436.webp 436w, ../assets/shots/popup-studio-872.webp 872w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 30vw, 300px"><img src="../assets/shots/popup-studio.png" width="872" height="600" loading="lazy" decoding="async" alt="Das Pocket Studio in einem animierten Pastell-Look: Affinity, Freeform, Image Playground, Photos und Preview."></picture>
+          <span class="real-icon" aria-hidden="true"><span class="mg"><i style="background:#9be15d"></i><i style="background:#1f6f86"></i><i style="background:#16171a"></i><i style="background:#f4f6f3"></i></span></span>
+          <figcaption><b>Studio</b>, animierter Pastell-Look</figcaption>
+        </figure>
+    </div>
+    <p class="real-note">Screenshots aus Pocketwerk mit Demo-Pockets, die App ist darin auf Englisch eingestellt. Jedes Pocket öffnet sich über seinem eigenen Dock-Symbol.</p>
+  </div>
+</section>
+
+<section class="studio" id="design" aria-labelledby="design-h">
+  <div class="wrap">
+    <h2 id="design-h">Gib jedem Pocket sein eigenes&nbsp;Aussehen</h2>
+    <p class="intro">Das Design Studio gestaltet jedes Popup mit Liquid Glass, Farben, Verläufen, Fotos, deinem unscharfen Schreibtischbild, Texturen oder animierten Hintergründen, die auf den Zeiger reagieren. Du stellst Rahmen, Schriften und Eckenradius ein. Starte mit Dutzenden eingebauten Themes und Presets und sichere danach deine eigenen.</p>
+  </div>
+  <div class="studio-stage" id="studio-stage">
+    <div class="wallpaper" aria-hidden="true"></div>
+    <div class="pocket pocket-preview look-glass" id="studio-pocket" data-view="grid" aria-hidden="true" inert></div>
+  </div>
+  <div class="wrap">
+    <div class="swatches" role="group" aria-labelledby="swatch-label">
+      <span id="swatch-label" class="swatch-label">Beispiel-Looks</span>
+      <button type="button" class="swatch" data-look="glass" aria-pressed="true"><span class="chip c-glass"></span>Glas</button>
+      <button type="button" class="swatch" data-look="board" aria-pressed="false"><span class="chip c-board"></span>Board</button>
+      <button type="button" class="swatch" data-look="signal" aria-pressed="false"><span class="chip c-signal"></span>Signal</button>
+      <button type="button" class="swatch" data-look="night" aria-pressed="false"><span class="chip c-night"></span>Nacht</button>
+      <button type="button" class="swatch" data-look="paper" aria-pressed="false"><span class="chip c-paper"></span>Papier</button>
+      <button type="button" class="swatch" data-look="pointer" aria-pressed="false"><span class="chip c-pointer"></span>Zeiger</button>
+    </div>
+
+    <figure class="app-shot">
+      <picture><source type="image/avif" srcset="../assets/shots/design-studio-800.avif 800w, ../assets/shots/design-studio-1280.avif 1280w, ../assets/shots/design-studio-1680.avif 1680w" sizes="(min-width: 1248px) 1200px, calc(100vw - 32px)"><source type="image/webp" srcset="../assets/shots/design-studio-800.webp 800w, ../assets/shots/design-studio-1280.webp 1280w, ../assets/shots/design-studio-1680.webp 1680w" sizes="(min-width: 1248px) 1200px, calc(100vw - 32px)"><img src="../assets/shots/design-studio.png" width="1600" height="1005" loading="lazy" decoding="async" alt="Das Design Studio in Pocketwerk: links eine Galerie mit Looks, in der Mitte eine Live-Vorschau des Pockets Studio im Look Candy Clouds, rechts die Einstellungen für das Symbol."></picture>
+      <figcaption>Das Design Studio in der App, hier mit dem Look Candy Clouds.</figcaption>
+    </figure>
+
+    <div class="icon-styles">
+      <div class="icon-copy">
+        <h3>Dazu ein passendes Symbol</h3>
+        <p>Das Dock-Symbol des Pockets kann ein Mini-Raster der enthaltenen Apps zeigen, einen gefächerten Stack, eine Ordnerform, ein Symbol aus den SF-Symbols-Paketen, ein Emoji, ein Wort oder dein eigenes Bild.</p>
+      </div>
+      <ul class="icon-shelf">
+        <li><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14.3" fill="#24735f"/><rect x="11" y="11" width="18" height="18" rx="4.5" fill="#9fdcc4"/><rect x="35" y="11" width="18" height="18" rx="4.5" fill="#f4f6f3"/><rect x="11" y="35" width="18" height="18" rx="4.5" fill="#0f1b17"/><rect x="35" y="35" width="18" height="18" rx="4.5" fill="#ffd15c"/></svg><span>Mini-Raster</span></li>
+        <li><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14.3" fill="#e9efeb"/><g stroke="#0f1b17" stroke-width="2"><rect x="14" y="16" width="28" height="28" rx="7" fill="#9fdcc4" transform="rotate(-12 28 30)"/><rect x="19" y="18" width="28" height="28" rx="7" fill="#ffd15c"/><rect x="24" y="20" width="28" height="28" rx="7" fill="#ff6b2c" transform="rotate(10 38 34)"/></g></svg><span>Stack</span></li>
+        <li><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M6 18a5 5 0 0 1 5-5h13l5 5h24a5 5 0 0 1 5 5v25a5 5 0 0 1-5 5H11a5 5 0 0 1-5-5Z" fill="#ff6b2c"/><path d="M6 25h52v23a5 5 0 0 1-5 5H11a5 5 0 0 1-5-5Z" fill="#ff8a55"/><rect x="18" y="31" width="12" height="12" rx="3" fill="#f4f6f3"/><rect x="34" y="31" width="12" height="12" rx="3" fill="#ffd15c"/></svg><span>Ordner</span></li>
+        <li><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14.3" fill="#0f1b17"/><use href="#g-wrench" x="12" y="12" width="40" height="40" color="#ffd15c"/></svg><span>Symbol</span></li>
+        <li><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14.3" fill="#ffd15c"/><text x="32" y="44" text-anchor="middle" font-size="32">🧰</text></svg><span>Emoji</span></li>
+        <li><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14.3" fill="#f4f6f3" stroke="#0f1b17" stroke-width="2"/><text x="32" y="39.5" text-anchor="middle" font-size="17" font-weight="800" font-stretch="125%" fill="#0f1b17" font-family="Archivo, sans-serif">Dev</text></svg><span>Text</span></li>
+        <li><svg viewBox="0 0 64 64" aria-hidden="true"><defs><clipPath id="ic"><rect width="64" height="64" rx="14.3"/></clipPath></defs><g clip-path="url(#ic)"><rect width="64" height="64" fill="#9fdcc4"/><circle cx="44" cy="20" r="7" fill="#ffd15c"/><path d="M0 50 20 30l14 14 9-9 21 21v8H0Z" fill="#1b5546"/></g></svg><span>Bild</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="profiles board" id="profiles" aria-labelledby="profiles-h">
+  <div class="wrap profiles-grid">
+    <div>
+      <h2 id="profiles-h">Ein anderes Dock für jede Art von Arbeit</h2>
+      <p class="intro">Sichere das gesamte macOS-Dock als Profil. Wechsle per Tastenkürzel, über die Menüleiste, die Befehlszeile oder eine URL. Ein Profil kann auch deinem Space oder Bildschirm folgen und sich von selbst umschalten. Pocketwerk kann beim Wechsel Apps beenden und starten, und eigene Abstandshalter halten lange Docks übersichtlich.</p>
+    </div>
+    <div class="profile-switch">
+      <div class="profile-tabs" role="tablist" aria-label="Beispielprofile">
+        <button role="tab" id="tab-work" aria-selected="true" aria-controls="dock-demo" data-profile="work">Arbeit <kbd>⌃⌥1</kbd></button>
+        <button role="tab" id="tab-studio" aria-selected="false" aria-controls="dock-demo" data-profile="studio" tabindex="-1">Studio <kbd>⌃⌥2</kbd></button>
+        <button role="tab" id="tab-evening" aria-selected="false" aria-controls="dock-demo" data-profile="evening" tabindex="-1">Abend <kbd>⌃⌥3</kbd></button>
+      </div>
+      <div class="dock-demo" id="dock-demo" role="tabpanel" aria-labelledby="tab-work">
+        <div class="dock-row" id="dock-row" role="img"></div>
+      </div>
+      <p class="profile-note">Beispielprofile und Tastenkürzel. Deine legst du selbst an.</p>
+      <ul class="switch-ways" aria-label="Möglichkeiten, ein Profil zu wechseln">
+        <li><svg aria-hidden="true" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="5" y="9" width="22" height="14" rx="3"/><path d="M9.5 13.5h2m3 0h3m3.5 0h2m-13 5h13" stroke-linecap="round"/></g></svg>Tastenkürzel</li>
+        <li><svg aria-hidden="true" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M4 8.5h24"/><rect x="15" y="11.5" width="12" height="13" rx="2.5"/><path d="M18 16h6m-6 4h4" stroke-linecap="round"/></g></svg>Menüleiste</li>
+        <li><svg aria-hidden="true"><use href="#g-term"/></svg>Befehlszeile</li>
+        <li><svg aria-hidden="true"><use href="#g-link"/></svg>URL</li>
+        <li><svg aria-hidden="true" viewBox="0 0 32 32"><path d="M18 5 8 18h7l-2 9 11-14h-7Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>Kurzbefehle und Siri</li>
+        <li><svg aria-hidden="true" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="4" y="7" width="15" height="11" rx="2"/><rect x="13" y="13" width="15" height="11" rx="2"/></g></svg>Space oder Bildschirm</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap">
+    <figure class="app-shot app-shot-board">
+      <picture><source type="image/avif" srcset="../assets/shots/profiles-800.avif 800w, ../assets/shots/profiles-1280.avif 1280w, ../assets/shots/profiles-1680.avif 1680w" sizes="(min-width: 1248px) 1200px, calc(100vw - 32px)"><source type="image/webp" srcset="../assets/shots/profiles-800.webp 800w, ../assets/shots/profiles-1280.webp 1280w, ../assets/shots/profiles-1680.webp 1680w" sizes="(min-width: 1248px) 1200px, calc(100vw - 32px)"><img src="../assets/shots/profiles.png" width="1600" height="1005" loading="lazy" decoding="async" alt="Der Editor für Dock-Profile in Pocketwerk: das Profil Deep Work mit seinen Apps und dem Ordner Downloads, die Optionen für das Anwenden des Profils und sein Tastenkürzel Control-Wahltaste-1."></picture>
+      <figcaption>Der Profil-Editor: Apps, Ordner und Links, was beim Anwenden des Profils passiert, und das Tastenkürzel.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="keys" aria-labelledby="keys-h">
+  <div class="wrap">
+    <h2 id="keys-h">Schnell per Tastatur</h2>
+    <ul class="keymap">
+      <li class="k-num"><span class="caps"><kbd class="cap">⌘</kbd><span class="cap-run"><kbd class="cap">1</kbd><kbd class="cap">2</kbd><kbd class="cap">3</kbd><kbd class="cap">4</kbd><kbd class="cap">5</kbd><kbd class="cap">6</kbd><kbd class="cap">7</kbd><kbd class="cap">8</kbd><kbd class="cap">9</kbd></span></span><span class="what">Zu einem Pocket springen</span></li>
+      <li><span class="caps"><kbd class="cap" aria-label="Pfeiltasten">← →</kbd><kbd class="cap cap-wide" aria-label="Return">Return</kbd></span><span class="what">Bewegen und öffnen</span></li>
+      <li><span class="caps"><kbd class="cap cap-space">Leertaste</kbd></span><span class="what">Quick Look</span></li>
+      <li><span class="caps"><kbd class="cap cap-wide">a b c</kbd></span><span class="what">Tippen, um im Pocket zu suchen</span></li>
+      <li><span class="caps"><span class="swipe" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span></span><span class="what">Wischen oder scrollen zum nächsten Pocket</span></li>
+    </ul>
+
+    <div class="toolbox">
+      <div>
+        <h3>Und der Rest des Werkzeugkastens</h3>
+        <ul class="ticks">
+          <li>Globale Tastenkürzel für jedes Pocket und jedes Profil. Keine Berechtigung für Bedienungshilfen nötig.</li>
+          <li>Menüleisten-Modus, falls du Pocketwerk lieber aus dem Dock heraushalten willst.</li>
+          <li>Eine Leader-Taste: erst ein Tastenkürzel, dann ein Buchstabe öffnet ein Pocket oder wendet ein Profil an.</li>
+          <li>Eine aktive Ecke, die deine Pockets öffnet, wenn der Zeiger dort verweilt.</li>
+          <li>Kurzbefehle und Siri-Aktionen, um ein Pocket zu zeigen, zu öffnen, auszublenden oder zu beenden und um ein Profil anzuwenden.</li>
+          <li>Beim Anmelden starten, dazu Varianten des App-Symbols für Pocketwerk selbst.</li>
+          <li>Deutsch und Englisch.</li>
+        </ul>
+      </div>
+      <div class="slot slot-filled" aria-labelledby="assist-h">
+        <h3 id="assist-h">Neu in 1.1: der Assistent</h3>
+        <p>Beschreibe eine Änderung in einem einfachen Satz, und der Assistent auf deinem Mac passt das Pocket an. Jede Änderung wird aufgelistet und lässt sich widerrufen. Er läuft mit Apple Intelligence auf unterstützten Macs ab macOS&nbsp;26.</p>
+        <p>App-Vorschläge zeigen Apps, die zu einem Pocket passen. Sie werden auf deinem Mac aus dem Namen des Pockets und den Apps darin berechnet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="privacy" aria-labelledby="privacy-h">
+  <div class="wrap privacy-grid">
+    <h2 id="privacy-h">Es bleibt auf deinem&nbsp;Mac</h2>
+    <div>
+      <p class="big">Es gibt keinen Account, kein Tracking und keine Analyse. Deine Pockets liegen in einer JSON-Datei auf deinem Mac.</p>
+      <p>Pocketwerk geht nur für zwei Dinge online: eine tägliche Update-Prüfung und die kleinen Symbole (Favicons) deiner Links. Auch diese Website setzt keine Cookies.</p>
+      <p><a class="link" href="https://github.com/DigitalIQ/pocketwerk">Quellcode auf GitHub lesen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+    </div>
+  </div>
+</section>
+
+<section class="install" id="install" aria-labelledby="install-h">
+  <div class="wrap install-grid">
+   <div>
+    <h2 id="install-h">Pocketwerk installieren</h2>
+    <p class="intro">macOS 26 Tahoe oder neuer. Apple Silicon und Intel.</p>
+    <ol class="steps">
+      <li>
+        <h3>Hol dir die App</h3>
+        <p>Lade das DMG von GitHub Releases herunter und zieh Pocketwerk in den Ordner „Programme“. Oder installiere es mit Homebrew.</p>
+        <div class="step-actions">
+          <a class="btn btn-orange" href="https://github.com/DigitalIQ/pocketwerk/releases/latest"><svg aria-hidden="true"><use href="#i-download"/></svg>Download für Mac</a>
+          <div class="brew brew-light">
+            <code id="brew-install">brew install --cask digitaliq/tap/pocketwerk</code>
+            <button class="copy" type="button" data-copy="brew-install"><svg aria-hidden="true"><use href="#i-copy"/></svg><span>Kopieren</span></button>
+          </div>
+        </div>
+      </li>
+      <li>
+        <h3>Öffne sie einmal</h3>
+        <p>Pocketwerk ist nicht von Apple notarisiert, deshalb blockiert macOS den ersten Start. Schließe die Meldung.</p>
+      </li>
+      <li>
+        <h3>Erlaube sie in den Systemeinstellungen</h3>
+        <p>Öffne die Systemeinstellungen, geh zu Datenschutz &amp; Sicherheit, scrolle nach unten und klicke neben Pocketwerk auf „Trotzdem öffnen“. Bestätige, und ab dann öffnet sie sich wie jede andere App.</p>
+        <figure class="settings-ill">
+          <div class="settings-row" aria-hidden="true">
+            <span class="settings-text">„Pocketwerk“ wurde blockiert, um deinen Mac zu schützen.</span>
+            <span class="settings-btn">Trotzdem öffnen</span>
+          </div>
+          <figcaption>Datenschutz &amp; Sicherheit, als Illustration.</figcaption>
+        </figure>
+      </li>
+    </ol>
+   </div>
+   <figure class="install-art">
+     <picture><source srcset="../assets/brand/icon-512.webp" type="image/webp"><img src="../assets/brand/icon-512.png" width="512" height="512" loading="lazy" decoding="async" alt="Das Pocketwerk-App-Symbol: ein orangefarbenes Pocket mit drei App-Kacheln, aufgehängt an einer grünen Lochwand."></picture>
+     <figcaption>Dieses Symbol suchst du im Ordner „Programme“.</figcaption>
+   </figure>
+  </div>
+</section>
+
+<section class="faq" id="faq" aria-labelledby="faq-h">
+  <div class="wrap faq-grid">
+    <h2 id="faq-h">Fragen</h2>
+    <div class="faq-list">
+      <details><summary>Ist Pocketwerk wirklich kostenlos?</summary><p>Ja. Es ist kostenlos und Open Source unter der MIT-Lizenz. Es gibt keinen Account und nichts zu kaufen.</p></details>
+      <details><summary>Warum blockiert macOS den ersten Start?</summary><p>Pocketwerk ist nicht von Apple notarisiert. macOS stoppt den ersten Start solcher Apps. Klick einmal in den Systemeinstellungen unter Datenschutz &amp; Sicherheit auf „Trotzdem öffnen“, danach startet es normal.</p></details>
+      <details><summary>Was unterscheidet ein Pocket von einem Ordner im Dock?</summary><p>Ein Dock-Ordner zeigt die Dateien eines einzelnen Finder-Ordners. Ein Pocket mischt Apps, Dateien, Ordner und Links, hat ein eigenes Dock-Symbol und einen eigenen Look und kann alle seine Apps auf einmal öffnen, ausblenden oder beenden.</p></details>
+      <details><summary>Braucht Pocketwerk die Berechtigung für Bedienungshilfen?</summary><p>Für die Tastenkürzel nicht. Globale Tastenkürzel für Pockets und Profile funktionieren ohne sie.</p></details>
+      <details><summary>Was verlässt meinen Mac?</summary><p>Eine tägliche Update-Prüfung und Abfragen nach den Favicons deiner Links. Sonst nichts. Deine Pockets liegen in einer JSON-Datei auf deinem Mac.</p></details>
+      <details><summary>Auf welchen Macs läuft es?</summary><p>Auf Macs mit macOS 26 Tahoe oder neuer, mit Apple Silicon und mit Intel.</p></details>
+      <details><summary>Welche Sprachen spricht es?</summary><p>Deutsch und Englisch.</p></details>
+      <details><summary>Wo ist der Quellcode?</summary><p>Den vollständigen Quellcode gibt es auf GitHub unter <a href="https://github.com/DigitalIQ/pocketwerk">github.com/DigitalIQ/pocketwerk</a>.</p></details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer board">
+  <div class="wrap footer-grid">
+    <a class="brand" href="#top" aria-label="Pocketwerk, zurück nach oben"><img src="../assets/brand/mark.svg" width="40" height="40" alt=""><span>Pocketwerk</span></a>
+    <p>Pocketwerk stammt von DigitalIQ und steht unter der MIT-Lizenz.</p>
+    <ul class="footer-links">
+      <li><a href="https://github.com/DigitalIQ/pocketwerk">Quellcode auf GitHub</a></li>
+      <li><a href="https://github.com/DigitalIQ/pocketwerk/releases">Releases</a></li>
+      <li><a href="https://github.com/DigitalIQ/pocketwerk/blob/main/LICENSE">MIT-Lizenz</a></li>
+    </ul>
+    <p class="fine">Keine Cookies, kein Tracking.</p>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

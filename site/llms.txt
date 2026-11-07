@@ -33,5 +33,6 @@ Pocketwerk has no account, no tracking and no analytics. Its data stays in a JSO
 ## Links
 
 - [Website](https://digitaliq.github.io/pocketwerk/)
+- [Website auf Deutsch](https://digitaliq.github.io/pocketwerk/de/)
 - [Source code](https://github.com/DigitalIQ/pocketwerk)
 - [Releases](https://github.com/DigitalIQ/pocketwerk/releases)

@@ -6,10 +6,15 @@
 <title>Pocketwerk: app folders for the Mac Dock. Free, open source</title>
 <meta name="description" content="Group apps, files, folders and links into pockets that open right above their own Dock icon. Free, MIT licensed, no account. For macOS 26 Tahoe.">
 <link rel="canonical" href="https://digitaliq.github.io/pocketwerk/">
+<link rel="alternate" hreflang="en" href="https://digitaliq.github.io/pocketwerk/">
+<link rel="alternate" hreflang="de" href="https://digitaliq.github.io/pocketwerk/de/">
+<link rel="alternate" hreflang="x-default" href="https://digitaliq.github.io/pocketwerk/">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#1b5546">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Pocketwerk">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="de_DE">
 <meta property="og:title" content="Pocketwerk: pockets for your Dock">
 <meta property="og:description" content="Free, open-source app folders for the Mac Dock. Each pocket gets its own Dock icon and opens right above it.">
 <meta property="og:url" content="https://digitaliq.github.io/pocketwerk/">
@@ -34,12 +39,20 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://digitaliq.github.io/pocketwerk/#page",
+      "url": "https://digitaliq.github.io/pocketwerk/",
+      "name": "Pocketwerk: app folders for the Mac Dock. Free, open source",
+      "inLanguage": "en",
+      "about": { "@id": "https://digitaliq.github.io/pocketwerk/#app" }
+    },
+    {
       "@type": "SoftwareApplication",
       "@id": "https://digitaliq.github.io/pocketwerk/#app",
       "name": "Pocketwerk",
       "description": "Free, open-source macOS app that groups apps, files, folders and links into pockets. Each pocket can get its own Dock icon and opens a themed popup right above it.",
       "applicationCategory": "UtilitiesApplication",
-      "softwareVersion": "1.2.0",
+      "softwareVersion": "1.3.0",
       "operatingSystem": "macOS 26 Tahoe or later",
       "processorRequirements": "Apple Silicon or Intel",
       "inLanguage": ["en", "de"],
@@ -71,6 +84,7 @@
     },
     {
       "@type": "FAQPage",
+      "inLanguage": "en",
       "mainEntity": [
         { "@type": "Question", "name": "Is Pocketwerk really free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. It's free and open source under the MIT license. There's no account and nothing to buy." } },
         { "@type": "Question", "name": "Why does macOS block the first launch?", "acceptedAnswer": { "@type": "Answer", "text": "Pocketwerk isn't notarized by Apple. macOS stops the first launch of apps like that. Click \"Open Anyway\" once in System Settings > Privacy & Security and it opens normally from then on." } },
@@ -131,6 +145,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <li><a href="#profiles">Profiles</a></li>
       <li><a href="#install">Install</a></li>
       <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <ul class="lang" aria-label="Language">
+      <li><a href="./" hreflang="en" lang="en" aria-label="English" aria-current="true">EN</a></li>
+      <li><a href="de/" hreflang="de" lang="de" aria-label="Deutsch">DE</a></li>
     </ul>
     <a class="btn btn-small btn-paper" href="https://github.com/DigitalIQ/pocketwerk/releases/latest">Download</a>
   </nav>

@@ -1,6 +1,54 @@
 /* Pocketwerk site: small interactions, no dependencies. The 3D hero loads on first interaction. */
 (function () {
   "use strict";
+  /* The page language decides the strings below: <html lang="de"> gets German, everything else English. */
+  var LANG = (document.documentElement.lang || "en").toLowerCase().indexOf("de") === 0 ? "de" : "en";
+  var TEXT = {
+    en: {
+      copied: "Copied",
+      copySaid: "Homebrew command copied.",
+      cmdSelected: "Command selected. Press Command C to copy.",
+      opensFolder: function (n) { return "Opens the folder " + n + " inside the pocket."; },
+      opens: function (n) { return "Opens " + n + "."; },
+      selectedCount: function (c) { return c + " selected. Return opens them together."; },
+      nothingSelected: "Nothing selected.",
+      quits: function (n) { return "Quits " + n + "."; },
+      notApp: function (n) { return n + " isn't an app, so there's nothing to quit."; },
+      opensTogether: function (list) { return "Opens " + list + " together."; },
+      quickLook: function (n) { return "Quick Look: " + n + "."; },
+      search: "Search: ",
+      returnOpens: function (n) { return "Return opens " + n + "."; },
+      noMatch: function (q) { return "Nothing matches \u201C" + q + "\u201D."; },
+      views: { grid: "Grid view.", list: "List view.", tiles: "Tiles view." },
+      dockOpen: "The pocket opens right above its Dock icon.",
+      dockClose: "A second click closes it.",
+      profileName: { work: "Work", studio: "Studio", evening: "Evening" },
+      spacer: { projects: "Projects", assets: "Assets" },
+      profileLabel: function (name, n, spacer) { return name + " profile: " + n + " Dock icons" + (spacer ? " and a spacer." : "."); }
+    },
+    de: {
+      copied: "Kopiert",
+      copySaid: "Homebrew-Befehl kopiert.",
+      cmdSelected: "Befehl markiert. Drücke Befehl-C zum Kopieren.",
+      opensFolder: function (n) { return "Öffnet den Ordner " + n + " im Pocket."; },
+      opens: function (n) { return "Öffnet " + n + "."; },
+      selectedCount: function (c) { return c + " ausgewählt. Mit Return öffnest du sie zusammen."; },
+      nothingSelected: "Nichts ausgewählt.",
+      quits: function (n) { return "Beendet " + n + "."; },
+      notApp: function (n) { return n + " ist keine App, also gibt es nichts zu beenden."; },
+      opensTogether: function (list) { return "Öffnet " + list + " zusammen."; },
+      quickLook: function (n) { return "Quick Look: " + n + "."; },
+      search: "Suche: ",
+      returnOpens: function (n) { return "Mit Return öffnest du " + n + "."; },
+      noMatch: function (q) { return "Nichts passt zu \u201E" + q + "\u201C."; },
+      views: { grid: "Rasteransicht.", list: "Listenansicht.", tiles: "Kachelansicht." },
+      dockOpen: "Das Pocket öffnet sich direkt über seinem Dock-Symbol.",
+      dockClose: "Ein zweiter Klick schließt es.",
+      profileName: { work: "Arbeit", studio: "Studio", evening: "Abend" },
+      spacer: { projects: "Projekte", assets: "Assets" },
+      profileLabel: function (name, n, spacer) { return "Profil " + name + ": " + n + " Dock-Symbole" + (spacer ? " und ein Abstandshalter." : "."); }
+    }
+  }[LANG];
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   var live = document.createElement("p");
   live.className = "sr-only";
@@ -10,6 +58,7 @@
 
   /* ---------- copy the Homebrew command ---------- */
   document.querySelectorAll("[data-copy]").forEach(function (btn) {
+    var idleLabel = btn.querySelector("span").textContent;
     btn.addEventListener("click", function () {
       var code = document.getElementById(btn.getAttribute("data-copy"));
       var text = code.textContent.trim();
@@ -17,12 +66,12 @@
         var label = btn.querySelector("span");
         var icon = btn.querySelector("use");
         btn.classList.add("done");
-        label.textContent = "Copied";
+        label.textContent = TEXT.copied;
         icon.setAttribute("href", "#i-check");
-        say("Homebrew command copied.");
+        say(TEXT.copySaid);
         setTimeout(function () {
           btn.classList.remove("done");
-          label.textContent = "Copy";
+          label.textContent = idleLabel;
           icon.setAttribute("href", "#i-copy");
         }, 2000);
       };
@@ -39,7 +88,7 @@
     var sel = window.getSelection();
     sel.removeAllRanges();
     sel.addRange(range);
-    say("Command selected. Press Command C to copy.");
+    say(TEXT.cmdSelected);
   }
 
   /* ---------- the example pocket ---------- */
@@ -72,7 +121,7 @@
   function openItem(li) {
     var kind = li.getAttribute("data-kind");
     var n = nameOf(li);
-    var verb = kind === "folder" ? "Opens the folder " + n + " inside the pocket." : "Opens " + n + ".";
+    var verb = kind === "folder" ? TEXT.opensFolder(n) : TEXT.opens(n);
     setStatus(verb);
     ping(li);
   }
@@ -85,12 +134,12 @@
       var on = li.getAttribute("aria-selected") !== "true";
       li.setAttribute("aria-selected", on ? "true" : "false");
       var count = selected().length;
-      setStatus(count ? count + " selected. Return opens them together." : "Nothing selected.");
+      setStatus(count ? TEXT.selectedCount(count) : TEXT.nothingSelected);
       return;
     }
     if (e.altKey) {
-      if (li.getAttribute("data-kind") === "app") setStatus("Quits " + nameOf(li) + ".");
-      else setStatus(nameOf(li) + " isn't an app, so there's nothing to quit.");
+      if (li.getAttribute("data-kind") === "app") setStatus(TEXT.quits(nameOf(li)));
+      else setStatus(TEXT.notApp(nameOf(li)));
       ping(li);
       return;
     }
@@ -114,13 +163,13 @@
     if (e.key === "Enter") {
       e.preventDefault();
       var sel = selected();
-      if (sel.length > 1) { setStatus("Opens " + sel.map(nameOf).join(", ") + " together."); clearSelection(); }
+      if (sel.length > 1) { setStatus(TEXT.opensTogether(sel.map(nameOf).join(", "))); clearSelection(); }
       else openItem(li);
       return;
     }
     if (e.key === " ") {
       e.preventDefault();
-      setStatus("Quick Look: " + nameOf(li) + ".");
+      setStatus(TEXT.quickLook(nameOf(li)));
       ping(li);
       return;
     }
@@ -139,9 +188,9 @@
       li.classList.toggle("dim", !hit);
       if (hit && !first) first = li;
     });
-    searchOut.textContent = query ? "Search: " + query : "";
-    if (query && first) { focusItem(first); setStatus(first ? "Return opens " + nameOf(first) + "." : ""); }
-    if (query && !first) setStatus("Nothing matches “" + query + "”.");
+    searchOut.textContent = query ? TEXT.search + query : "";
+    if (query && first) { focusItem(first); setStatus(first ? TEXT.returnOpens(nameOf(first)) : ""); }
+    if (query && !first) setStatus(TEXT.noMatch(query));
     queryTimer = setTimeout(resetSearch, 4000);
   }
   function resetSearch() {
@@ -155,7 +204,7 @@
       var v = b.getAttribute("data-view");
       pocket.setAttribute("data-view", v);
       document.querySelectorAll("#pocket .views button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
-      setStatus({ grid: "Grid view.", list: "List view.", tiles: "Tiles view." }[v]);
+      setStatus(TEXT.views[v]);
     });
   });
 
@@ -163,8 +212,8 @@
     var open = pocket.getAttribute("data-open") !== "true";
     pocket.setAttribute("data-open", open ? "true" : "false");
     dockBtn.setAttribute("aria-expanded", open ? "true" : "false");
-    if (open) { pocket.removeAttribute("inert"); setStatus("The pocket opens right above its Dock icon."); }
-    else { pocket.setAttribute("inert", ""); setStatus("A second click closes it."); }
+    if (open) { pocket.removeAttribute("inert"); setStatus(TEXT.dockOpen); }
+    else { pocket.setAttribute("inert", ""); setStatus(TEXT.dockClose); }
   });
 
   /* ---------- design studio preview ---------- */
@@ -200,18 +249,18 @@
   var row = document.getElementById("dock-row");
   var P = function (c, g) { return { c: c, g: g }; };
   var profiles = {
-    work: [P("t-paper", "g-chat"), P("t-paper", "g-globe"), P("t-mint", "g-code"), P("t-ink", "g-term"), { spacer: "Projects" }, { pocket: ["t-mint", "t-paper", "t-ink", "t-yellow"] }, P("t-paper", "g-doc"), P("t-yellow", "g-cal")],
-    studio: [P("t-yellow", "g-pen"), P("t-mint", "g-photo"), P("t-ink", "g-film"), { spacer: "Assets" }, { pocket: ["t-yellow", "t-orange", "t-mint", "t-paper"] }, P("t-green", "g-folder"), P("t-orange", "g-note")],
+    work: [P("t-paper", "g-chat"), P("t-paper", "g-globe"), P("t-mint", "g-code"), P("t-ink", "g-term"), { spacer: "projects" }, { pocket: ["t-mint", "t-paper", "t-ink", "t-yellow"] }, P("t-paper", "g-doc"), P("t-yellow", "g-cal")],
+    studio: [P("t-yellow", "g-pen"), P("t-mint", "g-photo"), P("t-ink", "g-film"), { spacer: "assets" }, { pocket: ["t-yellow", "t-orange", "t-mint", "t-paper"] }, P("t-green", "g-folder"), P("t-orange", "g-note")],
     evening: [P("t-orange", "g-note"), P("t-ink", "g-film"), P("t-paper", "g-chat"), P("t-yellow", "g-photo"), { pocket: ["t-orange", "t-ink", "t-yellow", "t-paper"] }]
   };
   function iconHTML(it) {
-    if (it.spacer) return '<span><span class="spacer">' + it.spacer + "</span></span>";
+    if (it.spacer) return '<span><span class="spacer">' + TEXT.spacer[it.spacer] + "</span></span>";
     if (it.pocket) return '<span><span class="dock-icon mgi"><span class="mg">' + it.pocket.map(function (c) { return '<i class="' + c + '"></i>'; }).join("") + "</span></span></span>";
     return '<span><span class="dock-icon ' + it.c + '"><svg aria-hidden="true"><use href="#' + it.g + '"/></svg></span></span>';
   }
   function labelFor(name, data) {
     var n = data.filter(function (x) { return !x.spacer; }).length;
-    return name.charAt(0).toUpperCase() + name.slice(1) + " profile: " + n + " Dock icons" + (data.some(function (x) { return x.spacer; }) ? " and a spacer." : ".");
+    return TEXT.profileLabel(TEXT.profileName[name], n, data.some(function (x) { return x.spacer; }));
   }
   function showProfile(name, animate) {
     var data = profiles[name];
