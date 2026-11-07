@@ -67,9 +67,16 @@ nonisolated enum PocketwerkRoute: Equatable {
 
 enum DockRoutes {
     /// Handles a `pocketwerk://` URL. Returns false for URLs it does not know.
+    /// A changing route from an untrusted `caller` runs only after `confirm` returns true
+    /// (see URLCaller). It still counts as handled when the user declines.
     @discardableResult
-    static func handle(_ url: URL, store: LibraryStore = .shared) -> Bool {
+    static func handle(_ url: URL, store: LibraryStore = .shared, caller: URLCaller = .pocketwerk,
+                       confirm: (PocketwerkRoute, URLCaller) -> Bool = URLConfirmation.ask) -> Bool {
         guard let route = PocketwerkRoute.parse(url) else { return false }
+        if route.changesSomething, !caller.isTrusted(), !confirm(route, caller) {
+            Log.app.info("declined \(url.host ?? "?", privacy: .public) link from \(caller.bundleID ?? caller.executablePath ?? "unknown sender", privacy: .public)")
+            return true
+        }
         switch route {
         case .open(let slot, let group, let anchor):
             if let slot {

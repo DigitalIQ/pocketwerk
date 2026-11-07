@@ -4,6 +4,11 @@ All notable changes to Pocketwerk are listed here. The format follows [Keep a Ch
 
 ## [Unreleased]
 
+### Security
+
+- `pocketwerk://` links from other apps, for example a browser or Mail, now ask before they add items, open or quit a group's apps, or change Dock profiles. Links from Shortcuts, the command line tool and Pocketwerk's own Dock icons still run without asking.
+- A `pocketwerk://` link with a repeated parameter no longer crashes the app.
+
 ## [1.2.0] - 2026-10-29
 
 ### Changed

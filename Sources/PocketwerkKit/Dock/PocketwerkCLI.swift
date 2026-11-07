@@ -176,18 +176,30 @@ public enum PocketwerkCLI {
     }
 
     /// Opens a pocketwerk:// URL in the background and waits until it is delivered.
+    /// This process sends the URL itself (not /usr/bin/open), so the app recognises its own
+    /// executable as the sender and skips the confirmation (see URLCaller). The app looks the
+    /// sender up while it handles the URL, so the process stays alive a moment longer.
     private static func send(_ url: URL, err: inout some TextOutputStream) -> Int32 {
-        let p = Process()
-        p.executableURL = URL(fileURLWithPath: "/usr/bin/open")
-        p.arguments = ["-g", url.absoluteString]
-        do {
-            try p.run()
-            p.waitUntilExit()
-        } catch {
-            print(error.localizedDescription, to: &err)
+        let config = NSWorkspace.OpenConfiguration()
+        config.activates = false
+        var done = false
+        var failure: Error?
+        NSWorkspace.shared.open(url, configuration: config) { _, error in
+            failure = error
+            done = true
+        }
+        let deadline = Date().addingTimeInterval(30)
+        while !done, Date() < deadline { RunLoop.current.run(until: Date().addingTimeInterval(0.05)) }
+        if let failure {
+            print(failure.localizedDescription, to: &err)
             return 1
         }
-        return p.terminationStatus
+        guard done else {
+            print("Pocketwerk did not answer.", to: &err)
+            return 1
+        }
+        RunLoop.current.run(until: Date().addingTimeInterval(1))
+        return 0
     }
 }
 

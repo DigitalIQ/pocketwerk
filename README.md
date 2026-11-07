@@ -148,6 +148,8 @@ Open these URLs with `open "pocketwerk://..."`, from Shortcuts or from any app t
 
 Group and profile names match exactly (case does not matter) or by a unique prefix. Values in a URL must be percent-encoded, for example `name=Deep%20Work`.
 
+Any website, mail or document can open a `pocketwerk://` link. So Pocketwerk asks before a link adds items, opens or quits a group's apps, or changes Dock profiles. It does not ask when the link comes from Shortcuts, from the `pocketwerk` command line tool or from its own Dock icons. `open "pocketwerk://..."` in Terminal asks too; use the command line tool instead.
+
 ### Command line
 
 The app binary has a command line mode. Run it directly:

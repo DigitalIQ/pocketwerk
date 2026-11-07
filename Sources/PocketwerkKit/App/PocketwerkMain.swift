@@ -59,13 +59,15 @@ final class AppCoordinator: NSObject, NSApplicationDelegate {
     /// pocketwerk://open?slot=<uuid>  pocketwerk://open?group=<uuid>  pocketwerk://add?url=<url>&group=<uuid>
     /// pocketwerk://settings  pocketwerk://profile?id=<uuid>
     func application(_ application: NSApplication, open urls: [URL]) {
-        for url in urls { URLRouter.handle(url) }
+        let caller = URLCaller.current() ?? .unknown
+        for url in urls { URLRouter.handle(url, caller: caller) }
     }
 }
 
 enum URLRouter {
-    static func handle(_ url: URL) {
-        if DockRoutes.handle(url) { return }
+    /// `caller` is the app that opened the URL. Calls from inside Pocketwerk keep the default.
+    static func handle(_ url: URL, caller: URLCaller = .pocketwerk) {
+        if DockRoutes.handle(url, caller: caller) { return }
         guard url.scheme == PWShared.urlScheme else {
             // Files dropped on the app icon: add to the first group.
             if url.isFileURL, let first = LibraryStore.shared.library.groups.first {
@@ -73,8 +75,10 @@ enum URLRouter {
             }
             return
         }
-        let q = Dictionary(uniqueKeysWithValues: (URLComponents(url: url, resolvingAgainstBaseURL: false)?
-            .queryItems ?? []).map { ($0.name, $0.value ?? "") })
+        // Fallback for pocketwerk:// URLs DockRoutes does not know. Changing routes (add, profile)
+        // live only in DockRoutes, so they always pass its confirmation.
+        let q = Dictionary((URLComponents(url: url, resolvingAgainstBaseURL: false)?
+            .queryItems ?? []).map { ($0.name, $0.value ?? "") }, uniquingKeysWith: { first, _ in first })
         switch url.host {
         case "open":
             if let s = q["slot"].flatMap(UUID.init) {
@@ -84,15 +88,8 @@ enum URLRouter {
             } else {
                 PopupController.shared.toggleAll()
             }
-        case "add":
-            guard let raw = q["url"], let target = URL(string: raw) else { return }
-            let store = LibraryStore.shared
-            let groupID = q["group"].flatMap(UUID.init) ?? store.library.groups.first?.id
-            if let groupID { store.addItems([target], to: groupID) }
         case "settings":
             MainWindowController.shared.show()
-        case "profile":
-            if let id = q["id"].flatMap(UUID.init) { DockProfiles.shared.apply(id) }
         default:
             break
         }

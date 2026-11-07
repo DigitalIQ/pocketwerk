@@ -139,6 +139,16 @@
         }
       }
     },
+    "%@ opened a Pocketwerk link. Only allow this if you started it yourself." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ hat einen Pocketwerk-Link geöffnet. Erlaube das nur, wenn du ihn selbst ausgelöst hast."
+          }
+        }
+      }
+    },
     "%@, group %lld of %lld" : {
       "localizations" : {
         "de" : {
@@ -772,6 +782,16 @@
         }
       }
     },
+    "Add these items to Pocketwerk?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Objekte zu Pocketwerk hinzufügen?"
+          }
+        }
+      }
+    },
     "Add to Dock" : {
       "localizations" : {
         "de" : {
@@ -882,6 +902,16 @@
         }
       }
     },
+    "Allow" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erlauben"
+          }
+        }
+      }
+    },
     "Alpine Spots" : {
       "localizations" : {
         "de" : {
@@ -938,6 +968,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animationstempo"
+          }
+        }
+      }
+    },
+    "Another app" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine andere App"
           }
         }
       }
@@ -1244,6 +1284,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Automatisch anwenden bei"
+          }
+        }
+      }
+    },
+    "Apply the Dock profile “%@”?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dock-Profil „%@“ anwenden?"
           }
         }
       }
@@ -5777,6 +5827,16 @@
         }
       }
     },
+    "Open every item in “%@”?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Objekte in „%@“ öffnen?"
+          }
+        }
+      }
+    },
     "Open every item of a group" : {
       "localizations" : {
         "de" : {
@@ -5943,6 +6003,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kontur"
+          }
+        }
+      }
+    },
+    "Overwrite the active Dock profile with the current Dock?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktives Dock-Profil mit dem aktuellen Dock überschreiben?"
           }
         }
       }
@@ -6519,6 +6589,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apps beenden, die nicht in diesem Profil sind"
+          }
+        }
+      }
+    },
+    "Quit every app in “%@”?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Apps in „%@“ beenden?"
           }
         }
       }
@@ -7129,6 +7209,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dock im aktiven Profil sichern"
+          }
+        }
+      }
+    },
+    "Save the current Dock as the profile “%@”?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktuelles Dock als Profil „%@“ sichern?"
           }
         }
       }
@@ -8180,6 +8270,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zwischen Seiten wischen (sonst scrollen)"
+          }
+        }
+      }
+    },
+    "Switch to the next Dock profile?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zum nächsten Dock-Profil wechseln?"
           }
         }
       }
