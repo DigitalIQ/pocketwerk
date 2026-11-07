@@ -4,6 +4,8 @@ All notable changes to Pocketwerk are listed here. The format follows [Keep a Ch
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-11-07
+
 ### Security
 
 - `pocketwerk://` links from other apps, for example a browser or Mail, now ask before they add items, open or quit a group's apps, or change Dock profiles. Links from Shortcuts, the command line tool and Pocketwerk's own Dock icons still run without asking.
@@ -97,7 +99,8 @@ First public release.
 - English and German interface.
 - Support for Reduce Motion, Reduce Transparency and Low Power Mode.
 
-[Unreleased]: https://github.com/DigitalIQ/pocketwerk/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/DigitalIQ/pocketwerk/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/DigitalIQ/pocketwerk/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/DigitalIQ/pocketwerk/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/DigitalIQ/pocketwerk/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/DigitalIQ/pocketwerk/releases/tag/v1.0.0
