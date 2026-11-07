@@ -42,6 +42,7 @@ On first launch a welcome window offers a few starter groups, including a Most U
 Settings > General also holds:
 
 - **App Icon**: Standard, Honey, Ocean, Graphite or Iris. The variant is applied to Pocketwerk's Dock tile while it runs; the app bundle stays unchanged. If **Live main Dock icon** is on (see [Menu bar and app Dock icon](#menu-bar-and-app-dock-icon)), the Dock shows the live icon instead.
+- **Language**: Same as macOS, English or Deutsch. Pocketwerk switches after a restart; **Restart Now** does that for you. It is the same setting as System Settings > General > Language & Region > Applications.
 - **Seasonal touches**: light snowfall in the app windows in December. Off by default, and still under Reduce Motion or Low Power Mode.
 
 ## Groups and items

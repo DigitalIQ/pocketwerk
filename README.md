@@ -6,7 +6,7 @@ Free, open-source app folders for the Mac Dock: each group of apps, files, folde
 
 [Website](https://digitaliq.github.io/pocketwerk/) · [Download](https://github.com/DigitalIQ/pocketwerk/releases/latest) · [User guide](docs/USER_GUIDE.md) · [Changelog](CHANGELOG.md)
 
-Pocketwerk runs on macOS 26 Tahoe and later, on Apple Silicon and Intel. The interface is in English and German. It is MIT licensed, has no account and sends no analytics.
+Pocketwerk runs on macOS 26 Tahoe and later, on Apple Silicon and Intel. The interface is in English and German; pick one in Settings > General or follow macOS. It is MIT licensed, has no account and sends no analytics.
 
 ## What it does
 

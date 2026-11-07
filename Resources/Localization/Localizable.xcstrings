@@ -4361,6 +4361,16 @@
         }
       }
     },
+    "Language" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprache"
+          }
+        }
+      }
+    },
     "Last Opened" : {
       "localizations" : {
         "de" : {
@@ -6273,6 +6283,16 @@
         }
       }
     },
+    "Pocketwerk switches the language after a restart." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pocketwerk wechselt die Sprache nach einem Neustart."
+          }
+        }
+      }
+    },
     "Pocketwerk writes a copy of the library there after every change, for example to iCloud Drive. It never reads it back on its own." : {
       "localizations" : {
         "de" : {
@@ -6953,6 +6973,16 @@
         }
       }
     },
+    "Restart Now" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jetzt neu starten"
+          }
+        }
+      }
+    },
     "Restart the Dock once so pinned tiles show their new icons." : {
       "localizations" : {
         "de" : {
@@ -7109,6 +7139,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "S"
+          }
+        }
+      }
+    },
+    "Same as macOS" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie macOS"
           }
         }
       }

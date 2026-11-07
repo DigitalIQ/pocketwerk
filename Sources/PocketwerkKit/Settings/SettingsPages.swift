@@ -68,6 +68,7 @@ struct GeneralSettings: View {
                     Text("Menu bar and Dock").tag(AppPresence.menuBarAndDock)
                     Text("Dock only").tag(AppPresence.dockOnly)
                 }
+                AppLanguagePicker()
                 Toggle("Launch at login", isOn: Binding(get: { store.settings.launchAtLogin }, set: { on in
                     store.settings.launchAtLogin = on
                     LoginItem.sync(wanted: on)
