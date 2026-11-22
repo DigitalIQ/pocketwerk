@@ -30,18 +30,16 @@ final class PopupController {
     private var lastHide: (key: String?, time: Date) = (nil, .distantPast)
     private var suppressCloseUntil = Date.distantPast
     private var autoCloseSuspended = false
-    private var swipe = SwipeTracker()
     private var prepared = false
     /// The offset preview is up: it stays while the settings window has focus.
     private var previewing = false
 
     // MARK: Public API
 
-    /// Creates the window, starts the icon cache and running-app tracking. Cheap; heavy work is deferred.
+    /// Starts library and running-app tracking. The first popup creates its panel.
     func prepare() {
         guard !prepared else { return }
         prepared = true
-        _ = activeSession()
         PopupIconCache.shared.start()
         RunningApps.shared.start()
         NotificationCenter.default.addObserver(forName: .libraryDidChange, object: nil, queue: .main) { _ in
@@ -88,6 +86,8 @@ final class PopupController {
             return
         }
         let s = activeSession()
+        s.swipe = SwipeTracker()
+        s.model.swipeOffset = 0
         let settings = store.settings
         let pointer = anchor ?? NSEvent.mouseLocation
         var placement: PopupPlacement
@@ -454,14 +454,24 @@ final class PopupController {
     private func handleScroll(_ event: NSEvent) -> Bool {
         guard let s = session(for: event), let group = s.model.currentGroup else { return false }
         let m = s.model
-        let metrics = m.metrics(for: group)
-        let canPage = metrics.pageCount > 1 || m.groupIDs.count > 1
-        guard canPage else { return false }
-        if let step = swipe.feed(event, contentScrolls: metrics.scrolls) {
-            withPopupAnimation { m.step(step) }
+        lazy var metrics = m.metrics(for: group)
+        let step = s.swipe.feed(event, contentScrolls: metrics.scrolls)
+        guard step != nil || s.swipe.isHorizontalGesture || m.swipeOffset != 0 else { return false }
+        guard m.groupIDs.count > 1 || metrics.pageCount > 1 else { return false }
+        if let step {
+            withPopupAnimation {
+                m.swipeOffset = 0
+                m.step(step)
+            }
             return true
         }
-        return swipe.isHorizontalGesture
+        let offset = s.swipe.trackingOffset
+        if offset == 0, m.swipeOffset != 0 {
+            withPopupAnimation { m.swipeOffset = 0 }
+        } else if offset != m.swipeOffset, m.store.settings.animationSpeed != .off {
+            m.swipeOffset = offset
+        }
+        return s.swipe.isHorizontalGesture
     }
 
     // MARK: Keyboard
@@ -623,35 +633,38 @@ final class PopupController {
 }
 
 /// Turns trackpad swipes and mouse wheel ticks into page steps.
-/// Trackpad: the direction is decided at gesture start, one step per gesture after 40 pt, momentum ignored.
+/// Trackpad: the direction is decided at gesture start, one step per gesture after 32 pt, momentum ignored.
 /// Mouse wheel: one step per tick burst (0.35 s), vertical ticks only when the content does not scroll.
 struct SwipeTracker {
     private var accumulated: CGFloat = 0
+    private var vertical: CGFloat = 0
+    var trackingOffset: CGFloat { isHorizontalGesture && !fired ? accumulated * 0.6 : 0 }
     private var decided: Bool?
     private var fired = false
     private var lastWheel = Date.distantPast
     private(set) var isHorizontalGesture = false
 
-    mutating func feed(_ event: NSEvent, contentScrolls: Bool) -> Int? {
+    mutating func feed(_ event: NSEvent, contentScrolls: @autoclosure () -> Bool) -> Int? {
         if event.hasPreciseScrollingDeltas {
             if !event.momentumPhase.isEmpty { return nil }
             if event.phase.contains(.began) || event.phase.contains(.mayBegin) {
-                accumulated = 0; decided = nil; fired = false; isHorizontalGesture = false
+                accumulated = 0; vertical = 0; decided = nil; fired = false; isHorizontalGesture = false
             }
             let dx = event.scrollingDeltaX, dy = event.scrollingDeltaY
-            if decided == nil, dx != 0 || dy != 0 {
-                decided = abs(dx) > abs(dy) * 1.2
-                isHorizontalGesture = decided == true
-            }
             if event.phase.contains(.ended) || event.phase.contains(.cancelled) {
                 defer { decided = nil; isHorizontalGesture = false }
                 return nil
             }
-            guard decided == true, !fired else { return nil }
-            // Finger movement, independent of the natural scrolling setting.
-            let finger = event.isDirectionInvertedFromDevice ? dx : -dx
-            accumulated += finger
-            if abs(accumulated) > 40 {
+            guard !fired, decided != false else { return nil }
+            accumulated += event.isDirectionInvertedFromDevice ? dx : -dx
+            vertical += dy
+            if decided == nil {
+                guard max(abs(accumulated), abs(vertical)) >= 4 else { return nil }
+                if abs(accumulated) > abs(vertical) * 1.2 { decided = true }
+                else if abs(vertical) > abs(accumulated) * 1.2 { decided = false }
+                isHorizontalGesture = decided == true
+            }
+            if isHorizontalGesture, abs(accumulated) >= 32 {
                 fired = true
                 return accumulated < 0 ? 1 : -1
             }
@@ -660,7 +673,7 @@ struct SwipeTracker {
         // Mouse wheel.
         let dx = event.scrollingDeltaX, dy = event.scrollingDeltaY
         let horizontal = abs(dx) > abs(dy)
-        if !horizontal && contentScrolls { return nil }
+        if !horizontal && contentScrolls() { return nil }
         let delta = horizontal ? dx : dy
         guard delta != 0, Date().timeIntervalSince(lastWheel) > 0.35 else { return nil }
         lastWheel = Date()

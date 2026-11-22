@@ -42,6 +42,7 @@ final class PopupPanel: NSPanel {
 
 /// One popup window with its model. The controller keeps one reusable session plus pinned ones.
 final class PopupSession {
+    var swipe = SwipeTracker()
     let panel = PopupPanel()
     let model: PopupModel
     let host: NSHostingView<PopupRootView>

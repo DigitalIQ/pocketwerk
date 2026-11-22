@@ -18,6 +18,7 @@ final class PopupModel {
     var position = CarouselPosition(group: 0, page: 0)
     /// -1 = moved back, 1 = moved forward. Picks the slide direction.
     var slideDirection = 1
+    var swipeOffset: CGFloat = 0
     var folderStack: [FolderLevel] = []
     /// Keyboard selection, index into `shownItems`.
     var selection: Int?
@@ -149,13 +150,6 @@ final class PopupModel {
 
     // MARK: Navigation
 
-    func pageCounts() -> [Int] {
-        groups.enumerated().map { i, g in
-            i == position.group ? metrics(for: g).pageCount
-                : PopupMetrics.compute(layoutInput(for: g, items: store.visibleItems(of: g))).pageCount
-        }
-    }
-
     /// One step through pages, then groups. Disabled inside folders and while searching.
     func step(_ delta: Int) {
         if isInFolder || !query.isEmpty {
@@ -165,7 +159,12 @@ final class PopupModel {
             if p != position.page { slideDirection = delta; position.page = p; selection = nil }
             return
         }
-        let next = CarouselPosition.step(position, by: delta, pageCounts: pageCounts(), wrap: groupIDs.count > 1)
+        let counts = groupIDs.indices.lazy.map { [self] index in
+            guard let group = self.store.group(self.groupIDs[index]) else { return 1 }
+            return index == position.group ? metrics(for: group).pageCount
+                : PopupMetrics.compute(layoutInput(for: group, items: store.visibleItems(of: group))).pageCount
+        }
+        let next = CarouselPosition.step(position, by: delta, pageCounts: counts, wrap: groupIDs.count > 1)
         guard next != position else { return }
         slideDirection = delta
         let groupChanged = next.group != position.group

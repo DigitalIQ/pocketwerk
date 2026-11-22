@@ -17,6 +17,7 @@ final class ItemIconCache {
     init() {
         cache.countLimit = 400
         sized.countLimit = 600
+        sized.totalCostLimit = 16 * 1024 * 1024
     }
 
     private func key(_ item: DockItem) -> String { "\(item.kind.rawValue)|\(item.bundleID ?? "")|\(item.url.absoluteString)" }
@@ -48,7 +49,7 @@ final class ItemIconCache {
         } else {
             image = base
         }
-        sized.setObject(image, forKey: k)
+        sized.setObject(image, forKey: k, cost: px * px * 4)
         return image
     }
 

@@ -1,4 +1,4 @@
-import Foundation
+import AppKit
 import Testing
 @testable import PocketwerkKit
 
@@ -165,6 +165,30 @@ import Testing
         #expect(CarouselPosition.step(CarouselPosition(group: 0, page: 0), by: -1, pageCounts: counts) == CarouselPosition(group: 2, page: 2))
         // A single group with one page does not move without wrap.
         #expect(CarouselPosition.step(CarouselPosition(group: 0, page: 0), by: 1, pageCounts: [1], wrap: false) == CarouselPosition(group: 0, page: 0))
+    }
+
+    @MainActor @Test func trackpadSwipeTracksBeforeSteppingAndIgnoresMomentum() throws {
+        var tracker = SwipeTracker()
+        func feed(x: Int32, y: Int32, phase: CGScrollPhase, momentum: Bool = false) throws -> Int? {
+            let raw = try #require(CGEvent(scrollWheelEvent2Source: nil, units: .pixel, wheelCount: 2,
+                                           wheel1: y, wheel2: x, wheel3: 0))
+            raw.setIntegerValueField(.scrollWheelEventIsContinuous, value: 1)
+            raw.setIntegerValueField(.scrollWheelEventScrollPhase, value: Int64(phase.rawValue))
+            if momentum { raw.setIntegerValueField(.scrollWheelEventMomentumPhase, value: 1) }
+            let event = try #require(NSEvent(cgEvent: raw))
+            return tracker.feed(event, contentScrolls: true)
+        }
+        #expect(try feed(x: 0, y: 1, phase: .began) == nil)
+        #expect(try feed(x: 10, y: 0, phase: .changed) == nil)
+        #expect(abs(tracker.trackingOffset) > 0)
+        #expect(try feed(x: 28, y: 0, phase: .changed) != nil)
+        #expect(try feed(x: 40, y: 0, phase: .changed) == nil)
+        #expect(try feed(x: 0, y: 0, phase: .ended) == nil)
+        #expect(try feed(x: 40, y: 0, phase: .changed, momentum: true) == nil)
+        #expect(tracker.trackingOffset == 0)
+        #expect(try feed(x: 8, y: 0, phase: .began) == nil)
+        #expect(try feed(x: 0, y: 0, phase: .cancelled) == nil)
+        #expect(!tracker.isHorizontalGesture)
     }
 
     @Test func keyboardSelection() {

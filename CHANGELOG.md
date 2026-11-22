@@ -4,6 +4,13 @@ All notable changes to Pocketwerk are listed here. The format follows [Keep a Ch
 
 ## [Unreleased]
 
+## [1.3.1] - 2026-11-22
+
+### Changed
+
+- Horizontal trackpad swipes give feedback before switching groups. Navigation calculates page counts on demand.
+- Popup icons load on demand and reuse rendered images. Image caches have memory budgets, and closing the management window releases it.
+
 ## [1.3.0] - 2026-11-07
 
 ### Added
@@ -104,7 +111,8 @@ First public release.
 - English and German interface.
 - Support for Reduce Motion, Reduce Transparency and Low Power Mode.
 
-[Unreleased]: https://github.com/DigitalIQ/pocketwerk/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/DigitalIQ/pocketwerk/compare/v1.3.1...HEAD
+[1.3.1]: https://github.com/DigitalIQ/pocketwerk/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/DigitalIQ/pocketwerk/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/DigitalIQ/pocketwerk/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/DigitalIQ/pocketwerk/compare/v1.0.0...v1.1.0

@@ -51,6 +51,7 @@ struct PopupRootView: View {
                                 : reduceMotion ? .opacity : .push(from: model.slideDirection > 0 ? .trailing : .leading))
             }
         }
+        .offset(x: reduceMotion || model.usesSidebar ? 0 : model.swipeOffset)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }
 }

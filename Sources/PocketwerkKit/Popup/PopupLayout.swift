@@ -212,12 +212,13 @@ nonisolated struct CarouselPosition: Equatable, Sendable {
 
     /// Moves by one step. `pageCounts` holds the page count of every group.
     /// Wraps around from the last group to the first.
-    static func step(_ pos: CarouselPosition, by delta: Int, pageCounts: [Int], wrap: Bool = true) -> CarouselPosition {
+    static func step<Counts: RandomAccessCollection>(_ pos: CarouselPosition, by delta: Int, pageCounts: Counts,
+                                                     wrap: Bool = true) -> CarouselPosition where Counts.Element == Int, Counts.Index == Int {
         guard !pageCounts.isEmpty else { return pos }
         var g = min(max(pos.group, 0), pageCounts.count - 1)
         var p = pos.page + delta
-        if p >= 0, p < max(pageCounts[g], 1) { return CarouselPosition(group: g, page: p) }
-        if pageCounts.count == 1 && !wrap { return CarouselPosition(group: g, page: min(max(p, 0), pageCounts[g] - 1)) }
+        if p >= 0, p < max(pageCounts[pageCounts.startIndex + g], 1) { return CarouselPosition(group: g, page: p) }
+        if pageCounts.count == 1 && !wrap { return CarouselPosition(group: g, page: min(max(p, 0), pageCounts[pageCounts.startIndex + g] - 1)) }
         if delta > 0 {
             g += 1
             if g >= pageCounts.count {
@@ -231,7 +232,7 @@ nonisolated struct CarouselPosition: Equatable, Sendable {
                 guard wrap else { return pos }
                 g = pageCounts.count - 1
             }
-            p = max(pageCounts[g], 1) - 1
+            p = max(pageCounts[pageCounts.startIndex + g], 1) - 1
         }
         return CarouselPosition(group: g, page: p)
     }

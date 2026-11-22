@@ -186,5 +186,6 @@ final class MainWindowController: NSObject, NSWindowDelegate {
 
     func windowWillClose(_ notification: Notification) {
         model.renamingGroupID = nil
+        window = nil
     }
 }

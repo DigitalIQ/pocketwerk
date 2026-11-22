@@ -72,8 +72,12 @@ enum IconRenderer {
         return NSImage(cgImage: cg, size: NSSize(width: size, height: size))
     }
 
-    private static var cache: [Int: CGImage] = [:]
-    private static var cacheOrder: [Int] = []
+    private static let cache: NSCache<NSNumber, CGImage> = {
+        let cache = NSCache<NSNumber, CGImage>()
+        cache.countLimit = 160
+        cache.totalCostLimit = 16 * 1024 * 1024
+        return cache
+    }()
 
     /// Square bitmap of `pixels` edge length. Cached by every input that changes the picture.
     static func cgImage(spec: IconSpec, style: GroupStyle, name: String, items: [DockItem], pixels: Int) -> CGImage? {
@@ -85,8 +89,8 @@ enum IconRenderer {
         h.combine(items.map(\.url))
         h.combine(pixels)
         h.combine(ItemIconCache.shared.generation)
-        let key = h.finalize()
-        if let hit = cache[key] { return hit }
+        let key = NSNumber(value: h.finalize())
+        if let hit = cache.object(forKey: key) { return hit }
         guard let ctx = CGContext(data: nil, width: pixels, height: pixels, bitsPerComponent: 8, bytesPerRow: 0,
                                   space: CGColorSpace(name: CGColorSpace.sRGB)!,
                                   bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else { return nil }
@@ -97,9 +101,7 @@ enum IconRenderer {
         IconPainter(ctx: ctx, canvas: CGFloat(pixels), spec: spec, style: style, name: name, items: items).paint()
         NSGraphicsContext.restoreGraphicsState()
         guard let image = ctx.makeImage() else { return nil }
-        cache[key] = image
-        cacheOrder.append(key)
-        if cacheOrder.count > 160 { cache.removeValue(forKey: cacheOrder.removeFirst()) }
+        cache.setObject(image, forKey: key, cost: image.bytesPerRow * image.height)
         return image
     }
 
